@@ -1,0 +1,767 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Navigating Files and Directories &#8212; University Research Computing Facility Workshop</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Working With Files and Directories" href="04-working_with_files_and_directories.html" />
+    <link rel="prev" title="Accessing the Picotte Cluster" href="02-accessing-picotte.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    University Research Computing Facility Workshops
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introductory Sequence
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="00-index.html">
+   Introduction to Linux
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="00a-outline.html">
+     Workshop Outline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-introduction.html">
+     What is Linux?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01a-shell.html">
+     Shell Specifics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Navigating Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-working_with_files_and_directories.html">
+     Working With Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04a-file-permissions.html">
+     File Permissions and Atrributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05-pipes.html">
+     Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-find.html">
+     Finding Things
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07-utilities.html">
+     Utilities and Useful Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-conclusion.html">
+     Workshop Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_picotte/00-index.html">
+   Introduction to Palmetto
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/01-introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/04-storage.html">
+     Storage on Palmetto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/05-interactive.html">
+     Running an interactive job on Palmetto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/06-file-transfer.html">
+     Transferring files to and from Palmetto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/07-open-od.html">
+     Web-based access to the Palmetto Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/08-batch.html">
+     Running a batch job
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../r_programming/00-index.html">
+   Introduction to R
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/01-Introduction.html">
+     Introduction to R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/02-Basic-R.html">
+     Basics of R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/04-Matrix.html">
+     Vectors, Matrices, Lists and Data Frames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
+     Control Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/06-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
+     Parallel Computing in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
+     Basic plotting with R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
+     Ploting with ggplot
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python_programming/00-index.html">
+   Introduction to Python Programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/01-IntroToPython-I.html">
+     Introduction to Python I
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/02-IntroToPython-II.html">
+     Introduction to Python II
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/03-IntroToPython-III.html">
+     Introduction to Python III
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/04-IntroToPython-IV.html">
+     Introduction to Python IV
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/intro_linux/03-file-system.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Navigating Files and Directories</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="navigating-files-and-directories">
+<h1>Navigating Files and Directories<a class="headerlink" href="#navigating-files-and-directories" title="Permalink to this headline">#</a></h1>
+<div class="dropdown admonition">
+<p class="admonition-title">1. Hands-on: preparing shell and data</p>
+<ul class="simple">
+<li><p>Run the following commands to prepare the environment.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp /beegfs/urcfadm/data/shell-lesson-data.zip .
+unzip shell-lesson-data.zip
+</pre></div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">2. Files and Directories</p>
+<ul class="simple">
+<li><p><strong>File System</strong>: an Operating System component responsible for managing files and directories.</p></li>
+<li><p>Perspective:</p>
+<ul>
+<li><p>On a GUI, you click to move from one place to another, so you are <em>outside</em> the file system
+space looking in.</p></li>
+<li><p>On a CLI, you need to explicitly provide direction (<strong>path</strong>) for the command to know with which
+file/directory it is supposed to interact. The perspective is more <em>inside</em> the file system space.</p></li>
+</ul>
+</li>
+<li><p>Key commands:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">pwd</span></code>: path of working (current) directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code>: listing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code>: change directory</p></li>
+</ul>
+</li>
+<li><p>Key definition:</p></li>
+</ul>
+<p><img alt="File Systems" src="../_images/file_system.png" /></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">3. Where am I, what do we have here, and where can I go somewhere else?</p>
+<ul class="simple">
+<li><p>Three basic commands: <code class="docutils literal notranslate"><span class="pre">pwd</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">cd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pwd</span></code> returns the absolute path to the current working directory
+(i.e.: where you are when you are in the terminal).</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+</pre></div>
+</div>
+<p><img alt="Path to current working directory" src="../_images/pwd.png" /></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code> returns the list of current files and directories in the
+target directory.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls /
+</pre></div>
+</div>
+<p><img alt="Listing of directories and files in current directory" src="../_images/ls.png" /></p>
+<ul class="simple">
+<li><p>There are many options available for different commands.
+To view the documentation, run the followings:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls --help
+</pre></div>
+</div>
+<p><img alt="View help documentation for ls" src="../_images/ls-help.png" /></p>
+<ul class="simple">
+<li><p>Detailed manual can be viewed using the following command:</p>
+<ul>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">Space</span></code> key to move down page by page</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">q</span></code> to quit</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man ls
+</pre></div>
+</div>
+<p><img alt="View help documentation for ls using man" src="../_images/ls-man.png" /></p>
+<ul class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">ls</span></code> by itself will list the contents of the current directory.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> allows users to change the current directory (outcome
+of <code class="docutils literal notranslate"><span class="pre">pwd</span></code>) to the target directory.</p>
+<ul>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">cd</span></code> or <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">--help</span></code> to read the documentation for <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p></li>
+<li><p>The generate syntax for <code class="docutils literal notranslate"><span class="pre">cd</span></code> is <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">DESTINATION</span></code> with
+<code class="docutils literal notranslate"><span class="pre">DESTINATION</span></code> can either be absolute or relative paths or special paths.</p></li>
+</ul>
+</li>
+<li><p>Change to root directory and view contents of root:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /
+ls 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Special paths:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">~</span></code>: home direcrory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.</span></code>: current directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">..</span></code>: a directory that is one level above the current directory</p></li>
+</ul>
+</li>
+<li><p>Change to your home directory using either the special paths or <code class="docutils literal notranslate"><span class="pre">/home/YOURUSERNAME</span></code>
+(<code class="docutils literal notranslate"><span class="pre">YOURUSERNAME</span></code>: your username on <code class="docutils literal notranslate"><span class="pre">molly</span></code>)</p>
+<ul>
+<li><p>Check the content of your home directory to confirm that you have
+the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory.</p></li>
+<li><p>Change into <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory and view the contents of this directory</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+ls
+<span class="nb">cd</span> shell-lesson-data
+ls 
+</pre></div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">4. Challenge: exploring more ls flags</p>
+<ul class="simple">
+<li><p>You can also use two options at the same time. What does the command
+<code class="docutils literal notranslate"><span class="pre">ls</span></code> do when used with the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option? What about if you use both the
+<code class="docutils literal notranslate"><span class="pre">-l</span></code> and the <code class="docutils literal notranslate"><span class="pre">-h</span></code> option?</p></li>
+<li><p>Some of its output is about properties that we do not cover in this
+lesson (such as file permissions and ownership), but the rest should be
+useful nevertheless.</p></li>
+</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">-l</span></code> option makes <code class="docutils literal notranslate"><span class="pre">ls</span></code> use a long listing format, showing not only
+the file/directory names but also additional information, such as the
+file size and the time of its last modification.</p></li>
+<li><p>If you use both the <code class="docutils literal notranslate"><span class="pre">-h</span></code> option and the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option, this makes the file
+size <em>human readable</em>, i.e. displaying something like 5.3K instead of 5369.</p></li>
+</ul>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">5. Challenge: Listing in reverse chronological order</p>
+<ul class="simple">
+<li><p>By default, ls lists the contents of a directory in alphabetical
+order by name. The command ls <code class="docutils literal notranslate"><span class="pre">-t</span></code> lists items by time of last change
+instead of alphabetically. The command ls <code class="docutils literal notranslate"><span class="pre">-r</span></code> lists the contents of a
+directory in reverse order.</p></li>
+<li><p>Which file is displayed last when you combine the <code class="docutils literal notranslate"><span class="pre">-t</span></code> and <code class="docutils literal notranslate"><span class="pre">-r</span></code> options?
+Hint: You may need to use the -l option to see the last changed dates.</p></li>
+</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>The most recently changed file is listed last when using <code class="docutils literal notranslate"><span class="pre">-rt</span></code>.
+This can be very useful for finding your most recent edits or
+checking to see if a new output file was written.</p>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">6. Challenge: ls Reading comprehension</p>
+<ul class="simple">
+<li><p>Using the filesystem diagram below.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">pwd</span></code> displays <code class="docutils literal notranslate"><span class="pre">/Users/backup</span></code> and  <code class="docutils literal notranslate"><span class="pre">-r</span></code> tells <code class="docutils literal notranslate"><span class="pre">ls</span></code> to display things in
+reverse order, what command(s) will result in the following output:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pnas_sub/ pnas_final/ original/
+</pre></div>
+</div>
+<p><img alt="Change directories" src="../_images/filesystem-challenge.svg" /></p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">pwd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span> <span class="pre">-F</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span> <span class="pre">-F</span> <span class="pre">/Users/backup</span></code></p></li>
+</ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<ol class="simple">
+<li><p>No: <code class="docutils literal notranslate"><span class="pre">pwd</span></code> is not the name of a directory.</p></li>
+<li><p>Yes: <code class="docutils literal notranslate"><span class="pre">ls</span></code> without directory argument lists files and directories in the current directory.</p></li>
+<li><p>Yes: uses the absolute path explicitly.</p></li>
+</ol>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">7. General syntax of a shell command</p>
+<p><img alt="Structure of shell command" src="../_images/shell_command_syntax.svg" /></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code> is the command, with an option <code class="docutils literal notranslate"><span class="pre">-F</span></code> and an argument <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p></li>
+<li><p><strong>Option</strong>:</p>
+<ul>
+<li><p>either start with a single dash (<code class="docutils literal notranslate"><span class="pre">-</span></code>) or two dashes (<code class="docutils literal notranslate"><span class="pre">--</span></code>),</p></li>
+<li><p>change the behavior of a command.</p></li>
+<li><p>can be referred to as either <code class="docutils literal notranslate"><span class="pre">switches</span></code> or <code class="docutils literal notranslate"><span class="pre">flags</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Arguments</strong> tell the command what to operate on (e.g. files and directories).</p></li>
+<li><p>Sometimes <code class="docutils literal notranslate"><span class="pre">options</span></code> and <code class="docutils literal notranslate"><span class="pre">arguments</span></code> are referred to as parameters.</p>
+<ul>
+<li><p>The shell is in fact just a process/function and these <code class="docutils literal notranslate"><span class="pre">options</span></code> and <code class="docutils literal notranslate"><span class="pre">arguments</span></code>
+are being passed as parameters to the shell’s function that is responsible for
+executing the <strong>command</strong>.</p></li>
+</ul>
+</li>
+<li><p>A command can be called with more than one option and more than one argument, but a
+command doesn’t always require an argument or an option.</p></li>
+<li><p>Each part is separated by spaces: if you omit the space between <code class="docutils literal notranslate"><span class="pre">ls</span></code> and <code class="docutils literal notranslate"><span class="pre">-F</span></code> the
+shell will look for a command called <code class="docutils literal notranslate"><span class="pre">ls-F</span></code>, which doesn’t exist.</p></li>
+<li><p>Capitalization can be important.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-s</span></code> will display the size of files and directories alongside the names</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-S</span></code> will sort the files and directories by size</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">8. Hands-on: explore data</p>
+<ul class="simple">
+<li><p>Check where you are, change back to your home directory,
+then navigate to <code class="docutils literal notranslate"><span class="pre">exercise-data</span></code>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
+<span class="n">cd</span> <span class="o">~</span>
+<span class="n">cd</span> <span class="n">shell</span><span class="o">-</span><span class="n">lesson</span><span class="o">-</span><span class="n">data</span>
+<span class="n">cd</span> <span class="n">exercise</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">writing</span>
+<span class="n">ls</span> <span class="o">-</span><span class="n">F</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./intro_linux"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="02-accessing-picotte.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Accessing the Picotte Cluster</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="04-working_with_files_and_directories.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Working With Files and Directories</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
