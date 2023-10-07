@@ -447,73 +447,12 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#names-for-files-and-directories">
-   Names for Files and Directories
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#copying-moving-and-deleting">
-   Copying, Moving, and Deleting
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#copying">
-     Copying
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#moving">
-     Moving
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#deleting">
-     Deleting
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#deleting-is-forever">
-     Deleting Is Forever
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#wildcards">
-   Wildcards
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#viewing-contents-of-a-file">
-   Viewing Contents of a File
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
@@ -525,56 +464,6 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#names-for-files-and-directories">
-   Names for Files and Directories
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#copying-moving-and-deleting">
-   Copying, Moving, and Deleting
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#copying">
-     Copying
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#moving">
-     Moving
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#deleting">
-     Deleting
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#deleting-is-forever">
-     Deleting Is Forever
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#wildcards">
-   Wildcards
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#viewing-contents-of-a-file">
-   Viewing Contents of a File
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -584,145 +473,26 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="working-with-files-and-directories">
 <h1>Working With Files and Directories<a class="headerlink" href="#working-with-files-and-directories" title="Permalink to this headline">#</a></h1>
-<section id="names-for-files-and-directories">
-<h2>Names for Files and Directories<a class="headerlink" href="#names-for-files-and-directories" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">1. Names for Files and Directories</p>
 <p>Complicated names of files and directories can make your life very painful
 when working on the command line. Here we provide a few useful
 tips for the names of your files from now on.</p>
-<ol>
-<li><p>Don’t use whitespaces.</p>
-<p>White spaces can make a name more meaningful
+<ol class="simple">
+<li><p>Don’t use whitespaces.
+White spaces can make a name more meaningful
 but since whitespace is used to break arguments on the command line
 is better to avoid them on name of files and directories.
-You can use <code class="docutils literal notranslate"><span class="pre">-</span></code> or <code class="docutils literal notranslate"><span class="pre">_</span></code> instead of whitespace.</p>
-<p>Commands treat names starting with <code class="docutils literal notranslate"><span class="pre">-</span></code> as options.</p>
-</li>
+You can use <code class="docutils literal notranslate"><span class="pre">-</span></code> or <code class="docutils literal notranslate"><span class="pre">_</span></code> instead of whitespace.
+Commands treat names starting with <code class="docutils literal notranslate"><span class="pre">-</span></code> as options.</p></li>
 <li><p>Stay with letters, numbers, <code class="docutils literal notranslate"><span class="pre">.</span></code> (period), <code class="docutils literal notranslate"><span class="pre">-</span></code> (dash) and <code class="docutils literal notranslate"><span class="pre">_</span></code> (underscore).</p></li>
 <li><p>Don’t begin the name with <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p></li>
 </ol>
 <p>If you need to refer to names of files or directories that have whitespace
 or another non-alphanumeric character you should put quotes around the name.</p>
-</section>
-<section id="copying-moving-and-deleting">
-<h2>Copying, Moving, and Deleting<a class="headerlink" href="#copying-moving-and-deleting" title="Permalink to this headline">#</a></h2>
-<section id="copying">
-<h3>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">#</a></h3>
-<p>Copy a file with <code class="docutils literal notranslate"><span class="pre">cp</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp oldfile newfile
-</pre></div>
-</div>
-<p>To copy a file into a directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp filename /path/to/directory
-</pre></div>
-</div>
-<p>This will make a copy of <em>filename</em> with same name in <em>directory</em>.</p>
-</section>
-<section id="moving">
-<h3>Moving<a class="headerlink" href="#moving" title="Permalink to this headline">#</a></h3>
-<p>Move a file with <code class="docutils literal notranslate"><span class="pre">mv</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv oldfile newfile
-</pre></div>
-</div>
-<p>The move command is also the command to rename a file.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv filename directory
-</pre></div>
-</div>
-<p>The above command will move <em>filename</em> into the existing <em>directory</em>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">cp</span></code> and <code class="docutils literal notranslate"><span class="pre">mv</span></code> can overwrite files which is irreversible. Using the <code class="docutils literal notranslate"><span class="pre">-i</span></code> flag with <code class="docutils literal notranslate"><span class="pre">cp</span></code> or <code class="docutils literal notranslate"><span class="pre">mv</span></code> will prompt you before overwriting an existing file.</p>
-</div>
-</section>
-<section id="deleting">
-<h3>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">#</a></h3>
-<p>Remove a file with <code class="docutils literal notranslate"><span class="pre">rm</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm filename
-</pre></div>
-</div>
-<p>The opposite of <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> is <code class="docutils literal notranslate"><span class="pre">rmdir</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rmdir directory
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">rmdir</span></code> only works for empty directories. To delete a directory and all it’s contents pass the <code class="docutils literal notranslate"><span class="pre">-r</span></code> or <code class="docutils literal notranslate"><span class="pre">--recursive</span></code> flag to <code class="docutils literal notranslate"><span class="pre">rm</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm -r directory
-</pre></div>
-</div>
-</section>
-<section id="deleting-is-forever">
-<h3>Deleting Is Forever<a class="headerlink" href="#deleting-is-forever" title="Permalink to this headline">#</a></h3>
-<p>Files deleted with <code class="docutils literal notranslate"><span class="pre">rm</span></code> cannot be recovered from a trash bin. Be very careful when deleting files especially with <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span></code>.</p>
-</section>
-</section>
-<section id="wildcards">
-<h2>Wildcards<a class="headerlink" href="#wildcards" title="Permalink to this headline">#</a></h2>
-<p>File globbing, known better as wildcards, uses patterns to automatically expand a file name or path. The <code class="docutils literal notranslate"><span class="pre">*</span></code> character matches any (multiple) characters. A <code class="docutils literal notranslate"><span class="pre">?</span></code> matches a single character.</p>
-<p><strong>Example:</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
-example1.txt    hello1.txt    hello2.txt    hello3.txt
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls *.txt
-example1.txt    hello1.txt    hello2.txt    hello3.txt  hello4.csv
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls hello*
-hello1.txt    hello2.txt    hello3.txt  hello4.csv
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls hello?.txt
-hello1.txt    hello2.txt    hello3.txt
-</pre></div>
-</div>
-</section>
-<section id="viewing-contents-of-a-file">
-<h2>Viewing Contents of a File<a class="headerlink" href="#viewing-contents-of-a-file" title="Permalink to this headline">#</a></h2>
-<p>There are many different ways to view the contents of a file.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">more</span></code> and <code class="docutils literal notranslate"><span class="pre">less</span></code> will display the file in a <em>buffer</em></p>
-<ul>
-<li><p>contents will fill the size of your terminal, allowing you to scroll</p></li>
-</ul>
-</li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ less file
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cat</span></code> will print the contents of the file to the terminal</p>
-<ul>
-<li><p>not recommended with large text files, use <code class="docutils literal notranslate"><span class="pre">more</span></code> or <code class="docutils literal notranslate"><span class="pre">less</span></code> instead</p></li>
-</ul>
-</li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat file
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">head</span></code> will display the first 10 lines of the file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">-n</span> <span class="pre">X</span></code> will display the first X lines of the file</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head file
-
-$ head -n 20 file
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">tail</span></code> will display the last 10 lines of the file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">X</span></code> will display the last X lines of the file</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail file
-
-$ tail -n 20 file
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span></code> will display the last 10 lines and continue displaying lines as the file is updated</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -f logfile
-</pre></div>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">9. Creating directories: mkdir</p>
+<p class="admonition-title">2. Creating directories: mkdir</p>
 <ul class="simple">
 <li><p>Create a directory called <code class="docutils literal notranslate"><span class="pre">thesis</span></code>, and check for its existence.</p>
 <ul>
@@ -731,29 +501,9 @@ the newly created directory.</p></li>
 </ul>
 </li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir thesis
-$ ls -F
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir thesis
+ls -F
 </pre></div>
-</div>
-<div class="note admonition">
-<p class="admonition-title">Challenge: <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> creating multiple directories</p>
-<ul class="simple">
-<li><p>What is the role of the <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag in the following
-commands:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ../project/data 
-$ ls -F ../project
-$ mkdir -p ../project/data
-$ mkdir -p ../project/report ../project/results
-$ ls -F ../project
-</pre></div>
-</div>
-<div class="admonition-solution admonition">
-<p class="admonition-title">Solution</p>
-<p><code class="docutils literal notranslate"><span class="pre">-p</span></code> allows the creation of all directories
-on the specified path, regardless whether any directory on
-that path exists.</p>
-</div>
 </div>
 <ul class="simple">
 <li><p><strong>Important for directory and file names in Linux!!!</strong></p>
@@ -765,8 +515,28 @@ the names with them.</p></li>
 </li>
 </ul>
 </div>
+<div class="note admonition">
+<p class="admonition-title">3. Challenge: mkdir creating multiple directories</p>
+<ul class="simple">
+<li><p>What is the role of the <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag in the following
+commands:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ../project/data 
+ls -F ../project
+mkdir -p ../project/data
+mkdir -p ../project/report ../project/results
+ls -F ../project
+</pre></div>
+</div>
+<div class="admonition-solution admonition">
+<p class="admonition-title">Solution</p>
+<p><code class="docutils literal notranslate"><span class="pre">-p</span></code> allows the creation of all directories
+on the specified path, regardless whether any directory on
+that path exists.</p>
+</div>
+</div>
 <div class="dropdown admonition">
-<p class="admonition-title">10. Creating files: nano (or vim)</p>
+<p class="admonition-title">4. Creating files: nano (or vim)</p>
 <ul class="simple">
 <li><p>Linux terminal environment is text-only, hence its editors are
 text only as well.</p>
@@ -784,13 +554,13 @@ text only as well.</p>
 </ul>
 </li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
-$ ls
-$ cd thesis
-$ nano draft.txt
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
+<span class="n">ls</span>
+<span class="n">cd</span> <span class="n">thesis</span>
+<span class="n">nano</span> <span class="n">draft</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<a class="bg-primary mb-1 reference internal image-reference" href="fig/intro-linux/nano.png"><img alt="Nano editor" class="bg-primary mb-1 align-center" src="fig/intro-linux/nano.png" style="height: 200px;" /></a>
+<p><img alt="Nano editor" src="fig/intro-linux/nano.png" /></p>
 <ul class="simple">
 <li><p>To save the text, you need to press <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">O</span></code> keys:</p>
 <ul>
@@ -808,38 +578,39 @@ if you want to save the file first and confirm the name with <code class="docuti
 </ul>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">11. Moving files and directories:  mv</p>
+<p class="admonition-title">5. Moving files and directories:  mv</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">mv</span></code> is short for move. It will move a file/directory from
 one location to another.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/shell-lesson-data/exercise-data/writing
-$ ls thesis
-$ mv thesis/draft.txt thesis/quotes.txt
-$ ls thesis
-$ mv thesis/quotes.txt .
-$ ls thesis
-$ ls 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/shell-lesson-data/exercise-data/writing
+ls thesis
+mv thesis/draft.txt thesis/quotes.txt
+ls thesis
+mv thesis/quotes.txt .
+ls thesis
+ls 
 </pre></div>
 </div>
+</div>
 <div class="note admonition">
-<p class="admonition-title">Challenge: Moving files to a new folder</p>
+<p class="admonition-title">6. Challenge: Moving files to a new folder</p>
 <ul class="simple">
 <li><p>After running the following commands, Jamie realizes that she
 put the files <code class="docutils literal notranslate"><span class="pre">sucrose.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">maltose.dat</span></code> into the wrong folder. The
 files should have been placed in the <code class="docutils literal notranslate"><span class="pre">raw</span></code> folder.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -F
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls -F
 analyzed/ raw/
 $ ls -F analyzed
 fructose.dat glucose.dat maltose.dat sucrose.dat
-$ cd analyzed
+$ <span class="nb">cd</span> analyzed
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Fill in the blanks to move these files to the <code class="docutils literal notranslate"><span class="pre">raw</span></code> folder:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv sucrose.data maltose.data ____/_____
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mv sucrose.data maltose.data ____/_____
 </pre></div>
 </div>
 <div class="admonition-solution admonition">
@@ -849,21 +620,21 @@ $ cd analyzed
 </div>
 </div>
 </div>
-</div>
 <div class="dropdown admonition">
-<p class="admonition-title">12. Copying files and directories: cp</p>
+<p class="admonition-title">7. Copying files and directories: cp</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cp</span></code> stands for copy. It copies a file or directory to a new location,
 possibly with a new name.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp quotes.txt thesis/quotations.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp quotes.txt thesis/quotations.txt
 $ ls quotes.txt thesis/quotations.txt
 $ cp -r thesis thesis_backup
 $ ls thesis thesis_backup
 </pre></div>
 </div>
+</div>
 <div class="note admonition">
-<p class="admonition-title">Challenge: Renaming files</p>
+<p class="admonition-title">8. Challenge: Renaming files</p>
 <ul class="simple">
 <li><p>Suppose that you created a plain-text file in your
 current directory to contain a list of the statistical
@@ -894,11 +665,11 @@ not provide a new file name; identical file names cannot be created.</p></li>
 </div>
 </div>
 <div class="note admonition">
-<p class="admonition-title">Challenge: Moving and copying</p>
+<p class="admonition-title">9. Challenge: Moving and copying</p>
 <ul class="simple">
 <li><p>What is the output of the last <code class="docutils literal notranslate"><span class="pre">ls</span></code> command in the sequence shown below?</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
 /home/rammy/data
 $ ls
 proteins.dat
@@ -924,15 +695,14 @@ $ ls
 </ol>
 </div>
 </div>
-</div>
 <div class="dropdown admonition">
-<p class="admonition-title">13. Removing files and directories: rm</p>
+<p class="admonition-title">10. Removing files and directories: rm</p>
 <ul class="simple">
 <li><p>Returning to the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/writing</span></code> directory,
 let’s tidy up this directory by removing the quotes.txt file we created.</p></li>
-<li><p>The command we’ll use for this is <code class="docutils literal notranslate"><span class="pre">rm</span></code> (short for ‘remove’):</p></li>
+<li><p>The command we’ll use for this is <code class="docutils literal notranslate"><span class="pre">rm</span></code> (short for <em>remove</em>):</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/shell-lesson-data/exercise-data/writing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/shell-lesson-data/exercise-data/writing
 $ ls 
 $ rm quotes.txt
 $ ls quotes.txt
@@ -942,9 +712,10 @@ $ rm -r thesis
 </div>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">14. Wildcards</p>
+<p class="admonition-title">11. Wildcards</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> is a wildcard, which matches zero or more characters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> is a wildcard, which matches zero or more characters.</p>
+<ul>
 <li><p>Inside <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/proteins</span></code> directory:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">*.pdb</span></code> matches <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code>, and every file that ends with ‘.pdb’.</p></li>
@@ -952,102 +723,111 @@ $ rm -r thesis
 only matches filenames that begin with the letter ‘p’.</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> is also a wildcard, but it matches exactly one character. So</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> is also a wildcard, but it matches exactly one character. So</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">?ethane.pdb</span></code> would match <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">*ethane.pdb</span></code> matches both <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, and <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>.</p></li>
-<li><p>Wildcards can be used in combination with each other</p></li>
+</ul>
+</li>
+<li><p>Wildcards can be used in combination with each other</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">???ane.pdb</span></code> matches three characters followed by <code class="docutils literal notranslate"><span class="pre">ane.pdb</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>.</p></li>
+</ul>
+</li>
 <li><p>When the shell sees a wildcard, it expands the wildcard to create a list of
 matching filenames before running the command that was asked for. It is the shell,
 not the other programs, that deals with expanding wildcards.</p></li>
 <li><p>Change into <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/proteins</span></code> and try the following
 commands</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls *t*ane.pdb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls *t*ane.pdb
 $ ls *t?ne.*
 $ ls *t??ne.pdb
 $ ls ethane.*
 </pre></div>
 </div>
-<a class="bg-primary mb-1 reference internal image-reference" href="fig/intro-linux/wildcards.png"><img alt="Outcome of various wildcards" class="bg-primary mb-1 align-center" src="fig/intro-linux/wildcards.png" style="height: 200px;" /></a>
+<p><img alt="Outcome of various wildcards" src="fig/intro-linux/wildcards.png" /></p>
+</div>
 <div class="dropdown admonition">
-<p class="admonition-title">Challenge: more on wildcards</p>
+<p class="admonition-title">12. Challenge: more on wildcards</p>
 <p>Sam has a directory containing calibration data, datasets, and descriptions of
 the datasets:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
-├── 2015-10-23-calibration.txt
-├── 2015-10-23-dataset1.txt
-├── 2015-10-23-dataset2.txt
-├── 2015-10-23-dataset_overview.txt
-├── 2015-10-26-calibration.txt
-├── 2015-10-26-dataset1.txt
-├── 2015-10-26-dataset2.txt
-├── 2015-10-26-dataset_overview.txt
-├── 2015-11-23-calibration.txt
-├── 2015-11-23-dataset1.txt
-├── 2015-11-23-dataset2.txt
-├── 2015-11-23-dataset_overview.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
+├── <span class="m">2015</span>-10-23-calibration.txt
+├── <span class="m">2015</span>-10-23-dataset1.txt
+├── <span class="m">2015</span>-10-23-dataset2.txt
+├── <span class="m">2015</span>-10-23-dataset_overview.txt
+├── <span class="m">2015</span>-10-26-calibration.txt
+├── <span class="m">2015</span>-10-26-dataset1.txt
+├── <span class="m">2015</span>-10-26-dataset2.txt
+├── <span class="m">2015</span>-10-26-dataset_overview.txt
+├── <span class="m">2015</span>-11-23-calibration.txt
+├── <span class="m">2015</span>-11-23-dataset1.txt
+├── <span class="m">2015</span>-11-23-dataset2.txt
+├── <span class="m">2015</span>-11-23-dataset_overview.txt
 ├── backup
 │   ├── calibration
 │   └── datasets
 └── send_to_bob
-   ├── all_datasets_created_on_a_23rd
-   └── all_november_files
+    ├── all_datasets_created_on_a_23rd
+    └── all_november_files
 </pre></div>
 </div>
 <p>Before heading off to another field trip, Sam wants to back up her data and
 send datasets created the 23rd of any month to Bob. Sam uses the following commands
 to get the job done:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp *dataset* backup/datasets
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp *dataset* backup/datasets
 $ cp ____calibration____ backup/calibration
-$ cp 2015-____-____ send_to_bob/all_november_files/
+$ cp <span class="m">2015</span>-____-____ send_to_bob/all_november_files/
 $ cp ____ send_to_bob/all_datasets_created_on_a_23rd/
 </pre></div>
 </div>
 <p>Help Sam by filling in the blanks.</p>
 <p>The resulting directory structure should look like this</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
-├── 2015-10-23-calibration.txt
-├── 2015-10-23-dataset1.txt
-├── 2015-10-23-dataset2.txt
-├── 2015-10-23-dataset_overview.txt
-├── 2015-10-26-calibration.txt
-├── 2015-10-26-dataset1.txt
-├── 2015-10-26-dataset2.txt
-├── 2015-10-26-dataset_overview.txt
-├── 2015-11-23-calibration.txt
-├── 2015-11-23-dataset1.txt
-├── 2015-11-23-dataset2.txt
-├── 2015-11-23-dataset_overview.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
+├── <span class="m">2015</span>-10-23-calibration.txt
+├── <span class="m">2015</span>-10-23-dataset1.txt
+├── <span class="m">2015</span>-10-23-dataset2.txt
+├── <span class="m">2015</span>-10-23-dataset_overview.txt
+├── <span class="m">2015</span>-10-26-calibration.txt
+├── <span class="m">2015</span>-10-26-dataset1.txt
+├── <span class="m">2015</span>-10-26-dataset2.txt
+├── <span class="m">2015</span>-10-26-dataset_overview.txt
+├── <span class="m">2015</span>-11-23-calibration.txt
+├── <span class="m">2015</span>-11-23-dataset1.txt
+├── <span class="m">2015</span>-11-23-dataset2.txt
+├── <span class="m">2015</span>-11-23-dataset_overview.txt
 ├── backup
 │   ├── calibration
-│   │   ├── 2015-10-23-calibration.txt
-│   │   ├── 2015-10-26-calibration.txt
-│   │   └── 2015-11-23-calibration.txt
+│   │   ├── <span class="m">2015</span>-10-23-calibration.txt
+│   │   ├── <span class="m">2015</span>-10-26-calibration.txt
+│   │   └── <span class="m">2015</span>-11-23-calibration.txt
 │   └── datasets
-│       ├── 2015-10-23-dataset1.txt
-│       ├── 2015-10-23-dataset2.txt
-│       ├── 2015-10-23-dataset_overview.txt
-│       ├── 2015-10-26-dataset1.txt
-│       ├── 2015-10-26-dataset2.txt
-│       ├── 2015-10-26-dataset_overview.txt
-│       ├── 2015-11-23-dataset1.txt
-│       ├── 2015-11-23-dataset2.txt
-│       └── 2015-11-23-dataset_overview.txt
+│       ├── <span class="m">2015</span>-10-23-dataset1.txt
+│       ├── <span class="m">2015</span>-10-23-dataset2.txt
+│       ├── <span class="m">2015</span>-10-23-dataset_overview.txt
+│       ├── <span class="m">2015</span>-10-26-dataset1.txt
+│       ├── <span class="m">2015</span>-10-26-dataset2.txt
+│       ├── <span class="m">2015</span>-10-26-dataset_overview.txt
+│       ├── <span class="m">2015</span>-11-23-dataset1.txt
+│       ├── <span class="m">2015</span>-11-23-dataset2.txt
+│       └── <span class="m">2015</span>-11-23-dataset_overview.txt
 └── send_to_bob
-   ├── all_datasets_created_on_a_23rd
-   │   ├── 2015-10-23-dataset1.txt
-   │   ├── 2015-10-23-dataset2.txt
-   │   ├── 2015-10-23-dataset_overview.txt
-   │   ├── 2015-11-23-dataset1.txt
-   │   ├── 2015-11-23-dataset2.txt
-   │   └── 2015-11-23-dataset_overview.txt
-   └── all_november_files
-       ├── 2015-11-23-calibration.txt
-       ├── 2015-11-23-dataset1.txt
-       ├── 2015-11-23-dataset2.txt
-       └── 2015-11-23-dataset_overview.txt
+    ├── all_datasets_created_on_a_23rd
+    │   ├── <span class="m">2015</span>-10-23-dataset1.txt
+    │   ├── <span class="m">2015</span>-10-23-dataset2.txt
+    │   ├── <span class="m">2015</span>-10-23-dataset_overview.txt
+    │   ├── <span class="m">2015</span>-11-23-dataset1.txt
+    │   ├── <span class="m">2015</span>-11-23-dataset2.txt
+    │   └── <span class="m">2015</span>-11-23-dataset_overview.txt
+    └── all_november_files
+        ├── <span class="m">2015</span>-11-23-calibration.txt
+        ├── <span class="m">2015</span>-11-23-dataset1.txt
+        ├── <span class="m">2015</span>-11-23-dataset2.txt
+        └── <span class="m">2015</span>-11-23-dataset_overview.txt
 </pre></div>
 </div>
 <div class="admonition-solution admonition">
@@ -1059,8 +839,6 @@ $ cp *-23-dataset* send_to_bob/all_datasets_created_on_a_23rd/
 </div>
 </div>
 </div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
