@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Utilities and Useful Information &#8212; University Research Computing Facility Workshop</title>
+    <title>Shell Scripts &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Workshop Conclusion" href="08-conclusion.html" />
-    <link rel="prev" title="Finding Things" href="06-find.html" />
+    <link rel="prev" title="Loop" href="06-loop.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -171,13 +171,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="06-find.html">
-     Finding Things
+    <a class="reference internal" href="06-loop.html">
+     Loop
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Utilities and Useful Information
+     Shell Scripts
     </a>
    </li>
    <li class="toctree-l2">
@@ -447,124 +447,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tab-completion">
-   Tab completion
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#history">
-   history
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#download-files-from-the-web">
-   Download Files from the Web
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#compressing-files-and-directories">
-   Compressing Files and Directories
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gzip">
-     gzip
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tar">
-     tar
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convert-a-windows-file-to-unix-format">
-   Convert a Windows file to Unix format
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Utilities and Useful Information</h1>
+                <h1>Shell Scripts</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tab-completion">
-   Tab completion
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#history">
-   history
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#download-files-from-the-web">
-   Download Files from the Web
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#compressing-files-and-directories">
-   Compressing Files and Directories
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gzip">
-     gzip
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tar">
-     tar
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convert-a-windows-file-to-unix-format">
-   Convert a Windows file to Unix format
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -572,98 +471,214 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="utilities-and-useful-information">
-<h1>Utilities and Useful Information<a class="headerlink" href="#utilities-and-useful-information" title="Permalink to this headline">#</a></h1>
-<section id="tab-completion">
-<h2>Tab completion<a class="headerlink" href="#tab-completion" title="Permalink to this headline">#</a></h2>
-<p>Pressing <code class="docutils literal notranslate"><span class="pre">Tab</span></code> will attempt to autocomplete the command/filename/directory you are typing.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls long_file
+  <section class="tex2jax_ignore mathjax_ignore" id="shell-scripts">
+<h1>Shell Scripts<a class="headerlink" href="#shell-scripts" title="Permalink to this headline">#</a></h1>
+<p>We are finally ready to see what makes the shell such a powerful programming
+environment. We are going to take the commands we repeat frequently and save
+them in files so that we can re-run all those operations again later by typing
+a single command. For historical reasons, a bunch of commands saved in a file
+is usually called a <strong>shell script</strong>, but make no mistake — these are
+actually small programs.</p>
+<p>Not only will writing shell scripts make your work faster, but also you won’t
+have to retype the same commands over and over again. It will also make it more
+accurate (fewer chances for typos) and more reproducible. If you come back to
+your work later (or if someone else finds your work and wants to build on it),
+you will be able to reproduce the same results simply by running your script,
+rather than having to remember or retype a long list of commands.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">1. Our first shell script</p>
+<p>Let’s start by going back to <code class="docutils literal notranslate"><span class="pre">alkanes/</span></code> and creating a new file, <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code>
+which will become our shell script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> alkanes
+nano middle.sh
 </pre></div>
 </div>
-<p>Then press <code class="docutils literal notranslate"><span class="pre">Tab</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls long_file_name_you_cant_remember.txt
+<p>The command <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">middle.sh</span></code> opens the file <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> within the text editor
+‘nano’ (which runs within the shell). If the file does not exist, it will be
+created. We can use the text editor to directly edit the file by inserting the
+following line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">15</span> <span class="n">octane</span><span class="o">.</span><span class="n">pdb</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span>
 </pre></div>
 </div>
-</section>
-<section id="history">
-<h2>history<a class="headerlink" href="#history" title="Permalink to this headline">#</a></h2>
-<p>Bash will retain a history of the previous commands you entered. The <code class="docutils literal notranslate"><span class="pre">history</span></code> command will (by default on Palmetto) display the last 1000 commands.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ history
+<p>This is a variation on the pipe we constructed earlier, which selects lines 11-15 of
+the file <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>. Remember, we are <em>not</em> running it as a command just yet;
+we are only incorporating the commands in a file.</p>
+<p>Then we save the file (<code class="docutils literal notranslate"><span class="pre">Ctrl-O</span></code> in nano) and exit the text editor (<code class="docutils literal notranslate"><span class="pre">Ctrl-X</span></code> in nano).
+Check that the directory <code class="docutils literal notranslate"><span class="pre">alkanes</span></code> now contains a file called <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code>.</p>
+<p>Once we have saved the file,
+we can ask the shell to execute the commands it contains.
+Our shell is called <code class="docutils literal notranslate"><span class="pre">bash</span></code>, so we run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh
 </pre></div>
 </div>
-<p>You can use the up arrow ↑ and down arrow ↓ to scroll through previous commands.</p>
-<p><code class="docutils literal notranslate"><span class="pre">!!</span></code> will run the previous command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
-...
+<p>Sure enough, our script’s output is exactly what we would get if we ran that
+pipeline directly.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">2. Command line arguments</p>
+<p>What if we want to select lines from an arbitrary file?
+We could edit <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> each time to change the filename,
+but that would probably take longer than typing the command out again
+in the shell and executing it with a new file name.
+Instead, let’s edit <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> and make it more versatile:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="n">middle</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Now, within “nano”, replace the text <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code> with the special variable called <code class="docutils literal notranslate"><span class="pre">$1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">15</span> <span class="s2">&quot;$1&quot;</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>Inside a shell script,
+<code class="docutils literal notranslate"><span class="pre">$1</span></code> means ‘the first filename (or other argument) on the command line’.
+We can now run our script like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh octane.pdb
+</pre></div>
+</div>
+<p>or on a different file like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash middle.sh pentane.pdb
+</pre></div>
+</div>
+<p>Currently, we need to edit <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> each time we want to adjust the range of
+lines that is returned.
+Let’s fix that by configuring our script to instead use three command-line arguments.
+After the first command-line argument (<code class="docutils literal notranslate"><span class="pre">$1</span></code>), each additional argument that we
+provide will be accessible via the special variables <code class="docutils literal notranslate"><span class="pre">$1</span></code>, <code class="docutils literal notranslate"><span class="pre">$2</span></code>, <code class="docutils literal notranslate"><span class="pre">$3</span></code>,
+which refer to the first, second, third command-line arguments, respectively.</p>
+<p>Knowing this, we can use additional arguments to define the range of lines to
+be passed to <code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> respectively:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano middle.sh
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;$2&quot;</span> <span class="s2">&quot;$1&quot;</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;$3&quot;</span>
+</pre></div>
+</div>
+<p>We can now run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh pentane.pdb <span class="m">15</span> <span class="m">5</span>
+</pre></div>
+</div>
+<p>By changing the arguments to our command, we can change our script’s
+behaviour:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh pentane.pdb <span class="m">20</span> <span class="m">5</span>
+</pre></div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">3. Putting comments in the code</p>
+<p>We can improve our script by adding some <strong>comments</strong> at the top:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano middle.sh
+</pre></div>
+</div>
+<div class="highlight-source notranslate"><div class="highlight"><pre><span></span># Select lines from the middle of a file.
+# Usage: bash middle.sh filename end_line num_lines
+head -n &quot;$2&quot; &quot;$1&quot; | tail -n &quot;$3&quot;
+</pre></div>
+</div>
+<p>A comment starts with a <code class="docutils literal notranslate"><span class="pre">#</span></code> character and runs to the end of the line.
+The computer ignores comments, but they’re invaluable for helping people (including your
+future self) understand and use scripts. The only caveat is that each time you
+modify the script, you should check that the comment is still accurate.
+An explanation that sends the reader in the wrong direction is worse than none at all.</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">4. Multiple command line arguments</p>
+<p>What if we want to process many files in a single pipeline?
+For example, if we want to sort our <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files by length, we would type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wc -l *.pdb <span class="p">|</span> sort -n
+</pre></div>
+</div>
+<p>because <code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span></code> lists the number of lines in the files
+(recall that <code class="docutils literal notranslate"><span class="pre">wc</span></code> stands for ‘word count’, adding the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option means ‘count lines’ instead)
+and <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-n</span></code> sorts things numerically.
+We could put this in a file,
+but then it would only ever sort a list of <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files in the current directory.
+If we want to be able to get a sorted list of other kinds of files,
+we need a way to get all those names into the script.
+We can’t use <code class="docutils literal notranslate"><span class="pre">$1</span></code>, <code class="docutils literal notranslate"><span class="pre">$2</span></code>, and so on
+because we don’t know how many files there are.
+Instead, we use the special variable <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code>,
+which means,
+‘All of the command-line arguments to the shell script’.
+We also should put <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> inside double-quotes
+to handle the case of arguments containing spaces
+(<code class="docutils literal notranslate"><span class="pre">&quot;$&#64;&quot;</span></code> is special syntax and is equivalent to <code class="docutils literal notranslate"><span class="pre">&quot;$1&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;$2&quot;</span></code> …).</p>
+<p>Here’s an example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano sorted.sh
+</pre></div>
+</div>
+<div class="highlight-source notranslate"><div class="highlight"><pre><span></span># Sort files by their length.
+# Usage: bash sorted.sh one_or_more_filenames
+wc -l &quot;$@&quot; | sort -n
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash sorted.sh *.pdb ../creatures/*.dat
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">9 methane.pdb</span>
+<span class="go">12 ethane.pdb</span>
+<span class="go">15 propane.pdb</span>
+<span class="go">20 cubane.pdb</span>
+<span class="go">21 pentane.pdb</span>
+<span class="go">30 octane.pdb</span>
+<span class="go">163 ../creatures/basilisk.dat</span>
+<span class="go">163 ../creatures/minotaur.dat</span>
+<span class="go">163 ../creatures/unicorn.dat</span>
+<span class="go">596 total</span>
+</pre></div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">5. Challenge: List Unique Species</p>
+<p>Leah has several hundred data files, each of which is formatted like this:</p>
+<div class="highlight-source notranslate"><div class="highlight"><pre><span></span>2013-11-05,deer,5
+2013-11-05,rabbit,22
+2013-11-05,raccoon,7
+2013-11-06,rabbit,19
+2013-11-06,deer,2
+2013-11-06,fox,1
+2013-11-07,rabbit,18
+2013-11-07,bear,1
+</pre></div>
+</div>
+<p>An example of this type of file is given in
+<code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/animal-counts/animals.csv</span></code>.</p>
+<p>We can use the command <code class="docutils literal notranslate"><span class="pre">cut</span> <span class="pre">-d</span> <span class="pre">,</span> <span class="pre">-f</span> <span class="pre">2</span> <span class="pre">animals.csv</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">|</span> <span class="pre">uniq</span></code> to produce
+the unique species in <code class="docutils literal notranslate"><span class="pre">animals.csv</span></code>.
+In order to avoid having to type out this series of commands every time,
+a scientist may choose to write a shell script instead.</p>
+<p>Write a shell script called <code class="docutils literal notranslate"><span class="pre">species.sh</span></code> that takes any number of
+filenames as command-line arguments and uses a variation of the above command
+to print a list of the unique species appearing in each of those files separately.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Script to find unique species in csv files where species is the second data field</span>
+<span class="c1"># This script accepts any number of file names as command line arguments</span>
 
-$ !!
-ls
-...
+<span class="c1"># Loop over all files</span>
+<span class="k">for</span> file <span class="k">in</span> <span class="nv">$@</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Unique species in </span><span class="nv">$file</span><span class="s2">:&quot;</span>
+    <span class="c1"># Extract species names</span>
+    cut -d , -f <span class="m">2</span> <span class="nv">$file</span> <span class="p">|</span> sort <span class="p">|</span> uniq
+<span class="k">done</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">!name</span></code> will run the last command that started with <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qsub myjob.pbs
-...
-
-$ !qsub
-qsub myjob.pbs
-...
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">6. Executable script</p>
+<p>Edit the <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> file to be as follows:</p>
+<div class="highlight-source notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+# Select lines from the middle of a file.
+# Usage: bash middle.sh filename end_line num_lines
+head -n &quot;$2&quot; &quot;$1&quot; | tail -n &quot;$3&quot;
 </pre></div>
 </div>
-</section>
-<section id="download-files-from-the-web">
-<h2>Download Files from the Web<a class="headerlink" href="#download-files-from-the-web" title="Permalink to this headline">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">wget</span></code> is a useful utility to download files from websites.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://github.com/lammps/lammps/archive/refs/tags/stable_23Jun2022_update2.tar.gz
+<p>To make shell file executable, we need to change the permission on the file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod <span class="m">755</span> middle.sh
+./middle.sh
 </pre></div>
 </div>
-</section>
-<section id="compressing-files-and-directories">
-<h2>Compressing Files and Directories<a class="headerlink" href="#compressing-files-and-directories" title="Permalink to this headline">#</a></h2>
-<section id="gzip">
-<h3>gzip<a class="headerlink" href="#gzip" title="Permalink to this headline">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">gzip</span> <span class="pre">file</span></code> will compress a file to <code class="docutils literal notranslate"><span class="pre">file.gz</span></code>. Uncompress with <code class="docutils literal notranslate"><span class="pre">gunzip</span> <span class="pre">file.gz</span></code>.</p>
-</section>
-<section id="tar">
-<h3>tar<a class="headerlink" href="#tar" title="Permalink to this headline">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">tar</span></code> can be used to create a (<strong>t</strong>ape) <strong>ar</strong>chive of files/folders.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar czvf my_archive.tar.gz file1 [file2] [directory]
-</pre></div>
 </div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code> create archive</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-z</span></code> compress (with gzip)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> verbose (print files being placed in the archive)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> use archive name provided (<em>my_archive.tar.gz</em>)</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar xzvf my_archive.tar.gz
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-x</span></code> extract archive</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-z</span></code> uncompress (with gzip)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> verbose (print files being extracted)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> use archive name provided (<em>my_archive.tar.gz</em>)</p></li>
-</ul>
-</section>
-</section>
-<section id="convert-a-windows-file-to-unix-format">
-<h2>Convert a Windows file to Unix format<a class="headerlink" href="#convert-a-windows-file-to-unix-format" title="Permalink to this headline">#</a></h2>
-<p>Copying a file from a Windows computer can cause issues since Windows editors like Notepad will end lines with CRLF line endings. Linux uses the Unix LF line endings.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">dos2unix</span></code> command will convert the file to Unix format. You can confirm if a file is in the Windows format with <code class="docutils literal notranslate"><span class="pre">file</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ file copied_from_windows.txt
-copied_from_windows.txt: ASCII text, with CRLF line terminators
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ dos2unix copied_from_windows.txt
-dos2unix: converting file copied_from_windows.txt to Unix format...
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ file copied_from_windows.txt
-copied_from_windows.txt: ASCII text
-</pre></div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -693,11 +708,11 @@ copied_from_windows.txt: ASCII text
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="06-find.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="06-loop.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Finding Things</p>
+            <p class="prev-next-title">Loop</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="08-conclusion.html" title="next page">
