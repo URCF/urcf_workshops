@@ -475,8 +475,6 @@ title="Print to PDF"
 <h1>File Permissions and Atrributes<a class="headerlink" href="#file-permissions-and-atrributes" title="Permalink to this headline">#</a></h1>
 <p>Working as part of a team in Linux environment require us to know
 how to share your files/directories with others.</p>
-<div class="dropdown admonition">
-<p class="admonition-title">1. Checking permission</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> (<strong>l</strong>ong format) to list files and their attributes.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- <span class="m">1</span> user group <span class="m">1002287</span> Oct <span class="m">20</span> <span class="m">15</span>:49 example.csv
 </pre></div>
@@ -504,10 +502,8 @@ how to share your files/directories with others.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> (execute)</p></li>
 <li><p>A dash means no permission.</p></li>
 </ul>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">2. Changing permission: chmod</p>
-<p>The command <code class="docutils literal notranslate"><span class="pre">chmod</span></code> (<strong>ch</strong>ange <strong>mod</strong>e) is used to edit file permissions. There are 2 ways to represent the permissions: <em>numeric</em> and <em>symbolic</em>.</p>
+<p>The command <code class="docutils literal notranslate"><span class="pre">chmod</span></code> (<strong>ch</strong>ange <strong>mod</strong>e) is used to edit file permissions.
+There are 2 ways to represent the permissions: <em>numeric</em> and <em>symbolic</em>.</p>
 <p><strong>Numeric mode</strong></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">rwx</span></code> permissions are represented by octal numbers (0-7). The following table explains each value (credit: <a class="reference external" href="https://en.wikipedia.org/wiki/Chmod#Numerical_permissions">Wikipedia</a>):</p>
 <table class="colwidths-auto table">
@@ -530,7 +526,7 @@ how to share your files/directories with others.</p>
 <td><p>read and write</p></td>
 </tr>
 <tr class="row-even"><td><p>5</p></td>
-<td><p>4(r)        + 1(x)</p></td>
+<td><p>4(r) + 1(x)</p></td>
 <td><p>r-x</p></td>
 <td><p>read and execute</p></td>
 </tr>
@@ -556,7 +552,7 @@ how to share your files/directories with others.</p>
 </tr>
 <tr class="row-odd"><td><p>0</p></td>
 <td><p>0</p></td>
-<td><p>—</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">---</span></code></p></td>
 <td><p>none</p></td>
 </tr>
 </tbody>
@@ -567,8 +563,10 @@ how to share your files/directories with others.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">755</span></code> - owner can read, write, and execute, all others can read and execute</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">600</span></code> - owner can read and write, no access to anyone else</p></li>
 </ul>
-<p><strong>Symbolic mode</strong>*</p>
-<p>Use symbolic notation for finer grained control of permissions. Symbolic notation requires a <code class="docutils literal notranslate"><span class="pre">reference</span></code>, <code class="docutils literal notranslate"><span class="pre">operator</span></code>, and <code class="docutils literal notranslate"><span class="pre">mode</span></code>. From <a class="reference external" href="https://en.wikipedia.org/wiki/Chmod#Symbolic_modes">Wikipedia</a>:</p>
+<p><strong>Symbolic mode</strong></p>
+<p>Use symbolic notation for finer grained control of permissions. Symbolic notation
+requires a <code class="docutils literal notranslate"><span class="pre">reference</span></code>, <code class="docutils literal notranslate"><span class="pre">operator</span></code>, and <code class="docutils literal notranslate"><span class="pre">mode</span></code>. From
+<a class="reference external" href="https://en.wikipedia.org/wiki/Chmod#Symbolic_modes">Wikipedia</a>:</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Reference</p></th>
@@ -643,7 +641,6 @@ how to share your files/directories with others.</p>
 <p>Make file executable by all:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x file
 </pre></div>
-</div>
 </div>
 </section>
 
