@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running an interactive job on Palmetto" href="05-interactive.html" />
+    <link rel="next" title="Running an interactive job on Picotte" href="05-interactive.html" />
     <link rel="prev" title="The structure of the Picotte Cluster" href="03-picotte_structure.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -219,7 +219,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="05-interactive.html">
-     Running an interactive job on Palmetto
+     Running an interactive job on Picotte
     </a>
    </li>
    <li class="toctree-l2">
@@ -485,8 +485,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#storage-purchasing">
-   Storage Purchasing
+  <a class="reference internal nav-link" href="#group-storage">
+   Group Storage
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -529,8 +529,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#storage-purchasing">
-   Storage Purchasing
+  <a class="reference internal nav-link" href="#group-storage">
+   Group Storage
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -560,7 +560,7 @@ title="Print to PDF"
 </li>
 <li><p>Persistent Storage</p>
 <ul>
-<li><p>PHI Compliant: Dell EMC PowerScale Isilon scale-out storage</p></li>
+<li><p>Dell EMC PowerScale Isilon scale-out storage	(Potentially PHI Compliant, talk to us for more details)</p></li>
 <li><p>649 TB usable capacity</p></li>
 <li><p>10 Gbps Ethernet</p></li>
 </ul>
@@ -584,57 +584,43 @@ title="Print to PDF"
 <th class="head"><p>SIZE</p></th>
 <th class="head"><p>DISK TYPE</p></th>
 <th class="head"><p>FILE SYSTEM</p></th>
-<th class="head"><p>NETWORK CONNECTION</p></th>
-<th class="head"><p>BACKUP</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/home/{username}</span></code></p></td>
 <td><p>64GB per user</p></td>
 <td><p>HDD</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">zfs</span></code></p></td>
-<td><p>ethernet</p></td>
-<td><p>yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">isilon</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/scratch1/{username}</span></code></p></td>
-<td><p>1933TB</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/beegfs/scratch</span></code></p></td>
+<td><p>127TB (shared)</p></td>
 <td><p>HDD</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">beegfs</span></code></p></td>
-<td><p>IB, ethernet</p></td>
-<td><p>no</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/fastscratch/{username}</span></code></p></td>
-<td><p>168TB</p></td>
-<td><p>NVMe</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">beegfs</span></code></p></td>
-<td><p>IB, ethernet</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/local_scratch</span></code></p></td>
-<td><p>99GB - 2.7TB per node</p></td>
-<td><p>HDD, SSD, NVMe</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/local_scratch</span></code></p></td>
+<td><p>838GB</p></td>
+<td><p>HDD</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ext4</span></code></p></td>
-<td><p>internal</p></td>
-<td><p>no</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/zfs/{group}</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/ifs/groups/{Grp}</span></code></p></td>
 <td><p>Varies by owner</p></td>
 <td><p>HDD</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">zfs</span></code></p></td>
-<td><p>ethernet</p></td>
-<td><p>yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">isilon</span></code></p></td>
 </tr>
 </tbody>
 </table>
 <section id="home-storage">
 <h2>Home Storage<a class="headerlink" href="#home-storage" title="Permalink to this headline">#</a></h2>
-<p>Every Picotte user gets 100 Gb of storage space; this storage is backed up at the end of every day, and the backup is kept for 42 days. So if you accidentally delete a file that was created more than a day ago, we might be able to restore it. This storage is called <em>home directory</em>.</p>
-<p>To see how much space you have left in your home directory, please type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>checkquota
+<p>Every Picotte user gets 64GB of storage space; This storage is called <em>home directory</em>.</p>
+<p>To see how much space you are using in your home directory, please type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+du -h -d -1
 </pre></div>
 </div>
-<p>Since most of you are new users of Picotte, you should be using very little storage at the moment.</p>
-<p>When you log into Picotte, you end up in your home directory. To see which directory you are in, type</p>
+<p>Since most of you are new users of Picotte, you should be using very little storage
+at the moment.</p>
+<p>When you log into Picotte, you end up in your home directory. To see which directory you are
+in, type</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
 </pre></div>
 </div>
@@ -645,9 +631,15 @@ title="Print to PDF"
 </section>
 <section id="scratch-storage">
 <h2>Scratch Storage<a class="headerlink" href="#scratch-storage" title="Permalink to this headline">#</a></h2>
-<p>100 Gb might be enough for some, but for people dealing with extensive amounts of data that would not be enough. We also offer the access to <em>scratch space</em>, which is about 2+ Petabytes in total. Scratch space is not backed up; files that haven’t been used for more than a month are automatically deleted (and cannot be restored). We strongly encourage people to use scratch space, but please be aware of its temporary nature. When you get anything that is worth keeping, please back it up, either in your home directory, or on your local machine.</p>
-<p>To go to a scratch directory, or to any directory on Picotte, use the <code class="docutils literal notranslate"><span class="pre">cd</span></code> (“change directory”) command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /scratch1/&lt;your Picotte username&gt;
+<p>64 Gb might be enough for some, but for people dealing with extensive amounts of data that would not be enough.
+We also offer the access to <em>scratch space</em>, which is about 127TB in total. Scratch space is not backed up; files
+that haven’t been used for more than a month are automatically deleted (and cannot be restored). We strongly
+encourage people to use scratch space, but please be aware of its temporary nature. When you get anything that is
+worth keeping, please back it up.</p>
+<p>To set up your scratch directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir /beegfs/scratch/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+<span class="nb">cd</span> /beegfs/scratch/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+<span class="nb">pwd</span>
 </pre></div>
 </div>
 <p>To go to your home directory, you can do</p>
@@ -664,35 +656,31 @@ title="Print to PDF"
 </section>
 <section id="local-scratch">
 <h2>Local Scratch<a class="headerlink" href="#local-scratch" title="Permalink to this headline">#</a></h2>
-<p>Every Picotte compute node has storage on the node itself and is referred to as <code class="docutils literal notranslate"><span class="pre">/local_scratch</span></code>. This scratch space can only be accessed by a job running on the node. The file system for <code class="docutils literal notranslate"><span class="pre">/local_scratch</span></code> has no hardware failure protection and is never backed up.</p>
-<p>To access this space in your PBS script, use the <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> environment variable or the location <code class="docutils literal notranslate"><span class="pre">/local_scratch/pbs.$PBS_JOBID</span></code>. If you are using multiple nodes, further setup is required.</p>
+<p>Every Picotte compute node has storage on the node itself and is referred to as local scratch.
+This scratch space can only be accessed by a job running on the node.</p>
+<p>To access this space in your Slurm script, use the <code class="docutils literal notranslate"><span class="pre">$TMP</span></code> environment variable or the location <code class="docutils literal notranslate"><span class="pre">/local/scratch/$SLURM_JOBID</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Files in /local_scratch will be purged automatically when your job terminates. Copy files elsewhere before your job ends.</p>
+<p>Files in local scratch will be purged automatically when your job terminates. Copy files elsewhere before your job ends.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please don’t use <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> for temporary storage! Use <code class="docutils literal notranslate"><span class="pre">/scratch1</span></code> or <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code>.</p>
+<p>Please don’t use <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> for temporary storage! Use <code class="docutils literal notranslate"><span class="pre">/beegfs/scratch</span></code> or <code class="docutils literal notranslate"><span class="pre">$TMP</span></code>.</p>
 </div>
 </section>
-<section id="storage-purchasing">
-<h2>Storage Purchasing<a class="headerlink" href="#storage-purchasing" title="Permalink to this headline">#</a></h2>
-<p>We offer storage space on Picotte for sale to faculty members, with the price of $150 per 1 terabyte. This storage is backed up just like your home directory. Please contact us if you are interested in buying storage.</p>
+<section id="group-storage">
+<h2>Group Storage<a class="headerlink" href="#group-storage" title="Permalink to this headline">#</a></h2>
+<p>Group storage space on Picotte is available at a charge for faculty members. Please contact us
+for further information.</p>
 </section>
 <section id="performance-guidelines">
 <h2>Performance Guidelines<a class="headerlink" href="#performance-guidelines" title="Permalink to this headline">#</a></h2>
-<p>Generally speaking, /local_scratch will always be the fastest file system to use because there is no network involved. However, this space cannot be shared between a group of nodes participating in a job, and the data must be moved to permanent storage before the job completes.</p>
-<p>/scratch1 is a parallel file system that runs atop spinning disk drives and is best suited for workflows issuing sequential, large read or write requests. /fastscratch is also a parallel file system but runs atop NVMe flash drives and is best suited for workflows having small, random read or write access patterns. However, /fastscratch will also run well with any kind of sequential workload. Either system can handle large numbers of files and directories.</p>
-<p>The Picotte support team encourages you to test your workflows against all three file systems to see which one works best for you.</p>
-<div class="admonition-key-points admonition">
-<p class="admonition-title">Key Points</p>
-<ul class="simple">
-<li><p>Users get 100 Gb of backed-up storage in their home directories.</p></li>
-<li><p>Users also have access to more than 2 Pb of scratch storage.</p></li>
-<li><p>Scratch storage is not backed up, and files left unused for 1 month are deleted.</p></li>
-<li><p>Faculty can purchase backed up ZFS storage space.</p></li>
-</ul>
-</div>
+<p>Generally speaking, <code class="docutils literal notranslate"><span class="pre">$TMP</span></code> will always be the fastest file system to use because there is no network involved.
+However, this space cannot be shared between a group of nodes participating in a job, and the data must be
+moved to permanent storage before the job completes.</p>
+<p>`beegfs/scratch`` is a parallel file system that runs atop spinning disk drives and is best suited for workflows
+issuing sequential, large read or write requests. The Picotte support team encourages you to test your workflows
+against all three file systems to see which one works best for you.</p>
 </section>
 </section>
 
@@ -733,7 +721,7 @@ title="Print to PDF"
     <a class='right-next' id="next-link" href="05-interactive.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Running an interactive job on Palmetto</p>
+        <p class="prev-next-title">Running an interactive job on Picotte</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
