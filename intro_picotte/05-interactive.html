@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Transferring files to and from Palmetto" href="06-file-transfer.html" />
+    <link rel="next" title="Transferring files to and from Picotte" href="06-file-transfer.html" />
     <link rel="prev" title="Storage on Picotte" href="04-storage.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -224,12 +224,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="06-file-transfer.html">
-     Transferring files to and from Palmetto
+     Transferring files to and from Picotte
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08-batch.html">
+    <a class="reference internal" href="07-batch.html">
      Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-jupyter-hub.html">
+     Web-based access to the Picotte Cluster
     </a>
    </li>
   </ul>
@@ -551,7 +556,7 @@ see which of the compute nodes are available at the moment:</p>
 <p>We can see that the cluster is quite busy, but there is a fair amount of
 compute nodes that are available for us. Now, let’s request one compute
 node. Please type the following (or paste from the website into your SSH terminal):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun --partition<span class="o">=</span>def-sm --account<span class="o">=</span>urcfprj --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
 </pre></div>
 </div>
 <p>It is very important not to make typos, use spaces and upper/lowercases exactly
@@ -561,6 +566,8 @@ will happen, but the scheduler won’t understand your request.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">srun</span></code> means that we are asking the scheduler to grant us access to
 a compute node;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--partition</span></code>: specify the resource partition this job is going to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--account</span></code>: specify the <strong>Slurm account</strong> this job is going to</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code> means we are asking for one compute node;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=2</span></code> means that we only need two CPUs on the node (since all
 Picotte compute nodes have at least 48 CPUs, we might share the compute node with
@@ -639,6 +646,13 @@ with, run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacctmgr show user withassoc <span class="nv">format</span><span class="o">=</span>account,user,defaultaccount where <span class="nv">user</span><span class="o">=</span><span class="nv">$USER</span>
 </pre></div>
 </div>
+<p>New flags:</p>
+<p><code class="docutils literal notranslate"><span class="pre">--partition</span></code>: specify the number of partitions
+<code class="docutils literal notranslate"><span class="pre">--account</span></code>: specify the <strong>Slurm account</strong> this job belongs to</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun --partition<span class="o">=</span>def --account<span class="o">=</span>urcfprj --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
+srun --partition<span class="o">=</span>def-sm --account<span class="o">=</span>urcfprj --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
+</pre></div>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Please be considerate of others when you issue srun/sbatch. Remember that Picotte is a shared resource.
@@ -655,65 +669,76 @@ computations, because each user gets their own CPUs and RAM so there is no inter
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">#</a></h2>
 <p>If you are on the compute node, exit it. Once you get on the login node, type this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qsub -I -l <span class="k">select</span><span class="o">=</span><span class="m">1</span>:ncpus<span class="o">=</span><span class="m">4</span>:mem<span class="o">=</span>10gb,walltime<span class="o">=</span><span class="m">2</span>:00:00
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun --partition<span class="o">=</span>def-sm --account<span class="o">=</span>urcfprj --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
 </pre></div>
 </div>
-<p>We have a lot of software installed on Picotte, but most of it is organized into <em>modules</em>, which need to be loaded. To see which modules are available on Picotte, please type</p>
+<p>We have a lot of software installed on Picotte, but most of it is organized into <em>modules</em>, which
+need to be loaded. To see which modules are available on Picotte, please type</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module avail
 </pre></div>
 </div>
-<p>Hit <code class="docutils literal notranslate"><span class="pre">SPACE</span></code> several times to get to the end of the module list. This is a very long list, and you can see that there is a lot of software installed for you. If you want to see which versions of MATLAB are installed, you can type</p>
+<p>Hit <code class="docutils literal notranslate"><span class="pre">SPACE</span></code> several times to get to the end of the module list. This is a very long list, and you can see that
+there is a lot of software installed for you. If you want to see which versions of MATLAB are installed, you can type</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module avail matlab
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[dndawso@node0033 ~]$ module avail matlab
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@node047 ~<span class="o">]</span>$ module avail matlab
 
-------------------------------------------------- /software/AltModFiles --------------------------------------------------
-   matlab/MUSC2018b    matlab/2021a    matlab/2021b    matlab/2022a (D)
+------------------------------------------------------- /ifs/opt/modulefiles --------------------------------------------------------
+   matlab/R2020b    matlab/R2021a    matlab/R2022b <span class="o">(</span>D<span class="o">)</span>
 
   Where:
    D:  Default Module
 
-If the avail list is too long consider trying:
+Module defaults are chosen based on Find First Rules due to Name/Version/Version modules found <span class="k">in</span> the module tree.
+See https://lmod.readthedocs.io/en/latest/060_locating.html <span class="k">for</span> details.
 
-&quot;module --default avail&quot; or &quot;ml -d av&quot; to just list the default modules.
-&quot;module overview&quot; or &quot;ml ov&quot; to display the number of modules for each name.
+Use <span class="s2">&quot;module spider&quot;</span> to find all possible modules and extensions.
+Use <span class="s2">&quot;module keyword key1 key2 ...&quot;</span> to search <span class="k">for</span> all possible modules matching any of the <span class="s2">&quot;keys&quot;</span>.
 
-Use &quot;module spider&quot; to find all possible modules and extensions.
-Use &quot;module keyword key1 key2 ...&quot; to search for all possible modules matching any of the &quot;keys&quot;.
+
+<span class="o">[</span>lbn28@node047 ~<span class="o">]</span>$
 </pre></div>
 </div>
-<p>Let’s say you want to use R. To load the module, you will need to specify its full <a class="reference external" href="http://name.To">name.To</a> see which versions of R are available, type</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span> <span class="n">r</span>
+<p>Let’s say you want to use R. To load the module, you will need to specify its full <a class="reference external" href="http://name.To">name.To</a> see which versions
+of R are available, type</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@node047 ~<span class="o">]</span>$ module avail R/
+
+------------------------------------------------------- /ifs/opt/modulefiles --------------------------------------------------------
+   R/4.1.3          grinder/0.5.4    maeparser/gcc/1.2.4           mothur/1.44.3    piler/1.0
+   R/4.2.2 <span class="o">(</span>L,D<span class="o">)</span>    ior/3.3.0        maeparser/intel/2020/1.2.4    mpfr/4.1.0       pilercr/1.06
+
+------------------------------------------------------ /cm/shared/modulefiles -------------------------------------------------------
+   cuda10.1/profiler/10.1.243    cuda11.1/profiler/11.1.1    intel/compiler/32/2019/19.0.5    intel/compiler/64/2020/19.1.3 <span class="o">(</span>D<span class="o">)</span>
+   cuda10.2/profiler/10.2.89     cuda11.2/profiler/11.2.2    intel/compiler/32/2020/19.1.3    jupyter/12.3.0
+   cuda11.0/profiler/11.0.3      cuda11.4/profiler/11.4.2    intel/compiler/64/2019/19.0.5    nvhpc-byo-compiler/21.2
+
+  Where:
+   L:  Module is loaded
+   D:  Default Module
+
+Module defaults are chosen based on Find First Rules due to Name/Version/Version modules found <span class="k">in</span> the module tree.
+See https://lmod.readthedocs.io/en/latest/060_locating.html <span class="k">for</span> details.
+
+Use <span class="s2">&quot;module spider&quot;</span> to find all possible modules and extensions.
+Use <span class="s2">&quot;module keyword key1 key2 ...&quot;</span> to search <span class="k">for</span> all possible modules matching any of the <span class="s2">&quot;keys&quot;</span>.
 </pre></div>
 </div>
-<p>This will give you a list of all modules which have the letter “r” in them (<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code> is not very sophisticated). Let’s see what happens when you load the R 4.1.3 module:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span>  <span class="n">r</span><span class="o">/</span><span class="mf">4.1.3</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>
-<span class="n">module</span> <span class="nb">list</span>
+<p>This will give you a list of all modules which have the phrase “R/” in them (<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code> is
+not very sophisticated). Let’s see what happens when you load the <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">4.2.2</span></code> module:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load R/4.2.2
+module list
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Currently</span> <span class="n">Loaded</span> <span class="n">Modules</span><span class="p">:</span>
-  <span class="mi">1</span><span class="p">)</span> <span class="n">tcl</span><span class="o">/</span><span class="mf">8.6.12</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>       <span class="mi">4</span><span class="p">)</span> <span class="n">openjdk</span><span class="o">/</span><span class="mf">11.0.15_10</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>   <span class="mi">7</span><span class="p">)</span> <span class="n">glib</span><span class="o">/</span><span class="mf">2.72.1</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>
-  <span class="mi">2</span><span class="p">)</span> <span class="n">sqlite</span><span class="o">/</span><span class="mf">3.38.5</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>    <span class="mi">5</span><span class="p">)</span> <span class="n">libxml2</span><span class="o">/</span><span class="mf">2.9.13</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>       <span class="mi">8</span><span class="p">)</span> <span class="n">cairo</span><span class="o">/</span><span class="mf">1.16.0</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>
-  <span class="mi">3</span><span class="p">)</span> <span class="n">openssl</span><span class="o">/</span><span class="mf">1.1.1</span><span class="n">o</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>   <span class="mi">6</span><span class="p">)</span> <span class="n">libpng</span><span class="o">/</span><span class="mf">1.6.37</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>        <span class="mi">9</span><span class="p">)</span> <span class="n">r</span><span class="o">/</span><span class="mf">4.1.3</span><span class="o">-</span><span class="n">gcc</span><span class="o">/</span><span class="mf">9.5.0</span>
-</pre></div>
-</div>
-<p>R depends on other software to run, so we have configured the R module in a way that when you load it, it automatically loads other modules that it depends on.</p>
+<p>R depends on other software to run, so we have configured the R module in a way that when
+you load it, it automatically loads other modules that it depends on.</p>
 <p>To start command-line R, you can simply type</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>R
 </pre></div>
 </div>
 <p>To quit R, type</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">quit</span><span class="p">()</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>quit<span class="o">()</span>
 </pre></div>
-</div>
-<div class="admonition-key-points admonition">
-<p class="admonition-title">Key Points</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">qsub</span></code> sends a request for a compute node to the scheduler.</p></li>
-<li><p>Software available on Picotte is organized into modules according to version.</p></li>
-<li><p>Modules need to be loaded before use.</p></li>
-</ul>
 </div>
 </section>
 </section>
@@ -755,7 +780,7 @@ Use &quot;module keyword key1 key2 ...&quot; to search for all possible modules 
     <a class='right-next' id="next-link" href="06-file-transfer.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Transferring files to and from Palmetto</p>
+        <p class="prev-next-title">Transferring files to and from Picotte</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

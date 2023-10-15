@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to Research Computing on Picotte &#8212; University Research Computing Facility Workshop</title>
+    <title>Web-based access to the Picotte Cluster &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Introduction" href="01-introduction.html" />
-    <link rel="prev" title="Workshop Conclusion" href="../intro_linux/08-conclusion.html" />
+    <link rel="next" title="Introduction to R" href="../r_programming/00-index.html" />
+    <link rel="prev" title="Running a batch job" href="07-batch.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -188,7 +188,7 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="00-index.html">
    Introduction to Research Computing on Picotte
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -196,7 +196,7 @@ const thebe_selector_output = ".output, .cell_output"
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="01-introduction.html">
      Introduction
@@ -232,8 +232,8 @@ const thebe_selector_output = ".output, .cell_output"
      Running a batch job
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-jupyter-hub.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Web-based access to the Picotte Cluster
     </a>
    </li>
@@ -415,7 +415,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/intro_picotte/00-index.md"
+        <a href="../_sources/intro_picotte/08-jupyter-hub.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -475,13 +475,18 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workshop-description">
-   Workshop Description
+  <a class="reference internal nav-link" href="#file-browsing">
+   File Browsing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
+  <a class="reference internal nav-link" href="#shell">
+   Shell
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook
   </a>
  </li>
 </ul>
@@ -493,7 +498,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to Research Computing on Picotte</h1>
+                <h1>Web-based access to the Picotte Cluster</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -504,13 +509,18 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workshop-description">
-   Workshop Description
+  <a class="reference internal nav-link" href="#file-browsing">
+   File Browsing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
+  <a class="reference internal nav-link" href="#shell">
+   Shell
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook
   </a>
  </li>
 </ul>
@@ -523,22 +533,101 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-research-computing-on-picotte">
-<h1>Introduction to Research Computing on Picotte<a class="headerlink" href="#introduction-to-research-computing-on-picotte" title="Permalink to this headline">#</a></h1>
-<ul class="simple">
-<li><p><strong>Instructor</strong>: Linh B. Ngo</p></li>
-<li><p><strong>Email</strong>: lbn28 AT drexel DOT edu</p></li>
-</ul>
-<section id="workshop-description">
-<h2>Workshop Description<a class="headerlink" href="#workshop-description" title="Permalink to this headline">#</a></h2>
-<p>In this workshop, participants are introduced to the Picotte Cluster, Drexel University’s high-performance computing resource. We will go over Picotte’s structure, its basic usage, and how to submit computational tasks to the cluster.</p>
-</section>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
-<p>No prerequisites are required</p>
-</section>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="web-based-access-to-the-picotte-cluster">
+<h1>Web-based access to the Picotte Cluster<a class="headerlink" href="#web-based-access-to-the-picotte-cluster" title="Permalink to this headline">#</a></h1>
+<p>We have an interface to Picotte that works through a Web browser. This interface is called “Open On Demand”, or OpenOD for short. To access it, go to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">openod</span><span class="o">.</span><span class="n">Picotte</span><span class="o">.</span><span class="n">clemson</span><span class="o">.</span><span class="n">edu</span>
+</pre></div>
 </div>
+<p>You will need to login with your Clemson username and password, and perform a DUO check.</p>
+<figure class="align-default" id="id1">
+<img alt="fig/intro_Picotte/openod_1.png" src="fig/intro_Picotte/openod_1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Open OnDemand MOTD</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="file-browsing">
+<h2>File Browsing<a class="headerlink" href="#file-browsing" title="Permalink to this headline">#</a></h2>
+<p>One convenient feature of Open OnDemand is a file browser. In the top left corner, you will see the “Files” button, which will take you to your home diretory or to scratch directory. Click it and explore the files in your file system. You can use this feature to view, edit, and delete files. It is also a convenient way to upload and download the files. You can go to any folder that you have access to by clicking “Go to”.</p>
+</section>
+<section id="shell">
+<h2>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">#</a></h2>
+<p>You can also use the web interface to run a terminal on Picotte. This way, OpenOD becomes an alternative to MobaXTerm or to the Mac Terminal application. To start the terminal, click on <code class="docutils literal notranslate"><span class="pre">Clusters</span></code>, then <code class="docutils literal notranslate"><span class="pre">Picotte</span> <span class="pre">Shell</span> <span class="pre">Access</span></code>:</p>
+<figure class="align-default" id="id2">
+<img alt="fig/intro_Picotte/openod_2.png" src="fig/intro_Picotte/openod_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Picotte Shell Access</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Enter your account password and do the two-factor identification. This will bring you to the login node of Picotte:</p>
+<figure class="align-default" id="id3">
+<img alt="fig/intro_Picotte/openod_3.png" src="fig/intro_Picotte/openod_3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Picotte Shell Access – On login node</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>From here, you can run scripts on the login node (such as <code class="docutils literal notranslate"><span class="pre">checkquota</span></code>, <code class="docutils literal notranslate"><span class="pre">checkqueucfg</span></code>, <code class="docutils literal notranslate"><span class="pre">whatsfree</span></code>), and request compute nodes with <code class="docutils literal notranslate"><span class="pre">qsub</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There is currently an idle timeout that happens when you use the shell access feature of Open
+OnDemand.  If you are inactive for a period of time, the shell will need to be restarted.</p>
+</div>
+</section>
+<section id="jupyter-notebook">
+<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">#</a></h2>
+<p>You can use OpenOD to run certain applications like Jupyter and Tensorflow notebooks, R Studio, and Matlab. Let’s run Jupyter. From “Interactive apps”, please select “Jupyter Notebook”:</p>
+<figure class="align-default" id="id4">
+<img alt="fig/intro_Picotte/openod_4.png" src="fig/intro_Picotte/openod_4.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Select Jupyter Notebook</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Please fill out the request as shown on this picture:</p>
+<figure class="align-default" id="id5">
+<img alt="fig/intro_Picotte/openod_5.png" src="fig/intro_Picotte/openod_5.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Fill Jupyter Notebook Options</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This is basically a graphical interface to <code class="docutils literal notranslate"><span class="pre">qsub</span></code>. You are asking for 1 compute node, 5 CPUs, 10 GB of memory, no GPU, 1g interconnect (that is, a c1 node), for the walltime duration of 1 hours. Once you are done entering this information, please click the blue “Launch” button at the bottom. It will bring out a new screen:</p>
+<figure class="align-default" id="id6">
+<img alt="fig/intro_Picotte/openod_6.png" src="fig/intro_Picotte/openod_6.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Jupyter Notebook is starting</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This means your request is being processed. Once the compute node is ready, you will see a blue button under your request saying “Connect to Jupyter”:</p>
+<figure class="align-default" id="id7">
+<img alt="fig/intro_Picotte/openod_7.png" src="fig/intro_Picotte/openod_7.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Connect to Jupyter</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Click on it, and it will start Jupyter.</p>
+<p>We won’t go further into Jupyter notebooks at this workshop.  To exit the interactive app, you can
+close the browser tab, but that won’t stop the underlying job.  Those resources will still be
+locked.  To stop the job, select the “my interactive sessions” icon at the top:</p>
+<figure class="align-default" id="id8">
+<img alt="fig/intro_Picotte/openod_8.png" src="fig/intro_Picotte/openod_8.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">My Interactive Sessions icon</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>You can then press the Delete button on the session you are done with.</p>
+<figure class="align-default" id="id9">
+<img alt="fig/intro_Picotte/openod_9.png" src="fig/intro_Picotte/openod_9.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Press the red Delete button to stop the job and release the resources back to the cluster</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition-key-points admonition">
+<p class="admonition-title">Key Points</p>
+<ul class="simple">
+<li><p>Open OnDemand can be used to launch interactive applications with a GUI that run on Picotte</p></li>
+<li><p>Open OnDemand has a file browser</p></li>
+</ul>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -568,17 +657,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../intro_linux/08-conclusion.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="07-batch.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Workshop Conclusion</p>
+            <p class="prev-next-title">Running a batch job</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="01-introduction.html" title="next page">
+    <a class='right-next' id="next-link" href="../r_programming/00-index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title">Introduction to R</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

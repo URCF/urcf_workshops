@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Transferring files to and from Palmetto &#8212; University Research Computing Facility Workshop</title>
+    <title>Transferring files to and from Picotte &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running a batch job" href="08-batch.html" />
+    <link rel="next" title="Running a batch job" href="07-batch.html" />
     <link rel="prev" title="Running an interactive job on Picotte" href="05-interactive.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -224,12 +224,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Transferring files to and from Palmetto
+     Transferring files to and from Picotte
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08-batch.html">
+    <a class="reference internal" href="07-batch.html">
      Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-jupyter-hub.html">
+     Web-based access to the Picotte Cluster
     </a>
    </li>
   </ul>
@@ -479,11 +484,6 @@ title="Print to PDF"
    Command line (Mac and Linux users)
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#globus">
-   Globus
-  </a>
- </li>
 </ul>
 
     </nav>
@@ -493,7 +493,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Transferring files to and from Palmetto</h1>
+                <h1>Transferring files to and from Picotte</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -513,11 +513,6 @@ title="Print to PDF"
    Command line (Mac and Linux users)
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#globus">
-   Globus
-  </a>
- </li>
 </ul>
 
                         </nav>
@@ -528,64 +523,65 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="transferring-files-to-and-from-palmetto">
-<h1>Transferring files to and from Palmetto<a class="headerlink" href="#transferring-files-to-and-from-palmetto" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="transferring-files-to-and-from-picotte">
+<h1>Transferring files to and from Picotte<a class="headerlink" href="#transferring-files-to-and-from-picotte" title="Permalink to this headline">#</a></h1>
 <section id="cyberduck">
 <h2>CyberDuck<a class="headerlink" href="#cyberduck" title="Permalink to this headline">#</a></h2>
-<p>There are many ways to transfer files between your local computer and Palmetto. One piece of software that works for both Mac and Windows machines is called CyberDuck. You can download it <a class="reference external" href="https://cyberduck.io/download/">here</a>.</p>
+<p>There are many ways to transfer files between your local computer and Picotte. One piece of
+software that works for both Mac and Windows machines is called CyberDuck. You can download
+it <a class="reference external" href="https://cyberduck.io/download/">here</a>.</p>
 <p>After installation, click on “Open Connection”. A new window will pop out:</p>
 <figure class="align-default" id="id1">
-<img alt="fig/intro_palmetto/cyberduck_1.png" src="fig/intro_palmetto/cyberduck_1.png" />
+<img alt="../_images/cyberduck_1.png" src="../_images/cyberduck_1.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Cyberduck connection settings to Palmetto</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Cyberduck connection settings to Picotte</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Let’s configure the connection:</p>
 <ul class="simple">
 <li><p>in the drop-down menu on top, select “SFTP” instead of the default “FTP”;</p></li>
-<li><p>in the “Server”, please specify <code class="docutils literal notranslate"><span class="pre">xfer02-ext.clemson.edu</span></code>;</p></li>
+<li><p>in the “Server”, please specify <code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code>;</p></li>
 <li><p>make sure that Port is set to 22;</p></li>
-<li><p>specify your Palmetto username and password.</p></li>
+<li><p>specify your Picotte username and password.</p></li>
 </ul>
 <p>Then, click on “Connect”. If it complains about an “unknown fingerprint”, click “Allow”. Another window will pop out asking you to do two-factor verification:</p>
 <figure class="align-default" id="id2">
-<img alt="fig/intro_palmetto/cyberduck_2.png" src="fig/intro_palmetto/cyberduck_2.png" />
+<img alt="../_images/cyberduck_2.png" src="../_images/cyberduck_2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Cyberduck connection settings to Palmetto</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Cyberduck connection settings to Picotte</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Type “1” (the number one) or the word “push” if you want to get a DUO push notification. After two-factor verification, a yet another new window will pop up, which will contain the contents of your Palmetto home directory (if this is your first time using Palmetto, it will be empty). You can go to any other folder on Palmetto by changing the path (e.g., <code class="docutils literal notranslate"><span class="pre">/scratch1/username</span></code>). You can upload files by clicking the “Upload” button, and download files by right-clicking them and selecting “Download”.</p>
+<p>At this point, another new window will pop up, which will contain the contents of your Picotte home directory
+(if this is your first time using Picotte, it will be empty). You can go to any other folder on Picotte by changing the
+path (e.g., <code class="docutils literal notranslate"><span class="pre">/beegfs/scratch/username</span></code>). You can upload files by clicking the “Upload” button, and download files by
+right-clicking them and selecting “Download”.</p>
+<figure class="align-default" id="id3">
+<img alt="../_images/cyberduck_2fa.png" src="../_images/cyberduck_2fa.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Home directory contents</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="command-line-mac-and-linux-users">
 <h2>Command line (Mac and Linux users)<a class="headerlink" href="#command-line-mac-and-linux-users" title="Permalink to this headline">#</a></h2>
-<p>Another option for advanced Mac and Linux users is to use the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command from the terminal. Open a new terminal, but <strong>don’t connect to Palmetto</strong>. The <code class="docutils literal notranslate"><span class="pre">scp</span></code> command works like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp &lt;path_to_source&gt; username@xfer02-ext.clemson.edu:&lt;path_to_destination&gt;
+<p>Another option for advanced Mac and Linux users is to use the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command from the terminal. Open a
+new terminal, but <strong>don’t connect to Picotte</strong>. The <code class="docutils literal notranslate"><span class="pre">scp</span></code> command works like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp &lt;path_to_source&gt; username@picottelogin.urcf.drexel.edu:&lt;path_to_destination&gt;
 </pre></div>
 </div>
-<p>For example, here is the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command to copy a file from the current directory on my local machine to my home directory on Palmetto (<code class="docutils literal notranslate"><span class="pre">dndawso</span></code> is my Palmetto username:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp myfile.txt dndawso@xfer02-ext.clemson.edu:/home/dndawso/
+<p>For example, here is the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command to copy a file from the current directory on my local machine
+to my home directory on Picotte (<code class="docutils literal notranslate"><span class="pre">lbn28</span></code> is my Picotte username):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp myfile.txt username@picottelogin.urcf.drexel.edu::/home/lbn28/
 </pre></div>
 </div>
-<p>… and to do the same in reverse, i.e., copy from Palmetto to my local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp dndawso@xfer02-ext.clemson.edu:/home/dndawso/myfile.txt .
+<p>… and to do the same in reverse, i.e., copy from Picotte to my local machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/myfile.txt .
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">.</span></code> represents the working directory on the local machine.</p>
 <p>To copy entire folders, include the <code class="docutils literal notranslate"><span class="pre">-r</span></code> switch:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">r</span> <span class="n">myfolder</span> <span class="n">dndawso</span><span class="nd">@xfer02</span><span class="o">-</span><span class="n">ext</span><span class="o">.</span><span class="n">clemson</span><span class="o">.</span><span class="n">edu</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">dndawso</span><span class="o">/</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp -r myfolder lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/
 </pre></div>
-</div>
-</section>
-<section id="globus">
-<h2>Globus<a class="headerlink" href="#globus" title="Permalink to this headline">#</a></h2>
-<p>If you need to transfer several gigabytes of data, and you find CyberDuck too slow, you can use Globus. The interface is not as intuitive, but the file transfer speeds are much higher. <a class="reference external" href="https://www.palmetto.clemson.edu/palmetto/basic/started/#transfer-large-files-using-globus">The guide to using Globus is on our website</a>.</p>
-<div class="admonition-key-points admonition">
-<p class="admonition-title">Key Points</p>
-<ul class="simple">
-<li><p>Windows and Mac users can use CyberDuck for file transfer</p></li>
-<li><p>Mac and Linux users can use SCP for file transfer</p></li>
-<li><p>Large amounts of data can be transferred with Globus</p></li>
-</ul>
 </div>
 </section>
 </section>
@@ -624,7 +620,7 @@ title="Print to PDF"
             <p class="prev-next-title">Running an interactive job on Picotte</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="08-batch.html" title="next page">
+    <a class='right-next' id="next-link" href="07-batch.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Running a batch job</p>
