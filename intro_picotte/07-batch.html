@@ -573,7 +573,7 @@ Submitted batch job <span class="m">9539504</span>
 </pre></div>
 </div>
 <p>If the submission was successful, it will give you the job ID, as shown above.
-We can monitor the job’s progress with the <code class="docutils literal notranslate"><span class="pre">qstat</span></code> command. This is an example to list
+We can monitor the job’s progress with the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command. This is an example to list
 all jobs that are currently executed by you:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@picotte001 ~<span class="o">]</span>$ squeue -u lbn28
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST<span class="o">(</span>REASON<span class="o">)</span>
@@ -583,7 +583,7 @@ all jobs that are currently executed by you:</p>
 </div>
 <p>You see the job ID, your Picotte username, the name of the queue (more on that later),
 the name of the job (<code class="docutils literal notranslate"><span class="pre">random_matrix</span></code>), and the node(s) the job is placed on.</p>
-<p>Wait a little bit and do <code class="docutils literal notranslate"><span class="pre">scontrol</span></code> again (you can hit the <code class="docutils literal notranslate"><span class="pre">UP</span></code> arrow to show the previous command).
+<p>Wait a little bit and do <code class="docutils literal notranslate"><span class="pre">squeue</span></code> again (you can hit the <code class="docutils literal notranslate"><span class="pre">UP</span></code> arrow to show the previous command).
 <code class="docutils literal notranslate"><span class="pre">TIME</span></code> should now be a bit longer. The script should take a few minutes or so to execute.</p>
 <p>If everything went well, you should now see the file <code class="docutils literal notranslate"><span class="pre">slurm-9539504.out</span></code>. Let’s print it on screen:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@picotte001 ~<span class="o">]</span>$ cat slurm-9539504.out
