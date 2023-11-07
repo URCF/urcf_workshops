@@ -1,0 +1,1535 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Composing Functions &#8212; University Research Computing Facility Workshop</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Syntax Errors" href="09-errors.html" />
+    <link rel="prev" title="Conditionals" href="07-cond.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    University Research Computing Facility Workshops
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introductory Sequence
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_linux/00-index.html">
+   Introduction to Linux
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/00a-outline.html">
+     Workshop Outline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01-introduction.html">
+     What is Linux?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01a-shell.html">
+     Shell Specifics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/03-file-system.html">
+     Navigating Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04-working_with_files_and_directories.html">
+     Working With Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04a-file-permissions.html">
+     File Permissions and Atrributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/05-pipes.html">
+     Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/06-loop.html">
+     Loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/07-utilities.html">
+     Shell Scripts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/08-conclusion.html">
+     Workshop Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_picotte/00-index.html">
+   Introduction to Research Computing on Picotte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/01-introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/03-picotte_structure.html">
+     The structure of the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/04-storage.html">
+     Storage on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/05-interactive.html">
+     Running an interactive job on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/06-file-transfer.html">
+     Transferring files to and from Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/07-batch.html">
+     Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/08-jupyter-hub.html">
+     Jupyter Hub service to the Picotte Cluster
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../r_programming/00-index.html">
+   Introduction to R
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/01-Introduction.html">
+     Introduction to R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/02-Basic-R.html">
+     Basics of R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/04-Matrix.html">
+     Vectors, Matrices, Lists and Data Frames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
+     Control Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/06-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
+     Parallel Computing in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
+     Basic plotting with R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
+     Ploting with ggplot
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="00-index.html">
+   Introduction to Python Programming
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-intro.html">
+     Python Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-numpy.html">
+     Loading data into Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-matplotlib.html">
+     Visualizing data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-lists.html">
+     Python lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07-cond.html">
+     Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Composing Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-errors.html">
+     Syntax Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-defensive.html">
+     Assertions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-debugging.html">
+     Know What It’s Supposed to Do
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-cmdline.html">
+     Command-Line Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/python_programming/08-func.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Composing Functions
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variable-scope">
+   Variable Scope
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tidying-up">
+   Tidying up
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-and-documenting">
+   Testing and Documenting
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-defaults">
+   Defining Defaults
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#readable-functions">
+   Readable functions
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Composing Functions</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Composing Functions
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variable-scope">
+   Variable Scope
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tidying-up">
+   Tidying up
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-and-documenting">
+   Testing and Documenting
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-defaults">
+   Defining Defaults
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#readable-functions">
+   Readable functions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+- Define a function that takes parameters.
+- Return a value from a function.
+- Test and debug a function.
+- Set default values for function parameters.
+- Explain why we should divide programs into small, single-purpose functions.
+
+</pre></div>
+</div>
+<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
+- How can I define new functions?
+- What&#39;s the difference between defining and calling a function?
+- What happens when I call a function?
+
+</pre></div>
+</div>
+<p>At this point, we’ve seen that code can have Python make decisions about what it sees in our data. What if we want to convert some of our data, like taking a temperature in Fahrenheit and converting it to Celsius. We could write something like this for converting a single number</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fahrenheit_val</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="n">celsius_val</span> <span class="o">=</span> <span class="p">((</span><span class="n">fahrenheit_val</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>and for a second number we could just copy the line and rename the variables</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fahrenheit_val</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="n">celsius_val</span> <span class="o">=</span> <span class="p">((</span><span class="n">fahrenheit_val</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
+
+<span class="n">fahrenheit_val2</span> <span class="o">=</span> <span class="mi">43</span>
+<span class="n">celsius_val2</span> <span class="o">=</span> <span class="p">((</span><span class="n">fahrenheit_val2</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>But we would be in trouble as soon as we had to do this more than a couple times.
+Cutting and pasting it is going to make our code get very long and very repetitive,
+very quickly.
+We’d like a way to package our code so that it is easier to reuse,
+a shorthand way of re-executing longer pieces of code. In Python we can use ‘functions’.
+Let’s start by defining a function <code class="docutils literal notranslate"><span class="pre">fahr_to_celsius</span></code> that converts temperatures
+from Fahrenheit to Celsius:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">explicit_fahr_to_celsius</span><span class="p">(</span><span class="n">temp</span><span class="p">):</span>
+    <span class="c1"># Assign the converted value to a variable</span>
+    <span class="n">converted</span> <span class="o">=</span> <span class="p">((</span><span class="n">temp</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
+    <span class="c1"># Return the value of the new variable</span>
+    <span class="k">return</span> <span class="n">converted</span>
+    
+<span class="k">def</span> <span class="nf">fahr_to_celsius</span><span class="p">(</span><span class="n">temp</span><span class="p">):</span>
+    <span class="c1"># Return converted value more efficiently using the return</span>
+    <span class="c1"># function without creating a new variable. This code does</span>
+    <span class="c1"># the same thing as the previous function but it is more explicit</span>
+    <span class="c1"># in explaining how the return command works.</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">temp</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><img alt="" src="python_programming/fig/python-function.svg" />{alt=’Labeled parts of a Python function definition’}</p>
+<p>The function definition opens with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code> followed by the
+name of the function (<code class="docutils literal notranslate"><span class="pre">fahr_to_celsius</span></code>) and a parenthesized list of parameter names (<code class="docutils literal notranslate"><span class="pre">temp</span></code>). The
+<a class="reference external" href="../learners/reference.md#body">body</a> of the function — the
+statements that are executed when it runs — is indented below the
+definition line.  The body concludes with a <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword followed by the return value.</p>
+<p>When we call the function,
+the values we pass to it are assigned to those variables
+so that we can use them inside the function.
+Inside the function,
+we use a <a class="reference external" href="../learners/reference.md#return-statement">return statement</a> to send a result
+back to whoever asked for it.</p>
+<p>Let’s try running our function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This command should call our function, using “32” as the input and return the function value.</p>
+<p>In fact, calling our own function is no different from calling any other function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;freezing point of water:&#39;</span><span class="p">,</span> <span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boiling point of water:&#39;</span><span class="p">,</span> <span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">212</span><span class="p">),</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">freezing point of water: 0.0 C</span>
+<span class="go">boiling point of water: 100.0 C</span>
+</pre></div>
+</div>
+<p>We’ve successfully called the function that we defined,
+and we have access to the value that we returned.</p>
+<section id="composing-functions">
+<h1>Composing Functions<a class="headerlink" href="#composing-functions" title="Permalink to this headline">#</a></h1>
+<p>Now that we’ve seen how to turn Fahrenheit into Celsius,
+we can also write the function to turn Celsius into Kelvin:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">celsius_to_kelvin</span><span class="p">(</span><span class="n">temp_c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">temp_c</span> <span class="o">+</span> <span class="mf">273.15</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;freezing point of water in Kelvin:&#39;</span><span class="p">,</span> <span class="n">celsius_to_kelvin</span><span class="p">(</span><span class="mf">0.</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">freezing point of water in Kelvin: 273.15</span>
+</pre></div>
+</div>
+<p>What about converting Fahrenheit to Kelvin?
+We could write out the formula,
+but we don’t need to.
+Instead,
+we can <a class="reference external" href="../learners/reference.md#compose">compose</a> the two functions we have already created:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fahr_to_kelvin</span><span class="p">(</span><span class="n">temp_f</span><span class="p">):</span>
+    <span class="n">temp_c</span> <span class="o">=</span> <span class="n">fahr_to_celsius</span><span class="p">(</span><span class="n">temp_f</span><span class="p">)</span>
+    <span class="n">temp_k</span> <span class="o">=</span> <span class="n">celsius_to_kelvin</span><span class="p">(</span><span class="n">temp_c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">temp_k</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boiling point of water in Kelvin:&#39;</span><span class="p">,</span> <span class="n">fahr_to_kelvin</span><span class="p">(</span><span class="mf">212.0</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">boiling point of water in Kelvin: 373.15</span>
+</pre></div>
+</div>
+<p>This is our first taste of how larger programs are built:
+we define basic operations,
+then combine them in ever-larger chunks to get the effect we want.
+Real-life functions will usually be larger than the ones shown here — typically half a dozen
+to a few dozen lines — but they shouldn’t ever be much longer than that,
+or the next person who reads it won’t be able to understand what’s going on.</p>
+</section>
+<section id="variable-scope">
+<h1>Variable Scope<a class="headerlink" href="#variable-scope" title="Permalink to this headline">#</a></h1>
+<p>In composing our temperature conversion functions, we created variables inside of those functions,
+<code class="docutils literal notranslate"><span class="pre">temp</span></code>, <code class="docutils literal notranslate"><span class="pre">temp_c</span></code>, <code class="docutils literal notranslate"><span class="pre">temp_f</span></code>, and <code class="docutils literal notranslate"><span class="pre">temp_k</span></code>.
+We refer to these variables as <a class="reference external" href="../learners/reference.md#local-variable">local variables</a>
+because they no longer exist once the function is done executing.
+If we try to access their values outside of the function, we will encounter an error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Again, temperature in Kelvin was:&#39;</span><span class="p">,</span> <span class="n">temp_k</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+&lt;ipython-input-1-eed2471d229b&gt; in &lt;module&gt;
+----&gt; 1 print(&#39;Again, temperature in Kelvin was:&#39;, temp_k)
+
+NameError: name &#39;temp_k&#39; is not defined
+</pre></div>
+</div>
+<p>If you want to reuse the temperature in Kelvin after you have calculated it with <code class="docutils literal notranslate"><span class="pre">fahr_to_kelvin</span></code>,
+you can store the result of the function call in a variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">temp_kelvin</span> <span class="o">=</span> <span class="n">fahr_to_kelvin</span><span class="p">(</span><span class="mf">212.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;temperature in Kelvin was:&#39;</span><span class="p">,</span> <span class="n">temp_kelvin</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">temperature in Kelvin was: 373.15</span>
+</pre></div>
+</div>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">temp_kelvin</span></code>, being defined outside any function,
+is said to be <a class="reference external" href="../learners/reference.md#global-variable">global</a>.</p>
+<p>Inside a function, one can read the value of such global variables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_temperatures</span><span class="p">():</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;temperature in Fahrenheit was:&#39;</span><span class="p">,</span> <span class="n">temp_fahr</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;temperature in Kelvin was:&#39;</span><span class="p">,</span> <span class="n">temp_kelvin</span><span class="p">)</span>
+
+<span class="n">temp_fahr</span> <span class="o">=</span> <span class="mf">212.0</span>
+<span class="n">temp_kelvin</span> <span class="o">=</span> <span class="n">fahr_to_kelvin</span><span class="p">(</span><span class="n">temp_fahr</span><span class="p">)</span>
+
+<span class="n">print_temperatures</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">temperature in Fahrenheit was: 212.0</span>
+<span class="go">temperature in Kelvin was: 373.15</span>
+</pre></div>
+</div>
+</section>
+<section id="tidying-up">
+<h1>Tidying up<a class="headerlink" href="#tidying-up" title="Permalink to this headline">#</a></h1>
+<p>Now that we know how to wrap bits of code up in functions,
+we can make our inflammation analysis easier to read and easier to reuse.
+First, let’s make a <code class="docutils literal notranslate"><span class="pre">visualize</span></code> function that generates our plots:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span>
+
+    <span class="n">axes1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">axes2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">axes3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">axes1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
+    <span class="n">axes1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">axes2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
+    <span class="n">axes2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">axes3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span>
+    <span class="n">axes3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>and another function called <code class="docutils literal notranslate"><span class="pre">detect_problems</span></code> that checks for those systematics
+we noticed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">detect_problems</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">20</span><span class="p">]</span> <span class="o">==</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Suspicious looking maxima!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minima add up to zero!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Seems OK!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Wait! Didn’t we forget to specify what both of these functions should return? Well, we didn’t.
+In Python, functions are not required to include a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement and can be used for
+the sole purpose of grouping together pieces of code that conceptually do one thing. In such cases,
+function names usually describe what they do, <em>e.g.</em> <code class="docutils literal notranslate"><span class="pre">visualize</span></code>, <code class="docutils literal notranslate"><span class="pre">detect_problems</span></code>.</p>
+<p>Notice that rather than jumbling this code together in one giant <code class="docutils literal notranslate"><span class="pre">for</span></code> loop,
+we can now read and reuse both ideas separately.
+We can reproduce the previous analysis with a much simpler <code class="docutils literal notranslate"><span class="pre">for</span></code> loop:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;inflammation*.csv&#39;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">visualize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">detect_problems</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By giving our functions human-readable names,
+we can more easily read and understand what is happening in the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.
+Even better, if at some later date we want to use either of those pieces of code again,
+we can do so in a single line.</p>
+</section>
+<section id="testing-and-documenting">
+<h1>Testing and Documenting<a class="headerlink" href="#testing-and-documenting" title="Permalink to this headline">#</a></h1>
+<p>Once we start putting things in functions so that we can re-use them,
+we need to start testing that those functions are working correctly.
+To see how to do this,
+let’s write a function to offset a dataset so that it’s mean value
+shifts to a user-defined value:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
+</pre></div>
+</div>
+<p>We could test this on our actual data,
+but since we don’t know what the values ought to be,
+it will be hard to tell if the result was correct.
+Instead,
+let’s use NumPy to create a matrix of 0’s
+and then offset its values to have a mean value of 3:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[[ 3.  3.]</span>
+<span class="go"> [ 3.  3.]]</span>
+</pre></div>
+</div>
+<p>That looks right,
+so let’s try <code class="docutils literal notranslate"><span class="pre">offset_mean</span></code> on our real data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[[-6.14875 -6.14875 -5.14875 ... -3.14875 -6.14875 -6.14875]</span>
+<span class="go"> [-6.14875 -5.14875 -4.14875 ... -5.14875 -6.14875 -5.14875]</span>
+<span class="go"> [-6.14875 -5.14875 -5.14875 ... -4.14875 -5.14875 -5.14875]</span>
+<span class="go"> ...</span>
+<span class="go"> [-6.14875 -5.14875 -5.14875 ... -5.14875 -5.14875 -5.14875]</span>
+<span class="go"> [-6.14875 -6.14875 -6.14875 ... -6.14875 -4.14875 -6.14875]</span>
+<span class="go"> [-6.14875 -6.14875 -5.14875 ... -5.14875 -5.14875 -6.14875]]</span>
+</pre></div>
+</div>
+<p>It’s hard to tell from the default output whether the result is correct,
+but there are a few tests that we can run to reassure us:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;original min, mean, and max are:&#39;</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="n">offset_data</span> <span class="o">=</span> <span class="n">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;min, mean, and max of offset data are:&#39;</span><span class="p">,</span>
+      <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">offset_data</span><span class="p">),</span>
+      <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">offset_data</span><span class="p">),</span>
+      <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">offset_data</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">original min, mean, and max are: 0.0 6.14875 20.0</span>
+<span class="go">min, mean, and max of offset data are: -6.14875 2.842170943040401e-16 13.85125</span>
+</pre></div>
+</div>
+<p>That seems almost right:
+the original mean was about 6.1,
+so the lower bound from zero is now about -6.1.
+The mean of the offset data isn’t quite zero, but it’s pretty close.
+We can even go further and check that the standard deviation hasn’t changed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;std dev before and after:&#39;</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">offset_data</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">std dev before and after: 4.613833197118566 4.613833197118566</span>
+</pre></div>
+</div>
+<p>Those values look the same,
+but we probably wouldn’t notice if they were different in the sixth decimal place.
+Let’s do this instead:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;difference in standard deviations before and after:&#39;</span><span class="p">,</span>
+      <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">offset_data</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">difference in standard deviations before and after: 0.0</span>
+</pre></div>
+</div>
+<p>Everything looks good,
+and we should probably get back to doing our analysis.
+We have one more task first, though:
+we should write some <a class="reference external" href="../learners/reference.md#documentation">documentation</a> for our function
+to remind ourselves later what it’s for and how to use it.</p>
+<p>The usual way to put documentation in software is
+to add <a class="reference external" href="../learners/reference.md#comment">comments</a> like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># offset_mean(data, target_mean_value):</span>
+<span class="c1"># return a new array containing the original data with its mean offset to match the desired value.</span>
+<span class="k">def</span> <span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
+</pre></div>
+</div>
+<p>There’s a better way, though.
+If the first thing in a function is a string that isn’t assigned to a variable,
+that string is attached to the function as its documentation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a new array containing the original data</span>
+<span class="sd">       with its mean offset to match the desired value.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
+</pre></div>
+</div>
+<p>This is better because we can now ask Python’s built-in help system to show us
+the documentation for the function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Help on function offset_mean in module __main__:</span>
+
+<span class="go">offset_mean(data, target_mean_value)</span>
+<span class="go">    Return a new array containing the original data with its mean offset to match the desired value.</span>
+</pre></div>
+</div>
+<p>A string like this is called a <a class="reference external" href="../learners/reference.md#docstring">docstring</a>.
+We don’t need to use triple quotes when we write one,
+but if we do,
+we can break the string across multiple lines:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a new array containing the original data</span>
+<span class="sd">       with its mean offset to match the desired value.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; offset_mean([1, 2, 3], 0)</span>
+<span class="sd">    array([-1.,  0.,  1.])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
+
+<span class="n">help</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Help on function offset_mean in module __main__:</span>
+
+<span class="go">offset_mean(data, target_mean_value)</span>
+<span class="go">    Return a new array containing the original data</span>
+<span class="go">       with its mean offset to match the desired value.</span>
+
+<span class="go">    Examples</span>
+<span class="go">    --------</span>
+<span class="go">    &gt;&gt;&gt; offset_mean([1, 2, 3], 0)</span>
+<span class="go">    array([-1.,  0.,  1.])</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-defaults">
+<h1>Defining Defaults<a class="headerlink" href="#defining-defaults" title="Permalink to this headline">#</a></h1>
+<p>We have passed parameters to functions in two ways:
+directly, as in <code class="docutils literal notranslate"><span class="pre">type(data)</span></code>,
+and by name, as in <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt(fname='something.csv',</span> <span class="pre">delimiter=',')</span></code>.
+In fact,
+we can pass the filename to <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> without the <code class="docutils literal notranslate"><span class="pre">fname=</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],</span>
+<span class="go">       [ 0.,  1.,  2., ...,  1.,  0.,  1.],</span>
+<span class="go">       [ 0.,  1.,  1., ...,  2.,  1.,  1.],</span>
+<span class="go">       ...,</span>
+<span class="go">       [ 0.,  1.,  1., ...,  1.,  1.,  1.],</span>
+<span class="go">       [ 0.,  0.,  0., ...,  0.,  2.,  0.],</span>
+<span class="go">       [ 0.,  0.,  1., ...,  1.,  1.,  0.]])</span>
+</pre></div>
+</div>
+<p>but we still need to say <code class="docutils literal notranslate"><span class="pre">delimiter=</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/Users/username/anaconda3/lib/python3.6/site-packages/numpy/lib/npyio.py&quot;, line 1041, in loa
+dtxt
+    dtype = np.dtype(dtype)
+  File &quot;/Users/username/anaconda3/lib/python3.6/site-packages/numpy/core/_internal.py&quot;, line 199, in
+_commastring
+    newitem = (dtype, eval(repeats))
+  File &quot;&lt;string&gt;&quot;, line 1
+    ,
+    ^
+SyntaxError: unexpected EOF while parsing
+</pre></div>
+</div>
+<p>To understand what’s going on,
+and make our own functions easier to use,
+let’s re-define our <code class="docutils literal notranslate"><span class="pre">offset_mean</span></code> function like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a new array containing the original data</span>
+<span class="sd">       with its mean offset to match the desired value, (0 by default).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; offset_mean([1, 2, 3])</span>
+<span class="sd">    array([-1.,  0.,  1.])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
+</pre></div>
+</div>
+<p>The key change is that the second parameter is now written <code class="docutils literal notranslate"><span class="pre">target_mean_value=0.0</span></code>
+instead of just <code class="docutils literal notranslate"><span class="pre">target_mean_value</span></code>.
+If we call the function with two arguments,
+it works as it did before:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[[ 3.  3.]</span>
+<span class="go"> [ 3.  3.]]</span>
+</pre></div>
+</div>
+<p>But we can also now call it with just one parameter,
+in which case <code class="docutils literal notranslate"><span class="pre">target_mean_value</span></code> is automatically assigned
+the <a class="reference external" href="../learners/reference.md#default-value">default value</a> of 0.0:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">more_data</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data before mean offset:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">more_data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;offset data:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">(</span><span class="n">more_data</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">data before mean offset:</span>
+<span class="go">[[ 5.  5.]</span>
+<span class="go"> [ 5.  5.]]</span>
+<span class="go">offset data:</span>
+<span class="go">[[ 0.  0.]</span>
+<span class="go"> [ 0.  0.]]</span>
+</pre></div>
+</div>
+<p>This is handy:
+if we usually want a function to work one way,
+but occasionally need it to do something else,
+we can allow people to pass a parameter when they need to
+but provide a default to make the normal case easier.
+The example below shows how Python matches values to parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a:&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b:&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="s1">&#39;c:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;no parameters:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;one parameter:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;two parameters:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">66</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">no parameters:</span>
+<span class="go">a: 1 b: 2 c: 3</span>
+<span class="go">one parameter:</span>
+<span class="go">a: 55 b: 2 c: 3</span>
+<span class="go">two parameters:</span>
+<span class="go">a: 55 b: 66 c: 3</span>
+</pre></div>
+</div>
+<p>As this example shows,
+parameters are matched up from left to right,
+and any that haven’t been given a value explicitly get their default value.
+We can override this behavior by naming the value as we pass it in:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;only setting the value of c&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="mi">77</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">only setting the value of c</span>
+<span class="go">a: 1 b: 2 c: 77</span>
+</pre></div>
+</div>
+<p>With that in hand,
+let’s look at the help for <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Help on function loadtxt in module numpy.lib.npyio:</span>
+
+<span class="go">loadtxt(fname, dtype=&lt;class &#39;float&#39;&gt;, comments=&#39;#&#39;, delimiter=None, converters=None, skiprows=0, use</span>
+<span class="go">cols=None, unpack=False, ndmin=0, encoding=&#39;bytes&#39;)</span>
+<span class="go">    Load data from a text file.</span>
+
+<span class="go">    Each row in the text file must have the same number of values.</span>
+
+<span class="go">    Parameters</span>
+<span class="go">    ----------</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>There’s a lot of information here,
+but the most important part is the first couple of lines:</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">loadtxt(fname, dtype=&lt;class &#39;float&#39;&gt;, comments=&#39;#&#39;, delimiter=None, converters=None, skiprows=0, use</span>
+<span class="go">cols=None, unpack=False, ndmin=0, encoding=&#39;bytes&#39;)</span>
+</pre></div>
+</div>
+<p>This tells us that <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> has one parameter called <code class="docutils literal notranslate"><span class="pre">fname</span></code> that doesn’t have a default value,
+and eight others that do.
+If we call the function like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>then the filename is assigned to <code class="docutils literal notranslate"><span class="pre">fname</span></code> (which is what we want),
+but the delimiter string <code class="docutils literal notranslate"><span class="pre">','</span></code> is assigned to <code class="docutils literal notranslate"><span class="pre">dtype</span></code> rather than <code class="docutils literal notranslate"><span class="pre">delimiter</span></code>,
+because <code class="docutils literal notranslate"><span class="pre">dtype</span></code> is the second parameter in the list. However <code class="docutils literal notranslate"><span class="pre">','</span></code> isn’t a known <code class="docutils literal notranslate"><span class="pre">dtype</span></code> so
+our code produced an error message when we tried to run it.
+When we call <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> we don’t have to provide <code class="docutils literal notranslate"><span class="pre">fname=</span></code> for the filename because it’s the
+first item in the list, but if we want the <code class="docutils literal notranslate"><span class="pre">','</span></code> to be assigned to the variable <code class="docutils literal notranslate"><span class="pre">delimiter</span></code>,
+we <em>do</em> have to provide <code class="docutils literal notranslate"><span class="pre">delimiter=</span></code> for the second parameter since <code class="docutils literal notranslate"><span class="pre">delimiter</span></code> is not
+the second parameter in the list.</p>
+</section>
+<section id="readable-functions">
+<h1>Readable functions<a class="headerlink" href="#readable-functions" title="Permalink to this headline">#</a></h1>
+<p>Consider these two functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">s</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">+=</span> <span class="n">v</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span>
+        <span class="n">d</span> <span class="o">+=</span> <span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">std_dev</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+    <span class="n">sample_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">:</span>
+        <span class="n">sample_sum</span> <span class="o">+=</span> <span class="n">value</span>
+
+    <span class="n">sample_mean</span> <span class="o">=</span> <span class="n">sample_sum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+
+    <span class="n">sum_squared_devs</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">:</span>
+        <span class="n">sum_squared_devs</span> <span class="o">+=</span> <span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">sample_mean</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">sample_mean</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sum_squared_devs</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The functions <code class="docutils literal notranslate"><span class="pre">s</span></code> and <code class="docutils literal notranslate"><span class="pre">std_dev</span></code> are computationally equivalent (they
+both calculate the sample standard deviation), but to a human reader,
+they look very different. You probably found <code class="docutils literal notranslate"><span class="pre">std_dev</span></code> much easier to
+read and understand than <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p>
+<p>As this example illustrates, both documentation and a programmer’s
+<em>coding style</em> combine to determine how easy it is for others to read
+and understand the programmer’s code. Choosing meaningful variable
+names and using blank spaces to break the code into logical “chunks”
+are helpful techniques for producing <em>readable code</em>. This is useful
+not only for sharing code with others, but also for the original
+programmer. If you need to revisit code that you wrote months ago and
+haven’t thought about since then, you will appreciate the value of
+readable code!</p>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Combining Strings
+
+&quot;Adding&quot; two strings produces their concatenation:
+`&#39;a&#39; + &#39;b&#39;` is `&#39;ab&#39;`.
+Write a function called `fence` that takes two parameters called `original` and `wrapper`
+and returns a new string that has the wrapper character at the beginning and end of the original.
+A call to your function should look like this:
+
+```python
+print(fence(&#39;name&#39;, &#39;*&#39;))
+```
+
+```output
+*name*
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+def fence(original, wrapper):
+    return wrapper + original + wrapper
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Return versus print
+
+Note that `return` and `print` are not interchangeable.
+`print` is a Python function that *prints* data to the screen.
+It enables us, *users*, see the data.
+`return` statement, on the other hand, makes data visible to the program.
+Let&#39;s have a look at the following function:
+
+```python
+def add(a, b):
+    print(a + b)
+```
+
+**Question**: What will we see if we execute the following commands?
+
+```python
+A = add(7, 3)
+print(A)
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+Python will first execute the function `add` with `a = 7` and `b = 3`,
+and, therefore, print `10`. However, because function `add` does not have a
+line that starts with `return` (no `return` &quot;statement&quot;), it will, by default, return
+nothing which, in Python world, is called `None`. Therefore, `A` will be assigned to `None`
+and the last line (`print(A)`) will print `None`. As a result, we will see:
+
+```output
+10
+None
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Selecting Characters From Strings
+
+If the variable `s` refers to a string,
+then `s[0]` is the string&#39;s first character
+and `s[-1]` is its last.
+Write a function called `outer`
+that returns a string made up of just the first and last characters of its input.
+A call to your function should look like this:
+
+```python
+print(outer(&#39;helium&#39;))
+```
+
+```output
+hm
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+def outer(input_string):
+    return input_string[0] + input_string[-1]
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Rescaling an Array
+
+Write a function `rescale` that takes an array as input
+and returns a corresponding array of values scaled to lie in the range 0.0 to 1.0.
+(Hint: If `L` and `H` are the lowest and highest values in the original array,
+then the replacement for a value `v` should be `(v-L) / (H-L)`.)
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+def rescale(input_array):
+    L = numpy.amin(input_array)
+    H = numpy.amax(input_array)
+    output_array = (input_array - L) / (H - L)
+    return output_array
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Testing and Documenting Your Function
+
+Run the commands `help(numpy.arange)` and `help(numpy.linspace)`
+to see how to use these functions to generate regularly-spaced values,
+then use those values to test your `rescale` function.
+Once you&#39;ve successfully tested your function,
+add a docstring that explains what it does.
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+&quot;&quot;&quot;Takes an array as input, and returns a corresponding array scaled so
+that 0 corresponds to the minimum and 1 to the maximum value of the input array.
+
+Examples:
+&gt;&gt;&gt; rescale(numpy.arange(10.0))
+array([ 0.        ,  0.11111111,  0.22222222,  0.33333333,  0.44444444,
+       0.55555556,  0.66666667,  0.77777778,  0.88888889,  1.        ])
+&gt;&gt;&gt; rescale(numpy.linspace(0, 100, 5))
+array([ 0.  ,  0.25,  0.5 ,  0.75,  1.  ])
+&quot;&quot;&quot;
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Defining Defaults
+
+Rewrite the `rescale` function so that it scales data to lie between `0.0` and `1.0` by default,
+but will allow the caller to specify lower and upper bounds if they want.
+Compare your implementation to your neighbor&#39;s:
+do the two functions always behave the same way?
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+def rescale(input_array, low_val=0.0, high_val=1.0):
+    &quot;&quot;&quot;rescales input array values to lie between low_val and high_val&quot;&quot;&quot;
+    L = numpy.amin(input_array)
+    H = numpy.amax(input_array)
+    intermed_array = (input_array - L) / (H - L)
+    output_array = intermed_array * (high_val - low_val) + low_val
+    return output_array
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Variables Inside and Outside Functions
+
+What does the following piece of code display when run --- and why?
+
+```python
+f = 0
+k = 0
+
+def f2k(f):
+    k = ((f - 32) * (5.0 / 9.0)) + 273.15
+    return k
+
+print(f2k(8))
+print(f2k(41))
+print(f2k(32))
+
+print(k)
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+```output
+259.81666666666666
+278.15
+273.15
+0
+```
+
+`k` is 0 because the `k` inside the function `f2k` doesn&#39;t know
+about the `k` defined outside the function. When the `f2k` function is called,
+it creates a [local variable](../learners/reference.md#local-variable)
+`k`. The function does not return any values
+and does not alter `k` outside of its local copy.
+Therefore the original value of `k` remains unchanged.
+Beware that a local `k` is created because `f2k` internal statements
+*affect* a new value to it. If `k` was only `read`, it would simply retrieve the
+global `k` value.
+
+
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Mixing Default and Non-Default Parameters
+
+Given the following code:
+
+```python
+def numbers(one, two=2, three, four=4):
+    n = str(one) + str(two) + str(three) + str(four)
+    return n
+
+print(numbers(1, three=3))
+```
+
+what do you expect will be printed?  What is actually printed?
+What rule do you think Python is following?
+
+1. `1234`
+2. `one2three4`
+3. `1239`
+4. `SyntaxError`
+
+Given that, what does the following piece of code display when run?
+
+```python
+def func(a, b=3, c=6):
+    print(&#39;a: &#39;, a, &#39;b: &#39;, b, &#39;c:&#39;, c)
+
+func(-1, 2)
+```
+
+1. `a: b: 3 c: 6`
+2. `a: -1 b: 3 c: 6`
+3. `a: -1 b: 2 c: 6`
+4. `a: b: -1 c: 2`
+
+:::::::::::::::  solution
+
+## Solution
+
+Attempting to define the `numbers` function results in `4. SyntaxError`.
+The defined parameters `two` and `four` are given default values. Because
+`one` and `three` are not given default values, they are required to be
+included as arguments when the function is called and must be placed
+before any parameters that have default values in the function definition.
+
+The given call to `func` displays `a: -1 b: 2 c: 6`. -1 is assigned to
+the first parameter `a`, 2 is assigned to the next parameter `b`, and `c` is
+not passed a value, so it uses its default value 6.
+
+
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Readable Code
+
+Revise a function you wrote for one of the previous exercises to try to make
+the code more readable. Then, collaborate with one of your neighbors
+to critique each other&#39;s functions and discuss how your function implementations
+could be further improved to make them more readable.
+
+
+</pre></div>
+</div>
+<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+- Define a function using `def function_name(parameter)`.
+- The body of a function must be indented.
+- Call a function using `function_name(value)`.
+- Numbers are stored as integers or floating-point numbers.
+- Variables defined within a function can only be seen and used within the body of the function.
+- Variables created outside of any function are called global variables.
+- Within a function, we can access global variables.
+- Variables created within a function override global variables if their names match.
+- Use `help(thing)` to view help for something.
+- Put docstrings in functions to provide help for that function.
+- Specify default values for parameters when defining a function using `name=value` in the parameter list.
+- Parameters can be passed by matching based on name, by position, or by omitting them (in which case the default value is used).
+- Put code whose parameters change frequently in a function, then call it with different parameter values to customize its behavior.
+
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python_programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="07-cond.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Conditionals</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="09-errors.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Syntax Errors</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

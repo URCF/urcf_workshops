@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to Python Programming &#8212; University Research Computing Facility Workshop</title>
+    <title>Python Fundamentals &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python Fundamentals" href="01-intro.html" />
-    <link rel="prev" title="Ploting with ggplot" href="../r_programming/09-Plotting-with-ggplot.html" />
+    <link rel="next" title="Loading data into Python" href="02-numpy.html" />
+    <link rel="prev" title="Introduction to Python Programming" href="00-index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -311,7 +311,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="00-index.html">
    Introduction to Python Programming
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -319,9 +319,9 @@ const thebe_selector_output = ".output, .cell_output"
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01-intro.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Python Fundamentals
     </a>
    </li>
@@ -445,7 +445,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/python_programming/00-index.md"
+        <a href="../_sources/python_programming/01-intro.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -505,23 +505,23 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workshop-description">
-   Workshop Description
+  <a class="reference internal nav-link" href="#variables">
+   Variables
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
+  <a class="reference internal nav-link" href="#types-of-data">
+   Types of data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software-setup-on-picotte">
-   Software Setup on Picotte
+  <a class="reference internal nav-link" href="#using-variables-in-python">
+   Using Variables in Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software-setup-on-pc-laptop-or-desktop">
-   Software Setup on PC (Laptop or Desktop)
+  <a class="reference internal nav-link" href="#built-in-python-functions">
+   Built-in Python functions
   </a>
  </li>
 </ul>
@@ -533,7 +533,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to Python Programming</h1>
+                <h1>Python Fundamentals</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -544,23 +544,23 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workshop-description">
-   Workshop Description
+  <a class="reference internal nav-link" href="#variables">
+   Variables
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
+  <a class="reference internal nav-link" href="#types-of-data">
+   Types of data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software-setup-on-picotte">
-   Software Setup on Picotte
+  <a class="reference internal nav-link" href="#using-variables-in-python">
+   Using Variables in Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software-setup-on-pc-laptop-or-desktop">
-   Software Setup on PC (Laptop or Desktop)
+  <a class="reference internal nav-link" href="#built-in-python-functions">
+   Built-in Python functions
   </a>
  </li>
 </ul>
@@ -573,100 +573,292 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-python-programming">
-<h1>Introduction to Python Programming<a class="headerlink" href="#introduction-to-python-programming" title="Permalink to this headline">#</a></h1>
-<ul class="simple">
-<li><p><strong>Instructor</strong>: Linh B. Ngo</p></li>
-<li><p><strong>Office</strong>: 358 Curtis Hall</p></li>
-<li><p><strong>Email</strong>: lbn28 AT drexel DOT edu</p></li>
-</ul>
-<section id="workshop-description">
-<h2>Workshop Description<a class="headerlink" href="#workshop-description" title="Permalink to this headline">#</a></h2>
-<p>This Workshop will introduce Python for those that have little to no
-programming experience and consists of two parts:</p>
-<ul class="simple">
-<li><p>Part 1: A quick introduction to Python and its basic data analytic
-capability in processing and visualizing data.</p></li>
-<li><p>Part 2: A more in-depth view into programming concepts in Python,
-including loops, conditions, functions, and testing and debugging.</p></li>
-</ul>
-<p>The workshop uses materials from <a class="reference external" href="https://software-carpentry.org/">Software Carpentry</a>’s
-Programming with Python lesson.</p>
-</section>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
-<p>No prerequisites are required</p>
-</section>
-<section id="software-setup-on-picotte">
-<h2>Software Setup on Picotte<a class="headerlink" href="#software-setup-on-picotte" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Require valid Picotte’s account.</p></li>
-<li><p>You can follow <a class="reference external" href="https://docs.urcf.drexel.edu/software/jupyterhub/jupyterhub/">Picotte’s JupyterHub</a>
-instructions to launch a Jupyter Server on Picotte’s compute nodes.</p></li>
-<li><p>For the workshop, the following parameters should be used:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Account</span></code>: <code class="docutils literal notranslate"><span class="pre">urcfprj</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Partition</span></code>: def-sm</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CPU(s)</span></code>: 2</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Memory(in</span> <span class="pre">GB)</span></code>: 4</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">Time</span> <span class="pre">(in</span> <span class="pre">hours)</span></code>: 4</p></li>
-</ul>
-</li>
-<li><p>Open a terminal from inside JupyterHub and run the following command to
-get the data.</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://github.com/swcarpentry/python-novice-inflammation/raw/main/episodes/data/python-novice-inflammation-data.zip
-unzip python-novice-inflammation-data.zip
-<span class="nb">cd</span> data
-ls -l 
+  <section class="tex2jax_ignore mathjax_ignore" id="python-fundamentals">
+<h1>Python Fundamentals<a class="headerlink" href="#python-fundamentals" title="Permalink to this headline">#</a></h1>
+<p><strong>Objectives</strong></p>
+<div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>- Assign values to variables.
 </pre></div>
 </div>
-<p><img alt="Password saving selection" src="fig/python_programming/00-indexmobaxterm_3.png" /></p>
+<p><strong>Questions</strong></p>
+<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>- What basic data types can I work with in Python?
+- How can I create a new variable in Python?
+- How do I use a function?
+- Can I change the value associated with a variable after I create it?
+</pre></div>
+</div>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">#</a></h2>
+<p>Any Python interpreter can be used as a calculator:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">23</span>
+</pre></div>
+</div>
+<p>This is great but not very interesting.
+To do anything useful with data, we need to assign its value to a <em>variable</em>.
+In Python, we can <a class="reference external" href="../learners/reference.md#assign">assign</a> a value to a
+<a class="reference external" href="../learners/reference.md#variable">variable</a>, using the equals sign <code class="docutils literal notranslate"><span class="pre">=</span></code>.
+For example, we can track the weight of a patient who weighs 60 kilograms by
+assigning the value <code class="docutils literal notranslate"><span class="pre">60</span></code> to a variable <code class="docutils literal notranslate"><span class="pre">weight_kg</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weight_kg</span> <span class="o">=</span> <span class="mi">60</span>
+</pre></div>
+</div>
+<p>From now on, whenever we use <code class="docutils literal notranslate"><span class="pre">weight_kg</span></code>, Python will substitute the value we assigned to
+it. In layperson’s terms, <strong>a variable is a name for a value</strong>.</p>
+<p>In Python, variable names:</p>
+<ul class="simple">
+<li><p>can include letters, digits, and underscores</p></li>
+<li><p>cannot start with a digit</p></li>
+<li><p>are <a class="reference external" href="../learners/reference.md#case-sensitive">case sensitive</a>.</p></li>
+</ul>
+<p>This means that, for example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">weight0</span></code> is a valid variable name, whereas <code class="docutils literal notranslate"><span class="pre">0weight</span></code> is not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight</span></code> and <code class="docutils literal notranslate"><span class="pre">Weight</span></code> are different variables</p></li>
+</ul>
 </section>
-<section id="software-setup-on-pc-laptop-or-desktop">
-<h2>Software Setup on PC (Laptop or Desktop)<a class="headerlink" href="#software-setup-on-pc-laptop-or-desktop" title="Permalink to this headline">#</a></h2>
-<div class="dropdown admonition">
-<p class="admonition-title">Windows</p>
+<section id="types-of-data">
+<h2>Types of data<a class="headerlink" href="#types-of-data" title="Permalink to this headline">#</a></h2>
+<p>Python knows various types of data. Three common ones are:</p>
 <ul class="simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">https://www.anaconda.com/products/individual#download-section</span></code> with your web browser.</p></li>
-<li><p>Download the Anaconda for Windows installer with Python 3. (If you are not sure which
-version to choose, you probably want the 64-bit Graphical Installer <em>Anaconda3-…-Windows-x86_64.exe</em>)</p></li>
-<li><p>Install `Python 3`` by running the Anaconda Installer, using all of the defaults for installation except make sure to check <strong>Add Anaconda to my PATH environment variable</strong>.</p></li>
+<li><p>integer numbers</p></li>
+<li><p>floating point numbers, and</p></li>
+<li><p>strings.</p></li>
 </ul>
+<p>In the example above, variable <code class="docutils literal notranslate"><span class="pre">weight_kg</span></code> has an integer value of <code class="docutils literal notranslate"><span class="pre">60</span></code>.
+If we want to more precisely track the weight of our patient,
+we can use a floating point value by executing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weight_kg</span> <span class="o">=</span> <span class="mf">60.3</span>
+</pre></div>
 </div>
-<div class="dropdown admonition">
-<p class="admonition-title">MacOS</p>
-<ul class="simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">https://www.anaconda.com/products/individual#download-section</span></code> with your web browser.</p></li>
-<li><p>Download the Anaconda Installer with Python 3 for macOS (you can either use the Graphical or
-the Command Line Installer).</p></li>
-<li><p>Install Python 3 by running the Anaconda Installer using all of the defaults for installation.</p></li>
-</ul>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Linux</p>
-<ul class="simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">https://www.anaconda.com/products/individual#download-section</span></code> with your web browser.</p></li>
-<li><p>Download the Anaconda Installer with Python 3 for Linux. The installation requires using the shell.</p></li>
-<li><p>Open a terminal window and navigate to the directory where the executable is downloaded
-(e.g., <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/Downloads</span></code>).</p></li>
-<li><p>Type <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Anaconda3</span></code> and then press <code class="docutils literal notranslate"><span class="pre">Tab</span></code> to autocomplete the full file name. The name of
-file you just downloaded should appear.</p></li>
-<li><p>Press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code> depending on your keyboard). You will follow the text-only prompts.</p>
-<ul>
-<li><p>To move through the text, press <code class="docutils literal notranslate"><span class="pre">Spacebar</span></code>.</p></li>
-<li><p>Type yes and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code>) to approve the license.</p></li>
-<li><p>Press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code>) to approve the default location for the files.</p></li>
-<li><p>Type <code class="docutils literal notranslate"><span class="pre">yes</span></code> and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code>) to prepend Anaconda to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>
-(this makes the Anaconda distribution the default Python).</p></li>
-<li><p>Close the terminal window.</p></li>
-</ul>
-</li>
-</ul>
+<p>To create a string, we add single or double quotes around some text.
+To identify and track a patient throughout our study,
+we can assign each person a unique identifier by storing it in a string:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patient_id</span> <span class="o">=</span> <span class="s1">&#39;001&#39;</span>
+</pre></div>
 </div>
 </section>
-<div class="toctree-wrapper compound">
+<section id="using-variables-in-python">
+<h2>Using Variables in Python<a class="headerlink" href="#using-variables-in-python" title="Permalink to this headline">#</a></h2>
+<p>Once we have data stored with variable names, we can make use of it in calculations.
+We may want to store our patient’s weight in pounds as well as kilograms:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weight_lb</span> <span class="o">=</span> <span class="mf">2.2</span> <span class="o">*</span> <span class="n">weight_kg</span>
+</pre></div>
 </div>
+<p>We might decide to add a prefix to our patient identifier:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patient_id</span> <span class="o">=</span> <span class="s1">&#39;inflam_&#39;</span> <span class="o">+</span> <span class="n">patient_id</span>
+</pre></div>
+</div>
+</section>
+<section id="built-in-python-functions">
+<h2>Built-in Python functions<a class="headerlink" href="#built-in-python-functions" title="Permalink to this headline">#</a></h2>
+<p>To carry out common tasks with data and variables in Python,
+the language provides us with several built-in <a class="reference external" href="../learners/reference.md#function">functions</a>.
+To display information to the screen, we use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">weight_lb</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">patient_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">132.66</span>
+<span class="go">inflam_001</span>
+</pre></div>
+</div>
+<p>When we want to make use of a function, referred to as calling the function,
+we follow its name by parentheses. The parentheses are important:
+if you leave them off, the function doesn’t actually run!
+Sometimes you will include values or variables inside the parentheses for the function to use.
+In the case of <code class="docutils literal notranslate"><span class="pre">print</span></code>,
+we use the parentheses to tell the function what value we want to display.
+We will learn more about how functions work and how to create our own in later episodes.</p>
+<p>We can display multiple things at once using only one <code class="docutils literal notranslate"><span class="pre">print</span></code> call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">patient_id</span><span class="p">,</span> <span class="s1">&#39;weight in kilograms:&#39;</span><span class="p">,</span> <span class="n">weight_kg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">inflam_001 weight in kilograms: 60.3</span>
+</pre></div>
+</div>
+<p>We can also call a function inside of another
+<a class="reference external" href="../learners/reference.md#function-call">function call</a>.
+For example, Python has a built-in function called <code class="docutils literal notranslate"><span class="pre">type</span></code> that tells you a value’s data type:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">60.3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">patient_id</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;class &#39;float&#39;&gt;</span>
+<span class="go">&lt;class &#39;str&#39;&gt;</span>
+</pre></div>
+</div>
+<p>Moreover, we can do arithmetic with variables right inside the <code class="docutils literal notranslate"><span class="pre">print</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;weight in pounds:&#39;</span><span class="p">,</span> <span class="mf">2.2</span> <span class="o">*</span> <span class="n">weight_kg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">weight in pounds: 132.66</span>
+</pre></div>
+</div>
+<p>The above command, however, did not change the value of <code class="docutils literal notranslate"><span class="pre">weight_kg</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">weight_kg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">60.3</span>
+</pre></div>
+</div>
+<p>To change the value of the <code class="docutils literal notranslate"><span class="pre">weight_kg</span></code> variable, we have to
+<strong>assign</strong> <code class="docutils literal notranslate"><span class="pre">weight_kg</span></code> a new value using the equals <code class="docutils literal notranslate"><span class="pre">=</span></code> sign:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weight_kg</span> <span class="o">=</span> <span class="mf">65.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;weight in kilograms is now:&#39;</span><span class="p">,</span> <span class="n">weight_kg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">weight in kilograms is now: 65.0</span>
+</pre></div>
+</div>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Variables as Sticky Notes
+
+A variable in Python is analogous to a sticky note with a name written on it:
+assigning a value to a variable is like putting that sticky note on a particular value.
+
+![](fig/python-sticky-note-variables-01.svg){alt=&#39;Value of 65.0 with weight\_kg label stuck on it&#39;}
+
+Using this analogy, we can investigate how assigning a value to one variable
+does **not** change values of other, seemingly related, variables.  For
+example, let&#39;s store the subject&#39;s weight in pounds in its own variable:
+
+```python
+# There are 2.2 pounds per kilogram
+weight_lb = 2.2 * weight_kg
+print(&#39;weight in kilograms:&#39;, weight_kg, &#39;and in pounds:&#39;, weight_lb)
+```
+
+```output
+weight in kilograms: 65.0 and in pounds: 143.0
+```
+
+Everything in a line of code following the &#39;#&#39; symbol is a
+[comment](../learners/reference.md#comment) that is ignored by Python.
+Comments allow programmers to leave explanatory notes for other
+programmers or their future selves.
+
+![](fig/python-sticky-note-variables-02.svg){alt=&#39;Value of 65.0 with weight\_kg label stuck on it, and value of 143.0 with weight\_lb label stuck on it&#39;}
+
+Similar to above, the expression `2.2 * weight_kg` is evaluated to `143.0`,
+and then this value is assigned to the variable `weight_lb` (i.e. the sticky
+note `weight_lb` is placed on `143.0`). At this point, each variable is
+&quot;stuck&quot; to completely distinct and unrelated values.
+
+Let&#39;s now change `weight_kg`:
+
+```python
+weight_kg = 100.0
+print(&#39;weight in kilograms is now:&#39;, weight_kg, &#39;and weight in pounds is still:&#39;, weight_lb)
+```
+
+```output
+weight in kilograms is now: 100.0 and weight in pounds is still: 143.0
+```
+
+![](fig/python-sticky-note-variables-03.svg){alt=&#39;Value of 100.0 with label weight\_kg stuck on it, and value of 143.0 with label weight\_lbstuck on it&#39;}
+
+Since `weight_lb` doesn&#39;t &quot;remember&quot; where its value comes from,
+it is not updated when we change `weight_kg`.
+
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Check Your Understanding
+
+What values do the variables `mass` and `age` have after each of the following statements?
+Test your answer by executing the lines.
+
+```python
+mass = 47.5
+age = 122
+mass = mass * 2.0
+age = age - 20
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+```output
+`mass` holds a value of 47.5, `age` does not exist
+`mass` still holds a value of 47.5, `age` holds a value of 122
+`mass` now has a value of 95.0, `age`&#39;s value is still 122
+`mass` still has a value of 95.0, `age` now holds 102
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Sorting Out References
+
+Python allows you to assign multiple values to multiple variables in one line by separating
+the variables and values with commas. What does the following program print out?
+
+```python
+first, second = &#39;Grace&#39;, &#39;Hopper&#39;
+third, fourth = second, first
+print(third, fourth)
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+```output
+Hopper Grace
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Seeing Data Types
+
+What are the data types of the following variables?
+
+```python
+planet = &#39;Earth&#39;
+apples = 5
+distance = 10.5
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+print(type(planet))
+print(type(apples))
+print(type(distance))
+```
+
+```output
+&lt;class &#39;str&#39;&gt;
+&lt;class &#39;int&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+- Basic data types in Python include integers, strings, and floating-point numbers.
+- Use `variable = value` to assign a value to a variable in order to record it in memory.
+- Variables are created on demand whenever a value is assigned to them.
+- Use `print(something)` to display the value of `something`.
+- Use `# some kind of explanation` to add comments to programs.
+- Built-in functions are always available to use.
+
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -696,17 +888,17 @@ file you just downloaded should appear.</p></li>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../r_programming/09-Plotting-with-ggplot.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="00-index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Ploting with ggplot</p>
+            <p class="prev-next-title">Introduction to Python Programming</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="01-intro.html" title="next page">
+    <a class='right-next' id="next-link" href="02-numpy.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python Fundamentals</p>
+        <p class="prev-next-title">Loading data into Python</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

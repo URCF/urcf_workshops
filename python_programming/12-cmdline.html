@@ -1,0 +1,1594 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Command-Line Arguments &#8212; University Research Computing Facility Workshop</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Know What It’s Supposed to Do" href="11-debugging.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    University Research Computing Facility Workshops
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introductory Sequence
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_linux/00-index.html">
+   Introduction to Linux
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/00a-outline.html">
+     Workshop Outline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01-introduction.html">
+     What is Linux?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01a-shell.html">
+     Shell Specifics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/03-file-system.html">
+     Navigating Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04-working_with_files_and_directories.html">
+     Working With Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04a-file-permissions.html">
+     File Permissions and Atrributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/05-pipes.html">
+     Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/06-loop.html">
+     Loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/07-utilities.html">
+     Shell Scripts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/08-conclusion.html">
+     Workshop Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_picotte/00-index.html">
+   Introduction to Research Computing on Picotte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/01-introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/03-picotte_structure.html">
+     The structure of the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/04-storage.html">
+     Storage on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/05-interactive.html">
+     Running an interactive job on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/06-file-transfer.html">
+     Transferring files to and from Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/07-batch.html">
+     Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/08-jupyter-hub.html">
+     Jupyter Hub service to the Picotte Cluster
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../r_programming/00-index.html">
+   Introduction to R
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/01-Introduction.html">
+     Introduction to R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/02-Basic-R.html">
+     Basics of R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/04-Matrix.html">
+     Vectors, Matrices, Lists and Data Frames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
+     Control Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/06-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
+     Parallel Computing in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
+     Basic plotting with R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
+     Ploting with ggplot
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="00-index.html">
+   Introduction to Python Programming
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-intro.html">
+     Python Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-numpy.html">
+     Loading data into Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-matplotlib.html">
+     Visualizing data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-lists.html">
+     Python lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07-cond.html">
+     Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-func.html">
+     Composing Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-errors.html">
+     Syntax Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-defensive.html">
+     Assertions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-debugging.html">
+     Know What It’s Supposed to Do
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Command-Line Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/python_programming/12-cmdline.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Command-Line Arguments
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-multiple-files">
+   Handling Multiple Files
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-command-line-flags">
+   Handling Command-Line Flags
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-standard-input">
+   Handling Standard Input
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Command-Line Arguments</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Command-Line Arguments
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-multiple-files">
+   Handling Multiple Files
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-command-line-flags">
+   Handling Command-Line Flags
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#handling-standard-input">
+   Handling Standard Input
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+- Use the values of command-line arguments in a program.
+- Handle flags and files separately in a command-line program.
+- Read data from standard input in a program so that it can be used in a pipeline.
+
+</pre></div>
+</div>
+<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
+- How can I write Python programs that will work like Unix command-line tools?
+
+</pre></div>
+</div>
+<p>The Jupyter Notebook and other interactive tools are great for prototyping code and exploring data,
+but sooner or later we will want to use our program in a pipeline
+or run it in a shell script to process thousands of data files.
+In order to do that in an efficient way,
+we need to make our programs work like other Unix command-line tools.
+For example,
+we may want a program that reads a dataset
+and prints the average inflammation per patient.</p>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Switching to Shell Commands
+
+In this lesson we are switching from typing commands in a Python interpreter to typing
+commands in a shell terminal window (such as bash). When you see a `$` in front of a
+command that tells you to run that command in the shell rather than the Python interpreter.
+
+
+</pre></div>
+</div>
+<p>This program does exactly what we want - it prints the average inflammation per patient
+for a given file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_04.py --mean inflammation-01.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">5.45</span>
+<span class="go">5.425</span>
+<span class="go">6.1</span>
+<span class="go">...</span>
+<span class="go">6.4</span>
+<span class="go">7.05</span>
+<span class="go">5.9</span>
+</pre></div>
+</div>
+<p>We might also want to look at the minimum of the first four lines</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ head -4 inflammation-01.csv <span class="p">|</span> python ../code/readings_06.py --min
+</pre></div>
+</div>
+<p>or the maximum inflammations in several files one after another:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_04.py --max inflammation-*.csv
+</pre></div>
+</div>
+<p>Our scripts should do the following:</p>
+<ol class="simple">
+<li><p>If no filename is given on the command line, read data from
+<a class="reference external" href="../learners/reference.md#standard-input">standard input</a>.</p></li>
+<li><p>If one or more filenames are given, read data from them and report statistics for each file
+separately.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">--min</span></code>, <code class="docutils literal notranslate"><span class="pre">--mean</span></code>, or <code class="docutils literal notranslate"><span class="pre">--max</span></code> flag to determine what statistic to print.</p></li>
+</ol>
+<p>To make this work,
+we need to know how to handle command-line arguments in a program,
+and understand how to handle standard input.
+We’ll tackle these questions in turn below.</p>
+<section id="command-line-arguments">
+<h1>Command-Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">#</a></h1>
+<p>We are going to create a file with our python code in, then use the bash shell to run the code. Using the text editor of your choice,
+save the following in a text file called <code class="docutils literal notranslate"><span class="pre">sys_version.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;version is&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first line imports a library called <code class="docutils literal notranslate"><span class="pre">sys</span></code>,
+which is short for “system”.
+It defines values such as <code class="docutils literal notranslate"><span class="pre">sys.version</span></code>,
+which describes which version of Python we are running.
+We can run this script from the command line like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python sys_version.py
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">version is 3.4.3+ (default, Jul 28 2015, 13:17:50)</span>
+<span class="go">[GCC 4.9.3]</span>
+</pre></div>
+</div>
+<p>Create another file called <code class="docutils literal notranslate"><span class="pre">argv_list.py</span></code> and save the following text to it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sys.argv is&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The strange name <code class="docutils literal notranslate"><span class="pre">argv</span></code> stands for “argument values”.
+Whenever Python runs a program,
+it takes all of the values given on the command line
+and puts them in the list <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code>
+so that the program can determine what they were.
+If we run this program with no arguments:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python argv_list.py
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">sys.argv is [&#39;argv_list.py&#39;]</span>
+</pre></div>
+</div>
+<p>the only thing in the list is the full path to our script,
+which is always <code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code>.
+If we run it with a few arguments, however:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python argv_list.py first second third
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">sys.argv is [&#39;argv_list.py&#39;, &#39;first&#39;, &#39;second&#39;, &#39;third&#39;]</span>
+</pre></div>
+</div>
+<p>then Python adds each of those arguments to that magic list.</p>
+<p>With this in hand, let’s build a version of <code class="docutils literal notranslate"><span class="pre">readings.py</span></code> that always prints
+the per-patient mean of a single data file.
+The first step is to write a function that outlines our implementation,
+and a placeholder for the function that does the actual work.
+By convention this function is usually called <code class="docutils literal notranslate"><span class="pre">main</span></code>,
+though we can call it whatever we want:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../code/readings_01.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row_mean</span> <span class="ow">in</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row_mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function gets the name of the script from <code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code>,
+because that’s where it’s always put,
+and the name of the file to process from <code class="docutils literal notranslate"><span class="pre">sys.argv[1]</span></code>.
+Here’s a simple test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_01.py inflammation-01.csv
+</pre></div>
+</div>
+<p>There is no output because we have defined a function,
+but haven’t actually called it.
+Let’s add a call to <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../code/readings_02.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row_mean</span> <span class="ow">in</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row_mean</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>and run that:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_02.py inflammation-01.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">5.45</span>
+<span class="go">5.425</span>
+<span class="go">6.1</span>
+<span class="go">5.9</span>
+<span class="go">5.55</span>
+<span class="go">6.225</span>
+<span class="go">5.975</span>
+<span class="go">6.65</span>
+<span class="go">6.625</span>
+<span class="go">6.525</span>
+<span class="go">6.775</span>
+<span class="go">5.8</span>
+<span class="go">6.225</span>
+<span class="go">5.75</span>
+<span class="go">5.225</span>
+<span class="go">6.3</span>
+<span class="go">6.55</span>
+<span class="go">5.7</span>
+<span class="go">5.85</span>
+<span class="go">6.55</span>
+<span class="go">5.775</span>
+<span class="go">5.825</span>
+<span class="go">6.175</span>
+<span class="go">6.1</span>
+<span class="go">5.8</span>
+<span class="go">6.425</span>
+<span class="go">6.05</span>
+<span class="go">6.025</span>
+<span class="go">6.175</span>
+<span class="go">6.55</span>
+<span class="go">6.175</span>
+<span class="go">6.35</span>
+<span class="go">6.725</span>
+<span class="go">6.125</span>
+<span class="go">7.075</span>
+<span class="go">5.725</span>
+<span class="go">5.925</span>
+<span class="go">6.15</span>
+<span class="go">6.075</span>
+<span class="go">5.75</span>
+<span class="go">5.975</span>
+<span class="go">5.725</span>
+<span class="go">6.3</span>
+<span class="go">5.9</span>
+<span class="go">6.75</span>
+<span class="go">5.925</span>
+<span class="go">7.225</span>
+<span class="go">6.15</span>
+<span class="go">5.95</span>
+<span class="go">6.275</span>
+<span class="go">5.7</span>
+<span class="go">6.1</span>
+<span class="go">6.825</span>
+<span class="go">5.975</span>
+<span class="go">6.725</span>
+<span class="go">5.7</span>
+<span class="go">6.25</span>
+<span class="go">6.4</span>
+<span class="go">7.05</span>
+<span class="go">5.9</span>
+</pre></div>
+</div>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Running Versus Importing
+
+Running a Python script in bash is very similar to
+importing that file in Python.
+The biggest difference is that we don&#39;t expect anything
+to happen when we import a file,
+whereas when running a script, we expect to see some
+output printed to the console.
+
+In order for a Python script to work as expected
+when imported or when run as a script,
+we typically put the part of the script
+that produces output in the following if statement:
+
+```python
+if __name__ == &#39;__main__&#39;:
+    main()  # Or whatever function produces output
+```
+
+When you import a Python file, `__name__` is the name
+of that file (e.g., when importing `readings.py`,
+`__name__` is `&#39;readings&#39;`). However, when running a
+script in bash, `__name__` is always set to `&#39;__main__&#39;`
+in that script so that you can determine if the file
+is being imported or run as a script.
+
+
+</pre></div>
+</div>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## The Right Way to Do It
+
+If our programs can take complex parameters or multiple filenames,
+we shouldn&#39;t handle `sys.argv` directly.
+Instead,
+we should use Python&#39;s `argparse` library,
+which handles common cases in a systematic way,
+and also makes it easy for us to provide sensible error messages for our users.
+We will not cover this module in this lesson
+but you can go to Tshepang Lekhonkhobe&#39;s
+[Argparse tutorial](https://docs.python.org/3/howto/argparse.html)
+that is part of Python&#39;s Official Documentation.
+
+We can also use the `argh` library, a wrapper around the `argparse` library that simplifies
+its usage (see [the argh documentation](https://pythonhosted.org/argh/) for more information).
+
+</pre></div>
+</div>
+</section>
+<section id="handling-multiple-files">
+<h1>Handling Multiple Files<a class="headerlink" href="#handling-multiple-files" title="Permalink to this headline">#</a></h1>
+<p>The next step is to teach our program how to handle multiple files.
+Since 60 lines of output per file is a lot to page through,
+we’ll start by using three smaller files,
+each of which has three days of data for two patients:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls small-*.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">small-01.csv small-02.csv small-03.csv</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat small-01.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">0,0,1</span>
+<span class="go">0,1,2</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_02.py small-01.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">0.333333333333</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+<p>Using small data files as input also allows us to check our results more easily:
+here,
+for example,
+we can see that our program is calculating the mean correctly for each line,
+whereas we were really taking it on faith before.
+This is yet another rule of programming:
+<em>test the simple things first</em>.</p>
+<p>We want our program to process each file separately,
+so we need a loop that executes once for each filename.
+If we specify the files on the command line,
+the filenames will be in <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code>,
+but we need to be careful:
+<code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code> will always be the name of our script,
+rather than the name of a file.
+We also need to handle an unknown number of filenames,
+since our program could be run for any number of files.</p>
+<p>The solution to both problems is to loop over the contents of <code class="docutils literal notranslate"><span class="pre">sys.argv[1:]</span></code>.
+The ‘1’ tells Python to start the slice at location 1,
+so the program’s name isn’t included;
+since we’ve left off the upper bound,
+the slice runs to the end of the list,
+and includes all the filenames.
+Here’s our changed program
+<code class="docutils literal notranslate"><span class="pre">readings_03.py</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../code/readings_03.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row_mean</span> <span class="ow">in</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">row_mean</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>and here it is in action:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_03.py small-01.csv small-02.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">0.333333333333</span>
+<span class="go">1.0</span>
+<span class="go">13.6666666667</span>
+<span class="go">11.0</span>
+</pre></div>
+</div>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## The Right Way to Do It
+
+At this point,
+we have created three versions of our script called `readings_01.py`,
+`readings_02.py`, and `readings_03.py`.
+We wouldn&#39;t do this in real life:
+instead,
+we would have one file called `readings.py` that we committed to version control
+every time we got an enhancement working.
+For teaching,
+though,
+we need all the successive versions side by side.
+
+
+</pre></div>
+</div>
+</section>
+<section id="handling-command-line-flags">
+<h1>Handling Command-Line Flags<a class="headerlink" href="#handling-command-line-flags" title="Permalink to this headline">#</a></h1>
+<p>The next step is to teach our program to pay attention to the <code class="docutils literal notranslate"><span class="pre">--min</span></code>, <code class="docutils literal notranslate"><span class="pre">--mean</span></code>, and <code class="docutils literal notranslate"><span class="pre">--max</span></code> flags.
+These always appear before the names of the files,
+so we could do this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../code/readings_04.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">filenames</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;--min&#39;</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;--mean&#39;</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;--max&#39;</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This works:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_04.py --max small-01.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">1.0</span>
+<span class="go">2.0</span>
+</pre></div>
+</div>
+<p>but there are several things wrong with it:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code> is too large to read comfortably.</p></li>
+<li><p>If we do not specify at least two additional arguments on the
+command-line, one for the <strong>flag</strong> and one for the <strong>filename</strong>, but only
+one, the program will not throw an exception but will run. It assumes that the file
+list is empty, as <code class="docutils literal notranslate"><span class="pre">sys.argv[1]</span></code> will be considered the <code class="docutils literal notranslate"><span class="pre">action</span></code>, even if it
+is a filename. <a class="reference external" href="../learners/reference.md#silence-failure">Silent failures</a>  like this
+are always hard to debug.</p></li>
+<li><p>The program should check if the submitted <code class="docutils literal notranslate"><span class="pre">action</span></code> is one of the three recognized flags.</p></li>
+</ol>
+<p>This version pulls the processing of each file out of the loop into a function of its own.
+It also checks that <code class="docutils literal notranslate"><span class="pre">action</span></code> is one of the allowed flags
+before doing any processing,
+so that the program fails fast:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../code/readings_05.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">filenames</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="k">assert</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;--min&#39;</span><span class="p">,</span> <span class="s1">&#39;--mean&#39;</span><span class="p">,</span> <span class="s1">&#39;--max&#39;</span><span class="p">],</span> \
+           <span class="s1">&#39;Action is not one of --min, --mean, or --max: &#39;</span> <span class="o">+</span> <span class="n">action</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;--min&#39;</span><span class="p">:</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;--mean&#39;</span><span class="p">:</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;--max&#39;</span><span class="p">:</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is four lines longer than its predecessor,
+but broken into more digestible chunks of 8 and 12 lines.</p>
+</section>
+<section id="handling-standard-input">
+<h1>Handling Standard Input<a class="headerlink" href="#handling-standard-input" title="Permalink to this headline">#</a></h1>
+<p>The next thing our program has to do is read data from standard input if no filenames are given
+so that we can put it in a pipeline,
+redirect input to it,
+and so on.
+Let’s experiment in another script called <code class="docutils literal notranslate"><span class="pre">count_stdin.py</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../code/count_stdin.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="s1">&#39;lines in standard input&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This little program reads lines from a special “file” called <code class="docutils literal notranslate"><span class="pre">sys.stdin</span></code>,
+which is automatically connected to the program’s standard input.
+We don’t have to open it — Python and the operating system
+take care of that when the program starts up —
+but we can do almost anything with it that we could do to a regular file.
+Let’s try running it as if it were a regular command-line program:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/count_stdin.py &lt; small-01.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">2 lines in standard input</span>
+</pre></div>
+</div>
+<p>A common mistake is to try to run something that reads from standard input like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/count_stdin.py small-01.csv
+</pre></div>
+</div>
+<p>i.e., to forget the <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> character that redirects the file to standard input.
+In this case,
+there’s nothing in standard input,
+so the program waits at the start of the loop for someone to type something on the keyboard.
+Since there’s no way for us to do this,
+our program is stuck,
+and we have to halt it using the <code class="docutils literal notranslate"><span class="pre">Interrupt</span></code> option from the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu in the Notebook.</p>
+<p>We now need to rewrite the program so that it loads data from <code class="docutils literal notranslate"><span class="pre">sys.stdin</span></code>
+if no filenames are provided.
+Luckily,
+<code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> can handle either a filename or an open file as its first parameter,
+so we don’t actually need to change <code class="docutils literal notranslate"><span class="pre">process</span></code>.
+Only <code class="docutils literal notranslate"><span class="pre">main</span></code> changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../code/readings_06.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">filenames</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="k">assert</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;--min&#39;</span><span class="p">,</span> <span class="s1">&#39;--mean&#39;</span><span class="p">,</span> <span class="s1">&#39;--max&#39;</span><span class="p">],</span> \
+           <span class="s1">&#39;Action is not one of --min, --mean, or --max: &#39;</span> <span class="o">+</span> <span class="n">action</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+            <span class="n">process</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;--min&#39;</span><span class="p">:</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;--mean&#39;</span><span class="p">:</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;--max&#39;</span><span class="p">:</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Let’s try it out:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_06.py --mean &lt; small-01.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">0.333333333333</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+<p>That’s better.
+In fact,
+that’s done:
+the program now does everything we set out to do.</p>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Arithmetic on the Command Line
+
+Write a Python program that adds, subtracts, multiplies, or divides two numbers provided on the command line:
+
+```bash
+$ python arith.py --add 1 2
+```
+
+```output
+3.0
+```
+
+```bash
+$ python arith.py --subtract 3 4
+```
+
+```output
+-1.0
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+import sys
+
+def main():
+    assert len(sys.argv) == 4, &#39;Need exactly 3 arguments&#39;
+
+    operator = sys.argv[1]
+    assert operator in [&#39;--add&#39;, &#39;--subtract&#39;, &#39;--multiply&#39;, &#39;--divide&#39;], \
+        &#39;Operator is not one of --add, --subtract, --multiply, or --divide: bailing out&#39;
+    try:
+        operand1, operand2 = float(sys.argv[2]), float(sys.argv[3])
+    except ValueError:
+        print(&#39;cannot convert input to a number: bailing out&#39;)
+        return
+
+    do_arithmetic(operand1, operator, operand2)
+
+def do_arithmetic(operand1, operator, operand2):
+
+    if operator == &#39;add&#39;:
+        value = operand1 + operand2
+    elif operator == &#39;subtract&#39;:
+        value = operand1 - operand2
+    elif operator == &#39;multiply&#39;:
+        value = operand1 * operand2
+    elif operator == &#39;divide&#39;:
+        value = operand1 / operand2
+    print(value)
+
+main()
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Finding Particular Files
+
+Using the `glob` module introduced [earlier](06-files.html),
+write a simple version of `ls` that shows files in the current directory
+with a particular suffix.
+A call to this script should look like this:
+
+```bash
+$ python my_ls.py py
+```
+
+```output
+left.py
+right.py
+zero.py
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+import sys
+import glob
+
+def main():
+    &quot;&quot;&quot;prints names of all files with sys.argv as suffix&quot;&quot;&quot;
+    assert len(sys.argv) &gt;= 2, &#39;Argument list cannot be empty&#39;
+    suffix = sys.argv[1] # NB: behaviour is not as you&#39;d expect if sys.argv[1] is *
+    glob_input = &#39;*.&#39; + suffix # construct the input
+    glob_output = sorted(glob.glob(glob_input)) # call the glob function
+    for item in glob_output: # print the output
+        print(item)
+    return
+
+main()
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Changing Flags
+
+Rewrite `readings.py` so that it uses `-n`, `-m`, and `-x`
+instead of `--min`, `--mean`, and `--max` respectively.
+Is the code easier to read?
+Is the program easier to understand?
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+# this is code/readings_07.py
+import sys
+import numpy
+
+def main():
+    script = sys.argv[0]
+    action = sys.argv[1]
+    filenames = sys.argv[2:]
+    assert action in [&#39;-n&#39;, &#39;-m&#39;, &#39;-x&#39;], \
+           &#39;Action is not one of -n, -m, or -x: &#39; + action
+    if len(filenames) == 0:
+        process(sys.stdin, action)
+    else:
+        for filename in filenames:
+            process(filename, action)
+
+def process(filename, action):
+    data = numpy.loadtxt(filename, delimiter=&#39;,&#39;)
+
+    if action == &#39;-n&#39;:
+        values = numpy.amin(data, axis=1)
+    elif action == &#39;-m&#39;:
+        values = numpy.mean(data, axis=1)
+    elif action == &#39;-x&#39;:
+        values = numpy.amax(data, axis=1)
+
+    for val in values:
+        print(val)
+
+main()
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Adding a Help Message
+
+Separately,
+modify `readings.py` so that if no parameters are given
+(i.e., no action is specified and no filenames are given),
+it prints a message explaining how it should be used.
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+# this is code/readings_08.py
+import sys
+import numpy
+
+def main():
+    script = sys.argv[0]
+    if len(sys.argv) == 1:  # no arguments, so print help message
+        print(&quot;Usage: python readings_08.py action filenames\n&quot;
+              &quot;Action:\n&quot;
+              &quot;    Must be one of --min, --mean, or --max.\n&quot;
+              &quot;Filenames:\n&quot;
+              &quot;    If blank, input is taken from standard input (stdin).\n&quot;
+              &quot;    Otherwise, each filename in the list of arguments is processed in turn.&quot;)
+        return
+
+    action = sys.argv[1]
+    filenames = sys.argv[2:]
+    assert action in [&#39;--min&#39;, &#39;--mean&#39;, &#39;--max&#39;], (
+        &#39;Action is not one of --min, --mean, or --max: &#39; + action)
+    if len(filenames) == 0:
+        process(sys.stdin, action)
+    else:
+        for filename in filenames:
+            process(filename, action)
+
+def process(filename, action):
+    data = numpy.loadtxt(filename, delimiter=&#39;,&#39;)
+
+    if action == &#39;--min&#39;:
+        values = numpy.amin(data, axis=1)
+    elif action == &#39;--mean&#39;:
+        values = numpy.mean(data, axis=1)
+    elif action == &#39;--max&#39;:
+        values = numpy.amax(data, axis=1)
+
+    for val in values:
+        print(val)
+
+if __name__ == &#39;__main__&#39;:
+    main()
+
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Adding a Default Action
+
+Separately,
+modify `readings.py` so that if no action is given
+it displays the means of the data.
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+# this is code/readings_09.py
+import sys
+import numpy
+
+def main():
+    script = sys.argv[0]
+    action = sys.argv[1]
+    if action not in [&#39;--min&#39;, &#39;--mean&#39;, &#39;--max&#39;]: # if no action given
+        action = &#39;--mean&#39;    # set a default action, that being mean
+        filenames = sys.argv[1:] # start the filenames one place earlier in the argv list
+    else:
+        filenames = sys.argv[2:]
+
+    if len(filenames) == 0:
+        process(sys.stdin, action)
+    else:
+        for filename in filenames:
+            process(filename, action)
+
+def process(filename, action):
+    data = numpy.loadtxt(filename, delimiter=&#39;,&#39;)
+
+    if action == &#39;--min&#39;:
+        values = numpy.amin(data, axis=1)
+    elif action == &#39;--mean&#39;:
+        values = numpy.mean(data, axis=1)
+    elif action == &#39;--max&#39;:
+        values = numpy.amax(data, axis=1)
+
+    for val in values:
+        print(val)
+
+main()
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## A File-Checker
+
+Write a program called `check.py` that takes the names of one or more
+inflammation data files as arguments
+and checks that all the files have the same number of rows and columns.
+What is the best way to test your program?
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+import sys
+import numpy
+
+def main():
+    script = sys.argv[0]
+    filenames = sys.argv[1:]
+    if len(filenames) &lt;=1: #nothing to check
+        print(&#39;Only 1 file specified on input&#39;)
+    else:
+        nrow0, ncol0 = row_col_count(filenames[0])
+        print(&#39;First file %s: %d rows and %d columns&#39; % (filenames[0], nrow0, ncol0))
+        for filename in filenames[1:]:
+            nrow, ncol = row_col_count(filename)
+            if nrow != nrow0 or ncol != ncol0:
+                print(&#39;File %s does not check: %d rows and %d columns&#39; % (filename, nrow, ncol))
+            else:
+                print(&#39;File %s checks&#39; % filename)
+        return
+
+def row_col_count(filename):
+    try:
+        nrow, ncol = numpy.loadtxt(filename, delimiter=&#39;,&#39;).shape
+    except ValueError:
+        # &#39;ValueError&#39; error is raised when numpy encounters lines that
+        # have different number of data elements in them than the rest of the lines,
+        # or when lines have non-numeric elements
+        nrow, ncol = (0, 0)
+    return nrow, ncol
+
+main()
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Counting Lines
+
+Write a program called `line_count.py` that works like the Unix `wc` command:
+
+- If no filenames are given, it reports the number of lines in standard input.
+- If one or more filenames are given, it reports the number of lines in each,
+  followed by the total number of lines.
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+import sys
+
+def main():
+    &quot;&quot;&quot;print each input filename and the number of lines in it,
+       and print the sum of the number of lines&quot;&quot;&quot;
+    filenames = sys.argv[1:]
+    sum_nlines = 0 #initialize counting variable
+
+    if len(filenames) == 0: # no filenames, just stdin
+        sum_nlines = count_file_like(sys.stdin)
+        print(&#39;stdin: %d&#39; % sum_nlines)
+    else:
+        for filename in filenames:
+            nlines = count_file(filename)
+            print(&#39;%s %d&#39; % (filename, nlines))
+            sum_nlines += nlines
+        print(&#39;total: %d&#39; % sum_nlines)
+
+def count_file(filename):
+    &quot;&quot;&quot;count the number of lines in a file&quot;&quot;&quot;
+    f = open(filename, &#39;r&#39;)
+    nlines = len(f.readlines())
+    f.close()
+    return(nlines)
+
+def count_file_like(file_like):
+    &quot;&quot;&quot;count the number of lines in a file-like object (eg stdin)&quot;&quot;&quot;
+    n = 0
+    for line in file_like:
+        n = n+1
+    return n
+
+main()
+
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Generate an Error Message
+
+Write a program called `check_arguments.py` that prints usage
+then exits the program if no arguments are provided.
+(Hint: You can use `sys.exit()` to exit the program.)
+
+```bash
+$ python check_arguments.py
+```
+
+```output
+usage: python check_argument.py filename.txt
+```
+
+```bash
+$ python check_arguments.py filename.txt
+```
+
+```output
+Thanks for specifying arguments!
+```
+
+</pre></div>
+</div>
+<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+- The `sys` library connects a Python program to the system it is running on.
+- The list `sys.argv` contains the command-line arguments that a program was run with.
+- Avoid silent failures.
+- The pseudo-file `sys.stdin` connects to a program&#39;s standard input.
+
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python_programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="11-debugging.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Know What It’s Supposed to Do</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

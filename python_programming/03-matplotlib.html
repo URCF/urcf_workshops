@@ -1,0 +1,946 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Visualizing data &#8212; University Research Computing Facility Workshop</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python lists" href="04-lists.html" />
+    <link rel="prev" title="Loading data into Python" href="02-numpy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    University Research Computing Facility Workshops
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introductory Sequence
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_linux/00-index.html">
+   Introduction to Linux
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/00a-outline.html">
+     Workshop Outline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01-introduction.html">
+     What is Linux?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01a-shell.html">
+     Shell Specifics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/03-file-system.html">
+     Navigating Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04-working_with_files_and_directories.html">
+     Working With Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04a-file-permissions.html">
+     File Permissions and Atrributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/05-pipes.html">
+     Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/06-loop.html">
+     Loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/07-utilities.html">
+     Shell Scripts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/08-conclusion.html">
+     Workshop Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_picotte/00-index.html">
+   Introduction to Research Computing on Picotte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/01-introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/03-picotte_structure.html">
+     The structure of the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/04-storage.html">
+     Storage on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/05-interactive.html">
+     Running an interactive job on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/06-file-transfer.html">
+     Transferring files to and from Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/07-batch.html">
+     Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/08-jupyter-hub.html">
+     Jupyter Hub service to the Picotte Cluster
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../r_programming/00-index.html">
+   Introduction to R
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/01-Introduction.html">
+     Introduction to R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/02-Basic-R.html">
+     Basics of R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/04-Matrix.html">
+     Vectors, Matrices, Lists and Data Frames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
+     Control Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/06-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
+     Parallel Computing in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
+     Basic plotting with R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
+     Ploting with ggplot
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="00-index.html">
+   Introduction to Python Programming
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-intro.html">
+     Python Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-numpy.html">
+     Loading data into Python
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Visualizing data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-lists.html">
+     Python lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07-cond.html">
+     Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-func.html">
+     Composing Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-errors.html">
+     Syntax Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-defensive.html">
+     Assertions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-debugging.html">
+     Know What It’s Supposed to Do
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-cmdline.html">
+     Command-Line Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/python_programming/03-matplotlib.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping-plots">
+   Grouping plots
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Visualizing data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping-plots">
+   Grouping plots
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+**Objectives**
+
+- Plot simple graphs from data.
+- Plot multiple graphs in a single figure.
+
+</pre></div>
+</div>
+<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
+**Questions**
+
+- How can I visualize tabular data in Python?
+- How can I group several plots together?
+
+</pre></div>
+</div>
+<section id="visualizing-data">
+<h1>Visualizing data<a class="headerlink" href="#visualizing-data" title="Permalink to this headline">#</a></h1>
+<p>The mathematician Richard Hamming once said, “The purpose of computing is insight, not numbers,”
+and the best way to develop insight is often to visualize data.  Visualization deserves an entire
+lecture of its own, but we can explore a few features of Python’s <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library here.  While
+there is no official plotting library, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is the <em>de facto</em> standard.  First, we will
+import the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module from <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and use two of its functions to create and display a
+<a class="reference external" href="../learners/reference.md#heat-map">heat map</a> of our data:</p>
+<div class="highlight-prereq notranslate"><div class="highlight"><pre><span></span>
+## Episode Prerequisites
+
+If you are continuing in the same notebook from the previous episode, you already
+have a `data` variable and have imported `numpy`.  If you are starting a new
+notebook at this point, you need the following two lines:
+
+```python
+import numpy
+data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
+```
+
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="python_programming/fig/inflammation-01-imshow.svg" />{alt=’Heat map representing the data variable. Each cell is colored by value along a color gradientfrom blue to yellow.’}</p>
+<p>Each row in the heat map corresponds to a patient in the clinical trial dataset, and each column
+corresponds to a day in the dataset.  Blue pixels in this heat map represent low values, while
+yellow pixels represent high values.  As we can see, the general number of inflammation flare-ups
+for the patients rises and falls over a 40-day period.</p>
+<p>So far so good as this is in line with our knowledge of the clinical trial and Dr. Maverick’s
+claims:</p>
+<ul class="simple">
+<li><p>the patients take their medication once their inflammation flare-ups begin</p></li>
+<li><p>it takes around 3 weeks for the medication to take effect and begin reducing flare-ups</p></li>
+<li><p>and flare-ups appear to drop to zero by the end of the clinical trial.</p></li>
+</ul>
+<p>Now let’s take a look at the average inflammation over time:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ave_inflammation</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ave_plot</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ave_inflammation</span><span class="p">)</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="python_programming/fig/inflammation-01-average.svg" />{alt=’A line graph showing the average inflammation across all patients over a 40-day period.’}</p>
+<p>Here, we have put the average inflammation per day across all patients in the variable
+<code class="docutils literal notranslate"><span class="pre">ave_inflammation</span></code>, then asked <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> to create and display a line graph of those
+values.  The result is a reasonably linear rise and fall, in line with Dr. Maverick’s claim that
+the medication takes 3 weeks to take effect.  But a good data scientist doesn’t just consider the
+average of a dataset, so let’s have a look at two other statistics:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">max_plot</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="python_programming/fig/inflammation-01-maximum.svg" />{alt=’A line graph showing the maximum inflammation across all patients over a 40-day period.’}</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">min_plot</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="python_programming/fig/inflammation-01-minimum.svg" />{alt=’A line graph showing the minimum inflammation across all patients over a 40-day period.’}</p>
+<p>The maximum value rises and falls linearly, while the minimum seems to be a step function.
+Neither trend seems particularly likely, so either there’s a mistake in our calculations or
+something is wrong with our data. This insight would have been difficult to reach by examining
+the numbers themselves without visualization tools.</p>
+<section id="grouping-plots">
+<h2>Grouping plots<a class="headerlink" href="#grouping-plots" title="Permalink to this headline">#</a></h2>
+<p>You can group similar plots in a single figure using subplots.
+This script below uses a number of new commands. The function <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.figure()</span></code>
+creates a space into which we will place all of our plots. The parameter <code class="docutils literal notranslate"><span class="pre">figsize</span></code>
+tells Python how big to make this space. Each subplot is placed into the figure using
+its <code class="docutils literal notranslate"><span class="pre">add_subplot</span></code> <a class="reference external" href="../learners/reference.md#method">method</a>. The <code class="docutils literal notranslate"><span class="pre">add_subplot</span></code> method takes
+3 parameters. The first denotes how many total rows of subplots there are, the second parameter
+refers to the total number of subplot columns, and the final parameter denotes which subplot
+your variable is referencing (left-to-right, top-to-bottom). Each subplot is stored in a
+different variable (<code class="docutils literal notranslate"><span class="pre">axes1</span></code>, <code class="docutils literal notranslate"><span class="pre">axes2</span></code>, <code class="docutils literal notranslate"><span class="pre">axes3</span></code>). Once a subplot is created, the axes can
+be titled using the <code class="docutils literal notranslate"><span class="pre">set_xlabel()</span></code> command (or <code class="docutils literal notranslate"><span class="pre">set_ylabel()</span></code>).
+Here are our three plots side by side:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span>
+
+<span class="n">axes1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">axes2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">axes3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">axes1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
+<span class="n">axes1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">axes2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
+<span class="n">axes2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">axes3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span>
+<span class="n">axes3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;inflammation.png&#39;</span><span class="p">)</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="" src="python_programming/fig/inflammation-01-group-plot.svg" />{alt=’Three line graphs showing the daily average, maximum and minimum inflammation over a 40-day period.’}</p>
+<p>The <a class="reference external" href="../learners/reference.md#function-call">call</a> to <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> reads our data,
+and the rest of the program tells the plotting library
+how large we want the figure to be,
+that we’re creating three subplots,
+what to draw for each one,
+and that we want a tight layout.
+(If we leave out that call to <code class="docutils literal notranslate"><span class="pre">fig.tight_layout()</span></code>,
+the graphs will actually be squeezed together more closely.)</p>
+<p>The call to <code class="docutils literal notranslate"><span class="pre">savefig</span></code> stores the plot as a graphics file. This can be
+a convenient way to store your plots for use in other documents, web
+pages etc. The graphics format is automatically determined by
+Matplotlib from the file name ending we specify; here PNG from
+‘inflammation.png’. Matplotlib supports many different graphics
+formats, including SVG, PDF, and JPEG.</p>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Importing libraries with shortcuts
+
+In this lesson we use the `import matplotlib.pyplot`
+[syntax](../learners/reference.md#syntax)
+to import the `pyplot` module of `matplotlib`. However, shortcuts such as
+`import matplotlib.pyplot as plt` are frequently used.
+Importing `pyplot` this way means that after the initial import, rather than writing
+`matplotlib.pyplot.plot(...)`, you can now write `plt.plot(...)`.
+Another common convention is to use the shortcut `import numpy as np` when importing the
+NumPy library. We then can write `np.loadtxt(...)` instead of `numpy.loadtxt(...)`,
+for example.
+
+Some people prefer these shortcuts as it is quicker to type and results in shorter
+lines of code - especially for libraries with long names! You will frequently see
+Python code online using a `pyplot` function with `plt`, or a NumPy function with
+`np`, and it&#39;s because they&#39;ve used this shortcut. It makes no difference which
+approach you choose to take, but you must be consistent as if you use
+`import matplotlib.pyplot as plt` then `matplotlib.pyplot.plot(...)` will not work, and
+you must use `plt.plot(...)` instead. Because of this, when working with other people it
+is important you agree on how libraries are imported.
+
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Plot Scaling
+
+Why do all of our plots stop just short of the upper end of our graph?
+
+:::::::::::::::  solution
+
+## Solution
+
+Because matplotlib normally sets x and y axes limits to the min and max of our data
+(depending on data range)
+
+
+:::::::::::::::::::::::::
+
+If we want to change this, we can use the `set_ylim(min, max)` method of each &#39;axes&#39;,
+for example:
+
+```python
+axes3.set_ylim(0, 6)
+```
+
+Update your plotting code to automatically set a more appropriate scale.
+(Hint: you can make use of the `max` and `min` methods to help.)
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+# One method
+axes3.set_ylabel(&#39;min&#39;)
+axes3.plot(numpy.amin(data, axis=0))
+axes3.set_ylim(0, 6)
+```
+
+:::::::::::::::::::::::::
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+# A more automated approach
+min_data = numpy.amin(data, axis=0)
+axes3.set_ylabel(&#39;min&#39;)
+axes3.plot(min_data)
+axes3.set_ylim(numpy.amin(min_data), numpy.amax(min_data) * 1.1)
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Drawing Straight Lines
+
+In the center and right subplots above, we expect all lines to look like step functions because
+non-integer value are not realistic for the minimum and maximum values. However, you can see
+that the lines are not always vertical or horizontal, and in particular the step function
+in the subplot on the right looks slanted. Why is this?
+
+:::::::::::::::  solution
+
+## Solution
+
+Because matplotlib interpolates (draws a straight line) between the points.
+One way to do avoid this is to use the Matplotlib `drawstyle` option:
+
+```python
+import numpy
+import matplotlib.pyplot
+
+data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
+
+fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+
+axes1 = fig.add_subplot(1, 3, 1)
+axes2 = fig.add_subplot(1, 3, 2)
+axes3 = fig.add_subplot(1, 3, 3)
+
+axes1.set_ylabel(&#39;average&#39;)
+axes1.plot(numpy.mean(data, axis=0), drawstyle=&#39;steps-mid&#39;)
+
+axes2.set_ylabel(&#39;max&#39;)
+axes2.plot(numpy.amax(data, axis=0), drawstyle=&#39;steps-mid&#39;)
+
+axes3.set_ylabel(&#39;min&#39;)
+axes3.plot(numpy.amin(data, axis=0), drawstyle=&#39;steps-mid&#39;)
+
+fig.tight_layout()
+
+matplotlib.pyplot.show()
+```
+
+![](fig/inflammation-01-line-styles.svg){alt=&#39;Three line graphs, with step lines connecting the points, showing the daily average, maximumand minimum inflammation over a 40-day period.&#39;}
+
+
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Make Your Own Plot
+
+Create a plot showing the standard deviation (`numpy.std`)
+of the inflammation data for each day across all patients.
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+std_plot = matplotlib.pyplot.plot(numpy.std(data, axis=0))
+matplotlib.pyplot.show()
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Moving Plots Around
+
+Modify the program to display the three plots on top of one another
+instead of side by side.
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+import numpy
+import matplotlib.pyplot
+
+data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
+
+# change figsize (swap width and height)
+fig = matplotlib.pyplot.figure(figsize=(3.0, 10.0))
+
+# change add_subplot (swap first two parameters)
+axes1 = fig.add_subplot(3, 1, 1)
+axes2 = fig.add_subplot(3, 1, 2)
+axes3 = fig.add_subplot(3, 1, 3)
+
+axes1.set_ylabel(&#39;average&#39;)
+axes1.plot(numpy.mean(data, axis=0))
+
+axes2.set_ylabel(&#39;max&#39;)
+axes2.plot(numpy.amax(data, axis=0))
+
+axes3.set_ylabel(&#39;min&#39;)
+axes3.plot(numpy.amin(data, axis=0))
+
+fig.tight_layout()
+
+matplotlib.pyplot.show()
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+- Use the `pyplot` module from the `matplotlib` library for creating simple visualizations.
+
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python_programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="02-numpy.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Loading data into Python</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="04-lists.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python lists</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

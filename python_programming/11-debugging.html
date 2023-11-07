@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to Python Programming &#8212; University Research Computing Facility Workshop</title>
+    <title>Know What It’s Supposed to Do &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python Fundamentals" href="01-intro.html" />
-    <link rel="prev" title="Ploting with ggplot" href="../r_programming/09-Plotting-with-ggplot.html" />
+    <link rel="next" title="Command-Line Arguments" href="12-cmdline.html" />
+    <link rel="prev" title="Assertions" href="10-defensive.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -311,7 +311,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="00-index.html">
    Introduction to Python Programming
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -319,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="01-intro.html">
      Python Fundamentals
@@ -360,8 +360,8 @@ const thebe_selector_output = ".output, .cell_output"
      Assertions
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-debugging.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Know What It’s Supposed to Do
     </a>
    </li>
@@ -445,7 +445,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/python_programming/00-index.md"
+        <a href="../_sources/python_programming/11-debugging.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -504,24 +504,34 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workshop-description">
-   Workshop Description
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Know What It’s Supposed to Do
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#make-it-fail-every-time">
+   Make It Fail Every Time
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software-setup-on-picotte">
-   Software Setup on Picotte
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#make-it-fail-fast">
+   Make It Fail Fast
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software-setup-on-pc-laptop-or-desktop">
-   Software Setup on PC (Laptop or Desktop)
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#change-one-thing-at-a-time-for-a-reason">
+   Change One Thing at a Time, For a Reason
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keep-track-of-what-you-ve-done">
+   Keep Track of What You’ve Done
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#be-humble">
+   Be Humble
   </a>
  </li>
 </ul>
@@ -533,7 +543,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to Python Programming</h1>
+                <h1>Know What It’s Supposed to Do</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -543,24 +553,34 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workshop-description">
-   Workshop Description
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Know What It’s Supposed to Do
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#make-it-fail-every-time">
+   Make It Fail Every Time
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software-setup-on-picotte">
-   Software Setup on Picotte
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#make-it-fail-fast">
+   Make It Fail Fast
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software-setup-on-pc-laptop-or-desktop">
-   Software Setup on PC (Laptop or Desktop)
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#change-one-thing-at-a-time-for-a-reason">
+   Change One Thing at a Time, For a Reason
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keep-track-of-what-you-ve-done">
+   Keep Track of What You’ve Done
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#be-humble">
+   Be Humble
   </a>
  </li>
 </ul>
@@ -573,99 +593,305 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-python-programming">
-<h1>Introduction to Python Programming<a class="headerlink" href="#introduction-to-python-programming" title="Permalink to this headline">#</a></h1>
-<ul class="simple">
-<li><p><strong>Instructor</strong>: Linh B. Ngo</p></li>
-<li><p><strong>Office</strong>: 358 Curtis Hall</p></li>
-<li><p><strong>Email</strong>: lbn28 AT drexel DOT edu</p></li>
-</ul>
-<section id="workshop-description">
-<h2>Workshop Description<a class="headerlink" href="#workshop-description" title="Permalink to this headline">#</a></h2>
-<p>This Workshop will introduce Python for those that have little to no
-programming experience and consists of two parts:</p>
-<ul class="simple">
-<li><p>Part 1: A quick introduction to Python and its basic data analytic
-capability in processing and visualizing data.</p></li>
-<li><p>Part 2: A more in-depth view into programming concepts in Python,
-including loops, conditions, functions, and testing and debugging.</p></li>
-</ul>
-<p>The workshop uses materials from <a class="reference external" href="https://software-carpentry.org/">Software Carpentry</a>’s
-Programming with Python lesson.</p>
-</section>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
-<p>No prerequisites are required</p>
-</section>
-<section id="software-setup-on-picotte">
-<h2>Software Setup on Picotte<a class="headerlink" href="#software-setup-on-picotte" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Require valid Picotte’s account.</p></li>
-<li><p>You can follow <a class="reference external" href="https://docs.urcf.drexel.edu/software/jupyterhub/jupyterhub/">Picotte’s JupyterHub</a>
-instructions to launch a Jupyter Server on Picotte’s compute nodes.</p></li>
-<li><p>For the workshop, the following parameters should be used:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Account</span></code>: <code class="docutils literal notranslate"><span class="pre">urcfprj</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Partition</span></code>: def-sm</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CPU(s)</span></code>: 2</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Memory(in</span> <span class="pre">GB)</span></code>: 4</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">Time</span> <span class="pre">(in</span> <span class="pre">hours)</span></code>: 4</p></li>
-</ul>
-</li>
-<li><p>Open a terminal from inside JupyterHub and run the following command to
-get the data.</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://github.com/swcarpentry/python-novice-inflammation/raw/main/episodes/data/python-novice-inflammation-data.zip
-unzip python-novice-inflammation-data.zip
-<span class="nb">cd</span> data
-ls -l 
+  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+- Debug code containing an error systematically.
+- Identify ways of making code less error-prone and more easily tested.
+
 </pre></div>
 </div>
-<p><img alt="Password saving selection" src="fig/python_programming/00-indexmobaxterm_3.png" /></p>
+<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
+- How can I debug my program?
+
+</pre></div>
+</div>
+<p>Once testing has uncovered problems,
+the next step is to fix them.
+Many novices do this by making more-or-less random changes to their code
+until it seems to produce the right answer,
+but that’s very inefficient
+(and the result is usually only correct for the one case they’re testing).
+The more experienced a programmer is,
+the more systematically they debug,
+and most follow some variation on the rules explained below.</p>
+<section id="know-what-it-s-supposed-to-do">
+<h1>Know What It’s Supposed to Do<a class="headerlink" href="#know-what-it-s-supposed-to-do" title="Permalink to this headline">#</a></h1>
+<p>The first step in debugging something is to
+<em>know what it’s supposed to do</em>.
+“My program doesn’t work” isn’t good enough:
+in order to diagnose and fix problems,
+we need to be able to tell correct output from incorrect.
+If we can write a test case for the failing case — i.e.,
+if we can assert that with <em>these</em> inputs,
+the function should produce <em>that</em> result —
+then we’re ready to start debugging.
+If we can’t,
+then we need to figure out how we’re going to know when we’ve fixed things.</p>
+<p>But writing test cases for scientific software is frequently harder than
+writing test cases for commercial applications,
+because if we knew what the output of the scientific code was supposed to be,
+we wouldn’t be running the software:
+we’d be writing up our results and moving on to the next program.
+In practice,
+scientists tend to do the following:</p>
+<ol class="simple">
+<li><p><em>Test with simplified data.</em>
+Before doing statistics on a real data set,
+we should try calculating statistics for a single record,
+for two identical records,
+for two records whose values are one step apart,
+or for some other case where we can calculate the right answer by hand.</p></li>
+<li><p><em>Test a simplified case.</em>
+If our program is supposed to simulate
+magnetic eddies in rapidly-rotating blobs of supercooled helium,
+our first test should be a blob of helium that isn’t rotating,
+and isn’t being subjected to any external electromagnetic fields.
+Similarly,
+if we’re looking at the effects of climate change on speciation,
+our first test should hold temperature, precipitation, and other factors constant.</p></li>
+<li><p><em>Compare to an oracle.</em>
+A <a class="reference external" href="../learners/reference.md#test-oracle">test oracle</a>
+is something whose results are trusted,
+such as experimental data, an older program, or a human expert.
+We use test oracles to determine if our new program produces the correct results.
+If we have a test oracle,
+we should store its output for particular cases
+so that we can compare it with our new results as often as we like
+without re-running that program.</p></li>
+<li><p><em>Check conservation laws.</em>
+Mass, energy, and other quantities are conserved in physical systems,
+so they should be in programs as well.
+Similarly,
+if we are analyzing patient data,
+the number of records should either stay the same or decrease
+as we move from one analysis to the next
+(since we might throw away outliers or records with missing values).
+If “new” patients start appearing out of nowhere as we move through our pipeline,
+it’s probably a sign that something is wrong.</p></li>
+<li><p><em>Visualize.</em>
+Data analysts frequently use simple visualizations to check both
+the science they’re doing
+and the correctness of their code
+(just as we did in the <span class="xref myst">opening lesson</span> of this tutorial).
+This should only be used for debugging as a last resort,
+though,
+since it’s very hard to compare two visualizations automatically.</p></li>
+</ol>
 </section>
-<section id="software-setup-on-pc-laptop-or-desktop">
-<h2>Software Setup on PC (Laptop or Desktop)<a class="headerlink" href="#software-setup-on-pc-laptop-or-desktop" title="Permalink to this headline">#</a></h2>
-<div class="dropdown admonition">
-<p class="admonition-title">Windows</p>
-<ul class="simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">https://www.anaconda.com/products/individual#download-section</span></code> with your web browser.</p></li>
-<li><p>Download the Anaconda for Windows installer with Python 3. (If you are not sure which
-version to choose, you probably want the 64-bit Graphical Installer <em>Anaconda3-…-Windows-x86_64.exe</em>)</p></li>
-<li><p>Install `Python 3`` by running the Anaconda Installer, using all of the defaults for installation except make sure to check <strong>Add Anaconda to my PATH environment variable</strong>.</p></li>
-</ul>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">MacOS</p>
-<ul class="simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">https://www.anaconda.com/products/individual#download-section</span></code> with your web browser.</p></li>
-<li><p>Download the Anaconda Installer with Python 3 for macOS (you can either use the Graphical or
-the Command Line Installer).</p></li>
-<li><p>Install Python 3 by running the Anaconda Installer using all of the defaults for installation.</p></li>
-</ul>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Linux</p>
-<ul class="simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">https://www.anaconda.com/products/individual#download-section</span></code> with your web browser.</p></li>
-<li><p>Download the Anaconda Installer with Python 3 for Linux. The installation requires using the shell.</p></li>
-<li><p>Open a terminal window and navigate to the directory where the executable is downloaded
-(e.g., <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/Downloads</span></code>).</p></li>
-<li><p>Type <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Anaconda3</span></code> and then press <code class="docutils literal notranslate"><span class="pre">Tab</span></code> to autocomplete the full file name. The name of
-file you just downloaded should appear.</p></li>
-<li><p>Press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code> depending on your keyboard). You will follow the text-only prompts.</p>
-<ul>
-<li><p>To move through the text, press <code class="docutils literal notranslate"><span class="pre">Spacebar</span></code>.</p></li>
-<li><p>Type yes and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code>) to approve the license.</p></li>
-<li><p>Press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code>) to approve the default location for the files.</p></li>
-<li><p>Type <code class="docutils literal notranslate"><span class="pre">yes</span></code> and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code>) to prepend Anaconda to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>
-(this makes the Anaconda distribution the default Python).</p></li>
-<li><p>Close the terminal window.</p></li>
-</ul>
-</li>
-</ul>
+<section id="make-it-fail-every-time">
+<h1>Make It Fail Every Time<a class="headerlink" href="#make-it-fail-every-time" title="Permalink to this headline">#</a></h1>
+<p>We can only debug something when it fails,
+so the second step is always to find a test case that
+<em>makes it fail every time</em>.
+The “every time” part is important because
+few things are more frustrating than debugging an intermittent problem:
+if we have to call a function a dozen times to get a single failure,
+the odds are good that we’ll scroll past the failure when it actually occurs.</p>
+<p>As part of this,
+it’s always important to check that our code is “plugged in”,
+i.e.,
+that we’re actually exercising the problem that we think we are.
+Every programmer has spent hours chasing a bug,
+only to realize that they were actually calling their code on the wrong data set
+or with the wrong configuration parameters,
+or are using the wrong version of the software entirely.
+Mistakes like these are particularly likely to happen when we’re tired,
+frustrated,
+and up against a deadline,
+which is one of the reasons late-night (or overnight) coding sessions
+are almost never worthwhile.</p>
+</section>
+<section id="make-it-fail-fast">
+<h1>Make It Fail Fast<a class="headerlink" href="#make-it-fail-fast" title="Permalink to this headline">#</a></h1>
+<p>If it takes 20 minutes for the bug to surface,
+we can only do three experiments an hour.
+This means that we’ll get less data in more time and that
+we’re more likely to be distracted by other things as we wait for our program to fail,
+which means the time we <em>are</em> spending on the problem is less focused.
+It’s therefore critical to <em>make it fail fast</em>.</p>
+<p>As well as making the program fail fast in time,
+we want to make it fail fast in space,
+i.e.,
+we want to localize the failure to the smallest possible region of code:</p>
+<ol class="simple">
+<li><p>The smaller the gap between cause and effect,
+the easier the connection is to find.
+Many programmers therefore use a divide and conquer strategy to find bugs,
+i.e.,
+if the output of a function is wrong,
+they check whether things are OK in the middle,
+then concentrate on either the first or second half,
+and so on.</p></li>
+<li><p>N things can interact in N! different ways,
+so every line of code that <em>isn’t</em> run as part of a test
+means more than one thing we don’t need to worry about.</p></li>
+</ol>
+</section>
+<section id="change-one-thing-at-a-time-for-a-reason">
+<h1>Change One Thing at a Time, For a Reason<a class="headerlink" href="#change-one-thing-at-a-time-for-a-reason" title="Permalink to this headline">#</a></h1>
+<p>Replacing random chunks of code is unlikely to do much good.
+(After all,
+if you got it wrong the first time,
+you’ll probably get it wrong the second and third as well.)
+Good programmers therefore
+<em>change one thing at a time, for a reason</em>.
+They are either trying to gather more information
+(“is the bug still there if we change the order of the loops?”)
+or test a fix
+(“can we make the bug go away by sorting our data before processing it?”).</p>
+<p>Every time we make a change,
+however small,
+we should re-run our tests immediately,
+because the more things we change at once,
+the harder it is to know what’s responsible for what
+(those N! interactions again).
+And we should re-run <em>all</em> of our tests:
+more than half of fixes made to code introduce (or re-introduce) bugs,
+so re-running all of our tests tells us whether we have regressed.</p>
+</section>
+<section id="keep-track-of-what-you-ve-done">
+<h1>Keep Track of What You’ve Done<a class="headerlink" href="#keep-track-of-what-you-ve-done" title="Permalink to this headline">#</a></h1>
+<p>Good scientists keep track of what they’ve done
+so that they can reproduce their work,
+and so that they don’t waste time repeating the same experiments
+or running ones whose results won’t be interesting.
+Similarly,
+debugging works best when we
+<em>keep track of what we’ve done</em>
+and how well it worked.
+If we find ourselves asking,
+“Did left followed by right with an odd number of lines cause the crash?
+Or was it right followed by left?
+Or was I using an even number of lines?”
+then it’s time to step away from the computer,
+take a deep breath,
+and start working more systematically.</p>
+<p>Records are particularly useful when the time comes to ask for help.
+People are more likely to listen to us
+when we can explain clearly what we did,
+and we’re better able to give them the information they need to be useful.</p>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Version Control Revisited
+
+Version control is often used to reset software to a known state during debugging,
+and to explore recent changes to code that might be responsible for bugs.
+In particular,
+most version control systems (e.g. git, Mercurial) have:
+
+1. a `blame` command that shows who last changed each line of a file;
+2. a `bisect` command that helps with finding the commit that introduced an
+  issue.
+  
+
+</pre></div>
 </div>
 </section>
-<div class="toctree-wrapper compound">
+<section id="be-humble">
+<h1>Be Humble<a class="headerlink" href="#be-humble" title="Permalink to this headline">#</a></h1>
+<p>And speaking of help:
+if we can’t find a bug in 10 minutes,
+we should <em>be humble</em> and ask for help.
+Explaining the problem to someone else is often useful,
+since hearing what we’re thinking helps us spot inconsistencies and hidden assumptions.
+If you don’t have someone nearby to share your problem description with, get a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">rubber duck</a>!</p>
+<p>Asking for help also helps alleviate confirmation bias.
+If we have just spent an hour writing a complicated program,
+we want it to work,
+so we’re likely to keep telling ourselves why it should,
+rather than searching for the reason it doesn’t.
+People who aren’t emotionally invested in the code can be more objective,
+which is why they’re often able to spot the simple mistakes we have overlooked.</p>
+<p>Part of being humble is learning from our mistakes.
+Programmers tend to get the same things wrong over and over:
+either they don’t understand the language and libraries they’re working with,
+or their model of how things work is wrong.
+In either case,
+taking note of why the error occurred
+and checking for it next time
+quickly turns into not making the mistake at all.</p>
+<p>And that is what makes us most productive in the long run.
+As the saying goes,
+<em>A week of hard work can sometimes save you an hour of thought</em>.
+If we train ourselves to avoid making some kinds of mistakes,
+to break our code into modular, testable chunks,
+and to turn every assumption (or mistake) into an assertion,
+it will actually take us <em>less</em> time to produce working programs,
+not more.</p>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Debug With a Neighbor
+
+Take a function that you have written today, and introduce a tricky bug.
+Your function should still run, but will give the wrong output.
+Switch seats with your neighbor and attempt to debug
+the bug that they introduced into their function.
+Which of the principles discussed above did you find helpful?
+
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Not Supposed to be the Same
+
+You are assisting a researcher with Python code that computes the
+Body Mass Index (BMI) of patients.  The researcher is concerned because
+all patients seemingly have unusual and identical BMIs, despite having different
+physiques.  BMI is calculated as **weight in kilograms**
+divided by the square of **height in metres**.
+
+Use the debugging principles in this exercise and locate problems
+with the code. What suggestions would you give the researcher for
+ensuring any later changes they make work correctly? What bugs do you spot?
+
+```python
+patients = [[70, 1.8], [80, 1.9], [150, 1.7]]
+
+def calculate_bmi(weight, height):
+    return weight / (height ** 2)
+
+for patient in patients:
+    weight, height = patients[0]
+    bmi = calculate_bmi(height, weight)
+    print(&quot;Patient&#39;s BMI is:&quot;, bmi)
+```
+
+```output
+Patient&#39;s BMI is: 0.000367
+Patient&#39;s BMI is: 0.000367
+Patient&#39;s BMI is: 0.000367
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+### Suggestions for debugging
+
+- Add printing statement in the `calculate_bmi` function, like `print(&#39;weight:&#39;, weight, &#39;height:&#39;, height)`, to make clear that what the BMI is based on.
+- Change `print(&quot;Patient&#39;s BMI is: %f&quot; % bmi)` to `print(&quot;Patient&#39;s BMI (weight: %f, height: %f) is: %f&quot; % (weight, height, bmi))`, in order to be able to distinguish bugs in the function from bugs in the loop.
+
+### Bugs found
+
+- The loop is not being utilised correctly. `height` and `weight` are always
+  set as the first patient&#39;s data during each iteration of the loop.
+
+- The height/weight variables are reversed in the function call to
+  `calculate_bmi(...)`, the correct BMIs are 21.604938, 22.160665 and 51.903114.
+  
+  
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+- Know what code is supposed to do *before* trying to debug it.
+- Make it fail every time.
+- Make it fail fast.
+- Change one thing at a time, and for a reason.
+- Keep track of what you&#39;ve done.
+- Be humble.
+
+</pre></div>
 </div>
 </section>
 
@@ -696,17 +922,17 @@ file you just downloaded should appear.</p></li>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../r_programming/09-Plotting-with-ggplot.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="10-defensive.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Ploting with ggplot</p>
+            <p class="prev-next-title">Assertions</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="01-intro.html" title="next page">
+    <a class='right-next' id="next-link" href="12-cmdline.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python Fundamentals</p>
+        <p class="prev-next-title">Command-Line Arguments</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

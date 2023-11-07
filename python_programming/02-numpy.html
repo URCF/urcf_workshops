@@ -1,0 +1,1366 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Loading data into Python &#8212; University Research Computing Facility Workshop</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Visualizing data" href="03-matplotlib.html" />
+    <link rel="prev" title="Python Fundamentals" href="01-intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    University Research Computing Facility Workshops
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introductory Sequence
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_linux/00-index.html">
+   Introduction to Linux
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/00a-outline.html">
+     Workshop Outline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01-introduction.html">
+     What is Linux?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01a-shell.html">
+     Shell Specifics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/03-file-system.html">
+     Navigating Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04-working_with_files_and_directories.html">
+     Working With Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04a-file-permissions.html">
+     File Permissions and Atrributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/05-pipes.html">
+     Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/06-loop.html">
+     Loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/07-utilities.html">
+     Shell Scripts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/08-conclusion.html">
+     Workshop Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_picotte/00-index.html">
+   Introduction to Research Computing on Picotte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/01-introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/03-picotte_structure.html">
+     The structure of the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/04-storage.html">
+     Storage on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/05-interactive.html">
+     Running an interactive job on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/06-file-transfer.html">
+     Transferring files to and from Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/07-batch.html">
+     Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/08-jupyter-hub.html">
+     Jupyter Hub service to the Picotte Cluster
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../r_programming/00-index.html">
+   Introduction to R
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/01-Introduction.html">
+     Introduction to R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/02-Basic-R.html">
+     Basics of R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/04-Matrix.html">
+     Vectors, Matrices, Lists and Data Frames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
+     Control Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/06-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
+     Parallel Computing in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
+     Basic plotting with R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
+     Ploting with ggplot
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="00-index.html">
+   Introduction to Python Programming
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-intro.html">
+     Python Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Loading data into Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-matplotlib.html">
+     Visualizing data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-lists.html">
+     Python lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07-cond.html">
+     Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-func.html">
+     Composing Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-errors.html">
+     Syntax Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-defensive.html">
+     Assertions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-debugging.html">
+     Know What It’s Supposed to Do
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-cmdline.html">
+     Command-Line Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/python_programming/02-numpy.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Loading data into Python
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slicing-data">
+   Slicing data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analyzing-data">
+   Analyzing data
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Loading data into Python</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Loading data into Python
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slicing-data">
+   Slicing data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analyzing-data">
+   Analyzing data
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+**Objectives**
+
+- Explain what a library is and what libraries are used for.
+- Import a Python library and use the functions it contains.
+- Read tabular data from a file into a program.
+- Select individual values and subsections from data.
+- Perform operations on arrays of data.
+
+</pre></div>
+</div>
+<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
+**Questions**
+
+- How can I process tabular data files in Python?
+
+</pre></div>
+</div>
+<p>Words are useful, but what’s more useful are the sentences and stories we build with them.
+Similarly, while a lot of powerful, general tools are built into Python,
+specialized tools built up from these basic units live in
+<a class="reference external" href="../learners/reference.md#library">libraries</a>
+that can be called upon when needed.</p>
+<section id="loading-data-into-python">
+<h1>Loading data into Python<a class="headerlink" href="#loading-data-into-python" title="Permalink to this headline">#</a></h1>
+<p>To begin processing the clinical trial inflammation data, we need to load it into Python.
+We can do that using a library called
+<a class="reference external" href="https://numpy.org/doc/stable">NumPy</a>, which stands for Numerical Python.
+In general, you should use this library when you want to do fancy things with lots of numbers,
+especially if you have matrices or arrays. To tell Python that we’d like to start using NumPy,
+we need to <a class="reference external" href="../learners/reference.md#import">import</a> it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+</pre></div>
+</div>
+<p>Importing a library is like getting a piece of lab equipment out of a storage locker and setting it
+up on the bench. Libraries provide additional functionality to the basic Python package, much like
+a new piece of equipment adds functionality to a lab space. Just like in the lab, importing too
+many libraries can sometimes complicate and slow down your programs - so we only import what we
+need for each program.</p>
+<p>Once we’ve imported the library, we can ask the library to read our data file for us:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],</span>
+<span class="go">       [ 0.,  1.,  2., ...,  1.,  0.,  1.],</span>
+<span class="go">       [ 0.,  1.,  1., ...,  2.,  1.,  1.],</span>
+<span class="go">       ...,</span>
+<span class="go">       [ 0.,  1.,  1., ...,  1.,  1.,  1.],</span>
+<span class="go">       [ 0.,  0.,  0., ...,  0.,  2.,  0.],</span>
+<span class="go">       [ 0.,  0.,  1., ...,  1.,  1.,  0.]])</span>
+</pre></div>
+</div>
+<p>The expression <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt(...)</span></code> is a
+<a class="reference external" href="../learners/reference.md#function-call">function call</a>
+that asks Python to run the <a class="reference external" href="../learners/reference.md#function">function</a> <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> which
+belongs to the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library.
+The dot notation in Python is used most of all as an object attribute/property specifier or for invoking its method. <code class="docutils literal notranslate"><span class="pre">object.property</span></code> will give you the object.property value,
+<code class="docutils literal notranslate"><span class="pre">object_name.method()</span></code> will invoke on object_name method.</p>
+<p>As an example, John Smith is the John that belongs to the Smith family.
+We could use the dot notation to write his name <code class="docutils literal notranslate"><span class="pre">smith.john</span></code>,
+just as <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> is a function that belongs to the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library.</p>
+<p><code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> has two <a class="reference external" href="../learners/reference.md#parameter">parameters</a>: the name of the file
+we want to read and the <a class="reference external" href="../learners/reference.md#delimiter">delimiter</a> that separates values
+on a line. These both need to be character strings
+(or <a class="reference external" href="../learners/reference.md#string">strings</a> for short), so we put them in quotes.</p>
+<p>Since we haven’t told it to do anything else with the function’s output,
+the <a class="reference external" href="../learners/reference.md#notebook">notebook</a> displays it.
+In this case,
+that output is the data we just loaded.
+By default,
+only a few rows and columns are shown
+(with <code class="docutils literal notranslate"><span class="pre">...</span></code> to omit elements when displaying big arrays).
+Note that, to save space when displaying NumPy arrays, Python does not show us trailing zeros,
+so <code class="docutils literal notranslate"><span class="pre">1.0</span></code> becomes <code class="docutils literal notranslate"><span class="pre">1.</span></code>.</p>
+<p>Our call to <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> read our file
+but didn’t save the data in memory.
+To do that,
+we need to assign the array to a variable. In a similar manner to how we assign a single
+value to a variable, we can also assign an array of values to a variable using the same syntax.
+Let’s re-run <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> and save the returned data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This statement doesn’t produce any output because we’ve assigned the output to the variable <code class="docutils literal notranslate"><span class="pre">data</span></code>.
+If we want to check that the data have been loaded,
+we can print the variable’s value:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[[ 0.  0.  1. ...,  3.  0.  0.]</span>
+<span class="go"> [ 0.  1.  2. ...,  1.  0.  1.]</span>
+<span class="go"> [ 0.  1.  1. ...,  2.  1.  1.]</span>
+<span class="go"> ...,</span>
+<span class="go"> [ 0.  1.  1. ...,  1.  1.  1.]</span>
+<span class="go"> [ 0.  0.  0. ...,  0.  2.  0.]</span>
+<span class="go"> [ 0.  0.  1. ...,  1.  1.  0.]]</span>
+</pre></div>
+</div>
+<p>Now that the data are in memory,
+we can manipulate them.
+First,
+let’s ask what <a class="reference external" href="../learners/reference.md#type">type</a> of thing <code class="docutils literal notranslate"><span class="pre">data</span></code> refers to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;class &#39;numpy.ndarray&#39;&gt;</span>
+</pre></div>
+</div>
+<p>The output tells us that <code class="docutils literal notranslate"><span class="pre">data</span></code> currently refers to
+an N-dimensional array, the functionality for which is provided by the NumPy library.
+These data correspond to arthritis patients’ inflammation.
+The rows are the individual patients, and the columns
+are their daily inflammation measurements.</p>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Data Type
+
+A Numpy array contains one or more elements
+of the same type. The `type` function will only tell you that
+a variable is a NumPy array but won&#39;t tell you the type of
+thing inside the array.
+We can find out the type
+of the data contained in the NumPy array.
+
+```python
+print(data.dtype)
+```
+
+```output
+float64
+```
+
+This tells us that the NumPy array&#39;s elements are
+[floating-point numbers](../learners/reference.md#floating-point-number).
+
+
+</pre></div>
+</div>
+<p>With the following command, we can see the array’s <a class="reference external" href="../learners/reference.md#shape">shape</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">(60, 40)</span>
+</pre></div>
+</div>
+<p>The output tells us that the <code class="docutils literal notranslate"><span class="pre">data</span></code> array variable contains 60 rows and 40 columns. When we
+created the variable <code class="docutils literal notranslate"><span class="pre">data</span></code> to store our arthritis data, we did not only create the array; we also
+created information about the array, called <a class="reference external" href="../learners/reference.md#member">members</a> or
+attributes. This extra information describes <code class="docutils literal notranslate"><span class="pre">data</span></code> in the same way an adjective describes a noun.
+<code class="docutils literal notranslate"><span class="pre">data.shape</span></code> is an attribute of <code class="docutils literal notranslate"><span class="pre">data</span></code> which describes the dimensions of <code class="docutils literal notranslate"><span class="pre">data</span></code>. We use the same
+dotted notation for the attributes of variables that we use for the functions in libraries because
+they have the same part-and-whole relationship.</p>
+<p>If we want to get a single number from the array, we must provide an
+<a class="reference external" href="../learners/reference.md#index">index</a> in square brackets after the variable name, just as we
+do in math when referring to an element of a matrix.  Our inflammation data has two dimensions, so
+we will need to use two indices to refer to one specific value:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;first value in data:&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">first value in data: 0.0</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;middle value in data:&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">19</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">middle value in data: 16.0</span>
+</pre></div>
+</div>
+<p>The expression <code class="docutils literal notranslate"><span class="pre">data[29,</span> <span class="pre">19]</span></code> accesses the element at row 30, column 20. While this expression may
+not surprise you,
+<code class="docutils literal notranslate"><span class="pre">data[0,</span> <span class="pre">0]</span></code> might.
+Programming languages like Fortran, MATLAB and R start counting at 1
+because that’s what human beings have done for thousands of years.
+Languages in the C family (including C++, Java, Perl, and Python) count from 0
+because it represents an offset from the first value in the array (the second
+value is offset by one index from the first value). This is closer to the way
+that computers represent arrays (if you are interested in the historical
+reasons behind counting indices from zero, you can read
+<a class="reference external" href="https://exple.tive.org/blarg/2013/10/22/citation-needed/">Mike Hoye’s blog post</a>).
+As a result,
+if we have an M×N array in Python,
+its indices go from 0 to M-1 on the first axis
+and 0 to N-1 on the second.
+It takes a bit of getting used to,
+but one way to remember the rule is that
+the index is how many steps we have to take from the start to get the item we want.</p>
+<p><img alt="" src="python_programming/fig/python-zero-index.svg" />{alt=“‘data’ is a 3 by 3 numpy array containing row 0: [‘A’, ‘B’, ‘C’], row 1: [‘D’, ‘E’, ‘F’], androw 2: [‘G’, ‘H’, ‘I’]. Starting in the upper left hand corner, data[0, 0] = ‘A’, data[0, 1] = ‘B’,data[0, 2] = ‘C’, data[1, 0] = ‘D’, data[1, 1] = ‘E’, data[1, 2] = ‘F’, data[2, 0] = ‘G’,data[2, 1] = ‘H’, and data[2, 2] = ‘I’, in the bottom right hand corner.”}</p>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## In the Corner
+
+What may also surprise you is that when Python displays an array,
+it shows the element with index `[0, 0]` in the upper left corner
+rather than the lower left.
+This is consistent with the way mathematicians draw matrices
+but different from the Cartesian coordinates.
+The indices are (row, column) instead of (column, row) for the same reason,
+which can be confusing when plotting data.
+
+
+</pre></div>
+</div>
+</section>
+<section id="slicing-data">
+<h1>Slicing data<a class="headerlink" href="#slicing-data" title="Permalink to this headline">#</a></h1>
+<p>An index like <code class="docutils literal notranslate"><span class="pre">[30,</span> <span class="pre">20]</span></code> selects a single element of an array,
+but we can select whole sections as well.
+For example,
+we can select the first ten days (columns) of values
+for the first four patients (rows) like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[[ 0.  0.  1.  3.  1.  2.  4.  7.  8.  3.]</span>
+<span class="go"> [ 0.  1.  2.  1.  2.  1.  3.  2.  2.  6.]</span>
+<span class="go"> [ 0.  1.  1.  3.  3.  2.  6.  2.  5.  9.]</span>
+<span class="go"> [ 0.  0.  2.  0.  4.  2.  2.  1.  6.  7.]]</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="../learners/reference.md#slice">slice</a> <code class="docutils literal notranslate"><span class="pre">0:4</span></code> means, “Start at index 0 and go up to,
+but not including, index 4”. Again, the up-to-but-not-including takes a bit of getting used to,
+but the rule is that the difference between the upper and lower bounds is the number of values in
+the slice.</p>
+<p>We don’t have to start slices at 0:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[[ 0.  0.  1.  2.  2.  4.  2.  1.  6.  4.]</span>
+<span class="go"> [ 0.  0.  2.  2.  4.  2.  2.  5.  5.  8.]</span>
+<span class="go"> [ 0.  0.  1.  2.  3.  1.  2.  3.  5.  3.]</span>
+<span class="go"> [ 0.  0.  0.  3.  1.  5.  6.  5.  5.  8.]</span>
+<span class="go"> [ 0.  1.  1.  2.  1.  3.  5.  3.  5.  8.]]</span>
+</pre></div>
+</div>
+<p>We also don’t have to include the upper and lower bound on the slice.  If we don’t include the lower
+bound, Python uses 0 by default; if we don’t include the upper, the slice runs to the end of the
+axis, and if we don’t include either (i.e., if we use ‘:’ on its own), the slice includes
+everything:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">small</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">36</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;small is:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">small</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The above example selects rows 0 through 2 and columns 36 through to the end of the array.</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">small is:</span>
+<span class="go">[[ 2.  3.  0.  0.]</span>
+<span class="go"> [ 1.  1.  0.  1.]</span>
+<span class="go"> [ 2.  2.  1.  1.]]</span>
+</pre></div>
+</div>
+</section>
+<section id="analyzing-data">
+<h1>Analyzing data<a class="headerlink" href="#analyzing-data" title="Permalink to this headline">#</a></h1>
+<p>NumPy has several useful functions that take an array as input to perform operations on its values.
+If we want to find the average inflammation for all patients on
+all days, for example, we can ask NumPy to compute <code class="docutils literal notranslate"><span class="pre">data</span></code>’s mean value:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">6.14875</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">mean</span></code> is a <a class="reference external" href="../learners/reference.md#function">function</a> that takes
+an array as an <a class="reference external" href="../learners/reference.md#argument">argument</a>.</p>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Not All Functions Have Input
+
+Generally, a function uses inputs to produce outputs.
+However, some functions produce outputs without
+needing any input. For example, checking the current time
+doesn&#39;t require any input.
+
+```python
+import time
+print(time.ctime())
+```
+
+```output
+Sat Mar 26 13:07:33 2016
+```
+
+For functions that don&#39;t take in any arguments,
+we still need parentheses (`()`)
+to tell Python to go and do something for us.
+
+
+</pre></div>
+</div>
+<p>Let’s use three other NumPy functions to get some descriptive values about the dataset.
+We’ll also use multiple assignment,
+a convenient Python feature that will enable us to do this all in one line.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">maxval</span><span class="p">,</span> <span class="n">minval</span><span class="p">,</span> <span class="n">stdval</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maximum inflammation:&#39;</span><span class="p">,</span> <span class="n">maxval</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;minimum inflammation:&#39;</span><span class="p">,</span> <span class="n">minval</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;standard deviation:&#39;</span><span class="p">,</span> <span class="n">stdval</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we’ve assigned the return value from <code class="docutils literal notranslate"><span class="pre">numpy.amax(data)</span></code> to the variable <code class="docutils literal notranslate"><span class="pre">maxval</span></code>, the value
+from <code class="docutils literal notranslate"><span class="pre">numpy.amin(data)</span></code> to <code class="docutils literal notranslate"><span class="pre">minval</span></code>, and so on.</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">maximum inflammation: 20.0</span>
+<span class="go">minimum inflammation: 0.0</span>
+<span class="go">standard deviation: 4.61383319712</span>
+</pre></div>
+</div>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Mystery Functions in IPython
+
+How did we know what functions NumPy has and how to use them?
+If you are working in IPython or in a Jupyter Notebook, there is an easy way to find out.
+If you type the name of something followed by a dot, then you can use
+[tab completion](../learners/reference.md#tab-completion)
+(e.g. type `numpy.` and then press &lt;kbd&gt;Tab&lt;/kbd&gt;)
+to see a list of all functions and attributes that you can use. After selecting one, you
+can also add a question mark (e.g. `numpy.cumprod?`), and IPython will return an
+explanation of the method! This is the same as doing `help(numpy.cumprod)`.
+Similarly, if you are using the &quot;plain vanilla&quot; Python interpreter, you can type `numpy.`
+and press the &lt;kbd&gt;Tab&lt;/kbd&gt; key twice for a listing of what is available. You can then use the
+`help()` function to see an explanation of the function you&#39;re interested in,
+for example: `help(numpy.cumprod)`.
+
+
+</pre></div>
+</div>
+<p>When analyzing data, though,
+we often want to look at variations in statistical values,
+such as the maximum inflammation per patient
+or the average inflammation per day.
+One way to do this is to create a new temporary array of the data we want,
+then ask it to do the calculation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patient_0</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="c1"># 0 on the first axis (rows), everything on the second (columns)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maximum inflammation for patient 0:&#39;</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">patient_0</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">maximum inflammation for patient 0: 18.0</span>
+</pre></div>
+</div>
+<p>We don’t actually need to store the row in a variable of its own.
+Instead, we can combine the selection and the function call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maximum inflammation for patient 2:&#39;</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">maximum inflammation for patient 2: 19.0</span>
+</pre></div>
+</div>
+<p>What if we need the maximum inflammation for each patient over all days (as in the
+next diagram on the left) or the average for each day (as in the
+diagram on the right)? As the diagram below shows, we want to perform the
+operation across an axis:</p>
+<p><img alt="" src="python_programming/fig/python-operations-across-axes.png" />{alt=”Per-patient maximum inflammation is computed row-wise across all columns usingnumpy.amax(data, axis=1). Per-day average inflammation is computed column-wise across all rows usingnumpy.mean(data, axis=0).”}</p>
+<p>To support this functionality,
+most array functions allow us to specify the axis we want to work on.
+If we ask for the average across axis 0 (rows in our 2D example),
+we get:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[  0.           0.45         1.11666667   1.75         2.43333333   3.15</span>
+<span class="go">   3.8          3.88333333   5.23333333   5.51666667   5.95         5.9</span>
+<span class="go">   8.35         7.73333333   8.36666667   9.5          9.58333333</span>
+<span class="go">  10.63333333  11.56666667  12.35        13.25        11.96666667</span>
+<span class="go">  11.03333333  10.16666667  10.           8.66666667   9.15         7.25</span>
+<span class="go">   7.33333333   6.58333333   6.06666667   5.95         5.11666667   3.6</span>
+<span class="go">   3.3          3.56666667   2.48333333   1.5          1.13333333</span>
+<span class="go">   0.56666667]</span>
+</pre></div>
+</div>
+<p>As a quick check,
+we can ask this array what its shape is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">(40,)</span>
+</pre></div>
+</div>
+<p>The expression <code class="docutils literal notranslate"><span class="pre">(40,)</span></code> tells us we have an N×1 vector,
+so this is the average inflammation per day for all patients.
+If we average across axis 1 (columns in our 2D example), we get:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[ 5.45   5.425  6.1    5.9    5.55   6.225  5.975  6.65   6.625  6.525</span>
+<span class="go">  6.775  5.8    6.225  5.75   5.225  6.3    6.55   5.7    5.85   6.55</span>
+<span class="go">  5.775  5.825  6.175  6.1    5.8    6.425  6.05   6.025  6.175  6.55</span>
+<span class="go">  6.175  6.35   6.725  6.125  7.075  5.725  5.925  6.15   6.075  5.75</span>
+<span class="go">  5.975  5.725  6.3    5.9    6.75   5.925  7.225  6.15   5.95   6.275  5.7</span>
+<span class="go">  6.1    6.825  5.975  6.725  5.7    6.25   6.4    7.05   5.9  ]</span>
+</pre></div>
+</div>
+<p>which is the average inflammation per patient across all days.</p>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Slicing Strings
+
+A section of an array is called a [slice](../learners/reference.md#slice).
+We can take slices of character strings as well:
+
+```python
+element = &#39;oxygen&#39;
+print(&#39;first three characters:&#39;, element[0:3])
+print(&#39;last three characters:&#39;, element[3:6])
+```
+
+```output
+first three characters: oxy
+last three characters: gen
+```
+
+What is the value of `element[:4]`?
+What about `element[4:]`?
+Or `element[:]`?
+
+:::::::::::::::  solution
+
+## Solution
+
+```output
+oxyg
+en
+oxygen
+```
+
+:::::::::::::::::::::::::
+
+What is `element[-1]`?
+What is `element[-2]`?
+
+:::::::::::::::  solution
+
+## Solution
+
+```output
+n
+e
+```
+
+:::::::::::::::::::::::::
+
+Given those answers,
+explain what `element[1:-1]` does.
+
+:::::::::::::::  solution
+
+## Solution
+
+Creates a substring from index 1 up to (not including) the final index,
+effectively removing the first and last letters from &#39;oxygen&#39;
+
+
+:::::::::::::::::::::::::
+
+How can we rewrite the slice for getting the last three characters of `element`,
+so that it works even if we assign a different string to `element`?
+Test your solution with the following strings: `carpentry`, `clone`, `hi`.
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+element = &#39;oxygen&#39;
+print(&#39;last three characters:&#39;, element[-3:])
+element = &#39;carpentry&#39;
+print(&#39;last three characters:&#39;, element[-3:])
+element = &#39;clone&#39;
+print(&#39;last three characters:&#39;, element[-3:])
+element = &#39;hi&#39;
+print(&#39;last three characters:&#39;, element[-3:])
+```
+
+```output
+last three characters: gen
+last three characters: try
+last three characters: one
+last three characters: hi
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Thin Slices
+
+The expression `element[3:3]` produces an
+[empty string](../learners/reference.md#empty-string),
+i.e., a string that contains no characters.
+If `data` holds our array of patient data,
+what does `data[3:3, 4:4]` produce?
+What about `data[3:3, :]`?
+
+:::::::::::::::  solution
+
+## Solution
+
+```output
+array([], shape=(0, 0), dtype=float64)
+array([], shape=(0, 40), dtype=float64)
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Stacking Arrays
+
+Arrays can be concatenated and stacked on top of one another,
+using NumPy&#39;s `vstack` and `hstack` functions for vertical and horizontal stacking, respectively.
+
+```python
+import numpy
+
+A = numpy.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+print(&#39;A = &#39;)
+print(A)
+
+B = numpy.hstack([A, A])
+print(&#39;B = &#39;)
+print(B)
+
+C = numpy.vstack([A, A])
+print(&#39;C = &#39;)
+print(C)
+```
+
+```output
+A =
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+B =
+[[1 2 3 1 2 3]
+ [4 5 6 4 5 6]
+ [7 8 9 7 8 9]]
+C =
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]
+ [1 2 3]
+ [4 5 6]
+ [7 8 9]]
+```
+
+Write some additional code that slices the first and last columns of `A`,
+and stacks them into a 3x2 array.
+Make sure to `print` the results to verify your solution.
+
+:::::::::::::::  solution
+
+## Solution
+
+A &#39;gotcha&#39; with array indexing is that singleton dimensions
+are dropped by default. That means `A[:, 0]` is a one dimensional
+array, which won&#39;t stack as desired. To preserve singleton dimensions,
+the index itself can be a slice or array. For example, `A[:, :1]` returns
+a two dimensional array with one singleton dimension (i.e. a column
+vector).
+
+```python
+D = numpy.hstack((A[:, :1], A[:, -1:]))
+print(&#39;D = &#39;)
+print(D)
+```
+
+```output
+D =
+[[1 3]
+ [4 6]
+ [7 9]]
+```
+
+:::::::::::::::::::::::::
+
+:::::::::::::::  solution
+
+## Solution
+
+An alternative way to achieve the same result is to use Numpy&#39;s
+delete function to remove the second column of A. If you&#39;re not
+sure what the parameters of numpy.delete mean, use the help files.
+
+```python
+D = numpy.delete(arr=A, obj=1, axis=1)
+print(&#39;D = &#39;)
+print(D)
+```
+
+```output
+D =
+[[1 3]
+ [4 6]
+ [7 9]]
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Change In Inflammation
+
+The patient data is *longitudinal* in the sense that each row represents a
+series of observations relating to one individual.  This means that
+the change in inflammation over time is a meaningful concept.
+Let&#39;s find out how to calculate changes in the data contained in an array
+with NumPy.
+
+The `numpy.diff()` function takes an array and returns the differences
+between two successive values. Let&#39;s use it to examine the changes
+each day across the first week of patient 3 from our inflammation dataset.
+
+```python
+patient3_week1 = data[3, :7]
+print(patient3_week1)
+```
+
+```output
+ [0. 0. 2. 0. 4. 2. 2.]
+```
+
+Calling `numpy.diff(patient3_week1)` would do the following calculations
+
+```python
+[ 0 - 0, 2 - 0, 0 - 2, 4 - 0, 2 - 4, 2 - 2 ]
+```
+
+and return the 6 difference values in a new array.
+
+```python
+numpy.diff(patient3_week1)
+```
+
+```output
+array([ 0.,  2., -2.,  4., -2.,  0.])
+```
+
+Note that the array of differences is shorter by one element (length 6).
+
+When calling `numpy.diff` with a multi-dimensional array, an `axis` argument may
+be passed to the function to specify which axis to process. When applying
+`numpy.diff` to our 2D inflammation array `data`, which axis would we specify?
+
+:::::::::::::::  solution
+
+## Solution
+
+Since the row axis (0) is patients, it does not make sense to get the
+difference between two arbitrary patients. The column axis (1) is in
+days, so the difference is the change in inflammation -- a meaningful
+concept.
+
+```python
+numpy.diff(data, axis=1)
+```
+
+:::::::::::::::::::::::::
+
+If the shape of an individual data file is `(60, 40)` (60 rows and 40
+columns), what would the shape of the array be after you run the `diff()`
+function and why?
+
+:::::::::::::::  solution
+
+## Solution
+
+The shape will be `(60, 39)` because there is one fewer difference between
+columns than there are columns in the data.
+
+
+:::::::::::::::::::::::::
+
+How would you find the largest change in inflammation for each patient? Does
+it matter if the change in inflammation is an increase or a decrease?
+
+:::::::::::::::  solution
+
+## Solution
+
+By using the `numpy.amax()` function after you apply the `numpy.diff()`
+function, you will get the largest difference between days.
+
+```python
+numpy.amax(numpy.diff(data, axis=1), axis=1)
+```
+
+```python
+array([  7.,  12.,  11.,  10.,  11.,  13.,  10.,   8.,  10.,  10.,   7.,
+         7.,  13.,   7.,  10.,  10.,   8.,  10.,   9.,  10.,  13.,   7.,
+        12.,   9.,  12.,  11.,  10.,  10.,   7.,  10.,  11.,  10.,   8.,
+        11.,  12.,  10.,   9.,  10.,  13.,  10.,   7.,   7.,  10.,  13.,
+        12.,   8.,   8.,  10.,  10.,   9.,   8.,  13.,  10.,   7.,  10.,
+         8.,  12.,  10.,   7.,  12.])
+```
+
+If inflammation values *decrease* along an axis, then the difference from
+one element to the next will be negative. If
+you are interested in the **magnitude** of the change and not the
+direction, the `numpy.absolute()` function will provide that.
+
+Notice the difference if you get the largest *absolute* difference
+between readings.
+
+```python
+numpy.amax(numpy.absolute(numpy.diff(data, axis=1)), axis=1)
+```
+
+```python
+array([ 12.,  14.,  11.,  13.,  11.,  13.,  10.,  12.,  10.,  10.,  10.,
+        12.,  13.,  10.,  11.,  10.,  12.,  13.,   9.,  10.,  13.,   9.,
+        12.,   9.,  12.,  11.,  10.,  13.,   9.,  13.,  11.,  11.,   8.,
+        11.,  12.,  13.,   9.,  10.,  13.,  11.,  11.,  13.,  11.,  13.,
+        13.,  10.,   9.,  10.,  10.,   9.,   9.,  13.,  10.,   9.,  10.,
+        11.,  13.,  10.,  10.,  12.])
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+- Import a library into a program using `import libraryname`.
+- Use the `numpy` library to work with arrays in Python.
+- The expression `array.shape` gives the shape of an array.
+- Use `array[x, y]` to select a single element from a 2D array.
+- Array indices start at 0, not 1.
+- Use `low:high` to specify a `slice` that includes the indices from `low` to `high-1`.
+- Use `# some kind of explanation` to add comments to programs.
+- Use `numpy.mean(array)`, `numpy.amax(array)`, and `numpy.amin(array)` to calculate simple statistics.
+- Use `numpy.mean(array, axis=0)` or `numpy.mean(array, axis=1)` to calculate statistics across the specified axis.
+
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python_programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01-intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python Fundamentals</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03-matplotlib.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Visualizing data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

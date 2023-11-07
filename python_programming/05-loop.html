@@ -1,0 +1,990 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; University Research Computing Facility Workshop</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="06-files.html" />
+    <link rel="prev" title="Python lists" href="04-lists.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    University Research Computing Facility Workshops
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introductory Sequence
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_linux/00-index.html">
+   Introduction to Linux
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/00a-outline.html">
+     Workshop Outline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01-introduction.html">
+     What is Linux?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01a-shell.html">
+     Shell Specifics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/03-file-system.html">
+     Navigating Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04-working_with_files_and_directories.html">
+     Working With Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04a-file-permissions.html">
+     File Permissions and Atrributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/05-pipes.html">
+     Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/06-loop.html">
+     Loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/07-utilities.html">
+     Shell Scripts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/08-conclusion.html">
+     Workshop Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_picotte/00-index.html">
+   Introduction to Research Computing on Picotte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/01-introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/03-picotte_structure.html">
+     The structure of the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/04-storage.html">
+     Storage on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/05-interactive.html">
+     Running an interactive job on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/06-file-transfer.html">
+     Transferring files to and from Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/07-batch.html">
+     Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/08-jupyter-hub.html">
+     Jupyter Hub service to the Picotte Cluster
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../r_programming/00-index.html">
+   Introduction to R
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/01-Introduction.html">
+     Introduction to R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/02-Basic-R.html">
+     Basics of R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/04-Matrix.html">
+     Vectors, Matrices, Lists and Data Frames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
+     Control Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/06-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
+     Parallel Computing in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
+     Basic plotting with R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
+     Ploting with ggplot
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="00-index.html">
+   Introduction to Python Programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-intro.html">
+     Python Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-numpy.html">
+     Loading data into Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-matplotlib.html">
+     Visualizing data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-lists.html">
+     Python lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07-cond.html">
+     Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-func.html">
+     Composing Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-errors.html">
+     Syntax Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-defensive.html">
+     Assertions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-debugging.html">
+     Know What It’s Supposed to Do
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-cmdline.html">
+     Command-Line Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/python_programming/05-loop.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><no title></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+**Objectives**
+
+- Explain what a `for` loop does.
+- Correctly write `for` loops to repeat simple calculations.
+- Trace changes to a loop variable as the loop runs.
+- Trace changes to other variables as they are updated by a `for` loop.
+
+</pre></div>
+</div>
+<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
+**Questions**
+
+- How can I do the same operations on many different values?
+
+</pre></div>
+</div>
+<p>In the episode about visualizing data,
+we wrote Python code that plots values of interest from our first
+inflammation dataset (<code class="docutils literal notranslate"><span class="pre">inflammation-01.csv</span></code>), which revealed some suspicious features in it.</p>
+<p><img alt="" src="python_programming/fig/03-loop_2_0.png" />{alt=”Line graphs showing average, maximum and minimum inflammation across all patients over a 40-dayperiod.”}</p>
+<p>We have a dozen data sets right now and potentially more on the way if Dr. Maverick
+can keep up their surprisingly fast clinical trial rate. We want to create plots for all of
+our data sets with a single statement. To do that, we’ll have to teach the computer how to
+repeat things.</p>
+<p>An example task that we might want to repeat is accessing numbers in a list,
+which we
+will do by printing each number on a line of its own.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>In Python, a list is basically an ordered collection of elements, and every
+element has a unique number associated with it — its index. This means that
+we can access elements in a list using their indices.
+For example, we can get the first number in the list <code class="docutils literal notranslate"><span class="pre">odds</span></code>,
+by using <code class="docutils literal notranslate"><span class="pre">odds[0]</span></code>. One way to print each number is to use four <code class="docutils literal notranslate"><span class="pre">print</span></code> statements:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">1</span>
+<span class="go">3</span>
+<span class="go">5</span>
+<span class="go">7</span>
+</pre></div>
+</div>
+<p>This is a bad approach for three reasons:</p>
+<ol class="simple">
+<li><p><strong>Not scalable</strong>. Imagine you need to print a list that has hundreds
+of elements.  It might be easier to type them in manually.</p></li>
+<li><p><strong>Difficult to maintain</strong>. If we want to decorate each printed element with an
+asterisk or any other character, we would have to change four lines of code. While
+this might not be a problem for small lists, it would definitely be a problem for
+longer ones.</p></li>
+<li><p><strong>Fragile</strong>. If we use it with a list that has more elements than what we initially
+envisioned, it will only display part of the list’s elements. A shorter list, on
+the other hand, will cause an error because it will be trying to display elements of the
+list that do not exist.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">1</span>
+<span class="go">3</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+&lt;ipython-input-3-7974b6cdaf14&gt; in &lt;module&gt;()
+      3 print(odds[1])
+      4 print(odds[2])
+----&gt; 5 print(odds[3])
+
+IndexError: list index out of range
+</pre></div>
+</div>
+<p>Here’s a better approach: a <a class="reference external" href="../learners/reference.md#for-loop">for loop</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">odds</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">1</span>
+<span class="go">3</span>
+<span class="go">5</span>
+<span class="go">7</span>
+</pre></div>
+</div>
+<p>This is shorter — certainly shorter than something that prints every number in a
+hundred-number list — and more robust as well:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">odds</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">1</span>
+<span class="go">3</span>
+<span class="go">5</span>
+<span class="go">7</span>
+<span class="go">9</span>
+<span class="go">11</span>
+</pre></div>
+</div>
+<p>The improved version uses a <a class="reference external" href="../learners/reference.md#for-loop">for loop</a>
+to repeat an operation — in this case, printing — once for each thing in a sequence.
+The general form of a loop is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
+    <span class="c1"># do things using variable, such as print</span>
+</pre></div>
+</div>
+<p>Using the odds example above, the loop might look like this:</p>
+<p><img alt="" src="python_programming/fig/05-loops_image_num.png" />{alt=”Loop variable ‘num’ being assigned the value of each element in the list odds in turn andthen being printed”}</p>
+<p>where each number (<code class="docutils literal notranslate"><span class="pre">num</span></code>) in the variable <code class="docutils literal notranslate"><span class="pre">odds</span></code> is looped through and printed one number after
+another. The other numbers in the diagram denote which loop cycle the number was printed in (1
+being the first loop cycle, and 6 being the final loop cycle).</p>
+<p>We can call the <a class="reference external" href="../learners/reference.md#loop-variable">loop variable</a> anything we like, but
+there must be a colon at the end of the line starting the loop, and we must indent anything we
+want to run inside the loop. Unlike many other languages, there is no command to signify the end
+of the loop body (e.g. <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">for</span></code>); everything indented after the <code class="docutils literal notranslate"><span class="pre">for</span></code> statement belongs to the loop.</p>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## What&#39;s in a name?
+
+In the example above, the loop variable was given the name `num` as a mnemonic;
+it is short for &#39;number&#39;.
+We can choose any name we want for variables.  We might just as easily have chosen the name
+`banana` for the loop variable, as long as we use the same name when we invoke the variable inside
+the loop:
+
+```python
+odds = [1, 3, 5, 7, 9, 11]
+for banana in odds:
+    print(banana)
+```
+
+```output
+1
+3
+5
+7
+9
+11
+```
+
+It is a good idea to choose variable names that are meaningful, otherwise it would be more
+difficult to understand what the loop is doing.
+
+
+</pre></div>
+</div>
+<p>Here’s another loop that repeatedly updates a variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Curie&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">,</span> <span class="s1">&#39;Turing&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are&#39;</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="s1">&#39;names in the list.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">There are 3 names in the list.</span>
+</pre></div>
+</div>
+<p>It’s worth tracing the execution of this little program step by step.
+Since there are three names in <code class="docutils literal notranslate"><span class="pre">names</span></code>,
+the statement on line 4 will be executed three times.
+The first time around,
+<code class="docutils literal notranslate"><span class="pre">length</span></code> is zero (the value assigned to it on line 1)
+and <code class="docutils literal notranslate"><span class="pre">value</span></code> is <code class="docutils literal notranslate"><span class="pre">Curie</span></code>.
+The statement adds 1 to the old value of <code class="docutils literal notranslate"><span class="pre">length</span></code>,
+producing 1,
+and updates <code class="docutils literal notranslate"><span class="pre">length</span></code> to refer to that new value.
+The next time around,
+<code class="docutils literal notranslate"><span class="pre">value</span></code> is <code class="docutils literal notranslate"><span class="pre">Darwin</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> is 1,
+so <code class="docutils literal notranslate"><span class="pre">length</span></code> is updated to be 2.
+After one more update,
+<code class="docutils literal notranslate"><span class="pre">length</span></code> is 3;
+since there is nothing left in <code class="docutils literal notranslate"><span class="pre">names</span></code> for Python to process,
+the loop finishes
+and the <code class="docutils literal notranslate"><span class="pre">print</span></code> function on line 5 tells us our final answer.</p>
+<p>Note that a loop variable is a variable that is being used to record progress in a loop.
+It still exists after the loop is over,
+and we can re-use variables previously defined as loop variables as well:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Rosalind&#39;</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Curie&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">,</span> <span class="s1">&#39;Turing&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;after the loop, name is&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Curie</span>
+<span class="go">Darwin</span>
+<span class="go">Turing</span>
+<span class="go">after the loop, name is Turing</span>
+</pre></div>
+</div>
+<p>Note also that finding the length of an object is such a common operation
+that Python actually has a built-in function to do it called <code class="docutils literal notranslate"><span class="pre">len</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">4</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">len</span></code> is much faster than any function we could write ourselves,
+and much easier to read than a two-line loop;
+it will also give us the length of many other things that we haven’t met yet,
+so we should always use it when we can.</p>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## From 1 to N
+
+Python has a built-in function called `range` that generates a sequence of numbers. `range` can
+accept 1, 2, or 3 parameters.
+
+- If one parameter is given, `range` generates a sequence of that length,
+  starting at zero and incrementing by 1.
+  For example, `range(3)` produces the numbers `0, 1, 2`.
+- If two parameters are given, `range` starts at
+  the first and ends just before the second, incrementing by one.
+  For example, `range(2, 5)` produces `2, 3, 4`.
+- If `range` is given 3 parameters,
+  it starts at the first one, ends just before the second one, and increments by the third one.
+  For example, `range(3, 10, 2)` produces `3, 5, 7, 9`.
+
+Using `range`,
+write a loop that prints the first 3 natural numbers:
+
+```python
+1
+2
+3
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+for number in range(1, 4):
+    print(number)
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Understanding the loops
+
+Given the following loop:
+
+```python
+word = &#39;oxygen&#39;
+for letter in word:
+    print(letter)
+```
+
+How many times is the body of the loop executed?
+
+- 3 times
+- 4 times
+- 5 times
+- 6 times
+
+:::::::::::::::  solution
+
+## Solution
+
+The body of the loop is executed 6 times.
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Computing Powers With Loops
+
+Exponentiation is built into Python:
+
+```python
+print(5 ** 3)
+```
+
+```output
+125
+```
+
+Write a loop that calculates the same result as `5 ** 3` using
+multiplication (and without exponentiation).
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+result = 1
+for number in range(0, 3):
+    result = result * 5
+print(result)
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Summing a list
+
+Write a loop that calculates the sum of elements in a list
+by adding each element and printing the final value,
+so `[124, 402, 36]` prints 562
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+numbers = [124, 402, 36]
+summed = 0
+for num in numbers:
+    summed = summed + num
+print(summed)
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Computing the Value of a Polynomial
+
+The built-in function `enumerate` takes a sequence (e.g. a [list](04-lists.md)) and
+generates a new sequence of the same length. Each element of the new sequence is a pair composed
+of the index (0, 1, 2,...) and the value from the original sequence:
+
+```python
+for idx, val in enumerate(a_list):
+    # Do something using idx and val
+```
+
+The code above loops through `a_list`, assigning the index to `idx` and the value to `val`.
+
+Suppose you have encoded a polynomial as a list of coefficients in
+the following way: the first element is the constant term, the
+second element is the coefficient of the linear term, the third is the
+coefficient of the quadratic term, etc.
+
+```python
+x = 5
+coefs = [2, 4, 3]
+y = coefs[0] * x**0 + coefs[1] * x**1 + coefs[2] * x**2
+print(y)
+```
+
+```output
+97
+```
+
+Write a loop using `enumerate(coefs)` which computes the value `y` of any
+polynomial, given `x` and `coefs`.
+
+:::::::::::::::  solution
+
+## Solution
+
+```python
+y = 0
+for idx, coef in enumerate(coefs):
+    y = y + coef * x**idx
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+- Use `for variable in sequence` to process the elements of a sequence one at a time.
+- The body of a `for` loop must be indented.
+- Use `len(thing)` to determine the length of something that contains other values.
+
+</pre></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python_programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="04-lists.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python lists</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="06-files.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1074 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Python lists &#8212; University Research Computing Facility Workshop</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="05-loop.html" />
+    <link rel="prev" title="Visualizing data" href="03-matplotlib.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    University Research Computing Facility Workshops
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introductory Sequence
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_linux/00-index.html">
+   Introduction to Linux
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/00a-outline.html">
+     Workshop Outline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01-introduction.html">
+     What is Linux?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/01a-shell.html">
+     Shell Specifics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/03-file-system.html">
+     Navigating Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04-working_with_files_and_directories.html">
+     Working With Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/04a-file-permissions.html">
+     File Permissions and Atrributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/05-pipes.html">
+     Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/06-loop.html">
+     Loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/07-utilities.html">
+     Shell Scripts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/08-conclusion.html">
+     Workshop Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_picotte/00-index.html">
+   Introduction to Research Computing on Picotte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/01-introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/02-accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/03-picotte_structure.html">
+     The structure of the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/04-storage.html">
+     Storage on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/05-interactive.html">
+     Running an interactive job on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/06-file-transfer.html">
+     Transferring files to and from Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/07-batch.html">
+     Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/08-jupyter-hub.html">
+     Jupyter Hub service to the Picotte Cluster
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../r_programming/00-index.html">
+   Introduction to R
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/01-Introduction.html">
+     Introduction to R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/02-Basic-R.html">
+     Basics of R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/04-Matrix.html">
+     Vectors, Matrices, Lists and Data Frames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
+     Control Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/06-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
+     Parallel Computing in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
+     Basic plotting with R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
+     Ploting with ggplot
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="00-index.html">
+   Introduction to Python Programming
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-intro.html">
+     Python Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-numpy.html">
+     Loading data into Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-matplotlib.html">
+     Visualizing data
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Python lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07-cond.html">
+     Conditionals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-func.html">
+     Composing Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-errors.html">
+     Syntax Errors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-defensive.html">
+     Assertions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-debugging.html">
+     Know What It’s Supposed to Do
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-cmdline.html">
+     Command-Line Arguments
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/python_programming/04-lists.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Python lists</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+**Objectives**
+
+- Explain what a list is.
+- Create and index lists of simple values.
+- Change the values of individual elements
+- Append values to an existing list
+- Reorder and slice list elements
+- Create and manipulate nested lists
+
+</pre></div>
+</div>
+<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
+**Questions**
+
+- How can I store many values together?
+
+</pre></div>
+</div>
+<p>In the previous episode, we analyzed a single file of clinical trial inflammation data. However,
+after finding some peculiar and potentially suspicious trends in the trial data we ask
+Dr. Maverick if they have performed any other clinical trials. Surprisingly, they say that they
+have and provide us with 11 more CSV files for a further 11 clinical trials they have undertaken
+since the initial trial.</p>
+<p>Our goal now is to process all the inflammation data we have, which means that we still have
+eleven more files to go!</p>
+<p>The natural first step is to collect the names of all the files that we have to process. In Python,
+a list is a way to store multiple values together. In this episode, we will learn how to store
+multiple values in a list as well as how to work with lists.</p>
+<section id="python-lists">
+<h1>Python lists<a class="headerlink" href="#python-lists" title="Permalink to this headline">#</a></h1>
+<p>Unlike NumPy arrays, lists are built into the language so we do not have to load a library
+to use them.
+We create a list by putting values inside square brackets and separating the values with commas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;odds are:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">odds are: [1, 3, 5, 7]</span>
+</pre></div>
+</div>
+<p>We can access elements of a list using indices – numbered positions of elements in the list.
+These positions are numbered starting at 0, so the first element has an index of 0.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;first element:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;last element:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&quot;-1&quot; element:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">first element: 1</span>
+<span class="go">last element: 7</span>
+<span class="go">&quot;-1&quot; element: 7</span>
+</pre></div>
+</div>
+<p>Yes, we can use negative numbers as indices in Python. When we do so, the index <code class="docutils literal notranslate"><span class="pre">-1</span></code> gives us the
+last element in the list, <code class="docutils literal notranslate"><span class="pre">-2</span></code> the second to last, and so on.
+Because of this, <code class="docutils literal notranslate"><span class="pre">odds[3]</span></code> and <code class="docutils literal notranslate"><span class="pre">odds[-1]</span></code> point to the same element here.</p>
+<p>There is one important difference between lists and strings:
+we can change the values in a list,
+but we cannot change individual characters in a string.
+For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Curie&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwing&#39;</span><span class="p">,</span> <span class="s1">&#39;Turing&#39;</span><span class="p">]</span>  <span class="c1"># typo in Darwin&#39;s name</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;names is originally:&#39;</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+<span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Darwin&#39;</span>  <span class="c1"># correct the name</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;final value of names:&#39;</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">names is originally: [&#39;Curie&#39;, &#39;Darwing&#39;, &#39;Turing&#39;]</span>
+<span class="go">final value of names: [&#39;Curie&#39;, &#39;Darwin&#39;, &#39;Turing&#39;]</span>
+</pre></div>
+</div>
+<p>works, but:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Darwin&#39;</span>
+<span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;d&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-8-220df48aeb2e&gt; in &lt;module&gt;()
+      1 name = &#39;Darwin&#39;
+----&gt; 2 name[0] = &#39;d&#39;
+
+TypeError: &#39;str&#39; object does not support item assignment
+</pre></div>
+</div>
+<p>does not.</p>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Ch-Ch-Ch-Ch-Changes
+
+Data which can be modified in place is called [mutable](../learners/reference.md#mutable),
+while data which cannot be modified is called
+[immutable](../learners/reference.md#immutable).
+Strings and numbers are immutable. This does not mean that variables with string or number values
+are constants, but when we want to change the value of a string or number variable, we can only
+replace the old value with a completely new value.
+
+Lists and arrays, on the other hand, are mutable: we can modify them after they have been
+created. We can change individual elements, append new elements, or reorder the whole list. For
+some operations, like sorting, we can choose whether to use a function that modifies the data
+in-place or a function that returns a modified copy and leaves the original unchanged.
+
+Be careful when modifying data in-place. If two variables refer to the same list, and you modify
+the list value, it will change for both variables!
+
+```python
+mild_salsa = [&#39;peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
+hot_salsa = mild_salsa        # &lt;-- mild_salsa and hot_salsa point to the *same* list data in memory
+hot_salsa[0] = &#39;hot peppers&#39;
+print(&#39;Ingredients in mild salsa:&#39;, mild_salsa)
+print(&#39;Ingredients in hot salsa:&#39;, hot_salsa)
+```
+
+```output
+Ingredients in mild salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
+Ingredients in hot salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
+```
+
+If you want variables with mutable values to be independent, you
+must make a copy of the value when you assign it.
+
+```python
+mild_salsa = [&#39;peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
+hot_salsa = list(mild_salsa)        # &lt;-- makes a *copy* of the list
+hot_salsa[0] = &#39;hot peppers&#39;
+print(&#39;Ingredients in mild salsa:&#39;, mild_salsa)
+print(&#39;Ingredients in hot salsa:&#39;, hot_salsa)
+```
+
+```output
+Ingredients in mild salsa: [&#39;peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
+Ingredients in hot salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
+```
+
+Because of pitfalls like this, code which modifies data in place can be more difficult to
+understand. However, it is often far more efficient to modify a large data structure in place
+than to create a modified copy for every small change. You should consider both of these aspects
+when writing your code.
+
+
+</pre></div>
+</div>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Nested Lists
+
+Since a list can contain any Python variables, it can even contain other lists.
+
+For example, you could represent the products on the shelves of a small grocery shop
+as a nested list called `veg`:
+
+![](fig/04_groceries_veg.png){alt=&#39;veg is represented as a shelf full of produce. There are three rows of vegetableson the shelf, and each row contains three baskets of vegetables. We can labeleach basket according to the type of vegetable it contains, so the top rowcontains (from left to right) lettuce, lettuce, and peppers.&#39;}
+
+To store the contents of the shelf in a nested list, you write it this way:
+
+```python
+veg = [[&#39;lettuce&#39;, &#39;lettuce&#39;, &#39;peppers&#39;, &#39;zucchini&#39;],
+     [&#39;lettuce&#39;, &#39;lettuce&#39;, &#39;peppers&#39;, &#39;zucchini&#39;],
+     [&#39;lettuce&#39;, &#39;cilantro&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]]
+```
+
+Here are some visual examples of how indexing a list of lists `veg` works. First,
+you can reference each row on the shelf as a separate list. For example, `veg[2]`
+represents the bottom row, which is a list of the baskets in that row.
+
+![](fig/04_groceries_veg0.png){alt=&#39;veg is now shown as a list of three rows, with veg\[0\] representing the top row ofthree baskets, veg\[1\] representing the second row, and veg\[2\] representing the bottom row.&#39;}
+
+Index operations using the image would work like this:
+
+```python
+print(veg[2])
+```
+
+```output
+[&#39;lettuce&#39;, &#39;cilantro&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]
+```
+
+```python
+print(veg[0])
+```
+
+```output
+[&#39;lettuce&#39;, &#39;lettuce&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]
+```
+
+To reference a specific basket on a specific shelf, you use two indexes. The first
+index represents the row (from top to bottom) and the second index represents
+the specific basket (from left to right).
+![](fig/04_groceries_veg00.png){alt=&#39;veg is now shown as a two-dimensional grid, with each basket labeled according toits index in the nested list. The first index is the row number and the secondindex is the basket number, so veg\[1\]\[3\] represents the basket on the far rightside of the second row (basket 4 on row 2): zucchini&#39;}
+
+```python
+print(veg[0][0])
+```
+
+```output
+&#39;lettuce&#39;
+```
+
+```python
+print(veg[1][2])
+```
+
+```output
+&#39;peppers&#39;
+```
+
+</pre></div>
+</div>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
+## Heterogeneous Lists
+
+Lists in Python can contain elements of different types. Example:
+
+```python
+sample_ages = [10, 12.5, &#39;Unknown&#39;]
+```
+
+</pre></div>
+</div>
+<p>There are many ways to change the contents of lists besides assigning new values to
+individual elements:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;odds after adding a value:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">odds after adding a value: [1, 3, 5, 7, 11]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">removed_element</span> <span class="o">=</span> <span class="n">odds</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;odds after removing the first element:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;removed_element:&#39;</span><span class="p">,</span> <span class="n">removed_element</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">odds after removing the first element: [3, 5, 7, 11]</span>
+<span class="go">removed_element: 1</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;odds after reversing:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">odds after reversing: [11, 7, 5, 3]</span>
+</pre></div>
+</div>
+<p>While modifying in place, it is useful to remember that Python treats lists in a slightly
+counter-intuitive way.</p>
+<p>As we saw earlier, when we modified the <code class="docutils literal notranslate"><span class="pre">mild_salsa</span></code> list item in-place, if we make a list, (attempt to)
+copy it and then modify this list, we can cause all sorts of trouble. This also applies to modifying
+the list using the above functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">primes</span> <span class="o">=</span> <span class="n">odds</span>
+<span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;primes:&#39;</span><span class="p">,</span> <span class="n">primes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;odds:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">primes: [3, 5, 7, 2]</span>
+<span class="go">odds: [3, 5, 7, 2]</span>
+</pre></div>
+</div>
+<p>This is because Python stores a list in memory, and then can use multiple names to refer to the
+same list. If all we want to do is copy a (simple) list, we can again use the <code class="docutils literal notranslate"><span class="pre">list</span></code> function, so we
+do not modify a list we did not mean to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">primes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">odds</span><span class="p">)</span>
+<span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;primes:&#39;</span><span class="p">,</span> <span class="n">primes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;odds:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">primes: [3, 5, 7, 2]</span>
+<span class="go">odds: [3, 5, 7]</span>
+</pre></div>
+</div>
+<p>Subsets of lists and strings can be accessed by specifying ranges of values in brackets,
+similar to how we accessed ranges of positions in a NumPy array.
+This is commonly referred to as “slicing” the list/string.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">binomial_name</span> <span class="o">=</span> <span class="s1">&#39;Drosophila melanogaster&#39;</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">binomial_name</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;group:&#39;</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+
+<span class="n">species</span> <span class="o">=</span> <span class="n">binomial_name</span><span class="p">[</span><span class="mi">11</span><span class="p">:</span><span class="mi">23</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;species:&#39;</span><span class="p">,</span> <span class="n">species</span><span class="p">)</span>
+
+<span class="n">chromosomes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">]</span>
+<span class="n">autosomes</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;autosomes:&#39;</span><span class="p">,</span> <span class="n">autosomes</span><span class="p">)</span>
+
+<span class="n">last</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;last:&#39;</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">group: Drosophila</span>
+<span class="go">species: melanogaster</span>
+<span class="go">autosomes: [&#39;2&#39;, &#39;3&#39;, &#39;4&#39;]</span>
+<span class="go">last: 4</span>
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Slicing From the End
+
+Use slicing to access only the last four characters of a string or entries of a list.
+
+```python
+string_for_slicing = &#39;Observation date: 02-Feb-2013&#39;
+list_for_slicing = [[&#39;fluorine&#39;, &#39;F&#39;],
+                    [&#39;chlorine&#39;, &#39;Cl&#39;],
+                    [&#39;bromine&#39;, &#39;Br&#39;],
+                    [&#39;iodine&#39;, &#39;I&#39;],
+                    [&#39;astatine&#39;, &#39;At&#39;]]
+```
+
+```output
+&#39;2013&#39;
+[[&#39;chlorine&#39;, &#39;Cl&#39;], [&#39;bromine&#39;, &#39;Br&#39;], [&#39;iodine&#39;, &#39;I&#39;], [&#39;astatine&#39;, &#39;At&#39;]]
+```
+
+Would your solution work regardless of whether you knew beforehand
+the length of the string or list
+(e.g. if you wanted to apply the solution to a set of lists of different lengths)?
+If not, try to change your approach to make it more robust.
+
+Hint: Remember that indices can be negative as well as positive
+
+:::::::::::::::  solution
+
+## Solution
+
+Use negative indices to count elements from the end of a container (such as list or string):
+
+```python
+string_for_slicing[-4:]
+list_for_slicing[-4:]
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Non-Continuous Slices
+
+So far we&#39;ve seen how to use slicing to take single blocks
+of successive entries from a sequence.
+But what if we want to take a subset of entries
+that aren&#39;t next to each other in the sequence?
+
+You can achieve this by providing a third argument
+to the range within the brackets, called the *step size*.
+The example below shows how you can take every third entry in a list:
+
+```python
+primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
+subset = primes[0:12:3]
+print(&#39;subset&#39;, subset)
+```
+
+```output
+subset [2, 7, 17, 29]
+```
+
+Notice that the slice taken begins with the first entry in the range,
+followed by entries taken at equally-spaced intervals (the steps) thereafter.
+If you wanted to begin the subset with the third entry,
+you would need to specify that as the starting point of the sliced range:
+
+```python
+primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
+subset = primes[2:12:3]
+print(&#39;subset&#39;, subset)
+```
+
+```output
+subset [5, 13, 23, 37]
+```
+
+Use the step size argument to create a new string
+that contains only every other character in the string
+&quot;In an octopus&#39;s garden in the shade&quot;. Start with
+creating a variable to hold the string:
+
+```python
+beatles = &quot;In an octopus&#39;s garden in the shade&quot;
+```
+
+What slice of `beatles` will produce the
+following output (i.e., the first character, third
+character, and every other character through the end
+of the string)?
+
+```output
+I notpssgre ntesae
+```
+
+:::::::::::::::  solution
+
+## Solution
+
+To obtain every other character you need to provide a slice with the step
+size of 2:
+
+```python
+beatles[0:35:2]
+```
+
+You can also leave out the beginning and end of the slice to take the whole string
+and provide only the step argument to go every second
+element:
+
+```python
+beatles[::2]
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<p>If you want to take a slice from the beginning of a sequence, you can omit the first index in the
+range:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="s1">&#39;Monday 4 January 2016&#39;</span>
+<span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using 0 to begin range:&#39;</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+<span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Omitting beginning index:&#39;</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Using 0 to begin range: Monday</span>
+<span class="go">Omitting beginning index: Monday</span>
+</pre></div>
+</div>
+<p>And similarly, you can omit the ending index in the range to take a slice to the very end of the
+sequence:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jan&#39;</span><span class="p">,</span> <span class="s1">&#39;feb&#39;</span><span class="p">,</span> <span class="s1">&#39;mar&#39;</span><span class="p">,</span> <span class="s1">&#39;apr&#39;</span><span class="p">,</span> <span class="s1">&#39;may&#39;</span><span class="p">,</span> <span class="s1">&#39;jun&#39;</span><span class="p">,</span> <span class="s1">&#39;jul&#39;</span><span class="p">,</span> <span class="s1">&#39;aug&#39;</span><span class="p">,</span> <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;oct&#39;</span><span class="p">,</span> <span class="s1">&#39;nov&#39;</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">]</span>
+<span class="n">sond</span> <span class="o">=</span> <span class="n">months</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;With known last position:&#39;</span><span class="p">,</span> <span class="n">sond</span><span class="p">)</span>
+<span class="n">sond</span> <span class="o">=</span> <span class="n">months</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">months</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using len() to get last entry:&#39;</span><span class="p">,</span> <span class="n">sond</span><span class="p">)</span>
+<span class="n">sond</span> <span class="o">=</span> <span class="n">months</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Omitting ending index:&#39;</span><span class="p">,</span> <span class="n">sond</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">With known last position: [&#39;sep&#39;, &#39;oct&#39;, &#39;nov&#39;, &#39;dec&#39;]</span>
+<span class="go">Using len() to get last entry: [&#39;sep&#39;, &#39;oct&#39;, &#39;nov&#39;, &#39;dec&#39;]</span>
+<span class="go">Omitting ending index: [&#39;sep&#39;, &#39;oct&#39;, &#39;nov&#39;, &#39;dec&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Overloading
+
+`+` usually means addition, but when used on strings or lists, it means &quot;concatenate&quot;.
+Given that, what do you think the multiplication operator `*` does on lists?
+In particular, what will be the output of the following code?
+
+```python
+counts = [2, 4, 6, 8, 10]
+repeats = counts * 2
+print(repeats)
+```
+
+1. `[2, 4, 6, 8, 10, 2, 4, 6, 8, 10]`
+2. `[4, 8, 12, 16, 20]`
+3. `[[2, 4, 6, 8, 10], [2, 4, 6, 8, 10]]`
+4. `[2, 4, 6, 8, 10, 4, 8, 12, 16, 20]`
+
+The technical term for this is *operator overloading*:
+a single operator, like `+` or `*`,
+can do different things depending on what it&#39;s applied to.
+
+:::::::::::::::  solution
+
+## Solution
+
+The multiplication operator `*` used on a list replicates elements of the list and concatenates
+them together:
+
+```output
+[2, 4, 6, 8, 10, 2, 4, 6, 8, 10]
+```
+
+It&#39;s equivalent to:
+
+```python
+counts + counts
+```
+
+:::::::::::::::::::::::::
+
+</pre></div>
+</div>
+<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+- `[value1, value2, value3, ...]` creates a list.
+- Lists can contain any Python object, including lists (i.e., list of lists).
+- Lists are indexed and sliced with square brackets (e.g., `list[0]` and `list[2:9]`), in the same way as strings and arrays.
+- Lists are mutable (i.e., their values can be changed in place).
+- Strings are immutable (i.e., the characters in them cannot be changed).
+
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python_programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03-matplotlib.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Visualizing data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="05-loop.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
