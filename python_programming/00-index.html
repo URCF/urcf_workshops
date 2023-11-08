@@ -615,10 +615,15 @@ instructions to launch a Jupyter Server on Picotte’s compute nodes.</p></li>
 <li><p>Open a terminal from inside JupyterHub and run the following command to
 get the data.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://github.com/swcarpentry/python-novice-inflammation/raw/main/episodes/data/python-novice-inflammation-data.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>
+mkdir swc-python
+<span class="nb">cd</span> swc-python
+wget https://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip
+wget https://swcarpentry.github.io/python-novice-inflammation/files/code/python-novice-inflammation-code.zip
 unzip python-novice-inflammation-data.zip
-<span class="nb">cd</span> data
-ls -l 
+unzip python-novice-inflammation-code.zip
+ls data/
+ls code/ 
 </pre></div>
 </div>
 <p><img alt="Getting data for Picotte" src="../_images/picotte-data.png" /></p>
@@ -664,6 +669,21 @@ file you just downloaded should appear.</p></li>
 </li>
 </ul>
 </div>
+<div class="admonition-data-preparation admonition">
+<p class="admonition-title">Data preparation</p>
+<ul class="simple">
+<li><p>Create a directory on your Desktop called <code class="docutils literal notranslate"><span class="pre">swc-python</span></code>. Download the following files
+into the <code class="docutils literal notranslate"><span class="pre">swc-python</span></code> directory:</p>
+<ul>
+<li><p><a class="reference external" href="https://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip">zipped data file</a></p></li>
+<li><p><a class="reference external" href="https://swcarpentry.github.io/python-novice-inflammation/files/code/python-novice-inflammation-code.zip">zipped code file</a></p></li>
+</ul>
+</li>
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">swc-python</span></code> and unzip these two files. You should see the two directories: <code class="docutils literal notranslate"><span class="pre">data</span></code> and
+<code class="docutils literal notranslate"><span class="pre">code</span></code> created.</p></li>
+</ul>
+</div>
+<p><img alt="Getting data for Desktops" src="../_images/desktop-files.png" /></p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
