@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Loading data into Python" href="02-numpy.html" />
+    <link rel="next" title="Analyzing Patient Data" href="02-numpy.html" />
     <link rel="prev" title="Introduction to Python Programming" href="00-index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -327,7 +327,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="02-numpy.html">
-     Loading data into Python
+     Analyzing Patient Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -524,6 +524,26 @@ title="Print to PDF"
    Built-in Python functions
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables-as-sticky-notes">
+   Variables as Sticky Notes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-check-your-understanding">
+   Challenge 1: Check Your Understanding
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-sorting-out-references">
+   Challenge 2: Sorting Out References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-seeing-data-types">
+   Challenge 3: Seeing Data Types
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -563,6 +583,26 @@ title="Print to PDF"
    Built-in Python functions
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variables-as-sticky-notes">
+   Variables as Sticky Notes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-check-your-understanding">
+   Challenge 1: Check Your Understanding
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-sorting-out-references">
+   Challenge 2: Sorting Out References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-seeing-data-types">
+   Challenge 3: Seeing Data Types
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -575,13 +615,14 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="python-fundamentals">
 <h1>Python Fundamentals<a class="headerlink" href="#python-fundamentals" title="Permalink to this headline">#</a></h1>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p><strong>Objectives</strong></p>
+<div class="admonition-objectives admonition">
+<p class="admonition-title">Objectives</p>
 <ul class="simple">
 <li><p>Assign values to variables.</p></li>
 </ul>
-<p><strong>Questions</strong></p>
+</div>
+<div class="admonition-questions admonition">
+<p class="admonition-title">Questions</p>
 <ul class="simple">
 <li><p>What basic data types can I work with in Python?</p></li>
 <li><p>How can I create a new variable in Python?</p></li>
@@ -600,8 +641,7 @@ title="Print to PDF"
 </div>
 <p>This is great but not very interesting.
 To do anything useful with data, we need to assign its value to a <em>variable</em>.
-In Python, we can <a class="reference external" href="../learners/reference.md#assign">assign</a> a value to a
-<a class="reference external" href="../learners/reference.md#variable">variable</a>, using the equals sign <code class="docutils literal notranslate"><span class="pre">=</span></code>.
+In Python, we can assign a value to a variable, using the equals sign <code class="docutils literal notranslate"><span class="pre">=</span></code>.
 For example, we can track the weight of a patient who weighs 60 kilograms by
 assigning the value <code class="docutils literal notranslate"><span class="pre">60</span></code> to a variable <code class="docutils literal notranslate"><span class="pre">weight_kg</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weight_kg</span> <span class="o">=</span> <span class="mi">60</span>
@@ -613,7 +653,7 @@ it. In layperson’s terms, <strong>a variable is a name for a value</strong>.</
 <ul class="simple">
 <li><p>can include letters, digits, and underscores</p></li>
 <li><p>cannot start with a digit</p></li>
-<li><p>are <a class="reference external" href="../learners/reference.md#case-sensitive">case sensitive</a>.</p></li>
+<li><p>are case sensitive.</p></li>
 </ul>
 <p>This means that, for example:</p>
 <ul class="simple">
@@ -657,7 +697,7 @@ We may want to store our patient’s weight in pounds as well as kilograms:</p>
 <section id="built-in-python-functions">
 <h2>Built-in Python functions<a class="headerlink" href="#built-in-python-functions" title="Permalink to this headline">#</a></h2>
 <p>To carry out common tasks with data and variables in Python,
-the language provides us with several built-in <a class="reference external" href="../learners/reference.md#function">functions</a>.
+the language provides us with several built-in functions.
 To display information to the screen, we use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">weight_lb</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">patient_id</span><span class="p">)</span>
@@ -681,8 +721,7 @@ We will learn more about how functions work and how to create our own in later e
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">inflam_001 weight in kilograms: 60.3</span>
 </pre></div>
 </div>
-<p>We can also call a function inside of another
-<a class="reference external" href="../learners/reference.md#function-call">function call</a>.
+<p>We can also call a function inside of another function call.
 For example, Python has a built-in function called <code class="docutils literal notranslate"><span class="pre">type</span></code> that tells you a value’s data type:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">60.3</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">patient_id</span><span class="p">))</span>
@@ -715,151 +754,122 @@ For example, Python has a built-in function called <code class="docutils literal
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">weight in kilograms is now: 65.0</span>
 </pre></div>
 </div>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Variables as Sticky Notes
-
-A variable in Python is analogous to a sticky note with a name written on it:
-assigning a value to a variable is like putting that sticky note on a particular value.
-
-![](fig/python-sticky-note-variables-01.svg){alt=&#39;Value of 65.0 with weight\_kg label stuck on it&#39;}
-
-Using this analogy, we can investigate how assigning a value to one variable
-does **not** change values of other, seemingly related, variables.  For
-example, let&#39;s store the subject&#39;s weight in pounds in its own variable:
-
-```python
-# There are 2.2 pounds per kilogram
-weight_lb = 2.2 * weight_kg
-print(&#39;weight in kilograms:&#39;, weight_kg, &#39;and in pounds:&#39;, weight_lb)
-```
-
-```output
-weight in kilograms: 65.0 and in pounds: 143.0
-```
-
-Everything in a line of code following the &#39;#&#39; symbol is a
-[comment](../learners/reference.md#comment) that is ignored by Python.
+</section>
+<section id="variables-as-sticky-notes">
+<h2>Variables as Sticky Notes<a class="headerlink" href="#variables-as-sticky-notes" title="Permalink to this headline">#</a></h2>
+<p>A variable in Python is analogous to a sticky note with a name written on it:
+assigning a value to a variable is like putting that sticky note on a particular value.</p>
+<p><img alt="Value of 65.0 with weight_kg label stuck on it" src="../_images/python-sticky-note-variables-01.svg" /></p>
+<p>Using this analogy, we can investigate how assigning a value to one variable
+does <strong>not</strong> change values of other, seemingly related, variables.  For
+example, let’s store the subject’s weight in pounds in its own variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># There are 2.2 pounds per kilogram</span>
+<span class="n">weight_lb</span> <span class="o">=</span> <span class="mf">2.2</span> <span class="o">*</span> <span class="n">weight_kg</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;weight in kilograms:&#39;</span><span class="p">,</span> <span class="n">weight_kg</span><span class="p">,</span> <span class="s1">&#39;and in pounds:&#39;</span><span class="p">,</span> <span class="n">weight_lb</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">weight in kilograms: 65.0 and in pounds: 143.0</span>
+</pre></div>
+</div>
+<p>Everything in a line of code following the ‘#’ symbol is a
+comment that is ignored by Python.
 Comments allow programmers to leave explanatory notes for other
-programmers or their future selves.
-
-![](fig/python-sticky-note-variables-02.svg){alt=&#39;Value of 65.0 with weight\_kg label stuck on it, and value of 143.0 with weight\_lb label stuck on it&#39;}
-
-Similar to above, the expression `2.2 * weight_kg` is evaluated to `143.0`,
-and then this value is assigned to the variable `weight_lb` (i.e. the sticky
-note `weight_lb` is placed on `143.0`). At this point, each variable is
-&quot;stuck&quot; to completely distinct and unrelated values.
-
-Let&#39;s now change `weight_kg`:
-
-```python
-weight_kg = 100.0
-print(&#39;weight in kilograms is now:&#39;, weight_kg, &#39;and weight in pounds is still:&#39;, weight_lb)
-```
-
-```output
-weight in kilograms is now: 100.0 and weight in pounds is still: 143.0
-```
-
-![](fig/python-sticky-note-variables-03.svg){alt=&#39;Value of 100.0 with label weight\_kg stuck on it, and value of 143.0 with label weight\_lbstuck on it&#39;}
-
-Since `weight_lb` doesn&#39;t &quot;remember&quot; where its value comes from,
-it is not updated when we change `weight_kg`.
-
-
+programmers or their future selves.</p>
+<p><img alt="Value of 65.0 with weight_kg label stuck on it, and value of 143.0 with weight_lb label stuck on it" src="../_images/python-sticky-note-variables-02.svg" /></p>
+<p>Similar to above, the expression <code class="docutils literal notranslate"><span class="pre">2.2</span> <span class="pre">*</span> <span class="pre">weight_kg</span></code> is evaluated to <code class="docutils literal notranslate"><span class="pre">143.0</span></code>,
+and then this value is assigned to the variable <code class="docutils literal notranslate"><span class="pre">weight_lb</span></code> (i.e. the sticky
+note <code class="docutils literal notranslate"><span class="pre">weight_lb</span></code> is placed on <code class="docutils literal notranslate"><span class="pre">143.0</span></code>). At this point, each variable is
+“stuck” to completely distinct and unrelated values.</p>
+<p>Let’s now change <code class="docutils literal notranslate"><span class="pre">weight_kg</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weight_kg</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;weight in kilograms is now:&#39;</span><span class="p">,</span> <span class="n">weight_kg</span><span class="p">,</span> <span class="s1">&#39;and weight in pounds is still:&#39;</span><span class="p">,</span> <span class="n">weight_lb</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Check Your Understanding
-
-What values do the variables `mass` and `age` have after each of the following statements?
-Test your answer by executing the lines.
-
-```python
-mass = 47.5
-age = 122
-mass = mass * 2.0
-age = age - 20
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-```output
-`mass` holds a value of 47.5, `age` does not exist
-`mass` still holds a value of 47.5, `age` holds a value of 122
-`mass` now has a value of 95.0, `age`&#39;s value is still 122
-`mass` still has a value of 95.0, `age` now holds 102
-```
-
-:::::::::::::::::::::::::
-
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">weight in kilograms is now: 100.0 and weight in pounds is still: 143.0</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Sorting Out References
-
-Python allows you to assign multiple values to multiple variables in one line by separating
-the variables and values with commas. What does the following program print out?
-
-```python
-first, second = &#39;Grace&#39;, &#39;Hopper&#39;
-third, fourth = second, first
-print(third, fourth)
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-```output
-Hopper Grace
-```
-
-:::::::::::::::::::::::::
-
+<p><img alt="Value of 100.0 with label weight_kg stuck on it, and value of 143.0 with label weight_lbstuck on it" src="../_images/python-sticky-note-variables-03.svg" /></p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">weight_lb</span></code> doesn’t “remember” where its value comes from,
+it is not updated when we change <code class="docutils literal notranslate"><span class="pre">weight_kg</span></code>.</p>
+</section>
+<section id="challenge-1-check-your-understanding">
+<h2>Challenge 1: Check Your Understanding<a class="headerlink" href="#challenge-1-check-your-understanding" title="Permalink to this headline">#</a></h2>
+<p>What values do the variables <code class="docutils literal notranslate"><span class="pre">mass</span></code> and <code class="docutils literal notranslate"><span class="pre">age</span></code> have after each of the following statements?
+Test your answer by executing the lines.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mass</span> <span class="o">=</span> <span class="mf">47.5</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">122</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="n">mass</span> <span class="o">*</span> <span class="mf">2.0</span>
+<span class="n">age</span> <span class="o">=</span> <span class="n">age</span> <span class="o">-</span> <span class="mi">20</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Seeing Data Types
-
-What are the data types of the following variables?
-
-```python
-planet = &#39;Earth&#39;
-apples = 5
-distance = 10.5
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-```python
-print(type(planet))
-print(type(apples))
-print(type(distance))
-```
-
-```output
-&lt;class &#39;str&#39;&gt;
-&lt;class &#39;int&#39;&gt;
-&lt;class &#39;float&#39;&gt;
-```
-
-:::::::::::::::::::::::::
-
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">mass</span></code> holds a value of 47.5, <code class="docutils literal notranslate"><span class="pre">age</span></code> does not exist
+<code class="docutils literal notranslate"><span class="pre">mass</span></code> still holds a value of 47.5, <code class="docutils literal notranslate"><span class="pre">age</span></code> holds a value of 122
+<code class="docutils literal notranslate"><span class="pre">mass</span></code> now has a value of 95.0, <code class="docutils literal notranslate"><span class="pre">age</span></code>’s value is still 122
+<code class="docutils literal notranslate"><span class="pre">mass</span></code> still has a value of 95.0, <code class="docutils literal notranslate"><span class="pre">age</span></code> now holds 102</p>
+</div>
+</details></section>
+<section id="challenge-2-sorting-out-references">
+<h2>Challenge 2: Sorting Out References<a class="headerlink" href="#challenge-2-sorting-out-references" title="Permalink to this headline">#</a></h2>
+<p>Python allows you to assign multiple values to multiple variables in one line by separating
+the variables and values with commas. What does the following program print out?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="s1">&#39;Grace&#39;</span><span class="p">,</span> <span class="s1">&#39;Hopper&#39;</span>
+<span class="n">third</span><span class="p">,</span> <span class="n">fourth</span> <span class="o">=</span> <span class="n">second</span><span class="p">,</span> <span class="n">first</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">third</span><span class="p">,</span> <span class="n">fourth</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
-- Basic data types in Python include integers, strings, and floating-point numbers.
-- Use `variable = value` to assign a value to a variable in order to record it in memory.
-- Variables are created on demand whenever a value is assigned to them.
-- Use `print(something)` to display the value of `something`.
-- Use `# some kind of explanation` to add comments to programs.
-- Built-in functions are always available to use.
-
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Hopper Grace</p>
+</div>
+</details></section>
+<section id="challenge-3-seeing-data-types">
+<h2>Challenge 3: Seeing Data Types<a class="headerlink" href="#challenge-3-seeing-data-types" title="Permalink to this headline">#</a></h2>
+<p>What are the data types of the following variables?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">planet</span> <span class="o">=</span> <span class="s1">&#39;Earth&#39;</span>
+<span class="n">apples</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="mf">10.5</span>
 </pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">planet</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">apples</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">distance</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;class &#39;str&#39;&gt;</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+<span class="go">&lt;class &#39;float&#39;&gt;</span>
+</pre></div>
+</div>
+</div>
+</details><div class="admonition-keypoints admonition">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>Basic data types in Python include integers, strings, and floating-point numbers.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">variable</span> <span class="pre">=</span> <span class="pre">value</span></code> to assign a value to a variable in order to record it in memory.</p></li>
+<li><p>Variables are created on demand whenever a value is assigned to them.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">print(something)</span></code> to display the value of <code class="docutils literal notranslate"><span class="pre">something</span></code>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">some</span> <span class="pre">kind</span> <span class="pre">of</span> <span class="pre">explanation</span></code> to add comments to programs.</p></li>
+<li><p>Built-in functions are always available to use.</p></li>
+</ul>
 </div>
 </section>
 </section>
@@ -901,7 +911,7 @@ print(type(distance))
     <a class='right-next' id="next-link" href="02-numpy.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Loading data into Python</p>
+        <p class="prev-next-title">Analyzing Patient Data</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Loading data into Python &#8212; University Research Computing Facility Workshop</title>
+    <title>Analyzing Patient Data &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -327,7 +327,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Loading data into Python
+     Analyzing Patient Data
     </a>
    </li>
    <li class="toctree-l2">
@@ -504,17 +504,17 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-data-into-python">
    Loading data into Python
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#slicing-data">
    Slicing data
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analyzing-data">
    Analyzing data
   </a>
@@ -528,7 +528,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Loading data into Python</h1>
+                <h1>Analyzing Patient Data</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -538,17 +538,17 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-data-into-python">
    Loading data into Python
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#slicing-data">
    Slicing data
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analyzing-data">
    Analyzing data
   </a>
@@ -563,37 +563,36 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
-**Objectives**
-
-- Explain what a library is and what libraries are used for.
-- Import a Python library and use the functions it contains.
-- Read tabular data from a file into a program.
-- Select individual values and subsections from data.
-- Perform operations on arrays of data.
-
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="analyzing-patient-data">
+<h1>Analyzing Patient Data<a class="headerlink" href="#analyzing-patient-data" title="Permalink to this headline">#</a></h1>
+<div class="admonition-objectives admonition">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Explain what a library is and what libraries are used for.</p></li>
+<li><p>Import a Python library and use the functions it contains.</p></li>
+<li><p>Read tabular data from a file into a program.</p></li>
+<li><p>Select individual values and subsections from data.</p></li>
+<li><p>Perform operations on arrays of data.</p></li>
+</ul>
 </div>
-<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
-**Questions**
-
-- How can I process tabular data files in Python?
-
-</pre></div>
+<div class="admonition-questions admonition">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How can I process tabular data files in Python?</p></li>
+</ul>
 </div>
 <p>Words are useful, but what’s more useful are the sentences and stories we build with them.
 Similarly, while a lot of powerful, general tools are built into Python,
-specialized tools built up from these basic units live in
-<a class="reference external" href="../learners/reference.md#library">libraries</a>
+specialized tools built up from these basic units live in <strong>libraries</strong>.
 that can be called upon when needed.</p>
 <section id="loading-data-into-python">
-<h1>Loading data into Python<a class="headerlink" href="#loading-data-into-python" title="Permalink to this headline">#</a></h1>
+<h2>Loading data into Python<a class="headerlink" href="#loading-data-into-python" title="Permalink to this headline">#</a></h2>
 <p>To begin processing the clinical trial inflammation data, we need to load it into Python.
 We can do that using a library called
 <a class="reference external" href="https://numpy.org/doc/stable">NumPy</a>, which stands for Numerical Python.
 In general, you should use this library when you want to do fancy things with lots of numbers,
 especially if you have matrices or arrays. To tell Python that we’d like to start using NumPy,
-we need to <a class="reference external" href="../learners/reference.md#import">import</a> it:</p>
+we need to <strong>import</strong> it:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
 </pre></div>
 </div>
@@ -615,21 +614,20 @@ need for each program.</p>
 <span class="go">       [ 0.,  0.,  1., ...,  1.,  1.,  0.]])</span>
 </pre></div>
 </div>
-<p>The expression <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt(...)</span></code> is a
-<a class="reference external" href="../learners/reference.md#function-call">function call</a>
-that asks Python to run the <a class="reference external" href="../learners/reference.md#function">function</a> <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> which
+<p>The expression <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt(...)</span></code> is a <strong>function call</strong>
+that asks Python to run the <strong>function</strong> <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> which
 belongs to the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library.
 The dot notation in Python is used most of all as an object attribute/property specifier or for invoking its method. <code class="docutils literal notranslate"><span class="pre">object.property</span></code> will give you the object.property value,
 <code class="docutils literal notranslate"><span class="pre">object_name.method()</span></code> will invoke on object_name method.</p>
 <p>As an example, John Smith is the John that belongs to the Smith family.
 We could use the dot notation to write his name <code class="docutils literal notranslate"><span class="pre">smith.john</span></code>,
 just as <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> is a function that belongs to the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library.</p>
-<p><code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> has two <a class="reference external" href="../learners/reference.md#parameter">parameters</a>: the name of the file
-we want to read and the <a class="reference external" href="../learners/reference.md#delimiter">delimiter</a> that separates values
+<p><code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> has two <strong>parameters</strong>: the name of the file
+we want to read and the <strong>delimiter</strong> that separates values
 on a line. These both need to be character strings
-(or <a class="reference external" href="../learners/reference.md#string">strings</a> for short), so we put them in quotes.</p>
+(or <strong>strings</strong> for short), so we put them in quotes.</p>
 <p>Since we haven’t told it to do anything else with the function’s output,
-the <a class="reference external" href="../learners/reference.md#notebook">notebook</a> displays it.
+the <strong>notebook</strong> displays it.
 In this case,
 that output is the data we just loaded.
 By default,
@@ -664,7 +662,7 @@ we can print the variable’s value:</p>
 <p>Now that the data are in memory,
 we can manipulate them.
 First,
-let’s ask what <a class="reference external" href="../learners/reference.md#type">type</a> of thing <code class="docutils literal notranslate"><span class="pre">data</span></code> refers to:</p>
+let’s ask what <strong>type</strong> of thing <code class="docutils literal notranslate"><span class="pre">data</span></code> refers to:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -695,12 +693,12 @@ float64
 ```
 
 This tells us that the NumPy array&#39;s elements are
-[floating-point numbers](../learners/reference.md#floating-point-number).
+**floating-point numbers**.
 
 
 </pre></div>
 </div>
-<p>With the following command, we can see the array’s <a class="reference external" href="../learners/reference.md#shape">shape</a>:</p>
+<p>With the following command, we can see the array’s <strong>shape</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -709,13 +707,13 @@ This tells us that the NumPy array&#39;s elements are
 </div>
 <p>The output tells us that the <code class="docutils literal notranslate"><span class="pre">data</span></code> array variable contains 60 rows and 40 columns. When we
 created the variable <code class="docutils literal notranslate"><span class="pre">data</span></code> to store our arthritis data, we did not only create the array; we also
-created information about the array, called <a class="reference external" href="../learners/reference.md#member">members</a> or
+created information about the array, called <strong>members</strong> or
 attributes. This extra information describes <code class="docutils literal notranslate"><span class="pre">data</span></code> in the same way an adjective describes a noun.
 <code class="docutils literal notranslate"><span class="pre">data.shape</span></code> is an attribute of <code class="docutils literal notranslate"><span class="pre">data</span></code> which describes the dimensions of <code class="docutils literal notranslate"><span class="pre">data</span></code>. We use the same
 dotted notation for the attributes of variables that we use for the functions in libraries because
 they have the same part-and-whole relationship.</p>
-<p>If we want to get a single number from the array, we must provide an
-<a class="reference external" href="../learners/reference.md#index">index</a> in square brackets after the variable name, just as we
+<p>If we want to get a single number from the array, we must provide an <strong>index</strong> in square brackets
+after the variable name, just as we
 do in math when referring to an element of a matrix.  Our inflammation data has two dimensions, so
 we will need to use two indices to refer to one specific value:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;first value in data:&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -765,7 +763,7 @@ which can be confusing when plotting data.
 </div>
 </section>
 <section id="slicing-data">
-<h1>Slicing data<a class="headerlink" href="#slicing-data" title="Permalink to this headline">#</a></h1>
+<h2>Slicing data<a class="headerlink" href="#slicing-data" title="Permalink to this headline">#</a></h2>
 <p>An index like <code class="docutils literal notranslate"><span class="pre">[30,</span> <span class="pre">20]</span></code> selects a single element of an array,
 but we can select whole sections as well.
 For example,
@@ -780,7 +778,7 @@ for the first four patients (rows) like this:</p>
 <span class="go"> [ 0.  0.  2.  0.  4.  2.  2.  1.  6.  7.]]</span>
 </pre></div>
 </div>
-<p>The <a class="reference external" href="../learners/reference.md#slice">slice</a> <code class="docutils literal notranslate"><span class="pre">0:4</span></code> means, “Start at index 0 and go up to,
+<p>The <strong>slice</strong> <code class="docutils literal notranslate"><span class="pre">0:4</span></code> means, “Start at index 0 and go up to,
 but not including, index 4”. Again, the up-to-but-not-including takes a bit of getting used to,
 but the rule is that the difference between the upper and lower bounds is the number of values in
 the slice.</p>
@@ -813,7 +811,7 @@ everything:</p>
 </div>
 </section>
 <section id="analyzing-data">
-<h1>Analyzing data<a class="headerlink" href="#analyzing-data" title="Permalink to this headline">#</a></h1>
+<h2>Analyzing data<a class="headerlink" href="#analyzing-data" title="Permalink to this headline">#</a></h2>
 <p>NumPy has several useful functions that take an array as input to perform operations on its values.
 If we want to find the average inflammation for all patients on
 all days, for example, we can ask NumPy to compute <code class="docutils literal notranslate"><span class="pre">data</span></code>’s mean value:</p>
@@ -823,8 +821,7 @@ all days, for example, we can ask NumPy to compute <code class="docutils literal
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">6.14875</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">mean</span></code> is a <a class="reference external" href="../learners/reference.md#function">function</a> that takes
-an array as an <a class="reference external" href="../learners/reference.md#argument">argument</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">mean</span></code> is a <strong>function</strong> that takes an array as an <strong>argument</strong>.</p>
 <div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
 ## Not All Functions Have Input
 
@@ -1293,6 +1290,7 @@ array([ 12.,  14.,  11.,  13.,  11.,  13.,  10.,  12.,  10.,  10.,  10.,
 
 </pre></div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
