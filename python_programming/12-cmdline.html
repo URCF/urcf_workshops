@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Command-Line Arguments &#8212; University Research Computing Facility Workshop</title>
+    <title>Command-Line Programs &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Know What It’s Supposed to Do" href="11-debugging.html" />
+    <link rel="prev" title="Debugging" href="11-debugging.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -331,42 +331,52 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="03-matplotlib.html">
-     Visualizing data
+     Visualizing Tabular Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04-lists.html">
-     Python lists
+     Storing Multiple Values in Lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05-loop.html">
+     Repeating Actions with Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-files.html">
+     Analyzing Data from Multiple Files
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07-cond.html">
-     Conditionals
+     Making Choices
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="08-func.html">
-     Composing Functions
+     Creating Functions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09-errors.html">
-     Syntax Errors
+     Errors and Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="10-defensive.html">
-     Assertions
+     Defensive Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="11-debugging.html">
-     Know What It’s Supposed to Do
+     Debugging
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Command-Line Arguments
+     Command-Line Programs
     </a>
    </li>
   </ul>
@@ -503,22 +513,22 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-arguments">
    Command-Line Arguments
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#handling-multiple-files">
    Handling Multiple Files
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#handling-command-line-flags">
    Handling Command-Line Flags
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#handling-standard-input">
    Handling Standard Input
   </a>
@@ -532,7 +542,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Command-Line Arguments</h1>
+                <h1>Command-Line Programs</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -542,22 +552,22 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-arguments">
    Command-Line Arguments
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#handling-multiple-files">
    Handling Multiple Files
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#handling-command-line-flags">
    Handling Command-Line Flags
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#handling-standard-input">
    Handling Standard Input
   </a>
@@ -572,7 +582,9 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+  <section class="tex2jax_ignore mathjax_ignore" id="command-line-programs">
+<h1>Command-Line Programs<a class="headerlink" href="#command-line-programs" title="Permalink to this headline">#</a></h1>
+<div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
 - Use the values of command-line arguments in a program.
 - Handle flags and files separately in a command-line program.
 - Read data from standard input in a program so that it can be used in a pipeline.
@@ -637,7 +649,7 @@ we need to know how to handle command-line arguments in a program,
 and understand how to handle standard input.
 We’ll tackle these questions in turn below.</p>
 <section id="command-line-arguments">
-<h1>Command-Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">#</a></h1>
+<h2>Command-Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">#</a></h2>
 <p>We are going to create a file with our python code in, then use the bash shell to run the code. Using the text editor of your choice,
 save the following in a text file called <code class="docutils literal notranslate"><span class="pre">sys_version.py</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -848,7 +860,7 @@ its usage (see [the argh documentation](https://pythonhosted.org/argh/) for more
 </div>
 </section>
 <section id="handling-multiple-files">
-<h1>Handling Multiple Files<a class="headerlink" href="#handling-multiple-files" title="Permalink to this headline">#</a></h1>
+<h2>Handling Multiple Files<a class="headerlink" href="#handling-multiple-files" title="Permalink to this headline">#</a></h2>
 <p>The next step is to teach our program how to handle multiple files.
 Since 60 lines of output per file is a lot to page through,
 we’ll start by using three smaller files,
@@ -943,7 +955,7 @@ we need all the successive versions side by side.
 </div>
 </section>
 <section id="handling-command-line-flags">
-<h1>Handling Command-Line Flags<a class="headerlink" href="#handling-command-line-flags" title="Permalink to this headline">#</a></h1>
+<h2>Handling Command-Line Flags<a class="headerlink" href="#handling-command-line-flags" title="Permalink to this headline">#</a></h2>
 <p>The next step is to teach our program to pay attention to the <code class="docutils literal notranslate"><span class="pre">--min</span></code>, <code class="docutils literal notranslate"><span class="pre">--mean</span></code>, and <code class="docutils literal notranslate"><span class="pre">--max</span></code> flags.
 These always appear before the names of the files,
 so we could do this:</p>
@@ -1034,7 +1046,7 @@ so that the program fails fast:</p>
 but broken into more digestible chunks of 8 and 12 lines.</p>
 </section>
 <section id="handling-standard-input">
-<h1>Handling Standard Input<a class="headerlink" href="#handling-standard-input" title="Permalink to this headline">#</a></h1>
+<h2>Handling Standard Input<a class="headerlink" href="#handling-standard-input" title="Permalink to this headline">#</a></h2>
 <p>The next thing our program has to do is read data from standard input if no filenames are given
 so that we can put it in a pipeline,
 redirect input to it,
@@ -1529,6 +1541,7 @@ Thanks for specifying arguments!
 </pre></div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1561,7 +1574,7 @@ Thanks for specifying arguments!
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Know What It’s Supposed to Do</p>
+            <p class="prev-next-title">Debugging</p>
         </div>
     </a>
 </div>

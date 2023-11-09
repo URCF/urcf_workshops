@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; University Research Computing Facility Workshop</title>
+    <title>Repeating Actions with Loops &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="06-files.html" />
-    <link rel="prev" title="Python lists" href="04-lists.html" />
+    <link rel="next" title="Analyzing Data from Multiple Files" href="06-files.html" />
+    <link rel="prev" title="Storing Multiple Values in Lists" href="04-lists.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -309,17 +309,17 @@ const thebe_selector_output = ".output, .cell_output"
   Python
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="00-index.html">
    Introduction to Python Programming
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="01-intro.html">
      Python Fundamentals
@@ -332,42 +332,52 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="03-matplotlib.html">
-     Visualizing data
+     Visualizing Tabular Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04-lists.html">
-     Python lists
+     Storing Multiple Values in Lists
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Repeating Actions with Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-files.html">
+     Analyzing Data from Multiple Files
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07-cond.html">
-     Conditionals
+     Making Choices
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="08-func.html">
-     Composing Functions
+     Creating Functions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09-errors.html">
-     Syntax Errors
+     Errors and Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="10-defensive.html">
-     Assertions
+     Defensive Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="11-debugging.html">
-     Know What It’s Supposed to Do
+     Debugging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="12-cmdline.html">
-     Command-Line Arguments
+     Command-Line Programs
     </a>
    </li>
   </ul>
@@ -503,7 +513,17 @@ title="Print to PDF"
         <i class="fas fa-list"></i> Contents
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="simple visible nav section-nav flex-column">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-s-in-a-name">
+   What’s in a name?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-from-1-to-n">
+   Challenge 1: From 1 to N
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -513,7 +533,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1><no title></h1>
+                <h1>Repeating Actions with Loops</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -522,7 +542,17 @@ title="Print to PDF"
                             <h2> Contents </h2>
                         </div>
                         <nav aria-label="Page">
-                            <ul class="simple visible nav section-nav flex-column">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-s-in-a-name">
+   What’s in a name?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-from-1-to-n">
+   Challenge 1: From 1 to N
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -533,27 +563,27 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
-**Objectives**
-
-- Explain what a `for` loop does.
-- Correctly write `for` loops to repeat simple calculations.
-- Trace changes to a loop variable as the loop runs.
-- Trace changes to other variables as they are updated by a `for` loop.
-
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="repeating-actions-with-loops">
+<h1>Repeating Actions with Loops<a class="headerlink" href="#repeating-actions-with-loops" title="Permalink to this headline">#</a></h1>
+<div class="admonition-objectives admonition">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Explain what a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop does.</p></li>
+<li><p>Correctly write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops to repeat simple calculations.</p></li>
+<li><p>Trace changes to a loop variable as the loop runs.</p></li>
+<li><p>Trace changes to other variables as they are updated by a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
+</ul>
 </div>
-<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
-**Questions**
-
-- How can I do the same operations on many different values?
-
-</pre></div>
+<div class="admonition-questions admonition">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How can I do the same operations on many different values?</p></li>
+</ul>
 </div>
 <p>In the episode about visualizing data,
 we wrote Python code that plots values of interest from our first
 inflammation dataset (<code class="docutils literal notranslate"><span class="pre">inflammation-01.csv</span></code>), which revealed some suspicious features in it.</p>
-<p><img alt="" src="python_programming/fig/03-loop_2_0.png" />{alt=”Line graphs showing average, maximum and minimum inflammation across all patients over a 40-dayperiod.”}</p>
+<p><img alt="Line graphs showing average, maximum and minimum inflammation across all patients over a 40-dayperiod." src="../_images/03-loop_2_0.png" /></p>
 <p>We have a dozen data sets right now and potentially more on the way if Dr. Maverick
 can keep up their surprisingly fast clinical trial rate. We want to create plots for all of
 our data sets with a single statement. To do that, we’ll have to teach the computer how to
@@ -643,7 +673,7 @@ hundred-number list — and more robust as well:</p>
 <span class="go">11</span>
 </pre></div>
 </div>
-<p>The improved version uses a <a class="reference external" href="../learners/reference.md#for-loop">for loop</a>
+<p>The improved version uses a <strong>for loop</strong>
 to repeat an operation — in this case, printing — once for each thing in a sequence.
 The general form of a loop is:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
@@ -651,44 +681,36 @@ The general form of a loop is:</p>
 </pre></div>
 </div>
 <p>Using the odds example above, the loop might look like this:</p>
-<p><img alt="" src="python_programming/fig/05-loops_image_num.png" />{alt=”Loop variable ‘num’ being assigned the value of each element in the list odds in turn andthen being printed”}</p>
+<p><img alt="Loop variable 'num' being assigned the value of each element in the list odds in turn andthen being printed" src="fig/python_programming/05-loop/05-loops_image_num.png" /></p>
 <p>where each number (<code class="docutils literal notranslate"><span class="pre">num</span></code>) in the variable <code class="docutils literal notranslate"><span class="pre">odds</span></code> is looped through and printed one number after
 another. The other numbers in the diagram denote which loop cycle the number was printed in (1
 being the first loop cycle, and 6 being the final loop cycle).</p>
-<p>We can call the <a class="reference external" href="../learners/reference.md#loop-variable">loop variable</a> anything we like, but
+<p>We can call the <strong>loop variable</strong> anything we like, but
 there must be a colon at the end of the line starting the loop, and we must indent anything we
 want to run inside the loop. Unlike many other languages, there is no command to signify the end
 of the loop body (e.g. <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">for</span></code>); everything indented after the <code class="docutils literal notranslate"><span class="pre">for</span></code> statement belongs to the loop.</p>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## What&#39;s in a name?
-
-In the example above, the loop variable was given the name `num` as a mnemonic;
-it is short for &#39;number&#39;.
+<section id="what-s-in-a-name">
+<h2>What’s in a name?<a class="headerlink" href="#what-s-in-a-name" title="Permalink to this headline">#</a></h2>
+<p>In the example above, the loop variable was given the name <code class="docutils literal notranslate"><span class="pre">num</span></code> as a mnemonic;
+it is short for ‘number’.
 We can choose any name we want for variables.  We might just as easily have chosen the name
-`banana` for the loop variable, as long as we use the same name when we invoke the variable inside
-the loop:
-
-```python
-odds = [1, 3, 5, 7, 9, 11]
-for banana in odds:
-    print(banana)
-```
-
-```output
-1
-3
-5
-7
-9
-11
-```
-
-It is a good idea to choose variable names that are meaningful, otherwise it would be more
-difficult to understand what the loop is doing.
-
-
+<code class="docutils literal notranslate"><span class="pre">banana</span></code> for the loop variable, as long as we use the same name when we invoke the variable inside
+the loop:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">banana</span> <span class="ow">in</span> <span class="n">odds</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">banana</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">1</span>
+<span class="go">3</span>
+<span class="go">5</span>
+<span class="go">7</span>
+<span class="go">9</span>
+<span class="go">11</span>
+</pre></div>
+</div>
+<p>It is a good idea to choose variable names that are meaningful, otherwise it would be more
+difficult to understand what the loop is doing.</p>
 <p>Here’s another loop that repeatedly updates a variable:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Curie&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">,</span> <span class="s1">&#39;Turing&#39;</span><span class="p">]</span>
@@ -744,46 +766,43 @@ that Python actually has a built-in function to do it called <code class="docuti
 and much easier to read than a two-line loop;
 it will also give us the length of many other things that we haven’t met yet,
 so we should always use it when we can.</p>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## From 1 to N
-
-Python has a built-in function called `range` that generates a sequence of numbers. `range` can
-accept 1, 2, or 3 parameters.
-
-- If one parameter is given, `range` generates a sequence of that length,
-  starting at zero and incrementing by 1.
-  For example, `range(3)` produces the numbers `0, 1, 2`.
-- If two parameters are given, `range` starts at
-  the first and ends just before the second, incrementing by one.
-  For example, `range(2, 5)` produces `2, 3, 4`.
-- If `range` is given 3 parameters,
-  it starts at the first one, ends just before the second one, and increments by the third one.
-  For example, `range(3, 10, 2)` produces `3, 5, 7, 9`.
-
-Using `range`,
-write a loop that prints the first 3 natural numbers:
-
-```python
-1
-2
-3
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-```python
-for number in range(1, 4):
-    print(number)
-```
-
-:::::::::::::::::::::::::
-
+</section>
+<section id="challenge-1-from-1-to-n">
+<h2>Challenge 1: From 1 to N<a class="headerlink" href="#challenge-1-from-1-to-n" title="Permalink to this headline">#</a></h2>
+<p>Python has a built-in function called <code class="docutils literal notranslate"><span class="pre">range</span></code> that generates a sequence of numbers. <code class="docutils literal notranslate"><span class="pre">range</span></code> can
+accept 1, 2, or 3 parameters.</p>
+<ul class="simple">
+<li><p>If one parameter is given, <code class="docutils literal notranslate"><span class="pre">range</span></code> generates a sequence of that length,
+starting at zero and incrementing by 1.
+For example, <code class="docutils literal notranslate"><span class="pre">range(3)</span></code> produces the numbers <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2</span></code>.</p></li>
+<li><p>If two parameters are given, <code class="docutils literal notranslate"><span class="pre">range</span></code> starts at
+the first and ends just before the second, incrementing by one.
+For example, <code class="docutils literal notranslate"><span class="pre">range(2,</span> <span class="pre">5)</span></code> produces <code class="docutils literal notranslate"><span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4</span></code>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">range</span></code> is given 3 parameters,
+it starts at the first one, ends just before the second one, and increments by the third one.
+For example, <code class="docutils literal notranslate"><span class="pre">range(3,</span> <span class="pre">10,</span> <span class="pre">2)</span></code> produces <code class="docutils literal notranslate"><span class="pre">3,</span> <span class="pre">5,</span> <span class="pre">7,</span> <span class="pre">9</span></code>.</p></li>
+</ul>
+<p>Using <code class="docutils literal notranslate"><span class="pre">range</span></code>,
+write a loop that prints the first 3 natural numbers:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Understanding the loops
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
+## Challenge 2: Understanding the loops
 
 Given the following loop:
 
@@ -800,19 +819,13 @@ How many times is the body of the loop executed?
 - 5 times
 - 6 times
 
-:::::::::::::::  solution
-
-## Solution
-
+:::{dropdown} Solution
 The body of the loop is executed 6 times.
+:::
 
-:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::  challenge
 
-</pre></div>
-</div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Computing Powers With Loops
-
+## Challenge 3: Computing Powers With Loops
 Exponentiation is built into Python:
 
 ```python
@@ -826,32 +839,21 @@ print(5 ** 3)
 Write a loop that calculates the same result as `5 ** 3` using
 multiplication (and without exponentiation).
 
-:::::::::::::::  solution
-
-## Solution
-
+:::{dropdown} Solution
 ```python
 result = 1
 for number in range(0, 3):
     result = result * 5
 print(result)
 ```
+:::
 
-:::::::::::::::::::::::::
-
-</pre></div>
-</div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Summing a list
-
+## Challenge 4: Summing a list
 Write a loop that calculates the sum of elements in a list
 by adding each element and printing the final value,
 so `[124, 402, 36]` prints 562
 
-:::::::::::::::  solution
-
-## Solution
-
+:::{dropdown} Solution
 ```python
 numbers = [124, 402, 36]
 summed = 0
@@ -859,13 +861,10 @@ for num in numbers:
     summed = summed + num
 print(summed)
 ```
+:::
 
-:::::::::::::::::::::::::
 
-</pre></div>
-</div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Computing the Value of a Polynomial
+## Challenge 5: Computing the Value of a Polynomial
 
 The built-in function `enumerate` takes a sequence (e.g. a [list](04-lists.md)) and
 generates a new sequence of the same length. Each element of the new sequence is a pair composed
@@ -897,27 +896,25 @@ print(y)
 Write a loop using `enumerate(coefs)` which computes the value `y` of any
 polynomial, given `x` and `coefs`.
 
-:::::::::::::::  solution
-
-## Solution
-
+:::{dropdown} Solution
 ```python
 y = 0
 for idx, coef in enumerate(coefs):
     y = y + coef * x**idx
 ```
+:::
 
-:::::::::::::::::::::::::
-
-</pre></div>
-</div>
-<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+:::{dropdown} Keypoints
 - Use `for variable in sequence` to process the elements of a sequence one at a time.
 - The body of a `for` loop must be indented.
 - Use `len(thing)` to determine the length of something that contains other values.
+:::
+
 
 </pre></div>
 </div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -950,13 +947,13 @@ for idx, coef in enumerate(coefs):
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Python lists</p>
+            <p class="prev-next-title">Storing Multiple Values in Lists</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="06-files.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Analyzing Data from Multiple Files</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

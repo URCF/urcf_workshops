@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Python lists &#8212; University Research Computing Facility Workshop</title>
+    <title>Storing Multiple Values in Lists &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="05-loop.html" />
-    <link rel="prev" title="Visualizing data" href="03-matplotlib.html" />
+    <link rel="next" title="Repeating Actions with Loops" href="05-loop.html" />
+    <link rel="prev" title="Visualizing Tabular Data" href="03-matplotlib.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -332,42 +332,52 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="03-matplotlib.html">
-     Visualizing data
+     Visualizing Tabular Data
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Python lists
+     Storing Multiple Values in Lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05-loop.html">
+     Repeating Actions with Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-files.html">
+     Analyzing Data from Multiple Files
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07-cond.html">
-     Conditionals
+     Making Choices
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="08-func.html">
-     Composing Functions
+     Creating Functions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09-errors.html">
-     Syntax Errors
+     Errors and Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="10-defensive.html">
-     Assertions
+     Defensive Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="11-debugging.html">
-     Know What It’s Supposed to Do
+     Debugging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="12-cmdline.html">
-     Command-Line Arguments
+     Command-Line Programs
     </a>
    </li>
   </ul>
@@ -482,23 +492,110 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-lists">
+   Python lists
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ch-ch-ch-ch-changes">
+   Ch-Ch-Ch-Ch-Changes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nested-lists">
+   Nested Lists
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#heterogeneous-lists">
+   Heterogeneous Lists
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-slicing-from-the-end">
+   Challenge 1: Slicing From the End
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-non-continuous-slices">
+   Challenge 2: Non-Continuous Slices
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Python lists</h1>
+                <h1>Storing Multiple Values in Lists</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-lists">
+   Python lists
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ch-ch-ch-ch-changes">
+   Ch-Ch-Ch-Ch-Changes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nested-lists">
+   Nested Lists
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#heterogeneous-lists">
+   Heterogeneous Lists
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-slicing-from-the-end">
+   Challenge 1: Slicing From the End
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-non-continuous-slices">
+   Challenge 2: Non-Continuous Slices
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -506,24 +603,24 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
-**Objectives**
-
-- Explain what a list is.
-- Create and index lists of simple values.
-- Change the values of individual elements
-- Append values to an existing list
-- Reorder and slice list elements
-- Create and manipulate nested lists
-
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="storing-multiple-values-in-lists">
+<h1>Storing Multiple Values in Lists<a class="headerlink" href="#storing-multiple-values-in-lists" title="Permalink to this headline">#</a></h1>
+<div class="admonition-objectives admonition">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Explain what a list is.</p></li>
+<li><p>Create and index lists of simple values.</p></li>
+<li><p>Change the values of individual elements</p></li>
+<li><p>Append values to an existing list</p></li>
+<li><p>Reorder and slice list elements</p></li>
+<li><p>Create and manipulate nested lists</p></li>
+</ul>
 </div>
-<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
-**Questions**
-
-- How can I store many values together?
-
-</pre></div>
+<div class="admonition-questions admonition">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How can I store many values together?</p></li>
+</ul>
 </div>
 <p>In the previous episode, we analyzed a single file of clinical trial inflammation data. However,
 after finding some peculiar and potentially suspicious trends in the trial data we ask
@@ -536,7 +633,7 @@ eleven more files to go!</p>
 a list is a way to store multiple values together. In this episode, we will learn how to store
 multiple values in a list as well as how to work with lists.</p>
 <section id="python-lists">
-<h1>Python lists<a class="headerlink" href="#python-lists" title="Permalink to this headline">#</a></h1>
+<h2>Python lists<a class="headerlink" href="#python-lists" title="Permalink to this headline">#</a></h2>
 <p>Unlike NumPy arrays, lists are built into the language so we do not have to load a library
 to use them.
 We create a list by putting values inside square brackets and separating the values with commas:</p>
@@ -591,135 +688,100 @@ TypeError: &#39;str&#39; object does not support item assignment
 </pre></div>
 </div>
 <p>does not.</p>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Ch-Ch-Ch-Ch-Changes
-
-Data which can be modified in place is called [mutable](../learners/reference.md#mutable),
+</section>
+<section id="ch-ch-ch-ch-changes">
+<h2>Ch-Ch-Ch-Ch-Changes<a class="headerlink" href="#ch-ch-ch-ch-changes" title="Permalink to this headline">#</a></h2>
+<p>Data which can be modified in place is called <a class="reference external" href="../learners/reference.md#mutable">mutable</a>,
 while data which cannot be modified is called
-[immutable](../learners/reference.md#immutable).
+<a class="reference external" href="../learners/reference.md#immutable">immutable</a>.
 Strings and numbers are immutable. This does not mean that variables with string or number values
 are constants, but when we want to change the value of a string or number variable, we can only
-replace the old value with a completely new value.
-
-Lists and arrays, on the other hand, are mutable: we can modify them after they have been
+replace the old value with a completely new value.</p>
+<p>Lists and arrays, on the other hand, are mutable: we can modify them after they have been
 created. We can change individual elements, append new elements, or reorder the whole list. For
 some operations, like sorting, we can choose whether to use a function that modifies the data
-in-place or a function that returns a modified copy and leaves the original unchanged.
-
-Be careful when modifying data in-place. If two variables refer to the same list, and you modify
-the list value, it will change for both variables!
-
-```python
-mild_salsa = [&#39;peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
-hot_salsa = mild_salsa        # &lt;-- mild_salsa and hot_salsa point to the *same* list data in memory
-hot_salsa[0] = &#39;hot peppers&#39;
-print(&#39;Ingredients in mild salsa:&#39;, mild_salsa)
-print(&#39;Ingredients in hot salsa:&#39;, hot_salsa)
-```
-
-```output
-Ingredients in mild salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
-Ingredients in hot salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
-```
-
-If you want variables with mutable values to be independent, you
-must make a copy of the value when you assign it.
-
-```python
-mild_salsa = [&#39;peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
-hot_salsa = list(mild_salsa)        # &lt;-- makes a *copy* of the list
-hot_salsa[0] = &#39;hot peppers&#39;
-print(&#39;Ingredients in mild salsa:&#39;, mild_salsa)
-print(&#39;Ingredients in hot salsa:&#39;, hot_salsa)
-```
-
-```output
-Ingredients in mild salsa: [&#39;peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
-Ingredients in hot salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
-```
-
-Because of pitfalls like this, code which modifies data in place can be more difficult to
+in-place or a function that returns a modified copy and leaves the original unchanged.</p>
+<p>Be careful when modifying data in-place. If two variables refer to the same list, and you modify
+the list value, it will change for both variables!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mild_salsa</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;onions&#39;</span><span class="p">,</span> <span class="s1">&#39;cilantro&#39;</span><span class="p">,</span> <span class="s1">&#39;tomatoes&#39;</span><span class="p">]</span>
+<span class="n">hot_salsa</span> <span class="o">=</span> <span class="n">mild_salsa</span>        <span class="c1"># &lt;-- mild_salsa and hot_salsa point to the *same* list data in memory</span>
+<span class="n">hot_salsa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;hot peppers&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ingredients in mild salsa:&#39;</span><span class="p">,</span> <span class="n">mild_salsa</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ingredients in hot salsa:&#39;</span><span class="p">,</span> <span class="n">hot_salsa</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Ingredients in mild salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</span>
+<span class="go">Ingredients in hot salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</span>
+</pre></div>
+</div>
+<p>If you want variables with mutable values to be independent, you
+must make a copy of the value when you assign it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mild_salsa</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;onions&#39;</span><span class="p">,</span> <span class="s1">&#39;cilantro&#39;</span><span class="p">,</span> <span class="s1">&#39;tomatoes&#39;</span><span class="p">]</span>
+<span class="n">hot_salsa</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mild_salsa</span><span class="p">)</span>        <span class="c1"># &lt;-- makes a *copy* of the list</span>
+<span class="n">hot_salsa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;hot peppers&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ingredients in mild salsa:&#39;</span><span class="p">,</span> <span class="n">mild_salsa</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ingredients in hot salsa:&#39;</span><span class="p">,</span> <span class="n">hot_salsa</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Ingredients in mild salsa: [&#39;peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</span>
+<span class="go">Ingredients in hot salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</span>
+</pre></div>
+</div>
+<p>Because of pitfalls like this, code which modifies data in place can be more difficult to
 understand. However, it is often far more efficient to modify a large data structure in place
 than to create a modified copy for every small change. You should consider both of these aspects
-when writing your code.
-
-
+when writing your code.</p>
+</section>
+<section id="nested-lists">
+<h2>Nested Lists<a class="headerlink" href="#nested-lists" title="Permalink to this headline">#</a></h2>
+<p>Since a list can contain any Python variables, it can even contain other lists.</p>
+<p>For example, you could represent the products on the shelves of a small grocery shop
+as a nested list called <code class="docutils literal notranslate"><span class="pre">veg</span></code>:</p>
+<p><img alt="" src="python_programming/fig/04_groceries_veg.png" />{alt=’veg is represented as a shelf full of produce. There are three rows of vegetableson the shelf, and each row contains three baskets of vegetables. We can labeleach basket according to the type of vegetable it contains, so the top rowcontains (from left to right) lettuce, lettuce, and peppers.’}</p>
+<p>To store the contents of the shelf in a nested list, you write it this way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">veg</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;zucchini&#39;</span><span class="p">],</span>
+     <span class="p">[</span><span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;zucchini&#39;</span><span class="p">],</span>
+     <span class="p">[</span><span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;cilantro&#39;</span><span class="p">,</span> <span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;zucchini&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Nested Lists
-
-Since a list can contain any Python variables, it can even contain other lists.
-
-For example, you could represent the products on the shelves of a small grocery shop
-as a nested list called `veg`:
-
-![](fig/04_groceries_veg.png){alt=&#39;veg is represented as a shelf full of produce. There are three rows of vegetableson the shelf, and each row contains three baskets of vegetables. We can labeleach basket according to the type of vegetable it contains, so the top rowcontains (from left to right) lettuce, lettuce, and peppers.&#39;}
-
-To store the contents of the shelf in a nested list, you write it this way:
-
-```python
-veg = [[&#39;lettuce&#39;, &#39;lettuce&#39;, &#39;peppers&#39;, &#39;zucchini&#39;],
-     [&#39;lettuce&#39;, &#39;lettuce&#39;, &#39;peppers&#39;, &#39;zucchini&#39;],
-     [&#39;lettuce&#39;, &#39;cilantro&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]]
-```
-
-Here are some visual examples of how indexing a list of lists `veg` works. First,
-you can reference each row on the shelf as a separate list. For example, `veg[2]`
-represents the bottom row, which is a list of the baskets in that row.
-
-![](fig/04_groceries_veg0.png){alt=&#39;veg is now shown as a list of three rows, with veg\[0\] representing the top row ofthree baskets, veg\[1\] representing the second row, and veg\[2\] representing the bottom row.&#39;}
-
-Index operations using the image would work like this:
-
-```python
-print(veg[2])
-```
-
-```output
-[&#39;lettuce&#39;, &#39;cilantro&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]
-```
-
-```python
-print(veg[0])
-```
-
-```output
-[&#39;lettuce&#39;, &#39;lettuce&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]
-```
-
-To reference a specific basket on a specific shelf, you use two indexes. The first
+<p>Here are some visual examples of how indexing a list of lists <code class="docutils literal notranslate"><span class="pre">veg</span></code> works. First,
+you can reference each row on the shelf as a separate list. For example, <code class="docutils literal notranslate"><span class="pre">veg[2]</span></code>
+represents the bottom row, which is a list of the baskets in that row.</p>
+<p><img alt="" src="python_programming/fig/04_groceries_veg0.png" />{alt=’veg is now shown as a list of three rows, with veg[0] representing the top row ofthree baskets, veg[1] representing the second row, and veg[2] representing the bottom row.’}</p>
+<p>Index operations using the image would work like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veg</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[&#39;lettuce&#39;, &#39;cilantro&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veg</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[&#39;lettuce&#39;, &#39;lettuce&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]</span>
+</pre></div>
+</div>
+<p>To reference a specific basket on a specific shelf, you use two indexes. The first
 index represents the row (from top to bottom) and the second index represents
 the specific basket (from left to right).
-![](fig/04_groceries_veg00.png){alt=&#39;veg is now shown as a two-dimensional grid, with each basket labeled according toits index in the nested list. The first index is the row number and the secondindex is the basket number, so veg\[1\]\[3\] represents the basket on the far rightside of the second row (basket 4 on row 2): zucchini&#39;}
-
-```python
-print(veg[0][0])
-```
-
-```output
-&#39;lettuce&#39;
-```
-
-```python
-print(veg[1][2])
-```
-
-```output
-&#39;peppers&#39;
-```
-
+<img alt="" src="python_programming/fig/04_groceries_veg00.png" />{alt=’veg is now shown as a two-dimensional grid, with each basket labeled according toits index in the nested list. The first index is the row number and the secondindex is the basket number, so veg[1][3] represents the basket on the far rightside of the second row (basket 4 on row 2): zucchini’}</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veg</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Heterogeneous Lists
-
-Lists in Python can contain elements of different types. Example:
-
-```python
-sample_ages = [10, 12.5, &#39;Unknown&#39;]
-```
-
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&#39;lettuce&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veg</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&#39;peppers&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="heterogeneous-lists">
+<h2>Heterogeneous Lists<a class="headerlink" href="#heterogeneous-lists" title="Permalink to this headline">#</a></h2>
+<p>Lists in Python can contain elements of different types. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_ages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">,</span> <span class="s1">&#39;Unknown&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>There are many ways to change the contents of lists besides assigning new values to
@@ -801,126 +863,104 @@ This is commonly referred to as “slicing” the list/string.</p>
 <span class="go">last: 4</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Slicing From the End
-
-Use slicing to access only the last four characters of a string or entries of a list.
-
-```python
-string_for_slicing = &#39;Observation date: 02-Feb-2013&#39;
-list_for_slicing = [[&#39;fluorine&#39;, &#39;F&#39;],
-                    [&#39;chlorine&#39;, &#39;Cl&#39;],
-                    [&#39;bromine&#39;, &#39;Br&#39;],
-                    [&#39;iodine&#39;, &#39;I&#39;],
-                    [&#39;astatine&#39;, &#39;At&#39;]]
-```
-
-```output
-&#39;2013&#39;
-[[&#39;chlorine&#39;, &#39;Cl&#39;], [&#39;bromine&#39;, &#39;Br&#39;], [&#39;iodine&#39;, &#39;I&#39;], [&#39;astatine&#39;, &#39;At&#39;]]
-```
-
-Would your solution work regardless of whether you knew beforehand
+</section>
+<section id="challenge-1-slicing-from-the-end">
+<h2>Challenge 1: Slicing From the End<a class="headerlink" href="#challenge-1-slicing-from-the-end" title="Permalink to this headline">#</a></h2>
+<p>Use slicing to access only the last four characters of a string or entries of a list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string_for_slicing</span> <span class="o">=</span> <span class="s1">&#39;Observation date: 02-Feb-2013&#39;</span>
+<span class="n">list_for_slicing</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;fluorine&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">],</span>
+                    <span class="p">[</span><span class="s1">&#39;chlorine&#39;</span><span class="p">,</span> <span class="s1">&#39;Cl&#39;</span><span class="p">],</span>
+                    <span class="p">[</span><span class="s1">&#39;bromine&#39;</span><span class="p">,</span> <span class="s1">&#39;Br&#39;</span><span class="p">],</span>
+                    <span class="p">[</span><span class="s1">&#39;iodine&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">],</span>
+                    <span class="p">[</span><span class="s1">&#39;astatine&#39;</span><span class="p">,</span> <span class="s1">&#39;At&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&#39;2013&#39;</span>
+<span class="go">[[&#39;chlorine&#39;, &#39;Cl&#39;], [&#39;bromine&#39;, &#39;Br&#39;], [&#39;iodine&#39;, &#39;I&#39;], [&#39;astatine&#39;, &#39;At&#39;]]</span>
+</pre></div>
+</div>
+<p>Would your solution work regardless of whether you knew beforehand
 the length of the string or list
 (e.g. if you wanted to apply the solution to a set of lists of different lengths)?
-If not, try to change your approach to make it more robust.
-
-Hint: Remember that indices can be negative as well as positive
-
-:::::::::::::::  solution
-
-## Solution
-
-Use negative indices to count elements from the end of a container (such as list or string):
-
-```python
-string_for_slicing[-4:]
-list_for_slicing[-4:]
-```
-
-:::::::::::::::::::::::::
-
+If not, try to change your approach to make it more robust.</p>
+<p>Hint: Remember that indices can be negative as well as positive</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Use negative indices to count elements from the end of a container (such as list or string):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string_for_slicing</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
+<span class="n">list_for_slicing</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Non-Continuous Slices
-
-So far we&#39;ve seen how to use slicing to take single blocks
+</div>
+</details></section>
+<section id="challenge-2-non-continuous-slices">
+<h2>Challenge 2: Non-Continuous Slices<a class="headerlink" href="#challenge-2-non-continuous-slices" title="Permalink to this headline">#</a></h2>
+<p>So far we’ve seen how to use slicing to take single blocks
 of successive entries from a sequence.
 But what if we want to take a subset of entries
-that aren&#39;t next to each other in the sequence?
-
-You can achieve this by providing a third argument
-to the range within the brackets, called the *step size*.
-The example below shows how you can take every third entry in a list:
-
-```python
-primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
-subset = primes[0:12:3]
-print(&#39;subset&#39;, subset)
-```
-
-```output
-subset [2, 7, 17, 29]
-```
-
-Notice that the slice taken begins with the first entry in the range,
-followed by entries taken at equally-spaced intervals (the steps) thereafter.
-If you wanted to begin the subset with the third entry,
-you would need to specify that as the starting point of the sliced range:
-
-```python
-primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
-subset = primes[2:12:3]
-print(&#39;subset&#39;, subset)
-```
-
-```output
-subset [5, 13, 23, 37]
-```
-
-Use the step size argument to create a new string
-that contains only every other character in the string
-&quot;In an octopus&#39;s garden in the shade&quot;. Start with
-creating a variable to hold the string:
-
-```python
-beatles = &quot;In an octopus&#39;s garden in the shade&quot;
-```
-
-What slice of `beatles` will produce the
-following output (i.e., the first character, third
-character, and every other character through the end
-of the string)?
-
-```output
-I notpssgre ntesae
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-To obtain every other character you need to provide a slice with the step
-size of 2:
-
-```python
-beatles[0:35:2]
-```
-
-You can also leave out the beginning and end of the slice to take the whole string
-and provide only the step argument to go every second
-element:
-
-```python
-beatles[::2]
-```
-
-:::::::::::::::::::::::::
-
+that aren’t next to each other in the sequence?</p>
+<p>You can achieve this by providing a third argument
+to the range within the brackets, called the <em>step size</em>.
+The example below shows how you can take every third entry in a list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">]</span>
+<span class="n">subset</span> <span class="o">=</span> <span class="n">primes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;subset&#39;</span><span class="p">,</span> <span class="n">subset</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you want to take a slice from the beginning of a sequence, you can omit the first index in the
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">subset [2, 7, 17, 29]</span>
+</pre></div>
+</div>
+<p>Notice that the slice taken begins with the first entry in the range,
+followed by entries taken at equally-spaced intervals (the steps) thereafter.
+If you wanted to begin the subset with the third entry,
+you would need to specify that as the starting point of the sliced range:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">]</span>
+<span class="n">subset</span> <span class="o">=</span> <span class="n">primes</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;subset&#39;</span><span class="p">,</span> <span class="n">subset</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">subset [5, 13, 23, 37]</span>
+</pre></div>
+</div>
+<p>Use the step size argument to create a new string
+that contains only every other character in the string
+“In an octopus’s garden in the shade”. Start with
+creating a variable to hold the string:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">beatles</span> <span class="o">=</span> <span class="s2">&quot;In an octopus&#39;s garden in the shade&quot;</span>
+</pre></div>
+</div>
+<p>What slice of <code class="docutils literal notranslate"><span class="pre">beatles</span></code> will produce the
+following output (i.e., the first character, third
+character, and every other character through the end
+of the string)?</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">I notpssgre ntesae</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">To obtain every other character you need to provide a slice with the step
+size of 2:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">beatles</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p class="sd-card-text">You can also leave out the beginning and end of the slice to take the whole string
+and provide only the step argument to go every second
+element:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">beatles</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</details><p>If you want to take a slice from the beginning of a sequence, you can omit the first index in the
 range:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="s1">&#39;Monday 4 January 2016&#39;</span>
 <span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
@@ -950,7 +990,7 @@ sequence:</p>
 </pre></div>
 </div>
 <div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Overloading
+## Challenge 3: Overloading
 
 `+` usually means addition, but when used on strings or lists, it means &quot;concatenate&quot;.
 Given that, what do you think the multiplication operator `*` does on lists?
@@ -971,10 +1011,7 @@ The technical term for this is *operator overloading*:
 a single operator, like `+` or `*`,
 can do different things depending on what it&#39;s applied to.
 
-:::::::::::::::  solution
-
-## Solution
-
+:::{dropdown} Solution
 The multiplication operator `*` used on a list replicates elements of the list and concatenates
 them together:
 
@@ -987,20 +1024,20 @@ It&#39;s equivalent to:
 ```python
 counts + counts
 ```
+:::
 
-:::::::::::::::::::::::::
-
-</pre></div>
-</div>
-<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
+:::{admonition} Keypoints
 - `[value1, value2, value3, ...]` creates a list.
 - Lists can contain any Python object, including lists (i.e., list of lists).
 - Lists are indexed and sliced with square brackets (e.g., `list[0]` and `list[2:9]`), in the same way as strings and arrays.
 - Lists are mutable (i.e., their values can be changed in place).
 - Strings are immutable (i.e., the characters in them cannot be changed).
+:::
+
 
 </pre></div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1034,13 +1071,13 @@ counts + counts
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Visualizing data</p>
+            <p class="prev-next-title">Visualizing Tabular Data</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="05-loop.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Repeating Actions with Loops</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

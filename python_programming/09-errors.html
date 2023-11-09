@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Syntax Errors &#8212; University Research Computing Facility Workshop</title>
+    <title>Errors and Exceptions &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Assertions" href="10-defensive.html" />
-    <link rel="prev" title="Composing Functions" href="08-func.html" />
+    <link rel="next" title="Defensive Programming" href="10-defensive.html" />
+    <link rel="prev" title="Creating Functions" href="08-func.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -332,42 +332,52 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="03-matplotlib.html">
-     Visualizing data
+     Visualizing Tabular Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04-lists.html">
-     Python lists
+     Storing Multiple Values in Lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05-loop.html">
+     Repeating Actions with Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-files.html">
+     Analyzing Data from Multiple Files
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07-cond.html">
-     Conditionals
+     Making Choices
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="08-func.html">
-     Composing Functions
+     Creating Functions
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Syntax Errors
+     Errors and Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="10-defensive.html">
-     Assertions
+     Defensive Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="11-debugging.html">
-     Know What It’s Supposed to Do
+     Debugging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="12-cmdline.html">
-     Command-Line Arguments
+     Command-Line Programs
     </a>
    </li>
   </ul>
@@ -504,22 +514,22 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax-errors">
    Syntax Errors
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#variable-name-errors">
    Variable Name Errors
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#index-errors">
    Index Errors
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#file-errors">
    File Errors
   </a>
@@ -533,7 +543,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Syntax Errors</h1>
+                <h1>Errors and Exceptions</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -543,22 +553,22 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax-errors">
    Syntax Errors
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#variable-name-errors">
    Variable Name Errors
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#index-errors">
    Index Errors
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#file-errors">
    File Errors
   </a>
@@ -573,7 +583,9 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+  <section class="tex2jax_ignore mathjax_ignore" id="errors-and-exceptions">
+<h1>Errors and Exceptions<a class="headerlink" href="#errors-and-exceptions" title="Permalink to this headline">#</a></h1>
+<div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
 - To be able to read a traceback, and determine where the error took place and what type it is.
 - To be able to describe the types of situations in which syntax errors, indentation errors, name errors, index errors, and missing file errors occur.
 
@@ -763,7 +775,7 @@ helpful to use the latest Python version, even if you support older versions of 
 </pre></div>
 </div>
 <section id="syntax-errors">
-<h1>Syntax Errors<a class="headerlink" href="#syntax-errors" title="Permalink to this headline">#</a></h1>
+<h2>Syntax Errors<a class="headerlink" href="#syntax-errors" title="Permalink to this headline">#</a></h2>
 <p>When you forget a colon at the end of a line,
 accidentally add one space too many when indenting under an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement,
 or forget a parenthesis,
@@ -847,7 +859,7 @@ TabError: inconsistent use of tabs and spaces in indentation
 </div>
 </section>
 <section id="variable-name-errors">
-<h1>Variable Name Errors<a class="headerlink" href="#variable-name-errors" title="Permalink to this headline">#</a></h1>
+<h2>Variable Name Errors<a class="headerlink" href="#variable-name-errors" title="Permalink to this headline">#</a></h2>
 <p>Another very common type of error is called a <code class="docutils literal notranslate"><span class="pre">NameError</span></code>,
 and occurs when you try to use a variable that does not exist.
 For example:</p>
@@ -925,7 +937,7 @@ NameError: name &#39;count&#39; is not defined
 </div>
 </section>
 <section id="index-errors">
-<h1>Index Errors<a class="headerlink" href="#index-errors" title="Permalink to this headline">#</a></h1>
+<h2>Index Errors<a class="headerlink" href="#index-errors" title="Permalink to this headline">#</a></h2>
 <p>Next up are errors having to do with containers (like lists and strings) and the items within them.
 If you try to access an item in a list or a string that does not exist,
 then you will get an error.
@@ -961,7 +973,7 @@ Python is telling us that there is an <code class="docutils literal notranslate"
 meaning we tried to access a list index that did not exist.</p>
 </section>
 <section id="file-errors">
-<h1>File Errors<a class="headerlink" href="#file-errors" title="Permalink to this headline">#</a></h1>
+<h2>File Errors<a class="headerlink" href="#file-errors" title="Permalink to this headline">#</a></h2>
 <p>The last type of error we’ll cover today
 are those associated with reading and writing files: <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code>.
 If you try to read a file that does not exist,
@@ -1136,6 +1148,7 @@ print(&#39;My favorite season is &#39;, seasons[-1])
 </pre></div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1168,13 +1181,13 @@ print(&#39;My favorite season is &#39;, seasons[-1])
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Composing Functions</p>
+            <p class="prev-next-title">Creating Functions</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="10-defensive.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assertions</p>
+        <p class="prev-next-title">Defensive Programming</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

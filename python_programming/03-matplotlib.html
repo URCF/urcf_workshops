@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Visualizing data &#8212; University Research Computing Facility Workshop</title>
+    <title>Visualizing Tabular Data &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python lists" href="04-lists.html" />
+    <link rel="next" title="Storing Multiple Values in Lists" href="04-lists.html" />
     <link rel="prev" title="Analyzing Patient Data" href="02-numpy.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -332,42 +332,52 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Visualizing data
+     Visualizing Tabular Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04-lists.html">
-     Python lists
+     Storing Multiple Values in Lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05-loop.html">
+     Repeating Actions with Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-files.html">
+     Analyzing Data from Multiple Files
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07-cond.html">
-     Conditionals
+     Making Choices
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="08-func.html">
-     Composing Functions
+     Creating Functions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09-errors.html">
-     Syntax Errors
+     Errors and Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="10-defensive.html">
-     Assertions
+     Defensive Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="11-debugging.html">
-     Know What It’s Supposed to Do
+     Debugging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="12-cmdline.html">
-     Command-Line Arguments
+     Command-Line Programs
     </a>
    </li>
   </ul>
@@ -505,8 +515,40 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#grouping-plots">
-   Grouping plots
+  <a class="reference internal nav-link" href="#visualizing-data">
+   Visualizing data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grouping-plots">
+     Grouping plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importing-libraries-with-shortcuts">
+   Importing libraries with shortcuts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-plot-scaling">
+   Challenge 1: Plot Scaling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-drawing-straight-lines">
+   Challenge 2: Drawing Straight Lines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-make-your-own-plot">
+   Challenge 3:  Make Your Own Plot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-4-moving-plots-around">
+   Challenge 4: Moving Plots Around
   </a>
  </li>
 </ul>
@@ -518,7 +560,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Visualizing data</h1>
+                <h1>Visualizing Tabular Data</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -529,8 +571,40 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#grouping-plots">
-   Grouping plots
+  <a class="reference internal nav-link" href="#visualizing-data">
+   Visualizing data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grouping-plots">
+     Grouping plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importing-libraries-with-shortcuts">
+   Importing libraries with shortcuts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-plot-scaling">
+   Challenge 1: Plot Scaling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-drawing-straight-lines">
+   Challenge 2: Drawing Straight Lines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-make-your-own-plot">
+   Challenge 3:  Make Your Own Plot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-4-moving-plots-around">
+   Challenge 4: Moving Plots Around
   </a>
  </li>
 </ul>
@@ -543,50 +617,46 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
-**Objectives**
-
-- Plot simple graphs from data.
-- Plot multiple graphs in a single figure.
-
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="visualizing-tabular-data">
+<h1>Visualizing Tabular Data<a class="headerlink" href="#visualizing-tabular-data" title="Permalink to this headline">#</a></h1>
+<div class="admonition-objectives admonition">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Plot simple graphs from data.</p></li>
+<li><p>Plot multiple graphs in a single figure.</p></li>
+</ul>
 </div>
-<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
-**Questions**
-
-- How can I visualize tabular data in Python?
-- How can I group several plots together?
-
-</pre></div>
+<div class="admonition-questions admonition">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How can I visualize tabular data in Python?</p></li>
+<li><p>How can I group several plots together?</p></li>
+</ul>
 </div>
 <section id="visualizing-data">
-<h1>Visualizing data<a class="headerlink" href="#visualizing-data" title="Permalink to this headline">#</a></h1>
+<h2>Visualizing data<a class="headerlink" href="#visualizing-data" title="Permalink to this headline">#</a></h2>
 <p>The mathematician Richard Hamming once said, “The purpose of computing is insight, not numbers,”
 and the best way to develop insight is often to visualize data.  Visualization deserves an entire
 lecture of its own, but we can explore a few features of Python’s <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library here.  While
 there is no official plotting library, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is the <em>de facto</em> standard.  First, we will
 import the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module from <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and use two of its functions to create and display a
-<a class="reference external" href="../learners/reference.md#heat-map">heat map</a> of our data:</p>
-<div class="highlight-prereq notranslate"><div class="highlight"><pre><span></span>
-## Episode Prerequisites
-
-If you are continuing in the same notebook from the previous episode, you already
-have a `data` variable and have imported `numpy`.  If you are starting a new
-notebook at this point, you need the following two lines:
-
-```python
-import numpy
-data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
-```
-
+<strong>heat map</strong> of our data:</p>
+<div class="admonition-episode-prerequisites admonition">
+<p class="admonition-title">Episode Prerequisites</p>
+<p>If you are continuing in the same notebook from the previous episode, you already
+have a <code class="docutils literal notranslate"><span class="pre">data</span></code> variable and have imported <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.  If you are starting a new
+notebook at this point, you need the following two lines:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="" src="python_programming/fig/inflammation-01-imshow.svg" />{alt=’Heat map representing the data variable. Each cell is colored by value along a color gradientfrom blue to yellow.’}</p>
+<p><img alt="Heat map representing the data variable. Each cell is colored by value along a color gradientfrom blue to yellow." src="../_images/inflammation-01-imshow.svg" /></p>
 <p>Each row in the heat map corresponds to a patient in the clinical trial dataset, and each column
 corresponds to a day in the dataset.  Blue pixels in this heat map represent low values, while
 yellow pixels represent high values.  As we can see, the general number of inflammation flare-ups
@@ -604,7 +674,7 @@ claims:</p>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="" src="python_programming/fig/inflammation-01-average.svg" />{alt=’A line graph showing the average inflammation across all patients over a 40-day period.’}</p>
+<p><img alt="A line graph showing the average inflammation across all patients over a 40-day period." src="../_images/inflammation-01-average.svg" /></p>
 <p>Here, we have put the average inflammation per day across all patients in the variable
 <code class="docutils literal notranslate"><span class="pre">ave_inflammation</span></code>, then asked <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> to create and display a line graph of those
 values.  The result is a reasonably linear rise and fall, in line with Dr. Maverick’s claim that
@@ -614,23 +684,23 @@ average of a dataset, so let’s have a look at two other statistics:</p>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="" src="python_programming/fig/inflammation-01-maximum.svg" />{alt=’A line graph showing the maximum inflammation across all patients over a 40-day period.’}</p>
+<p><img alt="A line graph showing the maximum inflammation across all patients over a 40-day period." src="../_images/inflammation-01-maximum.svg" /></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">min_plot</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="" src="python_programming/fig/inflammation-01-minimum.svg" />{alt=’A line graph showing the minimum inflammation across all patients over a 40-day period.’}</p>
+<p><img alt="A line graph showing the minimum inflammation across all patients over a 40-day period." src="../_images/inflammation-01-minimum.svg" /></p>
 <p>The maximum value rises and falls linearly, while the minimum seems to be a step function.
 Neither trend seems particularly likely, so either there’s a mistake in our calculations or
 something is wrong with our data. This insight would have been difficult to reach by examining
 the numbers themselves without visualization tools.</p>
 <section id="grouping-plots">
-<h2>Grouping plots<a class="headerlink" href="#grouping-plots" title="Permalink to this headline">#</a></h2>
+<h3>Grouping plots<a class="headerlink" href="#grouping-plots" title="Permalink to this headline">#</a></h3>
 <p>You can group similar plots in a single figure using subplots.
 This script below uses a number of new commands. The function <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.figure()</span></code>
 creates a space into which we will place all of our plots. The parameter <code class="docutils literal notranslate"><span class="pre">figsize</span></code>
 tells Python how big to make this space. Each subplot is placed into the figure using
-its <code class="docutils literal notranslate"><span class="pre">add_subplot</span></code> <a class="reference external" href="../learners/reference.md#method">method</a>. The <code class="docutils literal notranslate"><span class="pre">add_subplot</span></code> method takes
+its <code class="docutils literal notranslate"><span class="pre">add_subplot</span></code> <strong>method</strong>. The <code class="docutils literal notranslate"><span class="pre">add_subplot</span></code> method takes
 3 parameters. The first denotes how many total rows of subplots there are, the second parameter
 refers to the total number of subplot columns, and the final parameter denotes which subplot
 your variable is referencing (left-to-right, top-to-bottom). Each subplot is stored in a
@@ -663,8 +733,8 @@ Here are our three plots side by side:</p>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="" src="python_programming/fig/inflammation-01-group-plot.svg" />{alt=’Three line graphs showing the daily average, maximum and minimum inflammation over a 40-day period.’}</p>
-<p>The <a class="reference external" href="../learners/reference.md#function-call">call</a> to <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> reads our data,
+<p><img alt="Three line graphs showing the daily average, maximum and minimum inflammation over a 40-day period." src="../_images/inflammation-01-group-plot.svg" /></p>
+<p>The <strong>call</strong> to <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> reads our data,
 and the rest of the program tells the plotting library
 how large we want the figure to be,
 that we’re creating three subplots,
@@ -678,199 +748,181 @@ pages etc. The graphics format is automatically determined by
 Matplotlib from the file name ending we specify; here PNG from
 ‘inflammation.png’. Matplotlib supports many different graphics
 formats, including SVG, PDF, and JPEG.</p>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Importing libraries with shortcuts
-
-In this lesson we use the `import matplotlib.pyplot`
-[syntax](../learners/reference.md#syntax)
-to import the `pyplot` module of `matplotlib`. However, shortcuts such as
-`import matplotlib.pyplot as plt` are frequently used.
-Importing `pyplot` this way means that after the initial import, rather than writing
-`matplotlib.pyplot.plot(...)`, you can now write `plt.plot(...)`.
-Another common convention is to use the shortcut `import numpy as np` when importing the
-NumPy library. We then can write `np.loadtxt(...)` instead of `numpy.loadtxt(...)`,
-for example.
-
-Some people prefer these shortcuts as it is quicker to type and results in shorter
+</section>
+</section>
+<section id="importing-libraries-with-shortcuts">
+<h2>Importing libraries with shortcuts<a class="headerlink" href="#importing-libraries-with-shortcuts" title="Permalink to this headline">#</a></h2>
+<p>In this lesson we use the <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span></code>
+<strong>syntax</strong> to import the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module of <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. However, shortcuts such as
+<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code> are frequently used.
+Importing <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> this way means that after the initial import, rather than writing
+<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.plot(...)</span></code>, you can now write <code class="docutils literal notranslate"><span class="pre">plt.plot(...)</span></code>.
+Another common convention is to use the shortcut <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code> when importing the
+NumPy library. We then can write <code class="docutils literal notranslate"><span class="pre">np.loadtxt(...)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt(...)</span></code>,
+for example.</p>
+<p>Some people prefer these shortcuts as it is quicker to type and results in shorter
 lines of code - especially for libraries with long names! You will frequently see
-Python code online using a `pyplot` function with `plt`, or a NumPy function with
-`np`, and it&#39;s because they&#39;ve used this shortcut. It makes no difference which
+Python code online using a <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> function with <code class="docutils literal notranslate"><span class="pre">plt</span></code>, or a NumPy function with
+<code class="docutils literal notranslate"><span class="pre">np</span></code>, and it’s because they’ve used this shortcut. It makes no difference which
 approach you choose to take, but you must be consistent as if you use
-`import matplotlib.pyplot as plt` then `matplotlib.pyplot.plot(...)` will not work, and
-you must use `plt.plot(...)` instead. Because of this, when working with other people it
-is important you agree on how libraries are imported.
-
-
+<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code> then <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.plot(...)</span></code> will not work, and
+you must use <code class="docutils literal notranslate"><span class="pre">plt.plot(...)</span></code> instead. Because of this, when working with other people it
+is important you agree on how libraries are imported.</p>
+</section>
+<section id="challenge-1-plot-scaling">
+<h2>Challenge 1: Plot Scaling<a class="headerlink" href="#challenge-1-plot-scaling" title="Permalink to this headline">#</a></h2>
+<p>Why do all of our plots stop just short of the upper end of our graph?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Because matplotlib normally sets x and y axes limits to the min and max of our data
+(depending on data range)</p>
+</div>
+</details><p>If we want to change this, we can use the <code class="docutils literal notranslate"><span class="pre">set_ylim(min,</span> <span class="pre">max)</span></code> method of each ‘axes’,
+for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">axes3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Plot Scaling
-
-Why do all of our plots stop just short of the upper end of our graph?
-
-:::::::::::::::  solution
-
-## Solution
-
-Because matplotlib normally sets x and y axes limits to the min and max of our data
-(depending on data range)
-
-
-:::::::::::::::::::::::::
-
-If we want to change this, we can use the `set_ylim(min, max)` method of each &#39;axes&#39;,
-for example:
-
-```python
-axes3.set_ylim(0, 6)
-```
-
-Update your plotting code to automatically set a more appropriate scale.
-(Hint: you can make use of the `max` and `min` methods to help.)
-
-:::::::::::::::  solution
-
-## Solution
-
-```python
-# One method
-axes3.set_ylabel(&#39;min&#39;)
-axes3.plot(numpy.amin(data, axis=0))
-axes3.set_ylim(0, 6)
-```
-
-:::::::::::::::::::::::::
-
-:::::::::::::::  solution
-
-## Solution
-
-```python
-# A more automated approach
-min_data = numpy.amin(data, axis=0)
-axes3.set_ylabel(&#39;min&#39;)
-axes3.plot(min_data)
-axes3.set_ylim(numpy.amin(min_data), numpy.amax(min_data) * 1.1)
-```
-
-:::::::::::::::::::::::::
-
+<p>Update your plotting code to automatically set a more appropriate scale.
+(Hint: you can make use of the <code class="docutils literal notranslate"><span class="pre">max</span></code> and <code class="docutils literal notranslate"><span class="pre">min</span></code> methods to help.)</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># One method</span>
+<span class="n">axes3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span>
+<span class="n">axes3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">axes3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Drawing Straight Lines
-
-In the center and right subplots above, we expect all lines to look like step functions because
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A more automated approach</span>
+<span class="n">min_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">axes3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span>
+<span class="n">axes3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">min_data</span><span class="p">)</span>
+<span class="n">axes3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">min_data</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">min_data</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="challenge-2-drawing-straight-lines">
+<h2>Challenge 2: Drawing Straight Lines<a class="headerlink" href="#challenge-2-drawing-straight-lines" title="Permalink to this headline">#</a></h2>
+<p>In the center and right subplots above, we expect all lines to look like step functions because
 non-integer value are not realistic for the minimum and maximum values. However, you can see
 that the lines are not always vertical or horizontal, and in particular the step function
-in the subplot on the right looks slanted. Why is this?
+in the subplot on the right looks slanted. Why is this?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Because matplotlib interpolates (draws a straight line) between the points.
+One way to do avoid this is to use the Matplotlib <code class="docutils literal notranslate"><span class="pre">drawstyle</span></code> option:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>
 
-:::::::::::::::  solution
+<span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
-## Solution
+<span class="n">fig</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span>
 
-Because matplotlib interpolates (draws a straight line) between the points.
-One way to do avoid this is to use the Matplotlib `drawstyle` option:
+<span class="n">axes1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">axes2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">axes3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-```python
-import numpy
-import matplotlib.pyplot
+<span class="n">axes1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
+<span class="n">axes1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps-mid&#39;</span><span class="p">)</span>
 
-data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
+<span class="n">axes2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
+<span class="n">axes2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps-mid&#39;</span><span class="p">)</span>
 
-fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+<span class="n">axes3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span>
+<span class="n">axes3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps-mid&#39;</span><span class="p">)</span>
 
-axes1 = fig.add_subplot(1, 3, 1)
-axes2 = fig.add_subplot(1, 3, 2)
-axes3 = fig.add_subplot(1, 3, 3)
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
-axes1.set_ylabel(&#39;average&#39;)
-axes1.plot(numpy.mean(data, axis=0), drawstyle=&#39;steps-mid&#39;)
-
-axes2.set_ylabel(&#39;max&#39;)
-axes2.plot(numpy.amax(data, axis=0), drawstyle=&#39;steps-mid&#39;)
-
-axes3.set_ylabel(&#39;min&#39;)
-axes3.plot(numpy.amin(data, axis=0), drawstyle=&#39;steps-mid&#39;)
-
-fig.tight_layout()
-
-matplotlib.pyplot.show()
-```
-
-![](fig/inflammation-01-line-styles.svg){alt=&#39;Three line graphs, with step lines connecting the points, showing the daily average, maximumand minimum inflammation over a 40-day period.&#39;}
-
-
-
-:::::::::::::::::::::::::
-
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Make Your Own Plot
-
-Create a plot showing the standard deviation (`numpy.std`)
-of the inflammation data for each day across all patients.
-
-:::::::::::::::  solution
-
-## Solution
-
-```python
-std_plot = matplotlib.pyplot.plot(numpy.std(data, axis=0))
-matplotlib.pyplot.show()
-```
-
-:::::::::::::::::::::::::
-
+<p class="sd-card-text"><img alt="Three line graphs, with step lines connecting the points, showing the daily average, maximumand minimum inflammation over a 40-day period." src="fig/python_programming/03-matplotlib/inflammation-01-line-styles.svg" /></p>
+</div>
+</details></section>
+<section id="challenge-3-make-your-own-plot">
+<h2>Challenge 3:  Make Your Own Plot<a class="headerlink" href="#challenge-3-make-your-own-plot" title="Permalink to this headline">#</a></h2>
+<p>Create a plot showing the standard deviation (<code class="docutils literal notranslate"><span class="pre">numpy.std</span></code>)
+of the inflammation data for each day across all patients.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">std_plot</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Moving Plots Around
+</div>
+</details></section>
+<section id="challenge-4-moving-plots-around">
+<h2>Challenge 4: Moving Plots Around<a class="headerlink" href="#challenge-4-moving-plots-around" title="Permalink to this headline">#</a></h2>
+<p>Modify the program to display the three plots on top of one another
+instead of side by side.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>
 
-Modify the program to display the three plots on top of one another
-instead of side by side.
+<span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
-:::::::::::::::  solution
+<span class="c1"># change figsize (swap width and height)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">))</span>
 
-## Solution
+<span class="c1"># change add_subplot (swap first two parameters)</span>
+<span class="n">axes1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">axes2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">axes3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-```python
-import numpy
-import matplotlib.pyplot
+<span class="n">axes1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
+<span class="n">axes1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 
-data = numpy.loadtxt(fname=&#39;inflammation-01.csv&#39;, delimiter=&#39;,&#39;)
+<span class="n">axes2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
+<span class="n">axes2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 
-# change figsize (swap width and height)
-fig = matplotlib.pyplot.figure(figsize=(3.0, 10.0))
+<span class="n">axes3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span>
+<span class="n">axes3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 
-# change add_subplot (swap first two parameters)
-axes1 = fig.add_subplot(3, 1, 1)
-axes2 = fig.add_subplot(3, 1, 2)
-axes3 = fig.add_subplot(3, 1, 3)
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
-axes1.set_ylabel(&#39;average&#39;)
-axes1.plot(numpy.mean(data, axis=0))
-
-axes2.set_ylabel(&#39;max&#39;)
-axes2.plot(numpy.amax(data, axis=0))
-
-axes3.set_ylabel(&#39;min&#39;)
-axes3.plot(numpy.amin(data, axis=0))
-
-fig.tight_layout()
-
-matplotlib.pyplot.show()
-```
-
-:::::::::::::::::::::::::
-
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
-- Use the `pyplot` module from the `matplotlib` library for creating simple visualizations.
-
-</pre></div>
+</div>
+</details><div class="admonition-keypoints admonition">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> module from the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library for creating simple visualizations.</p></li>
+</ul>
 </div>
 </section>
 </section>
@@ -912,7 +964,7 @@ matplotlib.pyplot.show()
     <a class='right-next' id="next-link" href="04-lists.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python lists</p>
+        <p class="prev-next-title">Storing Multiple Values in Lists</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Conditionals &#8212; University Research Computing Facility Workshop</title>
+    <title>Making Choices &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Composing Functions" href="08-func.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="06-files.html" />
+    <link rel="next" title="Creating Functions" href="08-func.html" />
+    <link rel="prev" title="Analyzing Data from Multiple Files" href="06-files.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -332,42 +332,52 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="03-matplotlib.html">
-     Visualizing data
+     Visualizing Tabular Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="04-lists.html">
-     Python lists
+     Storing Multiple Values in Lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05-loop.html">
+     Repeating Actions with Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-files.html">
+     Analyzing Data from Multiple Files
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Conditionals
+     Making Choices
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="08-func.html">
-     Composing Functions
+     Creating Functions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09-errors.html">
-     Syntax Errors
+     Errors and Exceptions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="10-defensive.html">
-     Assertions
+     Defensive Programming
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="11-debugging.html">
-     Know What It’s Supposed to Do
+     Debugging
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="12-cmdline.html">
-     Command-Line Arguments
+     Command-Line Programs
     </a>
    </li>
   </ul>
@@ -504,12 +514,12 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditionals">
    Conditionals
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#checking-our-data">
    Checking our Data
   </a>
@@ -523,7 +533,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Conditionals</h1>
+                <h1>Making Choices</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -533,12 +543,12 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditionals">
    Conditionals
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#checking-our-data">
    Checking our Data
   </a>
@@ -553,7 +563,9 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
+  <section class="tex2jax_ignore mathjax_ignore" id="making-choices">
+<h1>Making Choices<a class="headerlink" href="#making-choices" title="Permalink to this headline">#</a></h1>
+<div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
 - Write conditional statements including `if`, `elif`, and `else` branches.
 - Correctly evaluate expressions containing `and` and `or`.
 
@@ -570,7 +582,7 @@ How can we use Python to automatically recognize the different features we saw,
 and take a different action for each? In this lesson, we’ll learn how to write code that
 runs only when certain conditions are true.</p>
 <section id="conditionals">
-<h1>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">#</a></h1>
+<h2>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">#</a></h2>
 <p>We can ask Python to take different actions, depending on a condition, with an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="mi">37</span>
 <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
@@ -671,7 +683,7 @@ the value `False`, while `-1 &lt; 0` returns the value `True`.
 </div>
 </section>
 <section id="checking-our-data">
-<h1>Checking our Data<a class="headerlink" href="#checking-our-data" title="Permalink to this headline">#</a></h1>
+<h2>Checking our Data<a class="headerlink" href="#checking-our-data" title="Permalink to this headline">#</a></h2>
 <p>Now that we’ve seen how conditionals work,
 we can use them to check for the suspicious features we saw in our inflammation data.
 We are about to use functions provided by the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module again.
@@ -1063,6 +1075,7 @@ print(&#39;The number of vowels in this string is &#39; + str(count))
 </pre></div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1095,13 +1108,13 @@ print(&#39;The number of vowels in this string is &#39; + str(count))
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">&lt;no title&gt;</p>
+            <p class="prev-next-title">Analyzing Data from Multiple Files</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="08-func.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Composing Functions</p>
+        <p class="prev-next-title">Creating Functions</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
