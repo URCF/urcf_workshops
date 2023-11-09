@@ -524,6 +524,26 @@ title="Print to PDF"
    Challenge 1: From 1 to N
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-understanding-the-loops">
+   Challenge 2: Understanding the loops
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-computing-powers-with-loops">
+   Challenge 3: Computing Powers With Loops
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-4-summing-a-list">
+   Challenge 4: Summing a list
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-5-computing-the-value-of-a-polynomial">
+   Challenge 5: Computing the Value of a Polynomial
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -551,6 +571,26 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#challenge-1-from-1-to-n">
    Challenge 1: From 1 to N
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-understanding-the-loops">
+   Challenge 2: Understanding the loops
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-computing-powers-with-loops">
+   Challenge 3: Computing Powers With Loops
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-4-summing-a-list">
+   Challenge 4: Summing a list
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-5-computing-the-value-of-a-polynomial">
+   Challenge 5: Computing the Value of a Polynomial
   </a>
  </li>
 </ul>
@@ -801,119 +841,131 @@ Solution<div class="sd-summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details><div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Challenge 2: Understanding the loops
-
-Given the following loop:
-
-```python
-word = &#39;oxygen&#39;
-for letter in word:
-    print(letter)
-```
-
-How many times is the body of the loop executed?
-
-- 3 times
-- 4 times
-- 5 times
-- 6 times
-
-:::{dropdown} Solution
-The body of the loop is executed 6 times.
-:::
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Challenge 3: Computing Powers With Loops
-Exponentiation is built into Python:
-
-```python
-print(5 ** 3)
-```
-
-```output
-125
-```
-
-Write a loop that calculates the same result as `5 ** 3` using
-multiplication (and without exponentiation).
-
-:::{dropdown} Solution
-```python
-result = 1
-for number in range(0, 3):
-    result = result * 5
-print(result)
-```
-:::
-
-## Challenge 4: Summing a list
-Write a loop that calculates the sum of elements in a list
-by adding each element and printing the final value,
-so `[124, 402, 36]` prints 562
-
-:::{dropdown} Solution
-```python
-numbers = [124, 402, 36]
-summed = 0
-for num in numbers:
-    summed = summed + num
-print(summed)
-```
-:::
-
-
-## Challenge 5: Computing the Value of a Polynomial
-
-The built-in function `enumerate` takes a sequence (e.g. a [list](04-lists.md)) and
-generates a new sequence of the same length. Each element of the new sequence is a pair composed
-of the index (0, 1, 2,...) and the value from the original sequence:
-
-```python
-for idx, val in enumerate(a_list):
-    # Do something using idx and val
-```
-
-The code above loops through `a_list`, assigning the index to `idx` and the value to `val`.
-
-Suppose you have encoded a polynomial as a list of coefficients in
-the following way: the first element is the constant term, the
-second element is the coefficient of the linear term, the third is the
-coefficient of the quadratic term, etc.
-
-```python
-x = 5
-coefs = [2, 4, 3]
-y = coefs[0] * x**0 + coefs[1] * x**1 + coefs[2] * x**2
-print(y)
-```
-
-```output
-97
-```
-
-Write a loop using `enumerate(coefs)` which computes the value `y` of any
-polynomial, given `x` and `coefs`.
-
-:::{dropdown} Solution
-```python
-y = 0
-for idx, coef in enumerate(coefs):
-    y = y + coef * x**idx
-```
-:::
-
-:::{dropdown} Keypoints
-- Use `for variable in sequence` to process the elements of a sequence one at a time.
-- The body of a `for` loop must be indented.
-- Use `len(thing)` to determine the length of something that contains other values.
-:::
-
-
+</details></section>
+<section id="challenge-2-understanding-the-loops">
+<h2>Challenge 2: Understanding the loops<a class="headerlink" href="#challenge-2-understanding-the-loops" title="Permalink to this headline">#</a></h2>
+<p>Given the following loop:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;oxygen&#39;</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
+<p>How many times is the body of the loop executed?</p>
+<ul class="simple">
+<li><p>3 times</p></li>
+<li><p>4 times</p></li>
+<li><p>5 times</p></li>
+<li><p>6 times</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">The body of the loop is executed 6 times.</p>
+</div>
+</details></section>
+<section id="challenge-3-computing-powers-with-loops">
+<h2>Challenge 3: Computing Powers With Loops<a class="headerlink" href="#challenge-3-computing-powers-with-loops" title="Permalink to this headline">#</a></h2>
+<p>Exponentiation is built into Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">125</span>
+</pre></div>
+</div>
+<p>Write a loop that calculates the same result as <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">**</span> <span class="pre">3</span></code> using
+multiplication (and without exponentiation).</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="challenge-4-summing-a-list">
+<h2>Challenge 4: Summing a list<a class="headerlink" href="#challenge-4-summing-a-list" title="Permalink to this headline">#</a></h2>
+<p>Write a loop that calculates the sum of elements in a list
+by adding each element and printing the final value,
+so <code class="docutils literal notranslate"><span class="pre">[124,</span> <span class="pre">402,</span> <span class="pre">36]</span></code> prints 562</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">124</span><span class="p">,</span> <span class="mi">402</span><span class="p">,</span> <span class="mi">36</span><span class="p">]</span>
+<span class="n">summed</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="n">summed</span> <span class="o">=</span> <span class="n">summed</span> <span class="o">+</span> <span class="n">num</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="challenge-5-computing-the-value-of-a-polynomial">
+<h2>Challenge 5: Computing the Value of a Polynomial<a class="headerlink" href="#challenge-5-computing-the-value-of-a-polynomial" title="Permalink to this headline">#</a></h2>
+<p>The built-in function <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> takes a sequence (e.g. a <a class="reference internal" href="04-lists.html"><span class="doc std std-doc">list</span></a>) and
+generates a new sequence of the same length. Each element of the new sequence is a pair composed
+of the index (0, 1, 2,…) and the value from the original sequence:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
+    <span class="c1"># Do something using idx and val</span>
+</pre></div>
+</div>
+<p>The code above loops through <code class="docutils literal notranslate"><span class="pre">a_list</span></code>, assigning the index to <code class="docutils literal notranslate"><span class="pre">idx</span></code> and the value to <code class="docutils literal notranslate"><span class="pre">val</span></code>.</p>
+<p>Suppose you have encoded a polynomial as a list of coefficients in
+the following way: the first element is the constant term, the
+second element is the coefficient of the linear term, the third is the
+coefficient of the quadratic term, etc.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">coefs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">coefs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">0</span> <span class="o">+</span> <span class="n">coefs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">1</span> <span class="o">+</span> <span class="n">coefs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">97</span>
+</pre></div>
+</div>
+<p>Write a loop using <code class="docutils literal notranslate"><span class="pre">enumerate(coefs)</span></code> which computes the value <code class="docutils literal notranslate"><span class="pre">y</span></code> of any
+polynomial, given <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">coefs</span></code>.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">coef</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coefs</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">coef</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="n">idx</span>
+</pre></div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Keypoints<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Use <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">variable</span> <span class="pre">in</span> <span class="pre">sequence</span></code> to process the elements of a sequence one at a time.</p></li>
+<li><p class="sd-card-text">The body of a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop must be indented.</p></li>
+<li><p class="sd-card-text">Use <code class="docutils literal notranslate"><span class="pre">len(thing)</span></code> to determine the length of something that contains other values.</p></li>
+</ul>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
