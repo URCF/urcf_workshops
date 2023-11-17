@@ -491,12 +491,41 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#switching-to-shell-commands">
+   Switching to Shell Commands
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-arguments">
+   Command-Line Arguments
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -508,6 +537,24 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#switching-to-shell-commands">
+   Switching to Shell Commands
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-arguments">
+   Command-Line Arguments
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -539,246 +586,208 @@ we need to make our programs work like other Unix command-line tools.
 For example,
 we may want a program that reads a dataset
 and prints the average inflammation per patient.</p>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Switching to Shell Commands
-
-In this lesson we are switching from typing commands in a Python interpreter to typing
-commands in a shell terminal window (such as bash). When you see a `$` in front of a
-command that tells you to run that command in the shell rather than the Python interpreter.
-
-
-:::
-
-This program does exactly what we want - it prints the average inflammation per patient
-for a given file.
-
-```bash
-$ python ../code/readings_04.py --mean inflammation-01.csv
-```
-
-```output
-5.45
-5.425
-6.1
-...
-6.4
-7.05
-5.9
-```
-
-We might also want to look at the minimum of the first four lines
-
-```bash
-$ head -4 inflammation-01.csv | python ../code/readings_06.py --min
-```
-
-or the maximum inflammations in several files one after another:
-
-```bash
-$ python ../code/readings_04.py --max inflammation-*.csv
-```
-
-Our scripts should do the following:
-
-1. If no filename is given on the command line, read data from
-  [standard input](../learners/reference.md#standard-input).
-2. If one or more filenames are given, read data from them and report statistics for each file
-  separately.
-3. Use the `--min`, `--mean`, or `--max` flag to determine what statistic to print.
-
-To make this work,
+<section id="switching-to-shell-commands">
+<h2>Switching to Shell Commands<a class="headerlink" href="#switching-to-shell-commands" title="Permalink to this headline">#</a></h2>
+<p>In this lesson we are switching from typing commands in a Python interpreter to typing
+commands in a shell terminal window (such as bash). When you see a <code class="docutils literal notranslate"><span class="pre">$</span></code> in front of a
+command that tells you to run that command in the shell rather than the Python interpreter.</p>
+<p>This program does exactly what we want - it prints the average inflammation per patient
+for a given file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_04.py --mean inflammation-01.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">5.45</span>
+<span class="go">5.425</span>
+<span class="go">6.1</span>
+<span class="go">...</span>
+<span class="go">6.4</span>
+<span class="go">7.05</span>
+<span class="go">5.9</span>
+</pre></div>
+</div>
+<p>We might also want to look at the minimum of the first four lines</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ head -4 inflammation-01.csv <span class="p">|</span> python ../code/readings_06.py --min
+</pre></div>
+</div>
+<p>or the maximum inflammations in several files one after another:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_04.py --max inflammation-*.csv
+</pre></div>
+</div>
+<p>Our scripts should do the following:</p>
+<ol class="simple">
+<li><p>If no filename is given on the command line, read data from
+<a class="reference external" href="../learners/reference.md#standard-input">standard input</a>.</p></li>
+<li><p>If one or more filenames are given, read data from them and report statistics for each file
+separately.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">--min</span></code>, <code class="docutils literal notranslate"><span class="pre">--mean</span></code>, or <code class="docutils literal notranslate"><span class="pre">--max</span></code> flag to determine what statistic to print.</p></li>
+</ol>
+<p>To make this work,
 we need to know how to handle command-line arguments in a program,
 and understand how to handle standard input.
-We&#39;ll tackle these questions in turn below.
-
-## Command-Line Arguments
-
-We are going to create a file with our python code in, then use the bash shell to run the code. Using the text editor of your choice,
-save the following in a text file called `sys_version.py`:
-
-```python
-import sys
-print(&#39;version is&#39;, sys.version)
-```
-
-The first line imports a library called `sys`,
-which is short for &quot;system&quot;.
-It defines values such as `sys.version`,
+We’ll tackle these questions in turn below.</p>
+</section>
+<section id="command-line-arguments">
+<h2>Command-Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">#</a></h2>
+<p>We are going to create a file with our python code in, then use the bash shell to run the code. Using the text editor of your choice,
+save the following in a text file called <code class="docutils literal notranslate"><span class="pre">sys_version.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;version is&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first line imports a library called <code class="docutils literal notranslate"><span class="pre">sys</span></code>,
+which is short for “system”.
+It defines values such as <code class="docutils literal notranslate"><span class="pre">sys.version</span></code>,
 which describes which version of Python we are running.
-We can run this script from the command line like this:
-
-```bash
-$ python sys_version.py
-```
-
-```output
-version is 3.4.3+ (default, Jul 28 2015, 13:17:50)
-[GCC 4.9.3]
-```
-
-Create another file called `argv_list.py` and save the following text to it.
-
-```python
-import sys
-print(&#39;sys.argv is&#39;, sys.argv)
-```
-
-The strange name `argv` stands for &quot;argument values&quot;.
+We can run this script from the command line like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python sys_version.py
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">version is 3.4.3+ (default, Jul 28 2015, 13:17:50)</span>
+<span class="go">[GCC 4.9.3]</span>
+</pre></div>
+</div>
+<p>Create another file called <code class="docutils literal notranslate"><span class="pre">argv_list.py</span></code> and save the following text to it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sys.argv is&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The strange name <code class="docutils literal notranslate"><span class="pre">argv</span></code> stands for “argument values”.
 Whenever Python runs a program,
 it takes all of the values given on the command line
-and puts them in the list `sys.argv`
+and puts them in the list <code class="docutils literal notranslate"><span class="pre">sys.argv</span></code>
 so that the program can determine what they were.
-If we run this program with no arguments:
-
-```bash
-$ python argv_list.py
-```
-
-```output
-sys.argv is [&#39;argv_list.py&#39;]
-```
-
-the only thing in the list is the full path to our script,
-which is always `sys.argv[0]`.
-If we run it with a few arguments, however:
-
-```bash
-$ python argv_list.py first second third
-```
-
-```output
-sys.argv is [&#39;argv_list.py&#39;, &#39;first&#39;, &#39;second&#39;, &#39;third&#39;]
-```
-
-then Python adds each of those arguments to that magic list.
-
-With this in hand, let&#39;s build a version of `readings.py` that always prints
+If we run this program with no arguments:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python argv_list.py
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">sys.argv is [&#39;argv_list.py&#39;]</span>
+</pre></div>
+</div>
+<p>the only thing in the list is the full path to our script,
+which is always <code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code>.
+If we run it with a few arguments, however:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python argv_list.py first second third
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">sys.argv is [&#39;argv_list.py&#39;, &#39;first&#39;, &#39;second&#39;, &#39;third&#39;]</span>
+</pre></div>
+</div>
+<p>then Python adds each of those arguments to that magic list.</p>
+<p>With this in hand, let’s build a version of <code class="docutils literal notranslate"><span class="pre">readings.py</span></code> that always prints
 the per-patient mean of a single data file.
 The first step is to write a function that outlines our implementation,
 and a placeholder for the function that does the actual work.
-By convention this function is usually called `main`,
-though we can call it whatever we want:
-
-```bash
-$ cat ../code/readings_01.py
-```
-
-```python
-import sys
-import numpy
+By convention this function is usually called <code class="docutils literal notranslate"><span class="pre">main</span></code>,
+though we can call it whatever we want:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../code/readings_01.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
 
 
-def main():
-    script = sys.argv[0]
-    filename = sys.argv[1]
-    data = numpy.loadtxt(filename, delimiter=&#39;,&#39;)
-    for row_mean in numpy.mean(data, axis=1):
-        print(row_mean)
-```
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row_mean</span> <span class="ow">in</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row_mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function gets the name of the script from <code class="docutils literal notranslate"><span class="pre">sys.argv[0]</span></code>,
+because that’s where it’s always put,
+and the name of the file to process from <code class="docutils literal notranslate"><span class="pre">sys.argv[1]</span></code>.
+Here’s a simple test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_01.py inflammation-01.csv
+</pre></div>
+</div>
+<p>There is no output because we have defined a function,
+but haven’t actually called it.
+Let’s add a call to <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat ../code/readings_02.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
 
-This function gets the name of the script from `sys.argv[0]`,
-because that&#39;s where it&#39;s always put,
-and the name of the file to process from `sys.argv[1]`.
-Here&#39;s a simple test:
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row_mean</span> <span class="ow">in</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row_mean</span><span class="p">)</span>
 
-```bash
-$ python ../code/readings_01.py inflammation-01.csv
-```
-
-There is no output because we have defined a function,
-but haven&#39;t actually called it.
-Let&#39;s add a call to `main`:
-
-```bash
-$ cat ../code/readings_02.py
-```
-
-```python
-import sys
-import numpy
-
-def main():
-    script = sys.argv[0]
-    filename = sys.argv[1]
-    data = numpy.loadtxt(filename, delimiter=&#39;,&#39;)
-    for row_mean in numpy.mean(data, axis=1):
-        print(row_mean)
-
-if __name__ == &#39;__main__&#39;:
-   main()
-```
-
-and run that:
-
-```bash
-$ python ../code/readings_02.py inflammation-01.csv
-```
-
-```output
-5.45
-5.425
-6.1
-5.9
-5.55
-6.225
-5.975
-6.65
-6.625
-6.525
-6.775
-5.8
-6.225
-5.75
-5.225
-6.3
-6.55
-5.7
-5.85
-6.55
-5.775
-5.825
-6.175
-6.1
-5.8
-6.425
-6.05
-6.025
-6.175
-6.55
-6.175
-6.35
-6.725
-6.125
-7.075
-5.725
-5.925
-6.15
-6.075
-5.75
-5.975
-5.725
-6.3
-5.9
-6.75
-5.925
-7.225
-6.15
-5.95
-6.275
-5.7
-6.1
-6.825
-5.975
-6.725
-5.7
-6.25
-6.4
-7.05
-5.9
-```
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>and run that:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ../code/readings_02.py inflammation-01.csv
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">5.45</span>
+<span class="go">5.425</span>
+<span class="go">6.1</span>
+<span class="go">5.9</span>
+<span class="go">5.55</span>
+<span class="go">6.225</span>
+<span class="go">5.975</span>
+<span class="go">6.65</span>
+<span class="go">6.625</span>
+<span class="go">6.525</span>
+<span class="go">6.775</span>
+<span class="go">5.8</span>
+<span class="go">6.225</span>
+<span class="go">5.75</span>
+<span class="go">5.225</span>
+<span class="go">6.3</span>
+<span class="go">6.55</span>
+<span class="go">5.7</span>
+<span class="go">5.85</span>
+<span class="go">6.55</span>
+<span class="go">5.775</span>
+<span class="go">5.825</span>
+<span class="go">6.175</span>
+<span class="go">6.1</span>
+<span class="go">5.8</span>
+<span class="go">6.425</span>
+<span class="go">6.05</span>
+<span class="go">6.025</span>
+<span class="go">6.175</span>
+<span class="go">6.55</span>
+<span class="go">6.175</span>
+<span class="go">6.35</span>
+<span class="go">6.725</span>
+<span class="go">6.125</span>
+<span class="go">7.075</span>
+<span class="go">5.725</span>
+<span class="go">5.925</span>
+<span class="go">6.15</span>
+<span class="go">6.075</span>
+<span class="go">5.75</span>
+<span class="go">5.975</span>
+<span class="go">5.725</span>
+<span class="go">6.3</span>
+<span class="go">5.9</span>
+<span class="go">6.75</span>
+<span class="go">5.925</span>
+<span class="go">7.225</span>
+<span class="go">6.15</span>
+<span class="go">5.95</span>
+<span class="go">6.275</span>
+<span class="go">5.7</span>
+<span class="go">6.1</span>
+<span class="go">6.825</span>
+<span class="go">5.975</span>
+<span class="go">6.725</span>
+<span class="go">5.7</span>
+<span class="go">6.25</span>
+<span class="go">6.4</span>
+<span class="go">7.05</span>
+<span class="go">5.9</span>
+</pre></div>
+</div>
+<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
 ## Running Versus Importing
 
 Running a Python script in bash is very similar to
@@ -1151,9 +1160,7 @@ In fact,
 that&#39;s done:
 the program now does everything we set out to do.
 
-:::{admonition} Challenge
-
-## Arithmetic on the Command Line
+## Challenge 1: Arithmetic on the Command Line
 
 Write a Python program that adds, subtracts, multiplies, or divides two numbers provided on the command line:
 
@@ -1174,8 +1181,6 @@ $ python arith.py --subtract 3 4
 ```
 
 :::{dropdown} Solution
-
-## Solution
 
 ```python
 import sys
@@ -1208,14 +1213,9 @@ def do_arithmetic(operand1, operator, operand2):
 
 main()
 ```
-
-:::::::::::::::::::::::::
-
 :::
 
-:::{admonition} Challenge
-
-## Finding Particular Files
+## Challenge 2: Finding Particular Files
 
 Using the `glob` module introduced [earlier](06-files.html),
 write a simple version of `ls` that shows files in the current directory
@@ -1234,8 +1234,6 @@ zero.py
 
 :::{dropdown} Solution
 
-## Solution
-
 ```python
 import sys
 import glob
@@ -1252,14 +1250,9 @@ def main():
 
 main()
 ```
-
-:::::::::::::::::::::::::
-
 :::
 
-:::{admonition} Challenge
-
-## Changing Flags
+## Challenge 3: Changing Flags
 
 Rewrite `readings.py` so that it uses `-n`, `-m`, and `-x`
 instead of `--min`, `--mean`, and `--max` respectively.
@@ -1267,8 +1260,6 @@ Is the code easier to read?
 Is the program easier to understand?
 
 :::{dropdown} Solution
-
-## Solution
 
 ```python
 # this is code/readings_07.py
@@ -1302,14 +1293,9 @@ def process(filename, action):
 
 main()
 ```
-
-:::::::::::::::::::::::::
-
 :::
 
-:::{admonition} Challenge
-
-## Adding a Help Message
+## Challenge 4: Adding a Help Message
 
 Separately,
 modify `readings.py` so that if no parameters are given
@@ -1317,8 +1303,6 @@ modify `readings.py` so that if no parameters are given
 it prints a message explaining how it should be used.
 
 :::{dropdown} Solution
-
-## Solution
 
 ```python
 # this is code/readings_08.py
@@ -1363,22 +1347,15 @@ if __name__ == &#39;__main__&#39;:
     main()
 
 ```
-
-:::::::::::::::::::::::::
-
 :::
 
-:::{admonition} Challenge
-
-## Adding a Default Action
+## Challenge 5: Adding a Default Action
 
 Separately,
 modify `readings.py` so that if no action is given
 it displays the means of the data.
 
 :::{dropdown} Solution
-
-## Solution
 
 ```python
 # this is code/readings_09.py
@@ -1416,13 +1393,9 @@ def process(filename, action):
 main()
 ```
 
-:::::::::::::::::::::::::
-
 :::
 
-:::{admonition} Challenge
-
-## A File-Checker
+## Challenge 6: A File-Checker
 
 Write a program called `check.py` that takes the names of one or more
 inflammation data files as arguments
@@ -1430,8 +1403,6 @@ and checks that all the files have the same number of rows and columns.
 What is the best way to test your program?
 
 :::{dropdown} Solution
-
-## Solution
 
 ```python
 import sys
@@ -1465,14 +1436,9 @@ def row_col_count(filename):
 
 main()
 ```
-
-:::::::::::::::::::::::::
-
 :::
 
-:::{admonition} Challenge
-
-## Counting Lines
+## Challenge 7: Counting Lines
 
 Write a program called `line_count.py` that works like the Unix `wc` command:
 
@@ -1481,8 +1447,6 @@ Write a program called `line_count.py` that works like the Unix `wc` command:
   followed by the total number of lines.
 
 :::{dropdown} Solution
-
-## Solution
 
 ```python
 import sys
@@ -1520,14 +1484,9 @@ def count_file_like(file_like):
 main()
 
 ```
-
-:::::::::::::::::::::::::
-
 :::
 
-:::{admonition} Challenge
-
-## Generate an Error Message
+## Challenge 8: Generate an Error Message
 
 Write a program called `check_arguments.py` that prints usage
 then exits the program if no arguments are provided.
@@ -1553,7 +1512,7 @@ Thanks for specifying arguments!
 
 
 
-:::::::::::::::::::::::::::::::::::::::: keypoints
+:::{admonition} Keypoints
 
 - The `sys` library connects a Python program to the system it is running on.
 - The list `sys.argv` contains the command-line arguments that a program was run with.
@@ -1565,6 +1524,7 @@ Thanks for specifying arguments!
 
 </pre></div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
