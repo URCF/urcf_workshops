@@ -515,8 +515,28 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#long-tracebacks">
+   Long Tracebacks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-reading-error-messages">
+   Challenge 1: Reading Error Messages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#better-errors-on-newer-pythons">
+   Better errors on newer Pythons
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#syntax-errors">
    Syntax Errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tabs-and-spaces">
+   Tabs and Spaces
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -532,6 +552,21 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#file-errors">
    File Errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-identifying-syntax-errors">
+   Challenge 1: Identifying Syntax Errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-identifying-variable-name-errors">
+   Challenge 2: Identifying Variable Name Errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-identifying-index-errors">
+   Challenge 3: Identifying Index Errors
   </a>
  </li>
 </ul>
@@ -554,8 +589,28 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#long-tracebacks">
+   Long Tracebacks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-reading-error-messages">
+   Challenge 1: Reading Error Messages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#better-errors-on-newer-pythons">
+   Better errors on newer Pythons
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#syntax-errors">
    Syntax Errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tabs-and-spaces">
+   Tabs and Spaces
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -573,6 +628,21 @@ title="Print to PDF"
    File Errors
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-identifying-syntax-errors">
+   Challenge 1: Identifying Syntax Errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-identifying-variable-name-errors">
+   Challenge 2: Identifying Variable Name Errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-identifying-index-errors">
+   Challenge 3: Identifying Index Errors
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -585,17 +655,19 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="errors-and-exceptions">
 <h1>Errors and Exceptions<a class="headerlink" href="#errors-and-exceptions" title="Permalink to this headline">#</a></h1>
-<div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
-- To be able to read a traceback, and determine where the error took place and what type it is.
-- To be able to describe the types of situations in which syntax errors, indentation errors, name errors, index errors, and missing file errors occur.
-
-</pre></div>
+<div class="admonition-objectives admonition">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>To be able to read a traceback, and determine where the error took place and what type it is.</p></li>
+<li><p>To be able to describe the types of situations in which syntax errors, indentation errors, name errors, index errors, and missing file errors occur.</p></li>
+</ul>
 </div>
-<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
-- How does Python report errors?
-- How can I handle errors in Python programs?
-
-</pre></div>
+<div class="admonition-questions admonition">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How does Python report errors?</p></li>
+<li><p>How can I handle errors in Python programs?</p></li>
+</ul>
 </div>
 <p>Every programmer encounters errors,
 both those who are just beginning,
@@ -655,20 +727,15 @@ So, in this case, the program first performed a
 <a class="reference external" href="../learners/reference.md#function-call">function call</a> to the function <code class="docutils literal notranslate"><span class="pre">favorite_ice_cream</span></code>.
 Inside this function,
 the program encountered an error on Line 6, when it tried to run the code <code class="docutils literal notranslate"><span class="pre">print(ice_creams[3])</span></code>.</p>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Long Tracebacks
-
-Sometimes, you might see a traceback that is very long
-\-- sometimes they might even be 20 levels deep!
+<section id="long-tracebacks">
+<h2>Long Tracebacks<a class="headerlink" href="#long-tracebacks" title="Permalink to this headline">#</a></h2>
+<p>Sometimes, you might see a traceback that is very long
+– sometimes they might even be 20 levels deep!
 This can make it seem like something horrible happened,
 but the length of the error message does not reflect severity, rather,
 it indicates that your program called many functions before it encountered the error.
 Most of the time, the actual place where the error occurred is at the bottom-most level,
-so you can skip down the traceback to the bottom.
-
-
-</pre></div>
-</div>
+so you can skip down the traceback to the bottom.</p>
 <p>So what error did the program actually encounter?
 In the last line of the traceback,
 Python helpfully tells us the category or type of error (in this case, it is an <code class="docutils literal notranslate"><span class="pre">IndexError</span></code>)
@@ -690,40 +757,38 @@ note that you may not always be able to find the error there,
 as it is possible to create custom errors.
 In that case,
 hopefully the custom error message is informative enough to help you figure out what went wrong.</p>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Reading Error Messages
+</section>
+<section id="challenge-1-reading-error-messages">
+<h2>Challenge 1: Reading Error Messages<a class="headerlink" href="#challenge-1-reading-error-messages" title="Permalink to this headline">#</a></h2>
+<p>Read the Python code and the resulting traceback below, and answer the following questions:</p>
+<ol class="simple">
+<li><p>How many levels does the traceback have?</p></li>
+<li><p>What is the function name where the error occurred?</p></li>
+<li><p>On which line number in this function did the error occur?</p></li>
+<li><p>What is the type of error?</p></li>
+<li><p>What is the error message?</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This code has an intentional error. Do not type it directly;</span>
+<span class="c1"># use it for reference to understand the error message below.</span>
+<span class="k">def</span> <span class="nf">print_message</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;Hello, world!&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Today is Tuesday!&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;It is the middle of the week.&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Today is Donnerstag in German!&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Last day of the week!&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Hooray for the weekend!&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Aw, the weekend is almost over.&#39;</span>
+    <span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">messages</span><span class="p">[</span><span class="n">day</span><span class="p">])</span>
 
-Read the Python code and the resulting traceback below, and answer the following questions:
+<span class="k">def</span> <span class="nf">print_sunday_message</span><span class="p">():</span>
+    <span class="n">print_message</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
 
-1. How many levels does the traceback have?
-2. What is the function name where the error occurred?
-3. On which line number in this function did the error occur?
-4. What is the type of error?
-5. What is the error message?
-
-```python
-# This code has an intentional error. Do not type it directly;
-# use it for reference to understand the error message below.
-def print_message(day):
-    messages = [
-        &#39;Hello, world!&#39;,
-        &#39;Today is Tuesday!&#39;,
-        &#39;It is the middle of the week.&#39;,
-        &#39;Today is Donnerstag in German!&#39;,
-        &#39;Last day of the week!&#39;,
-        &#39;Hooray for the weekend!&#39;,
-        &#39;Aw, the weekend is almost over.&#39;
-    ]
-    print(messages[day])
-
-def print_sunday_message():
-    print_message(7)
-
-print_sunday_message()
-```
-
-```error
----------------------------------------------------------------------------
+<span class="n">print_sunday_message</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
 IndexError                                Traceback (most recent call last)
 &lt;ipython-input-7-3ad455d81842&gt; in &lt;module&gt;
      16     print_message(7)
@@ -746,34 +811,30 @@ IndexError                                Traceback (most recent call last)
      15 def print_sunday_message():
 
 IndexError: list index out of range
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-1. 3 levels
-2. `print_message`
-3. 13
-4. `IndexError`
-5. `list index out of range` You can then infer that
-  `7` is not the right index to use with `messages`.
-  
-  
-
-:::::::::::::::::::::::::
-
 </pre></div>
 </div>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Better errors on newer Pythons
-
-Newer versions of Python have improved error printouts.  If you are debugging errors, it is often
-helpful to use the latest Python version, even if you support older versions of Python.
-
-
-</pre></div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ol class="simple">
+<li><p class="sd-card-text">3 levels</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">print_message</span></code></p></li>
+<li><p class="sd-card-text">13</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">IndexError</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">index</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">range</span></code> You can then infer that
+<code class="docutils literal notranslate"><span class="pre">7</span></code> is not the right index to use with <code class="docutils literal notranslate"><span class="pre">messages</span></code>.</p></li>
+</ol>
 </div>
+</details></section>
+<section id="better-errors-on-newer-pythons">
+<h2>Better errors on newer Pythons<a class="headerlink" href="#better-errors-on-newer-pythons" title="Permalink to this headline">#</a></h2>
+<p>Newer versions of Python have improved error printouts.  If you are debugging errors, it is often
+helpful to use the latest Python version, even if you support older versions of Python.</p>
+</section>
 <section id="syntax-errors">
 <h2>Syntax Errors<a class="headerlink" href="#syntax-errors" title="Permalink to this headline">#</a></h2>
 <p>When you forget a colon at the end of a line,
@@ -826,35 +887,29 @@ IndentationError: unexpected indent
 <p>Both <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> and <code class="docutils literal notranslate"><span class="pre">IndentationError</span></code> indicate a problem with the syntax of your program,
 but an <code class="docutils literal notranslate"><span class="pre">IndentationError</span></code> is more specific:
 it <em>always</em> means that there is a problem with how your code is indented.</p>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Tabs and Spaces
-
-Some indentation errors are harder to spot than others.
+</section>
+<section id="tabs-and-spaces">
+<h2>Tabs and Spaces<a class="headerlink" href="#tabs-and-spaces" title="Permalink to this headline">#</a></h2>
+<p>Some indentation errors are harder to spot than others.
 In particular, mixing spaces and tabs can be difficult to spot
-because they are both [whitespace](../learners/reference.md#whitespace).
+because they are both <a class="reference external" href="../learners/reference.md#whitespace">whitespace</a>.
 In the example below, the first two lines in the body of the function
-`some_function` are indented with tabs, while the third line — with spaces.
-If you&#39;re working in a Jupyter notebook, be sure to copy and paste this example
+<code class="docutils literal notranslate"><span class="pre">some_function</span></code> are indented with tabs, while the third line — with spaces.
+If you’re working in a Jupyter notebook, be sure to copy and paste this example
 rather than trying to type it in manually because Jupyter automatically replaces
-tabs with spaces.
-
-```python
-def some_function():
-	msg = &#39;hello, world!&#39;
-	print(msg)
-        return msg
-```
-
-Visually it is impossible to spot the error.
-Fortunately, Python does not allow you to mix tabs and spaces.
-
-```error
-  File &quot;&lt;ipython-input-5-653b36fbcd41&gt;&quot;, line 4
+tabs with spaces.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">some_function</span><span class="p">():</span>
+	<span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;hello, world!&#39;</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span>
+</pre></div>
+</div>
+<p>Visually it is impossible to spot the error.
+Fortunately, Python does not allow you to mix tabs and spaces.</p>
+<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;ipython-input-5-653b36fbcd41&gt;&quot;, line 4
     return msg
               ^
 TabError: inconsistent use of tabs and spaces in indentation
-```
-
 </pre></div>
 </div>
 </section>
@@ -1030,124 +1085,108 @@ though many others exist.
 If you get an error that you’ve never seen before,
 searching the Internet for that error type
 often reveals common reasons why you might get that error.</p>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Identifying Syntax Errors
-
-1. Read the code below, and (without running it) try to identify what the errors are.
-2. Run the code, and read the error message. Is it a `SyntaxError` or an `IndentationError`?
-3. Fix the error.
-4. Repeat steps 2 and 3, until you have fixed all the errors.
-
-```python
-def another_function
-  print(&#39;Syntax errors are annoying.&#39;)
-   print(&#39;But at least Python tells us about them!&#39;)
-  print(&#39;So they are usually not too hard to fix.&#39;)
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-`SyntaxError` for missing `():` at end of first line,
-`IndentationError` for mismatch between second and third lines.
-A fixed version is:
-
-```python
-def another_function():
-    print(&#39;Syntax errors are annoying.&#39;)
-    print(&#39;But at least Python tells us about them!&#39;)
-    print(&#39;So they are usually not too hard to fix.&#39;)
-```
-
-:::::::::::::::::::::::::
-
-</pre></div>
-</div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Identifying Variable Name Errors
-
-1. Read the code below, and (without running it) try to identify what the errors are.
-2. Run the code, and read the error message.
-  What type of `NameError` do you think this is?
-  In other words, is it a string with no quotes,
-  a misspelled variable,
-  or a variable that should have been defined but was not?
-3. Fix the error.
-4. Repeat steps 2 and 3, until you have fixed all the errors.
-
-```python
-for number in range(10):
-    # use a if the number is a multiple of 3, otherwise use b
-    if (Number % 3) == 0:
-        message = message + a
-    else:
-        message = message + &#39;b&#39;
-print(message)
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-3 `NameError`s for `number` being misspelled, for `message` not defined,
-and for `a` not being in quotes.
-
-Fixed version:
-
-```python
-message = &#39;&#39;
-for number in range(10):
-    # use a if the number is a multiple of 3, otherwise use b
-    if (number % 3) == 0:
-        message = message + &#39;a&#39;
-    else:
-        message = message + &#39;b&#39;
-print(message)
-```
-
-:::::::::::::::::::::::::
-
-</pre></div>
-</div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Identifying Index Errors
-
-1. Read the code below, and (without running it) try to identify what the errors are.
-2. Run the code, and read the error message. What type of error is it?
-3. Fix the error.
-
-```python
-seasons = [&#39;Spring&#39;, &#39;Summer&#39;, &#39;Fall&#39;, &#39;Winter&#39;]
-print(&#39;My favorite season is &#39;, seasons[4])
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-`IndexError`; the last entry is `seasons[3]`, so `seasons[4]` doesn&#39;t make sense.
-A fixed version is:
-
-```python
-seasons = [&#39;Spring&#39;, &#39;Summer&#39;, &#39;Fall&#39;, &#39;Winter&#39;]
-print(&#39;My favorite season is &#39;, seasons[-1])
-```
-
-:::::::::::::::::::::::::
-
-</pre></div>
-</div>
-<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
-- Tracebacks can look intimidating, but they give us a lot of useful information about what went wrong in our program, including where the error occurred and what type of error it was.
-- An error having to do with the &#39;grammar&#39; or syntax of the program is called a `SyntaxError`. If the issue has to do with how the code is indented, then it will be called an `IndentationError`.
-- A `NameError` will occur when trying to use a variable that does not exist. Possible causes are that a variable definition is missing, a variable reference differs from its definition in spelling or capitalization, or the code contains a string that is missing quotes around it.
-- Containers like lists and strings will generate errors if you try to access items in them that do not exist. This type of error is called an `IndexError`.
-- Trying to read a file that does not exist will give you an `FileNotFoundError`. Trying to read a file that is open for writing, or writing to a file that is open for reading, will give you an `IOError`.
-
-</pre></div>
-</div>
 </section>
+<section id="challenge-1-identifying-syntax-errors">
+<h2>Challenge 1: Identifying Syntax Errors<a class="headerlink" href="#challenge-1-identifying-syntax-errors" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Read the code below, and (without running it) try to identify what the errors are.</p></li>
+<li><p>Run the code, and read the error message. Is it a <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> or an <code class="docutils literal notranslate"><span class="pre">IndentationError</span></code>?</p></li>
+<li><p>Fix the error.</p></li>
+<li><p>Repeat steps 2 and 3, until you have fixed all the errors.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">another_function</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Syntax errors are annoying.&#39;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;But at least Python tells us about them!&#39;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;So they are usually not too hard to fix.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> for missing <code class="docutils literal notranslate"><span class="pre">():</span></code> at end of first line,
+<code class="docutils literal notranslate"><span class="pre">IndentationError</span></code> for mismatch between second and third lines.
+A fixed version is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">another_function</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Syntax errors are annoying.&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;But at least Python tells us about them!&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;So they are usually not too hard to fix.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="challenge-2-identifying-variable-name-errors">
+<h2>Challenge 2: Identifying Variable Name Errors<a class="headerlink" href="#challenge-2-identifying-variable-name-errors" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Read the code below, and (without running it) try to identify what the errors are.</p></li>
+<li><p>Run the code, and read the error message.
+What type of <code class="docutils literal notranslate"><span class="pre">NameError</span></code> do you think this is?
+In other words, is it a string with no quotes,
+a misspelled variable,
+or a variable that should have been defined but was not?</p></li>
+<li><p>Fix the error.</p></li>
+<li><p>Repeat steps 2 and 3, until you have fixed all the errors.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># use a if the number is a multiple of 3, otherwise use b</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Number</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="s1">&#39;b&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">3 <code class="docutils literal notranslate"><span class="pre">NameError</span></code>s for <code class="docutils literal notranslate"><span class="pre">number</span></code> being misspelled, for <code class="docutils literal notranslate"><span class="pre">message</span></code> not defined,
+and for <code class="docutils literal notranslate"><span class="pre">a</span></code> not being in quotes.</p>
+<p class="sd-card-text">Fixed version:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># use a if the number is a multiple of 3, otherwise use b</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">number</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="s1">&#39;a&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">message</span> <span class="o">+</span> <span class="s1">&#39;b&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="challenge-3-identifying-index-errors">
+<h2>Challenge 3: Identifying Index Errors<a class="headerlink" href="#challenge-3-identifying-index-errors" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Read the code below, and (without running it) try to identify what the errors are.</p></li>
+<li><p>Run the code, and read the error message. What type of error is it?</p></li>
+<li><p>Fix the error.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Winter&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;My favorite season is &#39;</span><span class="p">,</span> <span class="n">seasons</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">IndexError</span></code>; the last entry is <code class="docutils literal notranslate"><span class="pre">seasons[3]</span></code>, so <code class="docutils literal notranslate"><span class="pre">seasons[4]</span></code> doesn’t make sense.
+A fixed version is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Winter&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;My favorite season is &#39;</span><span class="p">,</span> <span class="n">seasons</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">

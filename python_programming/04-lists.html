@@ -544,6 +544,11 @@ title="Print to PDF"
    Challenge 2: Non-Continuous Slices
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-overloading">
+   Challenge 3: Overloading
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -591,6 +596,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#challenge-2-non-continuous-slices">
    Challenge 2: Non-Continuous Slices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-3-overloading">
+   Challenge 3: Overloading
   </a>
  </li>
 </ul>
@@ -989,55 +999,57 @@ sequence:</p>
 <span class="go">Omitting ending index: [&#39;sep&#39;, &#39;oct&#39;, &#39;nov&#39;, &#39;dec&#39;]</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Challenge 3: Overloading
-
-`+` usually means addition, but when used on strings or lists, it means &quot;concatenate&quot;.
-Given that, what do you think the multiplication operator `*` does on lists?
-In particular, what will be the output of the following code?
-
-```python
-counts = [2, 4, 6, 8, 10]
-repeats = counts * 2
-print(repeats)
-```
-
-1. `[2, 4, 6, 8, 10, 2, 4, 6, 8, 10]`
-2. `[4, 8, 12, 16, 20]`
-3. `[[2, 4, 6, 8, 10], [2, 4, 6, 8, 10]]`
-4. `[2, 4, 6, 8, 10, 4, 8, 12, 16, 20]`
-
-The technical term for this is *operator overloading*:
-a single operator, like `+` or `*`,
-can do different things depending on what it&#39;s applied to.
-
-:::{dropdown} Solution
-The multiplication operator `*` used on a list replicates elements of the list and concatenates
-them together:
-
-```output
-[2, 4, 6, 8, 10, 2, 4, 6, 8, 10]
-```
-
-It&#39;s equivalent to:
-
-```python
-counts + counts
-```
-:::
-
-:::{admonition} Keypoints
-- `[value1, value2, value3, ...]` creates a list.
-- Lists can contain any Python object, including lists (i.e., list of lists).
-- Lists are indexed and sliced with square brackets (e.g., `list[0]` and `list[2:9]`), in the same way as strings and arrays.
-- Lists are mutable (i.e., their values can be changed in place).
-- Strings are immutable (i.e., the characters in them cannot be changed).
-:::
-
-
-</pre></div>
+<div class="admonition-challenge admonition">
+<p class="admonition-title">Challenge</p>
+</div>
+<div class="admonition-keypoints admonition">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[value1,</span> <span class="pre">value2,</span> <span class="pre">value3,</span> <span class="pre">...]</span></code> creates a list.</p></li>
+<li><p>Lists can contain any Python object, including lists (i.e., list of lists).</p></li>
+<li><p>Lists are indexed and sliced with square brackets (e.g., <code class="docutils literal notranslate"><span class="pre">list[0]</span></code> and <code class="docutils literal notranslate"><span class="pre">list[2:9]</span></code>), in the same way as strings and arrays.</p></li>
+<li><p>Lists are mutable (i.e., their values can be changed in place).</p></li>
+<li><p>Strings are immutable (i.e., the characters in them cannot be changed).</p></li>
+</ul>
 </div>
 </section>
+<section id="challenge-3-overloading">
+<h2>Challenge 3: Overloading<a class="headerlink" href="#challenge-3-overloading" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">+</span></code> usually means addition, but when used on strings or lists, it means “concatenate”.
+Given that, what do you think the multiplication operator <code class="docutils literal notranslate"><span class="pre">*</span></code> does on lists?
+In particular, what will be the output of the following code?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">repeats</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">repeats</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8,</span> <span class="pre">10,</span> <span class="pre">2,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8,</span> <span class="pre">10]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">8,</span> <span class="pre">12,</span> <span class="pre">16,</span> <span class="pre">20]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[2,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8,</span> <span class="pre">10],</span> <span class="pre">[2,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8,</span> <span class="pre">10]]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8,</span> <span class="pre">10,</span> <span class="pre">4,</span> <span class="pre">8,</span> <span class="pre">12,</span> <span class="pre">16,</span> <span class="pre">20]</span></code></p></li>
+</ol>
+<p>The technical term for this is <em>operator overloading</em>:
+a single operator, like <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">*</span></code>,
+can do different things depending on what it’s applied to.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">The multiplication operator <code class="docutils literal notranslate"><span class="pre">*</span></code> used on a list replicates elements of the list and concatenates
+them together:</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[2, 4, 6, 8, 10, 2, 4, 6, 8, 10]</span>
+</pre></div>
+</div>
+<p class="sd-card-text">It’s equivalent to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">+</span> <span class="n">counts</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">

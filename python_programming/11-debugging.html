@@ -540,9 +540,36 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-control-revisited">
+   Version Control Revisited
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#be-humble">
    Be Humble
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-debug-with-a-neighbor">
+   Challenge 1: Debug With a Neighbor
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-not-supposed-to-be-the-same">
+   Challenge 2: Not Supposed to be the Same
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#suggestions-for-debugging">
+     Suggestions for debugging
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bugs-found">
+     Bugs found
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -589,9 +616,36 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-control-revisited">
+   Version Control Revisited
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#be-humble">
    Be Humble
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-debug-with-a-neighbor">
+   Challenge 1: Debug With a Neighbor
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-not-supposed-to-be-the-same">
+   Challenge 2: Not Supposed to be the Same
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#suggestions-for-debugging">
+     Suggestions for debugging
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bugs-found">
+     Bugs found
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -605,16 +659,18 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">#</a></h1>
-<div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
-- Debug code containing an error systematically.
-- Identify ways of making code less error-prone and more easily tested.
-
-</pre></div>
+<div class="admonition-objectives admonition">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Debug code containing an error systematically.</p></li>
+<li><p>Identify ways of making code less error-prone and more easily tested.</p></li>
+</ul>
 </div>
-<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
-- How can I debug my program?
-
-</pre></div>
+<div class="admonition-questions admonition">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How can I debug my program?</p></li>
+</ul>
 </div>
 <p>Once testing has uncovered problems,
 the next step is to fix them.
@@ -781,21 +837,18 @@ and start working more systematically.</p>
 People are more likely to listen to us
 when we can explain clearly what we did,
 and we’re better able to give them the information they need to be useful.</p>
-<div class="highlight-callout notranslate"><div class="highlight"><pre><span></span>
-## Version Control Revisited
-
-Version control is often used to reset software to a known state during debugging,
+</section>
+<section id="version-control-revisited">
+<h2>Version Control Revisited<a class="headerlink" href="#version-control-revisited" title="Permalink to this headline">#</a></h2>
+<p>Version control is often used to reset software to a known state during debugging,
 and to explore recent changes to code that might be responsible for bugs.
 In particular,
-most version control systems (e.g. git, Mercurial) have:
-
-1. a `blame` command that shows who last changed each line of a file;
-2. a `bisect` command that helps with finding the commit that introduced an
-  issue.
-  
-
-</pre></div>
-</div>
+most version control systems (e.g. git, Mercurial) have:</p>
+<ol class="simple">
+<li><p>a <code class="docutils literal notranslate"><span class="pre">blame</span></code> command that shows who last changed each line of a file;</p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">bisect</span></code> command that helps with finding the commit that introduced an
+issue.</p></li>
+</ol>
 </section>
 <section id="be-humble">
 <h2>Be Humble<a class="headerlink" href="#be-humble" title="Permalink to this headline">#</a></h2>
@@ -829,81 +882,75 @@ to break our code into modular, testable chunks,
 and to turn every assumption (or mistake) into an assertion,
 it will actually take us <em>less</em> time to produce working programs,
 not more.</p>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Debug With a Neighbor
-
-Take a function that you have written today, and introduce a tricky bug.
+</section>
+<section id="challenge-1-debug-with-a-neighbor">
+<h2>Challenge 1: Debug With a Neighbor<a class="headerlink" href="#challenge-1-debug-with-a-neighbor" title="Permalink to this headline">#</a></h2>
+<p>Take a function that you have written today, and introduce a tricky bug.
 Your function should still run, but will give the wrong output.
 Switch seats with your neighbor and attempt to debug
 the bug that they introduced into their function.
-Which of the principles discussed above did you find helpful?
-
-
-</pre></div>
-</div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Not Supposed to be the Same
-
-You are assisting a researcher with Python code that computes the
+Which of the principles discussed above did you find helpful?</p>
+</section>
+<section id="challenge-2-not-supposed-to-be-the-same">
+<h2>Challenge 2: Not Supposed to be the Same<a class="headerlink" href="#challenge-2-not-supposed-to-be-the-same" title="Permalink to this headline">#</a></h2>
+<p>You are assisting a researcher with Python code that computes the
 Body Mass Index (BMI) of patients.  The researcher is concerned because
 all patients seemingly have unusual and identical BMIs, despite having different
-physiques.  BMI is calculated as **weight in kilograms**
-divided by the square of **height in metres**.
-
-Use the debugging principles in this exercise and locate problems
+physiques.  BMI is calculated as <strong>weight in kilograms</strong>
+divided by the square of <strong>height in metres</strong>.</p>
+<p>Use the debugging principles in this exercise and locate problems
 with the code. What suggestions would you give the researcher for
-ensuring any later changes they make work correctly? What bugs do you spot?
+ensuring any later changes they make work correctly? What bugs do you spot?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patients</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">70</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">],</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">],</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">]]</span>
 
-```python
-patients = [[70, 1.8], [80, 1.9], [150, 1.7]]
+<span class="k">def</span> <span class="nf">calculate_bmi</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">weight</span> <span class="o">/</span> <span class="p">(</span><span class="n">height</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 
-def calculate_bmi(weight, height):
-    return weight / (height ** 2)
-
-for patient in patients:
-    weight, height = patients[0]
-    bmi = calculate_bmi(height, weight)
-    print(&quot;Patient&#39;s BMI is:&quot;, bmi)
-```
-
-```output
-Patient&#39;s BMI is: 0.000367
-Patient&#39;s BMI is: 0.000367
-Patient&#39;s BMI is: 0.000367
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-### Suggestions for debugging
-
-- Add printing statement in the `calculate_bmi` function, like `print(&#39;weight:&#39;, weight, &#39;height:&#39;, height)`, to make clear that what the BMI is based on.
-- Change `print(&quot;Patient&#39;s BMI is: %f&quot; % bmi)` to `print(&quot;Patient&#39;s BMI (weight: %f, height: %f) is: %f&quot; % (weight, height, bmi))`, in order to be able to distinguish bugs in the function from bugs in the loop.
-
-### Bugs found
-
-- The loop is not being utilised correctly. `height` and `weight` are always
-  set as the first patient&#39;s data during each iteration of the loop.
-
-- The height/weight variables are reversed in the function call to
-  `calculate_bmi(...)`, the correct BMIs are 21.604938, 22.160665 and 51.903114.
-  
-  
-
-:::::::::::::::::::::::::
-
+<span class="k">for</span> <span class="n">patient</span> <span class="ow">in</span> <span class="n">patients</span><span class="p">:</span>
+    <span class="n">weight</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">patients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">bmi</span> <span class="o">=</span> <span class="n">calculate_bmi</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Patient&#39;s BMI is:&quot;</span><span class="p">,</span> <span class="n">bmi</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
-- Know what code is supposed to do *before* trying to debug it.
-- Make it fail every time.
-- Make it fail fast.
-- Change one thing at a time, and for a reason.
-- Keep track of what you&#39;ve done.
-- Be humble.
-
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Patient&#39;s BMI is: 0.000367</span>
+<span class="go">Patient&#39;s BMI is: 0.000367</span>
+<span class="go">Patient&#39;s BMI is: 0.000367</span>
 </pre></div>
+</div>
+<section id="suggestions-for-debugging">
+<h3>Suggestions for debugging<a class="headerlink" href="#suggestions-for-debugging" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Add printing statement in the <code class="docutils literal notranslate"><span class="pre">calculate_bmi</span></code> function, like <code class="docutils literal notranslate"><span class="pre">print('weight:',</span> <span class="pre">weight,</span> <span class="pre">'height:',</span> <span class="pre">height)</span></code>, to make clear that what the BMI is based on.</p></li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">print(&quot;Patient's</span> <span class="pre">BMI</span> <span class="pre">is:</span> <span class="pre">%f&quot;</span> <span class="pre">%</span> <span class="pre">bmi)</span></code> to <code class="docutils literal notranslate"><span class="pre">print(&quot;Patient's</span> <span class="pre">BMI</span> <span class="pre">(weight:</span> <span class="pre">%f,</span> <span class="pre">height:</span> <span class="pre">%f)</span> <span class="pre">is:</span> <span class="pre">%f&quot;</span> <span class="pre">%</span> <span class="pre">(weight,</span> <span class="pre">height,</span> <span class="pre">bmi))</span></code>, in order to be able to distinguish bugs in the function from bugs in the loop.</p></li>
+</ul>
+</section>
+<section id="bugs-found">
+<h3>Bugs found<a class="headerlink" href="#bugs-found" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The loop is not being utilised correctly. <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">weight</span></code> are always
+set as the first patient’s data during each iteration of the loop.</p></li>
+<li><p>The height/weight variables are reversed in the function call to
+<code class="docutils literal notranslate"><span class="pre">calculate_bmi(...)</span></code>, the correct BMIs are 21.604938, 22.160665 and 51.903114.</p></li>
+</ul>
+</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+</div>
+</details><div class="admonition-keypoints admonition">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>Know what code is supposed to do <em>before</em> trying to debug it.</p></li>
+<li><p>Make it fail every time.</p></li>
+<li><p>Make it fail fast.</p></li>
+<li><p>Change one thing at a time, and for a reason.</p></li>
+<li><p>Keep track of what you’ve done.</p></li>
+<li><p>Be humble.</p></li>
+</ul>
 </div>
 </section>
 </section>

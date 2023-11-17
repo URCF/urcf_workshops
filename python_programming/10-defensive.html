@@ -524,6 +524,16 @@ title="Print to PDF"
    Test-Driven Development
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-pre-and-post-conditions">
+   Challenge 1: Pre- and Post-Conditions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-testing-assertions">
+   Challenge 2: Testing Assertions
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -553,6 +563,16 @@ title="Print to PDF"
    Test-Driven Development
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-1-pre-and-post-conditions">
+   Challenge 1: Pre- and Post-Conditions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-2-testing-assertions">
+   Challenge 2: Testing Assertions
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -565,19 +585,21 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="defensive-programming">
 <h1>Defensive Programming<a class="headerlink" href="#defensive-programming" title="Permalink to this headline">#</a></h1>
-<div class="highlight-objectives notranslate"><div class="highlight"><pre><span></span>
-- Explain what an assertion is.
-- Add assertions that check the program&#39;s state is correct.
-- Correctly add precondition and postcondition assertions to functions.
-- Explain what test-driven development is, and use it when creating new functions.
-- Explain why variables should be initialized using actual data values rather than arbitrary constants.
-
-</pre></div>
+<div class="admonition-objectives admonition">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Explain what an assertion is.</p></li>
+<li><p>Add assertions that check the program’s state is correct.</p></li>
+<li><p>Correctly add precondition and postcondition assertions to functions.</p></li>
+<li><p>Explain what test-driven development is, and use it when creating new functions.</p></li>
+<li><p>Explain why variables should be initialized using actual data values rather than arbitrary constants.</p></li>
+</ul>
 </div>
-<div class="highlight-questions notranslate"><div class="highlight"><pre><span></span>
-- How can I make my programs more reliable?
-
-</pre></div>
+<div class="admonition-questions admonition">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How can I make my programs more reliable?</p></li>
+</ul>
 </div>
 <p>Our previous lessons have introduced the basic tools of programming:
 variables and lists,
@@ -961,93 +983,84 @@ we realize that we’re initializing <code class="docutils literal notranslate">
 regardless of the input values.
 This violates another important rule of programming:
 <em>always initialize from data</em>.</p>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Pre- and Post-Conditions
-
-Suppose you are writing a function called `average` that calculates
+</section>
+<section id="challenge-1-pre-and-post-conditions">
+<h2>Challenge 1: Pre- and Post-Conditions<a class="headerlink" href="#challenge-1-pre-and-post-conditions" title="Permalink to this headline">#</a></h2>
+<p>Suppose you are writing a function called <code class="docutils literal notranslate"><span class="pre">average</span></code> that calculates
 the average of the numbers in a list.
 What pre-conditions and post-conditions would you write for it?
-Compare your answer to your neighbor&#39;s:
-can you think of a function that will pass your tests but not his/hers or vice versa?
-
-:::::::::::::::  solution
-
-## Solution
-
-```python
-# a possible pre-condition:
-assert len(input_list) &gt; 0, &#39;List length must be non-zero&#39;
-# a possible post-condition:
-assert numpy.amin(input_list) &lt;= average &lt;= numpy.amax(input_list),
-&#39;Average should be between min and max of input values (inclusive)&#39;
-```
-
-:::::::::::::::::::::::::
-
+Compare your answer to your neighbor’s:
+can you think of a function that will pass your tests but not his/hers or vice versa?</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># a possible pre-condition:</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;List length must be non-zero&#39;</span>
+<span class="c1"># a possible post-condition:</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">input_list</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">average</span> <span class="o">&lt;=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">input_list</span><span class="p">),</span>
+<span class="s1">&#39;Average should be between min and max of input values (inclusive)&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-challenge notranslate"><div class="highlight"><pre><span></span>
-## Testing Assertions
-
-Given a sequence of a number of cars, the function `get_total_cars` returns
-the total number of cars.
-
-```python
-get_total_cars([1, 2, 3, 4])
-```
-
-```output
-10
-```
-
-```python
-get_total_cars([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;])
-```
-
-```output
-ValueError: invalid literal for int() with base 10: &#39;a&#39;
-```
-
-Explain in words what the assertions in this function check,
+</div>
+</details></section>
+<section id="challenge-2-testing-assertions">
+<h2>Challenge 2: Testing Assertions<a class="headerlink" href="#challenge-2-testing-assertions" title="Permalink to this headline">#</a></h2>
+<p>Given a sequence of a number of cars, the function <code class="docutils literal notranslate"><span class="pre">get_total_cars</span></code> returns
+the total number of cars.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_total_cars</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">10</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_total_cars</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">ValueError: invalid literal for int() with base 10: &#39;a&#39;</span>
+</pre></div>
+</div>
+<p>Explain in words what the assertions in this function check,
 and for each one,
-give an example of input that will make that assertion fail.
-
-```python
-def get_total(values):
-    assert len(values) &gt; 0
-    for element in values:
-        assert int(element)
-    values = [int(element) for element in values]
-    total = sum(values)
-    assert total &gt; 0
-    return total
-```
-
-:::::::::::::::  solution
-
-## Solution
-
-- The first assertion checks that the input sequence `values` is not empty.
-  An empty sequence such as `[]` will make it fail.
-- The second assertion checks that each value in the list can be turned into an integer.
-  Input such as `[1, 2, &#39;c&#39;, 3]` will make it fail.
-- The third assertion checks that the total of the list is greater than 0.
-  Input such as `[-10, 2, 3]` will make it fail.
-  
-  
-
-:::::::::::::::::::::::::
-
+give an example of input that will make that assertion fail.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_total</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">total</span>
 </pre></div>
 </div>
-<div class="highlight-keypoints notranslate"><div class="highlight"><pre><span></span>
-- Program defensively, i.e., assume that errors are going to arise, and write code to detect them when they do.
-- Put assertions in programs to check their state as they run, and to help readers understand how those programs are supposed to work.
-- Use preconditions to check that the inputs to a function are safe to use.
-- Use postconditions to check that the output from a function is safe to use.
-- Write tests before writing code in order to help determine exactly what that code is supposed to do.
-
-</pre></div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">The first assertion checks that the input sequence <code class="docutils literal notranslate"><span class="pre">values</span></code> is not empty.
+An empty sequence such as <code class="docutils literal notranslate"><span class="pre">[]</span></code> will make it fail.</p></li>
+<li><p class="sd-card-text">The second assertion checks that each value in the list can be turned into an integer.
+Input such as <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">'c',</span> <span class="pre">3]</span></code> will make it fail.</p></li>
+<li><p class="sd-card-text">The third assertion checks that the total of the list is greater than 0.
+Input such as <code class="docutils literal notranslate"><span class="pre">[-10,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> will make it fail.</p></li>
+</ul>
+</div>
+</details><div class="admonition-keypoints admonition">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>Program defensively, i.e., assume that errors are going to arise, and write code to detect them when they do.</p></li>
+<li><p>Put assertions in programs to check their state as they run, and to help readers understand how those programs are supposed to work.</p></li>
+<li><p>Use preconditions to check that the inputs to a function are safe to use.</p></li>
+<li><p>Use postconditions to check that the output from a function is safe to use.</p></li>
+<li><p>Write tests before writing code in order to help determine exactly what that code is supposed to do.</p></li>
+</ul>
 </div>
 </section>
 </section>
