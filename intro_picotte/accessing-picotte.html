@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The structure of the Picotte Cluster" href="03-picotte_structure.html" />
-    <link rel="prev" title="Introduction" href="01-introduction.html" />
+    <link rel="next" title="The structure of the Picotte Cluster" href="picotte_structure.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -183,7 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="00-index.html">
+  <a class="reference internal" href="index.html">
    Introduction to Research Computing on Picotte
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -193,7 +193,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="01-introduction.html">
+    <a class="reference internal" href="introduction.html">
      Introduction
     </a>
    </li>
@@ -203,32 +203,32 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="03-picotte_structure.html">
+    <a class="reference internal" href="picotte_structure.html">
      The structure of the Picotte Cluster
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04-storage.html">
+    <a class="reference internal" href="storage.html">
      Storage on Picotte
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="05-interactive.html">
+    <a class="reference internal" href="interactive.html">
      Running an interactive job on Picotte
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="06-file-transfer.html">
+    <a class="reference internal" href="file-transfer.html">
      Transferring files to and from Picotte
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07-batch.html">
+    <a class="reference internal" href="batch.html">
      Running a batch job
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08-jupyter-hub.html">
+    <a class="reference internal" href="jupyter-hub.html">
      Jupyter Hub service to the Picotte Cluster
     </a>
    </li>
@@ -450,7 +450,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/intro_picotte/02-accessing-picotte.md"
+        <a href="../_sources/intro_picotte/accessing-picotte.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -555,42 +555,19 @@ title="Print to PDF"
 <p>To be able to run commands on Picotte from your own machine, you will first
 need to log in. We will login via <strong>SSH</strong> which will provide us a shell on
 Picotte’s login nodes.</p>
-<p>For Mac OS X, you can open the Terminal Application</p>
 <ul class="simple">
-<li><p>Click on the magnifying glass icon on the top right
-corner of the screen.</p></li>
-<li><p>Start typing <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> in the search box, and the
-<code class="docutils literal notranslate"><span class="pre">Terminal</span></code> app will appear to be selected.</p></li>
+<li><p>For Mac OS X, you can open the Terminal Application.</p></li>
+<li><p>For Windows, you can launch either the Git Bash app or its integration
+through Windows Terminal.</p></li>
+<li><p>Type the following into your terminal.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">YOUR_PICOTTE_USERNAME</span></code> is your Drexel username (without the <code class="docutils literal notranslate"><span class="pre">&#64;drexel.edu</span></code>)</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh &lt;your Picotte username&gt;@picottelogin.urcf.drexel.edu
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh YOUR_PICOTTE_USERNAME@picottelogin.urcf.drexel.edu
 </pre></div>
 </div>
-<p>For Windows, first you need to download and install
-<a class="reference external" href="https://mobaxterm.mobatek.net/download.html">MobaXterm Home Edition</a>.</p>
-<blockquote>
-<div><p>It is important that you unzip the downloaded installer prior to installation.
-The zipped installer file contains an additional data file besides the installer
-executable. This data file is not accessible if the installer executable is
-called from insize the zipped file (something Windows allows you to do).</p>
-</div></blockquote>
-<p>After MobaXterm starts, click the <code class="docutils literal notranslate"><span class="pre">Session</span></code> button.</p>
-<p><img alt="Main MobaXterm Windows" src="../_images/mobaxterm_0.png" /></p>
-<p>Select SSH session and use the following parameters (whichever required), then click <code class="docutils literal notranslate"><span class="pre">OK</span></code>:</p>
-<ul class="simple">
-<li><p>Remote host: <code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code></p></li>
-<li><p>SSH-browser type: Enhanced SCP</p></li>
-<li><p>Port: 22</p></li>
-</ul>
-<p><img alt="MobaXterm SSH Session" src="../_images/mobaxterm_1.png" /></p>
-<p>At this stage, for both Mac and Windows, you will be asked to enter your username
-and password.</p>
-<ul class="simple">
-<li><p><strong>When you type in your password, you will not see anything. This is a normal
-security measure, just keep focusing on typing in your password correctly.</strong></p></li>
-</ul>
-<p><img alt="Login interface" src="../_images/mobaxterm_2.png" /></p>
-<p><strong>For MobaXterm, please select No when asked if you want to save your password.</strong></p>
-<p><img alt="Password saving selection" src="../_images/mobaxterm_3.png" /></p>
 <p>When logged in, you are presented with a welcome message and the following “prompt”,
 with <code class="docutils literal notranslate"><span class="pre">username</span></code> is replaced by your actual Picotte username:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>username@picotte001 ~<span class="o">]</span>$
@@ -600,6 +577,18 @@ with <code class="docutils literal notranslate"><span class="pre">username</span
 Type the command <code class="docutils literal notranslate"><span class="pre">whoami</span></code>, then press the Enter key (sometimes marked Return) to send the command to the shell. The command’s output is the ID of the current user.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>whoami
 </pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="d9304f22-ab51-4b7e-b0ce-33698bbd7bc0" name="ec4cae7e-5943-44fd-9071-77fdb804e388" type="radio">
+</input><label class="sd-tab-label" for="d9304f22-ab51-4b7e-b0ce-33698bbd7bc0">
+Windows</label><div class="sd-tab-content docutils">
+<p><img alt="Windows Terminal" src="../_images/windows_login.png" /></p>
+</div>
+<input id="f84d7f25-9662-469a-a9ca-86a56673c8c6" name="ec4cae7e-5943-44fd-9071-77fdb804e388" type="radio">
+</input><label class="sd-tab-label" for="f84d7f25-9662-469a-a9ca-86a56673c8c6">
+MacOS</label><div class="sd-tab-content docutils">
+<p><img alt="Mac Terminal" src="fig/intro_picotte/accessing/mac_login.png" /></p>
+</div>
 </div>
 </section>
 </section>
@@ -631,14 +620,14 @@ Type the command <code class="docutils literal notranslate"><span class="pre">wh
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="01-introduction.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Introduction</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="03-picotte_structure.html" title="next page">
+    <a class='right-next' id="next-link" href="picotte_structure.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">The structure of the Picotte Cluster</p>

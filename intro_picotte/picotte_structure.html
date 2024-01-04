@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Transferring files to and from Picotte &#8212; University Research Computing Facility Workshop</title>
+    <title>The structure of the Picotte Cluster &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running a batch job" href="07-batch.html" />
-    <link rel="prev" title="Running an interactive job on Picotte" href="05-interactive.html" />
+    <link rel="next" title="Storage on Picotte" href="storage.html" />
+    <link rel="prev" title="Accessing the Picotte Cluster" href="accessing-picotte.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -183,7 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="00-index.html">
+  <a class="reference internal" href="index.html">
    Introduction to Research Computing on Picotte
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -193,42 +193,42 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="01-introduction.html">
+    <a class="reference internal" href="introduction.html">
      Introduction
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="02-accessing-picotte.html">
+    <a class="reference internal" href="accessing-picotte.html">
      Accessing the Picotte Cluster
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-picotte_structure.html">
-     The structure of the Picotte Cluster
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-storage.html">
-     Storage on Picotte
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="05-interactive.html">
-     Running an interactive job on Picotte
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
+     The structure of the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="storage.html">
+     Storage on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="interactive.html">
+     Running an interactive job on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="file-transfer.html">
      Transferring files to and from Picotte
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07-batch.html">
+    <a class="reference internal" href="batch.html">
      Running a batch job
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08-jupyter-hub.html">
+    <a class="reference internal" href="jupyter-hub.html">
      Jupyter Hub service to the Picotte Cluster
     </a>
    </li>
@@ -450,7 +450,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/intro_picotte/06-file-transfer.md"
+        <a href="../_sources/intro_picotte/picotte_structure.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -487,70 +487,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cyberduck">
-   CyberDuck
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#command-line-mac-and-linux-users">
-   Command line (Mac and Linux users)
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Transferring files to and from Picotte</h1>
+                <h1>The structure of the Picotte Cluster</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cyberduck">
-   CyberDuck
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#command-line-mac-and-linux-users">
-   Command line (Mac and Linux users)
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -558,67 +511,49 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="transferring-files-to-and-from-picotte">
-<h1>Transferring files to and from Picotte<a class="headerlink" href="#transferring-files-to-and-from-picotte" title="Permalink to this headline">#</a></h1>
-<section id="cyberduck">
-<h2>CyberDuck<a class="headerlink" href="#cyberduck" title="Permalink to this headline">#</a></h2>
-<p>There are many ways to transfer files between your local computer and Picotte. One piece of
-software that works for both Mac and Windows machines is called CyberDuck. You can download
-it <a class="reference external" href="https://cyberduck.io/download/">here</a>.</p>
-<p>After installation, click on “Open Connection”. A new window will pop out:</p>
-<figure class="align-default" id="id1">
-<img alt="../_images/cyberduck_1.png" src="../_images/cyberduck_1.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Cyberduck connection settings to Picotte</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Let’s configure the connection:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-structure-of-the-picotte-cluster">
+<h1>The structure of the Picotte Cluster<a class="headerlink" href="#the-structure-of-the-picotte-cluster" title="Permalink to this headline">#</a></h1>
+<p>The computers that make up the Picotte cluster are called <em>nodes</em>. Most of the
+nodes on Picotte are <em>compute nodes</em>, that can perform fast calculations on large
+amounts of data. There is also a special node called the <em>login node</em>; it runs
+the server, which works like the interface between the cluster and the outside
+world. The people with Picotte accounts can log into the server by running a
+client (such as <code class="docutils literal notranslate"><span class="pre">ssh</span></code>) on their local machines.</p>
+<p>Our client program passes our login credentials to this server, and if we are allowed
+to log in, the server runs a shell for us. Any commands that we enter into this shell
+are executed not by our own machines, but by the login node.</p>
+<p><strong>DO NOT RUN WORK ON PICOTTE LOGIN (PICOTTE001)</strong></p>
+<p><img alt="Picotte Structure" src="../_images/picotte_schematic.png" /></p>
+<p>Another special node is the <em>scheduler</em>; Picotte users can get from the
+login node to the compute nodes by submitting a request to the scheduler,
+and the scheduler will assign them to the most appropriate compute node.
+Picotte also has a few so-called “service” nodes, which serve special purposes
+like transferring code and data to and from the cluster, and hosting web applications.</p>
+<p>Picotte hardware includes the followings:</p>
 <ul class="simple">
-<li><p>in the drop-down menu on top, select “SFTP” instead of the default “FTP”;</p></li>
-<li><p>in the “Server”, please specify <code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code>;</p></li>
-<li><p>make sure that Port is set to 22;</p></li>
-<li><p>specify your Picotte username and password.</p></li>
+<li><p>74 standard compute nodes:</p>
+<ul>
+<li><p>Dell PowerEdge R640 servers	Intel® Xeon® Platinum 8268 CPUs</p></li>
+<li><p>48 cores/server</p></li>
+<li><p>192 GB RAM/server.</p></li>
 </ul>
-<p>Then, click on “Connect”. If it complains about an “unknown fingerprint”, click “Allow”. Another window will pop out asking you to do two-factor verification:</p>
-<figure class="align-default" id="id2">
-<img alt="../_images/cyberduck_2.png" src="../_images/cyberduck_2.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Cyberduck connection settings to Picotte</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>At this point, another new window will pop up, which will contain the contents of your Picotte home directory
-(if this is your first time using Picotte, it will be empty). You can go to any other folder on Picotte by changing the
-path (e.g., <code class="docutils literal notranslate"><span class="pre">/beegfs/scratch/username</span></code>). You can upload files by clicking the “Upload” button, and download files by
-right-clicking them and selecting “Download”.</p>
-<figure class="align-default" id="id3">
-<img alt="../_images/cyberduck_2fa.png" src="../_images/cyberduck_2fa.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Home directory contents</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="command-line-mac-and-linux-users">
-<h2>Command line (Mac and Linux users)<a class="headerlink" href="#command-line-mac-and-linux-users" title="Permalink to this headline">#</a></h2>
-<p>Another option for advanced Mac and Linux users is to use the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command from the terminal. Open a
-new terminal, but <strong>don’t connect to Picotte</strong>. The <code class="docutils literal notranslate"><span class="pre">scp</span></code> command works like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp &lt;path_to_source&gt; username@picottelogin.urcf.drexel.edu:&lt;path_to_destination&gt;
-</pre></div>
-</div>
-<p>For example, here is the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command to copy a file from the current directory on my local machine
-to my home directory on Picotte (<code class="docutils literal notranslate"><span class="pre">lbn28</span></code> is my Picotte username):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp myfile.txt username@picottelogin.urcf.drexel.edu:/home/lbn28/
-</pre></div>
-</div>
-<p>… and to do the same in reverse, i.e., copy from Picotte to my local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/myfile.txt .
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">.</span></code> represents the working directory on the local machine.</p>
-<p>To copy entire folders, include the <code class="docutils literal notranslate"><span class="pre">-r</span></code> switch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp -r myfolder lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/
-</pre></div>
-</div>
-</section>
+</li>
+<li><p>2 large memory nodes:</p>
+<ul>
+<li><p>Dell PowerEdge R640 servers	Intel® Xeon® Platinum 8268 CPUs</p></li>
+<li><p>48 cores/server</p></li>
+<li><p>1.5 TB RAM/server</p></li>
+</ul>
+</li>
+<li><p>12 graphical processing unit nodes</p>
+<ul>
+<li><p>Dell PowerEdge C4140 servers	Intel® Xeon® Platinum 8260 CPUs</p></li>
+<li><p>48 cores/server</p></li>
+<li><p>4 Nvidia Tesla V100-SXM2 32GB GPU devices/server</p></li>
+<li><p>192 GB RAM/server</p></li>
+</ul>
+</li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -648,17 +583,17 @@ to my home directory on Picotte (<code class="docutils literal notranslate"><spa
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="05-interactive.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="accessing-picotte.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Running an interactive job on Picotte</p>
+            <p class="prev-next-title">Accessing the Picotte Cluster</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="07-batch.html" title="next page">
+    <a class='right-next' id="next-link" href="storage.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Running a batch job</p>
+        <p class="prev-next-title">Storage on Picotte</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
