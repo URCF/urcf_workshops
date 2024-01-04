@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Loop &#8212; University Research Computing Facility Workshop</title>
+    <title>Shell Scripts &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Shell Scripts" href="07-utilities.html" />
-    <link rel="prev" title="Pipes and Redirection" href="05-pipes.html" />
+    <link rel="next" title="Workshop Conclusion" href="conclusion.html" />
+    <link rel="prev" title="Loop" href="loop.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="00-index.html">
+  <a class="reference internal" href="index.html">
    Introduction to Linux
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -131,57 +131,52 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="00a-outline.html">
+    <a class="reference internal" href="outline.html">
      Workshop Outline
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="01-introduction.html">
+    <a class="reference internal" href="introduction.html">
      What is Linux?
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="01a-shell.html">
+    <a class="reference internal" href="shell.html">
      Shell Specifics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="02-accessing-picotte.html">
-     Accessing the Picotte Cluster
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-file-system.html">
+    <a class="reference internal" href="file-system.html">
      Navigating Files and Directories
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04-working_with_files_and_directories.html">
+    <a class="reference internal" href="working_with_files_and_directories.html">
      Working With Files and Directories
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04a-file-permissions.html">
+    <a class="reference internal" href="file-permissions.html">
      File Permissions and Atrributes
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="05-pipes.html">
+    <a class="reference internal" href="pipes.html">
      Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="loop.html">
+     Loop
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Loop
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07-utilities.html">
      Shell Scripts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08-conclusion.html">
+    <a class="reference internal" href="conclusion.html">
      Workshop Conclusion
     </a>
    </li>
@@ -455,7 +450,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/intro_linux/06-loop.md"
+        <a href="../_sources/intro_linux/utilities.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -504,7 +499,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Loop</h1>
+                <h1>Shell Scripts</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -516,201 +511,211 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="loop">
-<h1>Loop<a class="headerlink" href="#loop" title="Permalink to this headline">#</a></h1>
-<p><strong>Loops</strong> are a programming construct which allow us to repeat a command
-or set of commands for each item in a list.
-As such they are key to productivity improvements through automation.
-Similar to wildcards and tab completion, using loops also reduces the
-amount of typing required (and hence reduces the number of typing mistakes).</p>
-<p>Suppose we have several hundred genome data files named <code class="docutils literal notranslate"><span class="pre">basilisk.dat</span></code>, <code class="docutils literal notranslate"><span class="pre">minotaur.dat</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">unicorn.dat</span></code>. For this example, we’ll use the <code class="docutils literal notranslate"><span class="pre">exercise-data/creatures</span></code>
-directory which only has three example files, but the principles can be
-applied to many many more files at once.</p>
-<p>The structure of these files is the same: the common name, classification,
-and updated date are presented on the first three lines, with DNA sequences
-on the following lines. Let’s look at the files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>head -n <span class="m">5</span> basilisk.dat minotaur.dat unicorn.dat
+  <section class="tex2jax_ignore mathjax_ignore" id="shell-scripts">
+<h1>Shell Scripts<a class="headerlink" href="#shell-scripts" title="Permalink to this headline">#</a></h1>
+<p>We are finally ready to see what makes the shell such a powerful programming
+environment. We are going to take the commands we repeat frequently and save
+them in files so that we can re-run all those operations again later by typing
+a single command. For historical reasons, a bunch of commands saved in a file
+is usually called a <strong>shell script</strong>, but make no mistake — these are
+actually small programs.</p>
+<p>Not only will writing shell scripts make your work faster, but also you won’t
+have to retype the same commands over and over again. It will also make it more
+accurate (fewer chances for typos) and more reproducible. If you come back to
+your work later (or if someone else finds your work and wants to build on it),
+you will be able to reproduce the same results simply by running your script,
+rather than having to remember or retype a long list of commands.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">1. Our first shell script</p>
+<p>Let’s start by going back to <code class="docutils literal notranslate"><span class="pre">alkanes/</span></code> and creating a new file, <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code>
+which will become our shell script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> alkanes
+nano middle.sh
 </pre></div>
 </div>
-<p>We would like to print out the classification for each species, which is
-given on the second line of each file. For each file, we would need to execute the
-command <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">-n</span> <span class="pre">2</span></code> and pipe this to <code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">1</span></code>. We’ll use a loop to solve this
-problem, but first let’s look at the general form of a loop, using the pseudo-code below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The word &quot;for&quot; indicates the start of a &quot;For-loop&quot; command</span>
-<span class="k">for</span> thing <span class="k">in</span> list_of_things 
-<span class="c1">#The word &quot;do&quot; indicates the start of job execution list</span>
-<span class="k">do</span> 
-    <span class="c1"># Indentation within the loop is not required, but aids legibility</span>
-    operation_using/command <span class="nv">$thing</span> 
-<span class="c1"># The word &quot;done&quot; indicates the end of a loop</span>
-<span class="k">done</span>  
+<p>The command <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">middle.sh</span></code> opens the file <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> within the text editor
+‘nano’ (which runs within the shell). If the file does not exist, it will be
+created. We can use the text editor to directly edit the file by inserting the
+following line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">15</span> <span class="n">octane</span><span class="o">.</span><span class="n">pdb</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span>
 </pre></div>
 </div>
-<p>and we can apply this to our example like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="k">for</span> filename <span class="k">in</span> basilisk.dat minotaur.dat unicorn.dat
-&gt; <span class="k">do</span>
-&gt;     <span class="nb">echo</span> <span class="nv">$filename</span>
-&gt;     head -n <span class="m">2</span> <span class="nv">$filename</span> <span class="p">|</span> tail -n <span class="m">1</span>
-&gt; <span class="k">done</span>
+<p>This is a variation on the pipe we constructed earlier, which selects lines 11-15 of
+the file <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>. Remember, we are <em>not</em> running it as a command just yet;
+we are only incorporating the commands in a file.</p>
+<p>Then we save the file (<code class="docutils literal notranslate"><span class="pre">Ctrl-O</span></code> in nano) and exit the text editor (<code class="docutils literal notranslate"><span class="pre">Ctrl-X</span></code> in nano).
+Check that the directory <code class="docutils literal notranslate"><span class="pre">alkanes</span></code> now contains a file called <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code>.</p>
+<p>Once we have saved the file,
+we can ask the shell to execute the commands it contains.
+Our shell is called <code class="docutils literal notranslate"><span class="pre">bash</span></code>, so we run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh
 </pre></div>
 </div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">basilisk.dat</span>
-<span class="go">CLASSIFICATION: basiliscus vulgaris</span>
-<span class="go">minotaur.dat</span>
-<span class="go">CLASSIFICATION: bos hominus</span>
-<span class="go">unicorn.dat</span>
-<span class="go">CLASSIFICATION: equus monoceros</span>
-</pre></div>
+<p>Sure enough, our script’s output is exactly what we would get if we ran that
+pipeline directly.</p>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">1. Write your own loop</p>
-<p>How would you write a loop that echoes all 10 numbers from 0 to 9?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="k">for</span> loop_variable <span class="k">in</span> <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span>
-&gt; <span class="k">do</span>
-&gt;     <span class="nb">echo</span> <span class="nv">$loop_variable</span>
-&gt; <span class="k">done</span>
+<p class="admonition-title">2. Command line arguments</p>
+<p>What if we want to select lines from an arbitrary file?
+We could edit <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> each time to change the filename,
+but that would probably take longer than typing the command out again
+in the shell and executing it with a new file name.
+Instead, let’s edit <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> and make it more versatile:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="n">middle</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Now, within “nano”, replace the text <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code> with the special variable called <code class="docutils literal notranslate"><span class="pre">$1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">15</span> <span class="s2">&quot;$1&quot;</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>Inside a shell script,
+<code class="docutils literal notranslate"><span class="pre">$1</span></code> means ‘the first filename (or other argument) on the command line’.
+We can now run our script like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh octane.pdb
+</pre></div>
+</div>
+<p>or on a different file like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash middle.sh pentane.pdb
+</pre></div>
+</div>
+<p>Currently, we need to edit <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> each time we want to adjust the range of
+lines that is returned.
+Let’s fix that by configuring our script to instead use three command-line arguments.
+After the first command-line argument (<code class="docutils literal notranslate"><span class="pre">$1</span></code>), each additional argument that we
+provide will be accessible via the special variables <code class="docutils literal notranslate"><span class="pre">$1</span></code>, <code class="docutils literal notranslate"><span class="pre">$2</span></code>, <code class="docutils literal notranslate"><span class="pre">$3</span></code>,
+which refer to the first, second, third command-line arguments, respectively.</p>
+<p>Knowing this, we can use additional arguments to define the range of lines to
+be passed to <code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> respectively:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano middle.sh
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;$2&quot;</span> <span class="s2">&quot;$1&quot;</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;$3&quot;</span>
+</pre></div>
+</div>
+<p>We can now run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh pentane.pdb <span class="m">15</span> <span class="m">5</span>
+</pre></div>
+</div>
+<p>By changing the arguments to our command, we can change our script’s
+behaviour:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh pentane.pdb <span class="m">20</span> <span class="m">5</span>
 </pre></div>
 </div>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">2. Variables in Loops</p>
-<p>This exercise refers to the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/alkanes</span></code> directory.
-<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*.pdb</span></code> gives the following output:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/shell-lesson-data/exercise-data/alkanes
-ls *.pdb
+<p class="admonition-title">3. Putting comments in the code</p>
+<p>We can improve our script by adding some <strong>comments</strong> at the top:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano middle.sh
 </pre></div>
 </div>
-<p>What is the output of the following code?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="k">for</span> datafile <span class="k">in</span> *.pdb
-&gt; <span class="k">do</span>
-&gt;     ls *.pdb
-&gt; <span class="k">done</span>
+<div class="highlight-source notranslate"><div class="highlight"><pre><span></span># Select lines from the middle of a file.
+# Usage: bash middle.sh filename end_line num_lines
+head -n &quot;$2&quot; &quot;$1&quot; | tail -n &quot;$3&quot;
 </pre></div>
 </div>
-<p>What is the output of the following code?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="k">for</span> datafile <span class="k">in</span> *.pdb
-&gt; <span class="k">do</span>
-&gt;     ls <span class="nv">$datafile</span>
-&gt; <span class="k">done</span>
-</pre></div>
-</div>
-<p>Why do these two loops give different outputs?</p>
+<p>A comment starts with a <code class="docutils literal notranslate"><span class="pre">#</span></code> character and runs to the end of the line.
+The computer ignores comments, but they’re invaluable for helping people (including your
+future self) understand and use scripts. The only caveat is that each time you
+modify the script, you should check that the comment is still accurate.
+An explanation that sends the reader in the wrong direction is worse than none at all.</p>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">3. Limiting Sets of Files</p>
-<p>What would be the output of running the following loop in the
-<code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/alkanes</span></code> directory?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="k">for</span> filename <span class="k">in</span> c*
-&gt; <span class="k">do</span>
-&gt;     ls <span class="nv">$filename</span>
-&gt; <span class="k">done</span>
+<p class="admonition-title">4. Multiple command line arguments</p>
+<p>What if we want to process many files in a single pipeline?
+For example, if we want to sort our <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files by length, we would type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wc -l *.pdb <span class="p">|</span> sort -n
 </pre></div>
 </div>
-<ol class="simple">
-<li><p>No files are listed.</p></li>
-<li><p>All files are listed.</p></li>
-<li><p>Only <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code> and <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code> are listed.</p></li>
-<li><p>Only <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code> is listed.</p></li>
-</ol>
+<p>because <code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span></code> lists the number of lines in the files
+(recall that <code class="docutils literal notranslate"><span class="pre">wc</span></code> stands for ‘word count’, adding the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option means ‘count lines’ instead)
+and <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-n</span></code> sorts things numerically.
+We could put this in a file,
+but then it would only ever sort a list of <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files in the current directory.
+If we want to be able to get a sorted list of other kinds of files,
+we need a way to get all those names into the script.
+We can’t use <code class="docutils literal notranslate"><span class="pre">$1</span></code>, <code class="docutils literal notranslate"><span class="pre">$2</span></code>, and so on
+because we don’t know how many files there are.
+Instead, we use the special variable <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code>,
+which means,
+‘All of the command-line arguments to the shell script’.
+We also should put <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> inside double-quotes
+to handle the case of arguments containing spaces
+(<code class="docutils literal notranslate"><span class="pre">&quot;$&#64;&quot;</span></code> is special syntax and is equivalent to <code class="docutils literal notranslate"><span class="pre">&quot;$1&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;$2&quot;</span></code> …).</p>
+<p>Here’s an example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano sorted.sh
+</pre></div>
+</div>
+<div class="highlight-source notranslate"><div class="highlight"><pre><span></span># Sort files by their length.
+# Usage: bash sorted.sh one_or_more_filenames
+wc -l &quot;$@&quot; | sort -n
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash sorted.sh *.pdb ../creatures/*.dat
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">9 methane.pdb</span>
+<span class="go">12 ethane.pdb</span>
+<span class="go">15 propane.pdb</span>
+<span class="go">20 cubane.pdb</span>
+<span class="go">21 pentane.pdb</span>
+<span class="go">30 octane.pdb</span>
+<span class="go">163 ../creatures/basilisk.dat</span>
+<span class="go">163 ../creatures/minotaur.dat</span>
+<span class="go">163 ../creatures/unicorn.dat</span>
+<span class="go">596 total</span>
+</pre></div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">5. Challenge: List Unique Species</p>
+<p>Leah has several hundred data files, each of which is formatted like this:</p>
+<div class="highlight-source notranslate"><div class="highlight"><pre><span></span>2013-11-05,deer,5
+2013-11-05,rabbit,22
+2013-11-05,raccoon,7
+2013-11-06,rabbit,19
+2013-11-06,deer,2
+2013-11-06,fox,1
+2013-11-07,rabbit,18
+2013-11-07,bear,1
+</pre></div>
+</div>
+<p>An example of this type of file is given in
+<code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/animal-counts/animals.csv</span></code>.</p>
+<p>We can use the command <code class="docutils literal notranslate"><span class="pre">cut</span> <span class="pre">-d</span> <span class="pre">,</span> <span class="pre">-f</span> <span class="pre">2</span> <span class="pre">animals.csv</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">|</span> <span class="pre">uniq</span></code> to produce
+the unique species in <code class="docutils literal notranslate"><span class="pre">animals.csv</span></code>.
+In order to avoid having to type out this series of commands every time,
+a scientist may choose to write a shell script instead.</p>
+<p>Write a shell script called <code class="docutils literal notranslate"><span class="pre">species.sh</span></code> that takes any number of
+filenames as command-line arguments and uses a variation of the above command
+to print a list of the unique species appearing in each of those files separately.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
-<p>4 is the correct answer. <code class="docutils literal notranslate"><span class="pre">*</span></code> matches zero or more characters, so any file name starting with
-the letter c, followed by zero or more other characters will be matched.</p>
-</div>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">4. Saving to a File in a Loop - Part One</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/alkanes</span></code> directory, what is the effect
-of this loop?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> alkanes <span class="k">in</span> *.pdb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Script to find unique species in csv files where species is the second data field</span>
+<span class="c1"># This script accepts any number of file names as command line arguments</span>
+
+<span class="c1"># Loop over all files</span>
+<span class="k">for</span> file <span class="k">in</span> <span class="nv">$@</span>
 <span class="k">do</span>
-    <span class="nb">echo</span> <span class="nv">$alkanes</span>
-    cat <span class="nv">$alkanes</span> &gt; alkanes.pdb
+    <span class="nb">echo</span> <span class="s2">&quot;Unique species in </span><span class="nv">$file</span><span class="s2">:&quot;</span>
+    <span class="c1"># Extract species names</span>
+    cut -d , -f <span class="m">2</span> <span class="nv">$file</span> <span class="p">|</span> sort <span class="p">|</span> uniq
 <span class="k">done</span>
 </pre></div>
 </div>
-<ol class="simple">
-<li><p>Prints <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code> and
-<code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code>, and the text from <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> will be saved to a file called <code class="docutils literal notranslate"><span class="pre">alkanes.pdb</span></code>.</p></li>
-<li><p>Prints <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, and <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, and the text from all three files
-would be concatenated and saved to a file called <code class="docutils literal notranslate"><span class="pre">alkanes.pdb</span></code>.</p></li>
-<li><p>Prints <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, and <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code>,
-and the text from <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> will be saved to a file called <code class="docutils literal notranslate"><span class="pre">alkanes.pdb</span></code>.</p></li>
-<li><p>None of the above.</p></li>
-</ol>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<ol class="simple">
-<li><p>The text from each file in turn gets written to the <code class="docutils literal notranslate"><span class="pre">alkanes.pdb</span></code> file.
-However, the file gets overwritten on each loop iteration, so the final content of
-<code class="docutils literal notranslate"><span class="pre">alkanes.pdb</span></code>
-is the text from the <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> file.</p></li>
-</ol>
 </div>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">5. Saving to a File in a Loop - Part Two</p>
-<p>Also in the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/alkanes</span></code> directory,
-what would be the output of the following loop?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> datafile <span class="k">in</span> *.pdb
-<span class="k">do</span>
-    cat <span class="nv">$datafile</span> &gt;&gt; all.pdb
-<span class="k">done</span>
+<p class="admonition-title">6. Executable script</p>
+<p>Edit the <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> file to be as follows:</p>
+<div class="highlight-source notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+# Select lines from the middle of a file.
+# Usage: bash middle.sh filename end_line num_lines
+head -n &quot;$2&quot; &quot;$1&quot; | tail -n &quot;$3&quot;
 </pre></div>
 </div>
-<ol class="simple">
-<li><p>All of the text from <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code> would be concatenated and saved to a file called <code class="docutils literal notranslate"><span class="pre">all.pdb</span></code>.</p></li>
-<li><p>The text from <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code> will be saved to a file called <code class="docutils literal notranslate"><span class="pre">all.pdb</span></code>.</p></li>
-<li><p>All of the text from <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code>
-and <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> would be concatenated and saved to a file called <code class="docutils literal notranslate"><span class="pre">all.pdb</span></code>.</p></li>
-<li><p>All of the text from <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code>
-and <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> would be printed to the screen and saved to a file called <code class="docutils literal notranslate"><span class="pre">all.pdb</span></code>.</p></li>
-</ol>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<p>3 is the correct answer. <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> appends to a file, rather than overwriting it with the redirected
-output from a command.
-Given the output from the <code class="docutils literal notranslate"><span class="pre">cat</span></code> command has been redirected, nothing is printed to the screen.</p>
-</div>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">6. Spaces in Names</p>
-<p>Spaces are used to separate the elements of the list
-that we are going to loop over. If one of those elements
-contains a space character, we need to surround it with
-quotes, and do the same thing to our loop variable.
-Suppose our data files are named:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>red dragon.dat
-purple unicorn.dat
-</pre></div>
-</div>
-<p>To loop over these files, we would need to add double quotes like so:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="k">for</span> filename <span class="k">in</span> <span class="s2">&quot;red dragon.dat&quot;</span> <span class="s2">&quot;purple unicorn.dat&quot;</span>
-&gt; <span class="k">do</span>
-&gt;     head -n <span class="m">100</span> <span class="s2">&quot;</span><span class="nv">$filename</span><span class="s2">&quot;</span> <span class="p">|</span> tail -n <span class="m">20</span>
-&gt; <span class="k">done</span>
-</pre></div>
-</div>
-<p>It is simpler to avoid using spaces (or other special characters) in filenames.</p>
-<p>The files above don’t exist, so if we run the above code, the <code class="docutils literal notranslate"><span class="pre">head</span></code> command will be unable
-to find them; however, the error message returned will show the name of the files it is
-expecting:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>head: cannot open ‘red dragon.dat&#39; for reading: No such file or directory
-head: cannot open ‘purple unicorn.dat&#39; for reading: No such file or directory
-</pre></div>
-</div>
-<p>Try removing the quotes around <code class="docutils literal notranslate"><span class="pre">$filename</span></code> in the loop above to see the effect of the quote
-marks on spaces. Note that we get a result from the loop command for unicorn.dat
-when we run this code in the <code class="docutils literal notranslate"><span class="pre">creatures</span></code> directory:</p>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">head: cannot open ‘red&#39; for reading: No such file or directory</span>
-<span class="go">head: cannot open ‘dragon.dat&#39; for reading: No such file or directory</span>
-<span class="go">head: cannot open ‘purple&#39; for reading: No such file or directory</span>
-<span class="go">CGGTACCGAA</span>
-<span class="go">AAGGGTCGCG</span>
-<span class="go">CAAGTGTTCC</span>
-<span class="go">...</span>
+<p>To make shell file executable, we need to change the permission on the file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod <span class="m">755</span> middle.sh
+./middle.sh
 </pre></div>
 </div>
 </div>
@@ -743,17 +748,17 @@ when we run this code in the <code class="docutils literal notranslate"><span cl
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="05-pipes.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="loop.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Pipes and Redirection</p>
+            <p class="prev-next-title">Loop</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="07-utilities.html" title="next page">
+    <a class='right-next' id="next-link" href="conclusion.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Shell Scripts</p>
+        <p class="prev-next-title">Workshop Conclusion</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

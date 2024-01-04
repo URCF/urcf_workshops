@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to Linux &#8212; University Research Computing Facility Workshop</title>
+    <title>What is Linux? &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Workshop Outline" href="00a-outline.html" />
-    <link rel="prev" title="University Research Computing Facility Workshops" href="../index.html" />
+    <link rel="next" title="Shell Specifics" href="shell.html" />
+    <link rel="prev" title="Workshop Outline" href="outline.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="index.html">
    Introduction to Linux
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -129,59 +129,54 @@ const thebe_selector_output = ".output, .cell_output"
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="00a-outline.html">
+    <a class="reference internal" href="outline.html">
      Workshop Outline
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01-introduction.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      What is Linux?
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="01a-shell.html">
+    <a class="reference internal" href="shell.html">
      Shell Specifics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="02-accessing-picotte.html">
-     Accessing the Picotte Cluster
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-file-system.html">
+    <a class="reference internal" href="file-system.html">
      Navigating Files and Directories
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04-working_with_files_and_directories.html">
+    <a class="reference internal" href="working_with_files_and_directories.html">
      Working With Files and Directories
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04a-file-permissions.html">
+    <a class="reference internal" href="file-permissions.html">
      File Permissions and Atrributes
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="05-pipes.html">
+    <a class="reference internal" href="pipes.html">
      Pipes and Redirection
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="06-loop.html">
+    <a class="reference internal" href="loop.html">
      Loop
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07-utilities.html">
+    <a class="reference internal" href="utilities.html">
      Shell Scripts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08-conclusion.html">
+    <a class="reference internal" href="conclusion.html">
      Workshop Conclusion
     </a>
    </li>
@@ -455,7 +450,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/intro_linux/00-index.md"
+        <a href="../_sources/intro_linux/introduction.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -492,70 +487,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workshop-description">
-   Workshop Description
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to Linux</h1>
+                <h1>What is Linux?</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workshop-description">
-   Workshop Description
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -563,23 +511,24 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-linux">
-<h1>Introduction to Linux<a class="headerlink" href="#introduction-to-linux" title="Permalink to this headline">#</a></h1>
-<ul class="simple">
-<li><p><strong>Instructor</strong>: Linh B. Ngo</p></li>
-<li><p><strong>Email</strong>: lbn28 AT drexel DOT edu</p></li>
-</ul>
-<section id="workshop-description">
-<h2>Workshop Description<a class="headerlink" href="#workshop-description" title="Permalink to this headline">#</a></h2>
-<p>The workshop provides the introduction to the Linux Command Line Interface
-for researchers. Topics will include the file system, file/directory manipulations,
-redirection and piping, and basic scripting.</p>
-</section>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
-<p>No prerequisits are required</p>
-</section>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="what-is-linux">
+<h1>What is Linux?<a class="headerlink" href="#what-is-linux" title="Permalink to this headline">#</a></h1>
+<p>This workshop is based on the workshop developed
+by <a class="reference external" href="https://software-carpentry.org/lessons/">Software Carpentry</a></p>
+<figure class="margin align-default" id="id1">
+<img alt="../_images/Tux.png" src="../_images/Tux.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Tux, the official Linux mascot</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Linux is a family of free and open-source operating systems based on the kernel created by Linus Torvalds in 1991. A kernel is software that coordinates/interfaces the computer’s hardware and other sofware. An operating system based on Linux is called a <strong>distro</strong> or distribution.</p>
+<p>Every entry on the <a class="reference external" href="https://top500.org">Top 500</a> runs Linux. The Picotte cluster uses a Linux distro called <a class="reference external" href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a>.</p>
+<p>This workshop will teach you how to use the Linux command line interface or <strong>CLI</strong>. For this purpose, we will use a <em>terminal</em> software, such as MobaXTerm or Putty (on Windows machines) or Terminal (on Mac and Linux machines).</p>
+<p>The terminal is a wrapper program that provides text-only input and output from the <strong>shell</strong>. The <strong>shell</strong> is a program that will allow us to interact directly with the operating system kernel. There are many different shells, but the most common (and the default on Palmetto) is <strong>Bash</strong>. Bash provides it’s own <em>scripting language</em> which allows us to run commands automatically.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Linux is case-sensitive and typo-sensitive.
+Commands need to be entered directly as shown; it is important to use the right case (upper or lower), to use spaces when they are needed, and not to use spaces when they are not needed.</p>
 </div>
 </section>
 
@@ -610,17 +559,17 @@ redirection and piping, and basic scripting.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="outline.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">University Research Computing Facility Workshops</p>
+            <p class="prev-next-title">Workshop Outline</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="00a-outline.html" title="next page">
+    <a class='right-next' id="next-link" href="shell.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Workshop Outline</p>
+        <p class="prev-next-title">Shell Specifics</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

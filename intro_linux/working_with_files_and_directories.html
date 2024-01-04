@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="File Permissions and Atrributes" href="04a-file-permissions.html" />
-    <link rel="prev" title="Navigating Files and Directories" href="03-file-system.html" />
+    <link rel="next" title="File Permissions and Atrributes" href="file-permissions.html" />
+    <link rel="prev" title="Navigating Files and Directories" href="file-system.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="00-index.html">
+  <a class="reference internal" href="index.html">
    Introduction to Linux
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -131,27 +131,22 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="00a-outline.html">
+    <a class="reference internal" href="outline.html">
      Workshop Outline
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="01-introduction.html">
+    <a class="reference internal" href="introduction.html">
      What is Linux?
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="01a-shell.html">
+    <a class="reference internal" href="shell.html">
      Shell Specifics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="02-accessing-picotte.html">
-     Accessing the Picotte Cluster
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-file-system.html">
+    <a class="reference internal" href="file-system.html">
      Navigating Files and Directories
     </a>
    </li>
@@ -161,27 +156,27 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04a-file-permissions.html">
+    <a class="reference internal" href="file-permissions.html">
      File Permissions and Atrributes
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="05-pipes.html">
+    <a class="reference internal" href="pipes.html">
      Pipes and Redirection
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="06-loop.html">
+    <a class="reference internal" href="loop.html">
      Loop
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07-utilities.html">
+    <a class="reference internal" href="utilities.html">
      Shell Scripts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08-conclusion.html">
+    <a class="reference internal" href="conclusion.html">
      Workshop Conclusion
     </a>
    </li>
@@ -455,7 +450,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/intro_linux/04-working_with_files_and_directories.md"
+        <a href="../_sources/intro_linux/working_with_files_and_directories.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -561,7 +556,7 @@ the names with them.</p></li>
 </li>
 </ul>
 </div>
-<div class="note admonition">
+<div class="dropdown admonition">
 <p class="admonition-title">3. Challenge: mkdir creating multiple directories</p>
 <ul class="simple">
 <li><p>What is the role of the <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag in the following
@@ -606,7 +601,9 @@ text only as well.</p>
 <span class="n">nano</span> <span class="n">draft</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p><img alt="Nano editor" src="fig/intro-linux/nano.png" /></p>
+<p><img alt="Nano editor" src="../_images/launch_nano.png" /></p>
+<p>Enter the text as shown in the screenshot below</p>
+<p><img alt="Nano interface" src="../_images/gui_nano.png" /></p>
 <ul class="simple">
 <li><p>To save the text, you need to press <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">O</span></code> keys:</p>
 <ul>
@@ -639,7 +636,7 @@ ls
 </pre></div>
 </div>
 </div>
-<div class="note admonition">
+<div class="dropdown admonition">
 <p class="admonition-title">6. Challenge: Moving files to a new folder</p>
 <ul class="simple">
 <li><p>After running the following commands, Jamie realizes that she
@@ -679,7 +676,7 @@ $ ls thesis thesis_backup
 </pre></div>
 </div>
 </div>
-<div class="note admonition">
+<div class="dropdown admonition">
 <p class="admonition-title">8. Challenge: Renaming files</p>
 <ul class="simple">
 <li><p>Suppose that you created a plain-text file in your
@@ -710,7 +707,7 @@ not provide a new file name; identical file names cannot be created.</p></li>
 </ol>
 </div>
 </div>
-<div class="note admonition">
+<div class="dropdown admonition">
 <p class="admonition-title">9. Challenge: Moving and copying</p>
 <ul class="simple">
 <li><p>What is the output of the last <code class="docutils literal notranslate"><span class="pre">ls</span></code> command in the sequence shown below?</p></li>
@@ -762,7 +759,7 @@ $ rm -r thesis
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> is a wildcard, which matches zero or more characters.</p>
 <ul>
-<li><p>Inside <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/proteins</span></code> directory:</p>
+<li><p>Inside <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/alkanes</span></code> directory:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">*.pdb</span></code> matches <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code>, and every file that ends with ‘.pdb’.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">p*.pdb</span></code> only matches <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code> and <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code>, because the ‘p’ at the front
@@ -786,7 +783,7 @@ only matches filenames that begin with the letter ‘p’.</p></li>
 <li><p>When the shell sees a wildcard, it expands the wildcard to create a list of
 matching filenames before running the command that was asked for. It is the shell,
 not the other programs, that deals with expanding wildcards.</p></li>
-<li><p>Change into <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/proteins</span></code> and try the following
+<li><p>Change into <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/alkanes</span></code> and try the following
 commands</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls *t*ane.pdb
@@ -795,7 +792,7 @@ $ ls *t??ne.pdb
 $ ls ethane.*
 </pre></div>
 </div>
-<p><img alt="Outcome of various wildcards" src="fig/intro-linux/wildcards.png" /></p>
+<p><img alt="Outcome of various wildcards" src="../_images/wildcards.png" /></p>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">12. Challenge: more on wildcards</p>
@@ -914,14 +911,14 @@ $ cp *-23-dataset* send_to_bob/all_datasets_created_on_a_23rd/
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="03-file-system.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="file-system.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Navigating Files and Directories</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="04a-file-permissions.html" title="next page">
+    <a class='right-next' id="next-link" href="file-permissions.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">File Permissions and Atrributes</p>

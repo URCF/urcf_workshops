@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Workshop Outline &#8212; University Research Computing Facility Workshop</title>
+    <title>Navigating Files and Directories &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="What is Linux?" href="01-introduction.html" />
-    <link rel="prev" title="Introduction to Linux" href="00-index.html" />
+    <link rel="next" title="Working With Files and Directories" href="working_with_files_and_directories.html" />
+    <link rel="prev" title="Shell Specifics" href="shell.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="00-index.html">
+  <a class="reference internal" href="index.html">
    Introduction to Linux
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -130,58 +130,53 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="outline.html">
      Workshop Outline
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="01-introduction.html">
+    <a class="reference internal" href="introduction.html">
      What is Linux?
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="01a-shell.html">
+    <a class="reference internal" href="shell.html">
      Shell Specifics
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02-accessing-picotte.html">
-     Accessing the Picotte Cluster
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-file-system.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Navigating Files and Directories
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04-working_with_files_and_directories.html">
+    <a class="reference internal" href="working_with_files_and_directories.html">
      Working With Files and Directories
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="04a-file-permissions.html">
+    <a class="reference internal" href="file-permissions.html">
      File Permissions and Atrributes
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="05-pipes.html">
+    <a class="reference internal" href="pipes.html">
      Pipes and Redirection
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="06-loop.html">
+    <a class="reference internal" href="loop.html">
      Loop
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="07-utilities.html">
+    <a class="reference internal" href="utilities.html">
      Shell Scripts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="08-conclusion.html">
+    <a class="reference internal" href="conclusion.html">
      Workshop Conclusion
     </a>
    </li>
@@ -455,7 +450,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/intro_linux/00a-outline.md"
+        <a href="../_sources/intro_linux/file-system.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -504,7 +499,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Workshop Outline</h1>
+                <h1>Navigating Files and Directories</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -516,18 +511,188 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="workshop-outline">
-<h1>Workshop Outline<a class="headerlink" href="#workshop-outline" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="navigating-files-and-directories">
+<h1>Navigating Files and Directories<a class="headerlink" href="#navigating-files-and-directories" title="Permalink to this headline">#</a></h1>
+<div class="dropdown admonition">
+<p class="admonition-title">1. Files and Directories</p>
+<ul class="simple">
+<li><p><strong>File System</strong>: an Operating System component responsible for managing files and directories.</p></li>
+<li><p>Perspective:</p>
+<ul>
+<li><p>On a GUI, you click to move from one place to another, so you are <em>outside</em> the file system
+space looking in.</p></li>
+<li><p>On a CLI, you need to explicitly provide direction (<strong>path</strong>) for the command to know with which
+file/directory it is supposed to interact. The perspective is more <em>inside</em> the file system space.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">2. Where are we, what do we have here, and how do we go somewhere else?</p>
+<ul class="simple">
+<li><p>Three basic commands: <code class="docutils literal notranslate"><span class="pre">pwd</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">cd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pwd</span></code> returns the absolute path to the current working directory
+(i.e.: where you are when you are in the terminal).</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+</pre></div>
+</div>
+<p><img alt="Path to current working directory on Windows" src="../_images/pwd.png" /></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code> returns the list of current files and directories in the
+target directory.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls /
+</pre></div>
+</div>
+<p><img alt="Listing of directories and files in current directory" src="../_images/ls.png" /></p>
+<ul class="simple">
+<li><p>There are many options available for different commands.
+To view the documentation, run the followings:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls --help
+</pre></div>
+</div>
+<p><img alt="View help documentation for ls" src="../_images/ls-help.png" /></p>
+<ul class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">ls</span></code> by itself will list the contents of the current directory.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> allows users to change the current directory (outcome
+of <code class="docutils literal notranslate"><span class="pre">pwd</span></code>) to the target directory.</p>
+<ul>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">cd</span></code> or <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">--help</span></code> to read the documentation for <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p></li>
+<li><p>The generate syntax for <code class="docutils literal notranslate"><span class="pre">cd</span></code> is <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">DESTINATION</span></code> with
+<code class="docutils literal notranslate"><span class="pre">DESTINATION</span></code> can either be absolute or relative paths or special paths.</p></li>
+</ul>
+</li>
+<li><p>Change to root directory and view contents of root:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /
+ls 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Special paths:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">~</span></code>: home direcrory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.</span></code>: current directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">..</span></code>: a directory that is one level above the current directory</p></li>
+</ul>
+</li>
+<li><p>Change to your home directory using the special path</p>
+<ul>
+<li><p>Check the content of your home directory to confirm that you have
+the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory.</p></li>
+<li><p>Change into <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory and view the contents of this directory</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~
+ls Desktop/
+<span class="nb">cd</span> Desktop/shell-lesson-data
+ls 
+</pre></div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">3. Challenge: exploring more ls flags</p>
+<ul class="simple">
+<li><p>You can also use two options at the same time. What does the command
+<code class="docutils literal notranslate"><span class="pre">ls</span></code> do when used with the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option? What about if you use both the
+<code class="docutils literal notranslate"><span class="pre">-l</span></code> and the <code class="docutils literal notranslate"><span class="pre">-h</span></code> option?</p></li>
+<li><p>Some of its output is about properties that we do not cover in this
+lesson (such as file permissions and ownership), but the rest should be
+useful nevertheless.</p></li>
+</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">-l</span></code> option makes <code class="docutils literal notranslate"><span class="pre">ls</span></code> use a long listing format, showing not only
+the file/directory names but also additional information, such as the
+file size and the time of its last modification.</p></li>
+<li><p>If you use both the <code class="docutils literal notranslate"><span class="pre">-h</span></code> option and the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option, this makes the file
+size <em>human readable</em>, i.e. displaying something like 5.3K instead of 5369.</p></li>
+</ul>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">4. Challenge: Listing in reverse chronological order</p>
+<ul class="simple">
+<li><p>By default, ls lists the contents of a directory in alphabetical
+order by name. The command ls <code class="docutils literal notranslate"><span class="pre">-t</span></code> lists items by time of last change
+instead of alphabetically. The command ls <code class="docutils literal notranslate"><span class="pre">-r</span></code> lists the contents of a
+directory in reverse order.</p></li>
+<li><p>Which file is displayed last when you combine the <code class="docutils literal notranslate"><span class="pre">-t</span></code> and <code class="docutils literal notranslate"><span class="pre">-r</span></code> options?
+Hint: You may need to use the -l option to see the last changed dates.</p></li>
+</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>The most recently changed file is listed last when using <code class="docutils literal notranslate"><span class="pre">-rt</span></code>.
+This can be very useful for finding your most recent edits or
+checking to see if a new output file was written.</p>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">5. Challenge: ls Reading comprehension</p>
+<ul class="simple">
+<li><p>Using the filesystem diagram below.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">pwd</span></code> displays <code class="docutils literal notranslate"><span class="pre">/Users/backup</span></code> and  <code class="docutils literal notranslate"><span class="pre">-r</span></code> tells <code class="docutils literal notranslate"><span class="pre">ls</span></code> to display things in
+reverse order, what command(s) will result in the following output:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pnas_sub/ pnas_final/ original/
+</pre></div>
+</div>
+<p><img alt="Change directories" src="../_images/filesystem-challenge.svg" /></p>
 <ol class="simple">
-<li><p>What is Linux?</p></li>
-<li><p>Introduction to the Shell</p></li>
-<li><p>Accessing Picotte</p></li>
-<li><p>Navigating the File System</p></li>
-<li><p>Working with Files and Directories</p></li>
-<li><p>File Permissions</p></li>
-<li><p>Extra Utilities and Useful Information</p></li>
-<li><p>Conclusion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">pwd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span> <span class="pre">-F</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span> <span class="pre">-F</span> <span class="pre">/Users/backup</span></code></p></li>
 </ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<ol class="simple">
+<li><p>No: <code class="docutils literal notranslate"><span class="pre">pwd</span></code> is not the name of a directory.</p></li>
+<li><p>Yes: <code class="docutils literal notranslate"><span class="pre">ls</span></code> without directory argument lists files and directories in the current directory.</p></li>
+<li><p>Yes: uses the absolute path explicitly.</p></li>
+</ol>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">6. General syntax of a shell command</p>
+<p><img alt="Structure of shell command" src="../_images/shell_command_syntax.svg" /></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code> is the command, with an option <code class="docutils literal notranslate"><span class="pre">-F</span></code> and an argument <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p></li>
+<li><p><strong>Option</strong>:</p>
+<ul>
+<li><p>either start with a single dash (<code class="docutils literal notranslate"><span class="pre">-</span></code>) or two dashes (<code class="docutils literal notranslate"><span class="pre">--</span></code>),</p></li>
+<li><p>change the behavior of a command.</p></li>
+<li><p>can be referred to as either <code class="docutils literal notranslate"><span class="pre">switches</span></code> or <code class="docutils literal notranslate"><span class="pre">flags</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Arguments</strong> tell the command what to operate on (e.g. files and directories).</p></li>
+<li><p>Sometimes <code class="docutils literal notranslate"><span class="pre">options</span></code> and <code class="docutils literal notranslate"><span class="pre">arguments</span></code> are referred to as parameters.</p>
+<ul>
+<li><p>The shell is in fact just a process/function and these <code class="docutils literal notranslate"><span class="pre">options</span></code> and <code class="docutils literal notranslate"><span class="pre">arguments</span></code>
+are being passed as parameters to the shell’s function that is responsible for
+executing the <strong>command</strong>.</p></li>
+</ul>
+</li>
+<li><p>A command can be called with more than one option and more than one argument, but a
+command doesn’t always require an argument or an option.</p></li>
+<li><p>Each part is separated by spaces: if you omit the space between <code class="docutils literal notranslate"><span class="pre">ls</span></code> and <code class="docutils literal notranslate"><span class="pre">-F</span></code> the
+shell will look for a command called <code class="docutils literal notranslate"><span class="pre">ls-F</span></code>, which doesn’t exist.</p></li>
+<li><p>Capitalization can be important.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-s</span></code> will display the size of files and directories alongside the names</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-S</span></code> will sort the files and directories by size</p></li>
+</ul>
+</li>
+</ul>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -557,17 +722,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="00-index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="shell.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction to Linux</p>
+            <p class="prev-next-title">Shell Specifics</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="01-introduction.html" title="next page">
+    <a class='right-next' id="next-link" href="working_with_files_and_directories.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">What is Linux?</p>
+        <p class="prev-next-title">Working With Files and Directories</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
