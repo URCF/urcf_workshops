@@ -1,49 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Shell Scripts &#8212; University Research Computing Facility Workshop</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,61 +62,93 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro_linux/utilities';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Workshop Conclusion" href="conclusion.html" />
     <link rel="prev" title="Loop" href="loop.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -114,405 +157,215 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introductory Sequence
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory Sequence</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   Introduction to Linux
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="outline.html">
-     Workshop Outline
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="introduction.html">
-     What is Linux?
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="shell.html">
-     Shell Specifics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="file-system.html">
-     Navigating Files and Directories
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="working_with_files_and_directories.html">
-     Working With Files and Directories
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="file-permissions.html">
-     File Permissions and Atrributes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pipes.html">
-     Pipes and Redirection
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="loop.html">
-     Loop
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Shell Scripts
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="conclusion.html">
-     Workshop Conclusion
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../intro_picotte/index.html">
-   Introduction to Research Computing on Picotte
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../intro_picotte/introduction.html">
-     Introduction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../intro_picotte/accessing-picotte.html">
-     Accessing the Picotte Cluster
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../intro_picotte/picotte_structure.html">
-     The structure of the Picotte Cluster
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../intro_picotte/storage.html">
-     Storage on Picotte
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../intro_picotte/interactive.html">
-     Running an interactive job on Picotte
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../intro_picotte/file-transfer.html">
-     Transferring files to and from Picotte
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../intro_picotte/batch.html">
-     Running a batch job
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../intro_picotte/jupyter-hub.html">
-     Jupyter Hub service to the Picotte Cluster
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to Linux</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Workshop Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Linux?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell Specifics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file-system.html">Navigating Files and Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_files_and_directories.html">Working With Files and Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file-permissions.html">File Permissions and Atrributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipes.html">Pipes and Redirection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loop.html">Loop</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Shell Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conclusion.html">Workshop Conclusion</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  R
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../r_programming/00-index.html">
-   Introduction to R
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../r_programming/01-Introduction.html">
-     Introduction to R
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../r_programming/02-Basic-R.html">
-     Basics of R
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
-     Data Structures
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../r_programming/04-Matrix.html">
-     Vectors, Matrices, Lists and Data Frames
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
-     Control Structure
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../r_programming/06-Functions.html">
-     Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
-     Parallel Computing in R
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
-     Basic plotting with R
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
-     Ploting with ggplot
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_picotte/index.html">Introduction to Research Computing on Picotte</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/accessing-picotte.html">Accessing the Picotte Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/picotte_structure.html">The structure of the Picotte Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/storage.html">Storage on Picotte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/interactive.html">Running an interactive job on Picotte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/file-transfer.html">Transferring files to and from Picotte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/batch.html">Running a batch job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/jupyter-hub.html">Jupyter Hub service to the Picotte Cluster</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../python_programming/00-index.html">
-   Introduction to Python Programming
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/01-intro.html">
-     Python Fundamentals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/02-numpy.html">
-     Analyzing Patient Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/03-matplotlib.html">
-     Visualizing Tabular Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/04-lists.html">
-     Storing Multiple Values in Lists
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/05-loop.html">
-     Repeating Actions with Loops
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/06-files.html">
-     Analyzing Data from Multiple Files
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/07-cond.html">
-     Making Choices
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/08-func.html">
-     Creating Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/09-errors.html">
-     Errors and Exceptions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/10-defensive.html">
-     Defensive Programming
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/11-debugging.html">
-     Debugging
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../python_programming/12-cmdline.html">
-     Command-Line Programs
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/04-Matrix.html">Vectors, Matrices, Lists and Data Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/05-Control-Structure.html">Control Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/06-Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/07-Parallel-Computing.html">Parallel Computing in R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_programming/00-index.html">Introduction to Python Programming</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/01-intro.html">Python Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/02-numpy.html">Analyzing Patient Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/03-matplotlib.html">Visualizing Tabular Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/04-lists.html">Storing Multiple Values in Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/05-loop.html">Repeating Actions with Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/06-files.html">Analyzing Data from Multiple Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/07-cond.html">Making Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/08-func.html">Creating Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/09-errors.html">Errors and Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/10-defensive.html">Defensive Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/11-debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/12-cmdline.html">Command-Line Programs</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/intro_linux/utilities.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
 
-          
 
 
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/intro_linux/utilities.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
 
-      </li>
+</div></div>
       
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
+    </div>
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
 </div>
+</div>
+              
+              
 
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Shell Scripts</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Shell Scripts</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="shell-scripts">
-<h1>Shell Scripts<a class="headerlink" href="#shell-scripts" title="Permalink to this headline">#</a></h1>
+<h1>Shell Scripts<a class="headerlink" href="#shell-scripts" title="Permalink to this heading">#</a></h1>
 <p>We are finally ready to see what makes the shell such a powerful programming
 environment. We are going to take the commands we repeat frequently and save
 them in files so that we can re-run all those operations again later by typing
@@ -529,8 +382,8 @@ rather than having to remember or retype a long list of commands.</p>
 <p class="admonition-title">1. Our first shell script</p>
 <p>Let’s start by going back to <code class="docutils literal notranslate"><span class="pre">alkanes/</span></code> and creating a new file, <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code>
 which will become our shell script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> alkanes
-nano middle.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>alkanes
+nano<span class="w"> </span>middle.sh
 </pre></div>
 </div>
 <p>The command <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">middle.sh</span></code> opens the file <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> within the text editor
@@ -548,7 +401,7 @@ Check that the directory <code class="docutils literal notranslate"><span class=
 <p>Once we have saved the file,
 we can ask the shell to execute the commands it contains.
 Our shell is called <code class="docutils literal notranslate"><span class="pre">bash</span></code>, so we run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>middle.sh
 </pre></div>
 </div>
 <p>Sure enough, our script’s output is exactly what we would get if we ran that
@@ -571,11 +424,11 @@ Instead, let’s edit <code class="docutils literal notranslate"><span class="pr
 <p>Inside a shell script,
 <code class="docutils literal notranslate"><span class="pre">$1</span></code> means ‘the first filename (or other argument) on the command line’.
 We can now run our script like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh octane.pdb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>middle.sh<span class="w"> </span>octane.pdb
 </pre></div>
 </div>
 <p>or on a different file like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash middle.sh pentane.pdb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>bash<span class="w"> </span>middle.sh<span class="w"> </span>pentane.pdb
 </pre></div>
 </div>
 <p>Currently, we need to edit <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code> each time we want to adjust the range of
@@ -586,26 +439,26 @@ provide will be accessible via the special variables <code class="docutils liter
 which refer to the first, second, third command-line arguments, respectively.</p>
 <p>Knowing this, we can use additional arguments to define the range of lines to
 be passed to <code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> respectively:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano middle.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>middle.sh
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;$2&quot;</span> <span class="s2">&quot;$1&quot;</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;$3&quot;</span>
 </pre></div>
 </div>
 <p>We can now run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh pentane.pdb <span class="m">15</span> <span class="m">5</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>middle.sh<span class="w"> </span>pentane.pdb<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">5</span>
 </pre></div>
 </div>
 <p>By changing the arguments to our command, we can change our script’s
 behaviour:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash middle.sh pentane.pdb <span class="m">20</span> <span class="m">5</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>middle.sh<span class="w"> </span>pentane.pdb<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">5</span>
 </pre></div>
 </div>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">3. Putting comments in the code</p>
 <p>We can improve our script by adding some <strong>comments</strong> at the top:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano middle.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>middle.sh
 </pre></div>
 </div>
 <div class="highlight-source notranslate"><div class="highlight"><pre><span></span># Select lines from the middle of a file.
@@ -623,7 +476,7 @@ An explanation that sends the reader in the wrong direction is worse than none a
 <p class="admonition-title">4. Multiple command line arguments</p>
 <p>What if we want to process many files in a single pipeline?
 For example, if we want to sort our <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files by length, we would type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wc -l *.pdb <span class="p">|</span> sort -n
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span>*.pdb<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n
 </pre></div>
 </div>
 <p>because <code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span></code> lists the number of lines in the files
@@ -642,7 +495,7 @@ We also should put <code class="docutils literal notranslate"><span class="pre">
 to handle the case of arguments containing spaces
 (<code class="docutils literal notranslate"><span class="pre">&quot;$&#64;&quot;</span></code> is special syntax and is equivalent to <code class="docutils literal notranslate"><span class="pre">&quot;$1&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;$2&quot;</span></code> …).</p>
 <p>Here’s an example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano sorted.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>sorted.sh
 </pre></div>
 </div>
 <div class="highlight-source notranslate"><div class="highlight"><pre><span></span># Sort files by their length.
@@ -650,7 +503,7 @@ to handle the case of arguments containing spaces
 wc -l &quot;$@&quot; | sort -n
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash sorted.sh *.pdb ../creatures/*.dat
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>sorted.sh<span class="w"> </span>*.pdb<span class="w"> </span>../creatures/*.dat
 </pre></div>
 </div>
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">9 methane.pdb</span>
@@ -694,11 +547,11 @@ to print a list of the unique species appearing in each of those files separatel
 <span class="c1"># This script accepts any number of file names as command line arguments</span>
 
 <span class="c1"># Loop over all files</span>
-<span class="k">for</span> file <span class="k">in</span> <span class="nv">$@</span>
+<span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$@</span>
 <span class="k">do</span>
-    <span class="nb">echo</span> <span class="s2">&quot;Unique species in </span><span class="nv">$file</span><span class="s2">:&quot;</span>
-    <span class="c1"># Extract species names</span>
-    cut -d , -f <span class="m">2</span> <span class="nv">$file</span> <span class="p">|</span> sort <span class="p">|</span> uniq
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Unique species in </span><span class="nv">$file</span><span class="s2">:&quot;</span>
+<span class="w">    </span><span class="c1"># Extract species names</span>
+<span class="w">    </span>cut<span class="w"> </span>-d<span class="w"> </span>,<span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">$file</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 <span class="k">done</span>
 </pre></div>
 </div>
@@ -714,7 +567,7 @@ head -n &quot;$2&quot; &quot;$1&quot; | tail -n &quot;$3&quot;
 </pre></div>
 </div>
 <p>To make shell file executable, we need to change the permission on the file</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod <span class="m">755</span> middle.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>middle.sh
 ./middle.sh
 </pre></div>
 </div>
@@ -733,7 +586,7 @@ head -n &quot;$2&quot; &quot;$1&quot; | tail -n &quot;$3&quot;
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./intro_linux"
         },
         predefinedOutput: true
@@ -741,52 +594,87 @@ head -n &quot;$2&quot; &quot;$1&quot; | tail -n &quot;$3&quot;
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="loop.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Loop</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="loop.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Loop</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="conclusion.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="conclusion.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Workshop Conclusion</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Linh Ngo<br/>
-  
-    <div class="extra_footer">
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-    </div>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Linh Ngo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
