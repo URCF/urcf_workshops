@@ -1,60 +1,49 @@
 
-
 <!DOCTYPE html>
 
-
-<html lang="en" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Working With Files and Directories &#8212; University Research Computing Facility Workshop</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-  
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -62,93 +51,61 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro_linux/working_with_files_and_directories';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="File Permissions and Atrributes" href="file-permissions.html" />
     <link rel="prev" title="Navigating Files and Directories" href="file-system.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
-
-<a class="navbar-brand logo" href="../index.html">
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -157,221 +114,411 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory Sequence</span></p>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  INTRODUCTORY SEQUENCE
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to Linux</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="outline.html">Workshop Outline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Linux?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell Specifics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="file-system.html">Navigating Files and Directories</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Working With Files and Directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="file-permissions.html">File Permissions and Atrributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipes.html">Pipes and Redirection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="loop.html">Loop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utilities.html">Shell Scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conclusion.html">Workshop Conclusion</a></li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Linux
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="outline.html">
+     Workshop Outline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction.html">
+     What is Linux?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="shell.html">
+     Shell Specifics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="file-system.html">
+     Navigating Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Working With Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="file-permissions.html">
+     File Permissions and Atrributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pipes.html">
+     Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="loop.html">
+     Loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="utilities.html">
+     Shell Scripts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conclusion.html">
+     Workshop Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_picotte/index.html">
+   Research Computing on Picotte
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/picotte_structure.html">
+     The structure of the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/storage.html">
+     Storage on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/interactive.html">
+     Running an interactive job on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/file-transfer.html">
+     Transferring files to and from Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/batch.html">
+     Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_picotte/jupyter-hub.html">
+     Jupyter Hub service to the Picotte Cluster
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_picotte/index.html">Introduction to Research Computing on Picotte</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/introduction.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/accessing-picotte.html">Accessing the Picotte Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/picotte_structure.html">The structure of the Picotte Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/storage.html">Storage on Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/interactive.html">Running an interactive job on Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/file-transfer.html">Transferring files to and from Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/batch.html">Running a batch job</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/jupyter-hub.html">Jupyter Hub service to the Picotte Cluster</a></li>
-</ul>
-</li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/04-Matrix.html">Vectors, Matrices, Lists and Data Frames</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/05-Control-Structure.html">Control Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/06-Functions.html">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/07-Parallel-Computing.html">Parallel Computing in R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../r_programming/00-index.html">
+   Introduction to R
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/01-Introduction.html">
+     Introduction to R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/02-Basic-R.html">
+     Basics of R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/04-Matrix.html">
+     Vectors, Matrices, Lists and Data Frames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
+     Control Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/06-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
+     Parallel Computing in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
+     Basic plotting with R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
+     Ploting with ggplot
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
-</li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  PYTHON
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_programming/00-index.html">Introduction to Python Programming</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/01-intro.html">Python Fundamentals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/02-numpy.html">Analyzing Patient Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/03-matplotlib.html">Visualizing Tabular Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/04-lists.html">Storing Multiple Values in Lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/05-loop.html">Repeating Actions with Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/06-files.html">Analyzing Data from Multiple Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/07-cond.html">Making Choices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/08-func.html">Creating Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/09-errors.html">Errors and Exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/10-defensive.html">Defensive Programming</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/11-debugging.html">Debugging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/12-cmdline.html">Command-Line Programs</a></li>
-</ul>
-</li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python_programming/00-index.html">
+   Introduction to Python Programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/01-intro.html">
+     Python Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/02-numpy.html">
+     Analyzing Patient Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/03-matplotlib.html">
+     Visualizing Tabular Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/04-lists.html">
+     Storing Multiple Values in Lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/05-loop.html">
+     Repeating Actions with Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/06-files.html">
+     Analyzing Data from Multiple Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/07-cond.html">
+     Making Choices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/08-func.html">
+     Creating Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/09-errors.html">
+     Errors and Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/10-defensive.html">
+     Defensive Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/11-debugging.html">
+     Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/12-cmdline.html">
+     Command-Line Programs
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/intro_linux/working_with_files_and_directories.md" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.md</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
+          
 
 
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
   </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-
-</div></div>
-      
-    </div>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/intro_linux/working_with_files_and_directories.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Working With Files and Directories</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Working With Files and Directories</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
+              <div>
+                
   <section class="tex2jax_ignore mathjax_ignore" id="working-with-files-and-directories">
-<h1>Working With Files and Directories<a class="headerlink" href="#working-with-files-and-directories" title="Permalink to this heading">#</a></h1>
+<h1>Working With Files and Directories<a class="headerlink" href="#working-with-files-and-directories" title="Permalink to this headline">#</a></h1>
 <div class="dropdown admonition">
 <p class="admonition-title">1. Names for Files and Directories</p>
 <p>Complicated names of files and directories can make your life very painful
 when working on the command line. Here we provide a few useful
 tips for the names of your files from now on.</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Don’t use whitespaces.
 White spaces can make a name more meaningful
 but since whitespace is used to break arguments on the command line
@@ -394,9 +541,9 @@ the newly created directory.</p></li>
 </ul>
 </li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/shell-lesson-data/exercise-data/writing
-mkdir<span class="w"> </span>thesis
-ls<span class="w"> </span>-F
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/shell-lesson-data/exercise-data/writing
+mkdir thesis
+ls -F
 </pre></div>
 </div>
 <ul class="simple">
@@ -415,11 +562,11 @@ the names with them.</p></li>
 <li><p>What is the role of the <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag in the following
 commands:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>../project/data<span class="w"> </span>
-ls<span class="w"> </span>-F<span class="w"> </span>../project
-mkdir<span class="w"> </span>-p<span class="w"> </span>../project/data
-mkdir<span class="w"> </span>-p<span class="w"> </span>../project/report<span class="w"> </span>../project/results
-ls<span class="w"> </span>-F<span class="w"> </span>../project
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir ../project/data 
+ls -F ../project
+mkdir -p ../project/data
+mkdir -p ../project/report ../project/results
+ls -F ../project
 </pre></div>
 </div>
 <div class="admonition-solution admonition">
@@ -479,13 +626,13 @@ if you want to save the file first and confirm the name with <code class="docuti
 <li><p><code class="docutils literal notranslate"><span class="pre">mv</span></code> is short for move. It will move a file/directory from
 one location to another.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/shell-lesson-data/exercise-data/writing
-ls<span class="w"> </span>thesis
-mv<span class="w"> </span>thesis/draft.txt<span class="w"> </span>thesis/quotes.txt
-ls<span class="w"> </span>thesis
-mv<span class="w"> </span>thesis/quotes.txt<span class="w"> </span>.
-ls<span class="w"> </span>thesis
-ls<span class="w"> </span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/shell-lesson-data/exercise-data/writing
+ls thesis
+mv thesis/draft.txt thesis/quotes.txt
+ls thesis
+mv thesis/quotes.txt .
+ls thesis
+ls 
 </pre></div>
 </div>
 </div>
@@ -496,17 +643,17 @@ ls<span class="w"> </span>
 put the files <code class="docutils literal notranslate"><span class="pre">sucrose.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">maltose.dat</span></code> into the wrong folder. The
 files should have been placed in the <code class="docutils literal notranslate"><span class="pre">raw</span></code> folder.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>-F
-analyzed/<span class="w"> </span>raw/
-$<span class="w"> </span>ls<span class="w"> </span>-F<span class="w"> </span>analyzed
-fructose.dat<span class="w"> </span>glucose.dat<span class="w"> </span>maltose.dat<span class="w"> </span>sucrose.dat
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>analyzed
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls -F
+analyzed/ raw/
+$ ls -F analyzed
+fructose.dat glucose.dat maltose.dat sucrose.dat
+$ <span class="nb">cd</span> analyzed
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Fill in the blanks to move these files to the <code class="docutils literal notranslate"><span class="pre">raw</span></code> folder:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mv<span class="w"> </span>sucrose.data<span class="w"> </span>maltose.data<span class="w"> </span>____/_____
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mv sucrose.data maltose.data ____/_____
 </pre></div>
 </div>
 <div class="admonition-solution admonition">
@@ -522,10 +669,10 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>analy
 <li><p><code class="docutils literal notranslate"><span class="pre">cp</span></code> stands for copy. It copies a file or directory to a new location,
 possibly with a new name.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>quotes.txt<span class="w"> </span>thesis/quotations.txt
-$<span class="w"> </span>ls<span class="w"> </span>quotes.txt<span class="w"> </span>thesis/quotations.txt
-$<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>thesis<span class="w"> </span>thesis_backup
-$<span class="w"> </span>ls<span class="w"> </span>thesis<span class="w"> </span>thesis_backup
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp quotes.txt thesis/quotations.txt
+$ ls quotes.txt thesis/quotations.txt
+$ cp -r thesis thesis_backup
+$ ls thesis thesis_backup
 </pre></div>
 </div>
 </div>
@@ -540,7 +687,7 @@ it: <code class="docutils literal notranslate"><span class="pre">statstics.txt</
 misspelled the filename! You want to correct the mistake,
 which of the following commands could you use to do so?</p></li>
 </ul>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>cp statstics.txt statistics.txt</p></li>
 <li><p>mv statstics.txt statistics.txt</p></li>
 <li><p>mv statstics.txt .</p></li>
@@ -548,7 +695,7 @@ which of the following commands could you use to do so?</p></li>
 </ol>
 <div class="admonition-solution admonition">
 <p class="admonition-title">Solution</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>No. While this would create a file with the correct name,
 the incorrectly named file still exists in the directory and
 would need to be deleted.</p></li>
@@ -565,17 +712,17 @@ not provide a new file name; identical file names cannot be created.</p></li>
 <ul class="simple">
 <li><p>What is the output of the last <code class="docutils literal notranslate"><span class="pre">ls</span></code> command in the sequence shown below?</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">pwd</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">pwd</span>
 /home/rammy/data
-$<span class="w"> </span>ls
+$ ls
 proteins.dat
-$<span class="w"> </span>mkdir<span class="w"> </span>recombined
-$<span class="w"> </span>mv<span class="w"> </span>proteins.dat<span class="w"> </span>recombined/
-$<span class="w"> </span>cp<span class="w"> </span>recombined/proteins.dat<span class="w"> </span>../proteins-saved.dat
-$<span class="w"> </span>ls
+$ mkdir recombined
+$ mv proteins.dat recombined/
+$ cp recombined/proteins.dat ../proteins-saved.dat
+$ ls
 </pre></div>
 </div>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>proteins-saved.dat recombined</p></li>
 <li><p>recombined</p></li>
 <li><p>proteins.dat recombined</p></li>
@@ -583,7 +730,7 @@ $<span class="w"> </span>ls
 </ol>
 <div class="admonition-solution admonition">
 <p class="admonition-title">Solution</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>No, <code class="docutils literal notranslate"><span class="pre">proteins-saved.dat</span></code> is located at <code class="docutils literal notranslate"><span class="pre">/home/rammy/</span></code></p></li>
 <li><p>Yes</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">proteins.dat</span></code> is located at <code class="docutils literal notranslate"><span class="pre">/home/rammy/data/recombined</span></code></p></li>
@@ -598,12 +745,12 @@ $<span class="w"> </span>ls
 let’s tidy up this directory by removing the quotes.txt file we created.</p></li>
 <li><p>The command we’ll use for this is <code class="docutils literal notranslate"><span class="pre">rm</span></code> (short for <em>remove</em>):</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/shell-lesson-data/exercise-data/writing
-$<span class="w"> </span>ls<span class="w"> </span>
-$<span class="w"> </span>rm<span class="w"> </span>quotes.txt
-$<span class="w"> </span>ls<span class="w"> </span>quotes.txt
-$<span class="w"> </span>rm<span class="w"> </span>thesis
-$<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>thesis
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/shell-lesson-data/exercise-data/writing
+$ ls 
+$ rm quotes.txt
+$ ls quotes.txt
+$ rm thesis
+$ rm -r thesis
 </pre></div>
 </div>
 </div>
@@ -639,10 +786,10 @@ not the other programs, that deals with expanding wildcards.</p></li>
 <li><p>Change into <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/alkanes</span></code> and try the following
 commands</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>*t*ane.pdb
-$<span class="w"> </span>ls<span class="w"> </span>*t?ne.*
-$<span class="w"> </span>ls<span class="w"> </span>*t??ne.pdb
-$<span class="w"> </span>ls<span class="w"> </span>ethane.*
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls *t*ane.pdb
+$ ls *t?ne.*
+$ ls *t??ne.pdb
+$ ls ethane.*
 </pre></div>
 </div>
 <p><img alt="Outcome of various wildcards" src="../_images/wildcards.png" /></p>
@@ -652,78 +799,78 @@ $<span class="w"> </span>ls<span class="w"> </span>ethane.*
 <p>Sam has a directory containing calibration data, datasets, and descriptions of
 the datasets:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
-├──<span class="w"> </span><span class="m">2015</span>-10-23-calibration.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset1.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset2.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset_overview.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-26-calibration.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset1.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset2.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset_overview.txt
-├──<span class="w"> </span><span class="m">2015</span>-11-23-calibration.txt
-├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
-├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
-├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
-├──<span class="w"> </span>backup
-│<span class="w">   </span>├──<span class="w"> </span>calibration
-│<span class="w">   </span>└──<span class="w"> </span>datasets
-└──<span class="w"> </span>send_to_bob
-<span class="w">    </span>├──<span class="w"> </span>all_datasets_created_on_a_23rd
-<span class="w">    </span>└──<span class="w"> </span>all_november_files
+├── <span class="m">2015</span>-10-23-calibration.txt
+├── <span class="m">2015</span>-10-23-dataset1.txt
+├── <span class="m">2015</span>-10-23-dataset2.txt
+├── <span class="m">2015</span>-10-23-dataset_overview.txt
+├── <span class="m">2015</span>-10-26-calibration.txt
+├── <span class="m">2015</span>-10-26-dataset1.txt
+├── <span class="m">2015</span>-10-26-dataset2.txt
+├── <span class="m">2015</span>-10-26-dataset_overview.txt
+├── <span class="m">2015</span>-11-23-calibration.txt
+├── <span class="m">2015</span>-11-23-dataset1.txt
+├── <span class="m">2015</span>-11-23-dataset2.txt
+├── <span class="m">2015</span>-11-23-dataset_overview.txt
+├── backup
+│   ├── calibration
+│   └── datasets
+└── send_to_bob
+    ├── all_datasets_created_on_a_23rd
+    └── all_november_files
 </pre></div>
 </div>
 <p>Before heading off to another field trip, Sam wants to back up her data and
 send datasets created the 23rd of any month to Bob. Sam uses the following commands
 to get the job done:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>*dataset*<span class="w"> </span>backup/datasets
-$<span class="w"> </span>cp<span class="w"> </span>____calibration____<span class="w"> </span>backup/calibration
-$<span class="w"> </span>cp<span class="w"> </span><span class="m">2015</span>-____-____<span class="w"> </span>send_to_bob/all_november_files/
-$<span class="w"> </span>cp<span class="w"> </span>____<span class="w"> </span>send_to_bob/all_datasets_created_on_a_23rd/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp *dataset* backup/datasets
+$ cp ____calibration____ backup/calibration
+$ cp <span class="m">2015</span>-____-____ send_to_bob/all_november_files/
+$ cp ____ send_to_bob/all_datasets_created_on_a_23rd/
 </pre></div>
 </div>
 <p>Help Sam by filling in the blanks.</p>
 <p>The resulting directory structure should look like this</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
-├──<span class="w"> </span><span class="m">2015</span>-10-23-calibration.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset1.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset2.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset_overview.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-26-calibration.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset1.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset2.txt
-├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset_overview.txt
-├──<span class="w"> </span><span class="m">2015</span>-11-23-calibration.txt
-├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
-├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
-├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
-├──<span class="w"> </span>backup
-│<span class="w">   </span>├──<span class="w"> </span>calibration
-│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-calibration.txt
-│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-26-calibration.txt
-│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span><span class="m">2015</span>-11-23-calibration.txt
-│<span class="w">   </span>└──<span class="w"> </span>datasets
-│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset1.txt
-│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset2.txt
-│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset_overview.txt
-│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset1.txt
-│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset2.txt
-│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset_overview.txt
-│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
-│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
-│<span class="w">       </span>└──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
-└──<span class="w"> </span>send_to_bob
-<span class="w">    </span>├──<span class="w"> </span>all_datasets_created_on_a_23rd
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset1.txt
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset2.txt
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset_overview.txt
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
-<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
-<span class="w">    </span>└──<span class="w"> </span>all_november_files
-<span class="w">        </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-calibration.txt
-<span class="w">        </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
-<span class="w">        </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
-<span class="w">        </span>└──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
+├── <span class="m">2015</span>-10-23-calibration.txt
+├── <span class="m">2015</span>-10-23-dataset1.txt
+├── <span class="m">2015</span>-10-23-dataset2.txt
+├── <span class="m">2015</span>-10-23-dataset_overview.txt
+├── <span class="m">2015</span>-10-26-calibration.txt
+├── <span class="m">2015</span>-10-26-dataset1.txt
+├── <span class="m">2015</span>-10-26-dataset2.txt
+├── <span class="m">2015</span>-10-26-dataset_overview.txt
+├── <span class="m">2015</span>-11-23-calibration.txt
+├── <span class="m">2015</span>-11-23-dataset1.txt
+├── <span class="m">2015</span>-11-23-dataset2.txt
+├── <span class="m">2015</span>-11-23-dataset_overview.txt
+├── backup
+│   ├── calibration
+│   │   ├── <span class="m">2015</span>-10-23-calibration.txt
+│   │   ├── <span class="m">2015</span>-10-26-calibration.txt
+│   │   └── <span class="m">2015</span>-11-23-calibration.txt
+│   └── datasets
+│       ├── <span class="m">2015</span>-10-23-dataset1.txt
+│       ├── <span class="m">2015</span>-10-23-dataset2.txt
+│       ├── <span class="m">2015</span>-10-23-dataset_overview.txt
+│       ├── <span class="m">2015</span>-10-26-dataset1.txt
+│       ├── <span class="m">2015</span>-10-26-dataset2.txt
+│       ├── <span class="m">2015</span>-10-26-dataset_overview.txt
+│       ├── <span class="m">2015</span>-11-23-dataset1.txt
+│       ├── <span class="m">2015</span>-11-23-dataset2.txt
+│       └── <span class="m">2015</span>-11-23-dataset_overview.txt
+└── send_to_bob
+    ├── all_datasets_created_on_a_23rd
+    │   ├── <span class="m">2015</span>-10-23-dataset1.txt
+    │   ├── <span class="m">2015</span>-10-23-dataset2.txt
+    │   ├── <span class="m">2015</span>-10-23-dataset_overview.txt
+    │   ├── <span class="m">2015</span>-11-23-dataset1.txt
+    │   ├── <span class="m">2015</span>-11-23-dataset2.txt
+    │   └── <span class="m">2015</span>-11-23-dataset_overview.txt
+    └── all_november_files
+        ├── <span class="m">2015</span>-11-23-calibration.txt
+        ├── <span class="m">2015</span>-11-23-dataset1.txt
+        ├── <span class="m">2015</span>-11-23-dataset2.txt
+        └── <span class="m">2015</span>-11-23-dataset_overview.txt
 </pre></div>
 </div>
 <div class="admonition-solution admonition">
@@ -749,7 +896,7 @@ $ cp *-23-dataset* send_to_bob/all_datasets_created_on_a_23rd/
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./intro_linux"
         },
         predefinedOutput: true
@@ -757,87 +904,52 @@ $ cp *-23-dataset* send_to_bob/all_datasets_created_on_a_23rd/
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="file-system.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Navigating Files and Directories</p>
-      </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="file-system.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Navigating Files and Directories</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="file-permissions.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="file-permissions.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">File Permissions and Atrributes</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div></div>
-  
-</div>
-
-                </footer>
-              
-            </div>
-            
-            
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Linh Ngo
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-<div class="extra_footer">
-  <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-</div>
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
     </div>
-  </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>

@@ -1,4 +1,4 @@
-# Introduction to Linux
+# Linux
 
 - **Instructor**: Linh B. Ngo
 - **Email**: lbn28 AT drexel DOT edu

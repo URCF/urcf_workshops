@@ -1,60 +1,49 @@
 
-
 <!DOCTYPE html>
 
-
-<html lang="en" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Running an interactive job on Picotte &#8212; University Research Computing Facility Workshop</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-  
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -62,93 +51,61 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/interactive';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Transferring files to and from Picotte" href="file-transfer.html" />
     <link rel="prev" title="Storage on Picotte" href="storage.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
-
-<a class="navbar-brand logo" href="../index.html">
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">University Research Computing Facility Workshop</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -157,230 +114,474 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory Sequence</span></p>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  INTRODUCTORY SEQUENCE
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_linux/index.html">Introduction to Linux</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/outline.html">Workshop Outline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/introduction.html">What is Linux?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/shell.html">Shell Specifics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/file-system.html">Navigating Files and Directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/working_with_files_and_directories.html">Working With Files and Directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/file-permissions.html">File Permissions and Atrributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/pipes.html">Pipes and Redirection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/loop.html">Loop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/utilities.html">Shell Scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro_linux/conclusion.html">Workshop Conclusion</a></li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_linux/index.html">
+   Linux
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/outline.html">
+     Workshop Outline
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/introduction.html">
+     What is Linux?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/shell.html">
+     Shell Specifics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/file-system.html">
+     Navigating Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/working_with_files_and_directories.html">
+     Working With Files and Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/file-permissions.html">
+     File Permissions and Atrributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/pipes.html">
+     Pipes and Redirection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/loop.html">
+     Loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/utilities.html">
+     Shell Scripts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_linux/conclusion.html">
+     Workshop Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Research Computing on Picotte
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="accessing-picotte.html">
+     Accessing the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="picotte_structure.html">
+     The structure of the Picotte Cluster
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="storage.html">
+     Storage on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Running an interactive job on Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="file-transfer.html">
+     Transferring files to and from Picotte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="batch.html">
+     Running a batch job
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="jupyter-hub.html">
+     Jupyter Hub service to the Picotte Cluster
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to Research Computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing the Picotte Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="picotte_structure.html">The structure of the Picotte Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="storage.html">Storage on Picotte</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Running an interactive job on Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="file-transfer.html">Transferring files to and from Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="batch.html">Running a batch job</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jupyter-hub.html">Jupyter Hub service to the Picotte Cluster</a></li>
-</ul>
-</li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  R
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/04-Matrix.html">Vectors, Matrices, Lists and Data Frames</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/05-Control-Structure.html">Control Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/06-Functions.html">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/07-Parallel-Computing.html">Parallel Computing in R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../r_programming/00-index.html">
+   Introduction to R
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/01-Introduction.html">
+     Introduction to R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/02-Basic-R.html">
+     Basics of R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/03-Data-Structures.html">
+     Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/04-Matrix.html">
+     Vectors, Matrices, Lists and Data Frames
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/05-Control-Structure.html">
+     Control Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/06-Functions.html">
+     Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/07-Parallel-Computing.html">
+     Parallel Computing in R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/08-Basic-Plotting.html">
+     Basic plotting with R
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">
+     Ploting with ggplot
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
-</li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  PYTHON
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_programming/00-index.html">Introduction to Python Programming</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/01-intro.html">Python Fundamentals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/02-numpy.html">Analyzing Patient Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/03-matplotlib.html">Visualizing Tabular Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/04-lists.html">Storing Multiple Values in Lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/05-loop.html">Repeating Actions with Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/06-files.html">Analyzing Data from Multiple Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/07-cond.html">Making Choices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/08-func.html">Creating Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/09-errors.html">Errors and Exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/10-defensive.html">Defensive Programming</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/11-debugging.html">Debugging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/12-cmdline.html">Command-Line Programs</a></li>
-</ul>
-</li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python_programming/00-index.html">
+   Introduction to Python Programming
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/01-intro.html">
+     Python Fundamentals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/02-numpy.html">
+     Analyzing Patient Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/03-matplotlib.html">
+     Visualizing Tabular Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/04-lists.html">
+     Storing Multiple Values in Lists
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/05-loop.html">
+     Repeating Actions with Loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/06-files.html">
+     Analyzing Data from Multiple Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/07-cond.html">
+     Making Choices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/08-func.html">
+     Creating Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/09-errors.html">
+     Errors and Exceptions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/10-defensive.html">
+     Defensive Programming
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/11-debugging.html">
+     Debugging
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../python_programming/12-cmdline.html">
+     Command-Line Programs
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/intro_picotte/interactive.md" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.md</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
+          
 
 
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
   </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
-</div></div>
-      
-    </div>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/intro_picotte/interactive.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Running an interactive job on Picotte</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm">SLURM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm-partitions">Slurm partitions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm-accounts">Slurm accounts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">Modules</a></li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slurm">
+   SLURM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slurm-partitions">
+   Slurm partitions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slurm-accounts">
+   Slurm accounts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modules">
+   Modules
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Running an interactive job on Picotte</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slurm">
+   SLURM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slurm-partitions">
+   Slurm partitions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slurm-accounts">
+   Slurm accounts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modules">
+   Modules
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
+              <div>
+                
   <section class="tex2jax_ignore mathjax_ignore" id="running-an-interactive-job-on-picotte">
-<h1>Running an interactive job on Picotte<a class="headerlink" href="#running-an-interactive-job-on-picotte" title="Permalink to this heading">#</a></h1>
+<h1>Running an interactive job on Picotte<a class="headerlink" href="#running-an-interactive-job-on-picotte" title="Permalink to this headline">#</a></h1>
 <section id="slurm">
-<h2>SLURM<a class="headerlink" href="#slurm" title="Permalink to this heading">#</a></h2>
+<h2>SLURM<a class="headerlink" href="#slurm" title="Permalink to this headline">#</a></h2>
 <p>Now, we arrive at the most important part of today’s workshop: getting
 on the compute nodes. Compute nodes are the real power of Picotte. Let’s
 see which of the compute nodes are available at the moment:</p>
@@ -390,7 +591,7 @@ see which of the compute nodes are available at the moment:</p>
 <p>We can see that the cluster is quite busy, but there is a fair amount of
 compute nodes that are available for us. Now, let’s request one compute
 node. Please type the following (or paste from the website into your SSH terminal):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--partition<span class="o">=</span>def-sm<span class="w"> </span>--account<span class="o">=</span>urcfprj<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>--mem<span class="o">=</span>4G<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash<span class="w"> </span>-l
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun --partition<span class="o">=</span>def-sm --account<span class="o">=</span>urcfprj --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
 </pre></div>
 </div>
 <p>It is very important not to make typos, use spaces and upper/lowercases exactly
@@ -421,10 +622,10 @@ Sometimes, when we are asking for much substantial amount of resources (for exam
 with 40 cores and 192 Gb of RAM), the scheduler cannot satisfy our request, and will put us
 into the queue so we will have to wait until the node becomes available.</p>
 <p>Once the request is granted, you will see something like that:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@picotte001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>srun<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>--mem<span class="o">=</span>4G<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash<span class="w"> </span>-l
-<span class="o">[</span>lbn28@node047<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">SLURM_JOBID</span><span class="si">}</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@picotte001 ~<span class="o">]</span>$ srun --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
+<span class="o">[</span>lbn28@node047 ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">SLURM_JOBID</span><span class="si">}</span>
 <span class="m">9539478</span>
-<span class="o">[</span>lbn28@node047<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>
+<span class="o">[</span>lbn28@node047 ~<span class="o">]</span>$ 
 </pre></div>
 </div>
 <p>Importantly, you will see the prompt change. Previously, the prompt was
@@ -432,24 +633,24 @@ into the queue so we will have to wait until the node becomes available.</p>
 are on a compute node – in this case, <code class="docutils literal notranslate"><span class="pre">node047</span></code> (you might be on a different
 compute node). You can run the commmand <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">${SLURM_JOBID}</span></code> to see the job ID.</p>
 <p>We can see the information about the compute node by using the <code class="docutils literal notranslate"><span class="pre">scontrol</span></code> command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@node047<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>scontrol<span class="w"> </span>show<span class="w"> </span>nodes<span class="w"> </span>node049
-<span class="nv">NodeName</span><span class="o">=</span>node049<span class="w"> </span><span class="nv">Arch</span><span class="o">=</span>x86_64<span class="w"> </span><span class="nv">CoresPerSocket</span><span class="o">=</span><span class="m">12</span>
-<span class="nv">CPUAlloc</span><span class="o">=</span><span class="m">42</span><span class="w"> </span><span class="nv">CPUTot</span><span class="o">=</span><span class="m">48</span><span class="w"> </span><span class="nv">CPULoad</span><span class="o">=</span><span class="m">38</span>.44
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@node047 ~<span class="o">]</span>$ scontrol show nodes node049
+<span class="nv">NodeName</span><span class="o">=</span>node049 <span class="nv">Arch</span><span class="o">=</span>x86_64 <span class="nv">CoresPerSocket</span><span class="o">=</span><span class="m">12</span>
+<span class="nv">CPUAlloc</span><span class="o">=</span><span class="m">42</span> <span class="nv">CPUTot</span><span class="o">=</span><span class="m">48</span> <span class="nv">CPULoad</span><span class="o">=</span><span class="m">38</span>.44
 <span class="nv">AvailableFeatures</span><span class="o">=(</span>null<span class="o">)</span>
 <span class="nv">ActiveFeatures</span><span class="o">=(</span>null<span class="o">)</span>
 <span class="nv">Gres</span><span class="o">=(</span>null<span class="o">)</span>
-<span class="nv">NodeAddr</span><span class="o">=</span>node049<span class="w"> </span><span class="nv">NodeHostName</span><span class="o">=</span>node049<span class="w"> </span><span class="nv">Version</span><span class="o">=</span><span class="m">21</span>.08.8-2
-<span class="nv">OS</span><span class="o">=</span>Linux<span class="w"> </span><span class="m">4</span>.18.0-147.el8.x86_64<span class="w"> </span><span class="c1">#1 SMP Thu Sep 26 15:52:44 UTC 2019</span>
-<span class="nv">RealMemory</span><span class="o">=</span><span class="m">192000</span><span class="w"> </span><span class="nv">AllocMem</span><span class="o">=</span><span class="m">111616</span><span class="w"> </span><span class="nv">FreeMem</span><span class="o">=</span><span class="m">88469</span><span class="w"> </span><span class="nv">Sockets</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">Boards</span><span class="o">=</span><span class="m">1</span>
-<span class="nv">State</span><span class="o">=</span>MIXED<span class="w"> </span><span class="nv">ThreadsPerCore</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">TmpDisk</span><span class="o">=</span><span class="m">864000</span><span class="w"> </span><span class="nv">Weight</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">Owner</span><span class="o">=</span>N/A<span class="w"> </span><span class="nv">MCS_label</span><span class="o">=</span>N/A
+<span class="nv">NodeAddr</span><span class="o">=</span>node049 <span class="nv">NodeHostName</span><span class="o">=</span>node049 <span class="nv">Version</span><span class="o">=</span><span class="m">21</span>.08.8-2
+<span class="nv">OS</span><span class="o">=</span>Linux <span class="m">4</span>.18.0-147.el8.x86_64 <span class="c1">#1 SMP Thu Sep 26 15:52:44 UTC 2019</span>
+<span class="nv">RealMemory</span><span class="o">=</span><span class="m">192000</span> <span class="nv">AllocMem</span><span class="o">=</span><span class="m">111616</span> <span class="nv">FreeMem</span><span class="o">=</span><span class="m">88469</span> <span class="nv">Sockets</span><span class="o">=</span><span class="m">4</span> <span class="nv">Boards</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">State</span><span class="o">=</span>MIXED <span class="nv">ThreadsPerCore</span><span class="o">=</span><span class="m">1</span> <span class="nv">TmpDisk</span><span class="o">=</span><span class="m">864000</span> <span class="nv">Weight</span><span class="o">=</span><span class="m">1</span> <span class="nv">Owner</span><span class="o">=</span>N/A <span class="nv">MCS_label</span><span class="o">=</span>N/A
 <span class="nv">Partitions</span><span class="o">=</span>def,def-sm,long
-<span class="nv">BootTime</span><span class="o">=</span><span class="m">2023</span>-09-20T18:36:12<span class="w"> </span><span class="nv">SlurmdStartTime</span><span class="o">=</span><span class="m">2023</span>-09-20T18:38:11
+<span class="nv">BootTime</span><span class="o">=</span><span class="m">2023</span>-09-20T18:36:12 <span class="nv">SlurmdStartTime</span><span class="o">=</span><span class="m">2023</span>-09-20T18:38:11
 <span class="nv">LastBusyTime</span><span class="o">=</span><span class="m">2023</span>-10-11T20:48:18
 <span class="nv">CfgTRES</span><span class="o">=</span><span class="nv">cpu</span><span class="o">=</span><span class="m">48</span>,mem<span class="o">=</span><span class="m">187</span>.50G,billing<span class="o">=</span><span class="m">48</span>
 <span class="nv">AllocTRES</span><span class="o">=</span><span class="nv">cpu</span><span class="o">=</span><span class="m">42</span>,mem<span class="o">=</span>109G
 <span class="nv">CapWatts</span><span class="o">=</span>n/a
-<span class="nv">CurrentWatts</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="nv">AveWatts</span><span class="o">=</span><span class="m">0</span>
-<span class="nv">ExtSensorsJoules</span><span class="o">=</span>n/s<span class="w"> </span><span class="nv">ExtSensorsWatts</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="nv">ExtSensorsTemp</span><span class="o">=</span>n/s
+<span class="nv">CurrentWatts</span><span class="o">=</span><span class="m">0</span> <span class="nv">AveWatts</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">ExtSensorsJoules</span><span class="o">=</span>n/s <span class="nv">ExtSensorsWatts</span><span class="o">=</span><span class="m">0</span> <span class="nv">ExtSensorsTemp</span><span class="o">=</span>n/s
 </pre></div>
 </div>
 <p>You can see that the node has 48 CPUs, no GPUs, and at the moment runs a couple of jobs
@@ -464,27 +665,27 @@ One you are on the compute node, and you want to go to another compute node, you
 exit first.</p>
 </section>
 <section id="slurm-partitions">
-<h2>Slurm partitions<a class="headerlink" href="#slurm-partitions" title="Permalink to this heading">#</a></h2>
+<h2>Slurm partitions<a class="headerlink" href="#slurm-partitions" title="Permalink to this headline">#</a></h2>
 <p>Slurm allows the definition of <code class="docutils literal notranslate"><span class="pre">partitions</span></code>, or <code class="docutils literal notranslate"><span class="pre">queues</span></code>. These abstractions specify
 availabilities and limitations of resources for your job.</p>
 <p>To view all possible partitions:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scontrol<span class="w"> </span>show<span class="w"> </span>partition
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scontrol show partition
 </pre></div>
 </div>
 </section>
 <section id="slurm-accounts">
-<h2>Slurm accounts<a class="headerlink" href="#slurm-accounts" title="Permalink to this heading">#</a></h2>
+<h2>Slurm accounts<a class="headerlink" href="#slurm-accounts" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Slurm</span> <span class="pre">account</span></code> (to distinguish with <code class="docutils literal notranslate"><span class="pre">Picotte</span> <span class="pre">login</span> <span class="pre">account</span></code>) is a Slurm-defined entity
 created to help tracking resource utilization. To view accounts that you are associated
 with, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacctmgr<span class="w"> </span>show<span class="w"> </span>user<span class="w"> </span>withassoc<span class="w"> </span><span class="nv">format</span><span class="o">=</span>account,user,defaultaccount<span class="w"> </span>where<span class="w"> </span><span class="nv">user</span><span class="o">=</span><span class="nv">$USER</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacctmgr show user withassoc <span class="nv">format</span><span class="o">=</span>account,user,defaultaccount where <span class="nv">user</span><span class="o">=</span><span class="nv">$USER</span>
 </pre></div>
 </div>
 <p>New flags:</p>
 <p><code class="docutils literal notranslate"><span class="pre">--partition</span></code>: specify the number of partitions
 <code class="docutils literal notranslate"><span class="pre">--account</span></code>: specify the <strong>Slurm account</strong> this job belongs to</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--partition<span class="o">=</span>def<span class="w"> </span>--account<span class="o">=</span>urcfprj<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>--mem<span class="o">=</span>4G<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash<span class="w"> </span>-l
-srun<span class="w"> </span>--partition<span class="o">=</span>def-sm<span class="w"> </span>--account<span class="o">=</span>urcfprj<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>--mem<span class="o">=</span>4G<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash<span class="w"> </span>-l
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun --partition<span class="o">=</span>def --account<span class="o">=</span>urcfprj --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
+srun --partition<span class="o">=</span>def-sm --account<span class="o">=</span>urcfprj --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -501,67 +702,67 @@ computations, because each user gets their own CPUs and RAM so there is no inter
 </div>
 </section>
 <section id="modules">
-<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this heading">#</a></h2>
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">#</a></h2>
 <p>If you are on the compute node, exit it. Once you get on the login node, type this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--partition<span class="o">=</span>def-sm<span class="w"> </span>--account<span class="o">=</span>urcfprj<span class="w"> </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>--mem<span class="o">=</span>4G<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash<span class="w"> </span>-l
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun --partition<span class="o">=</span>def-sm --account<span class="o">=</span>urcfprj --nodes<span class="o">=</span><span class="m">1</span> --cpus-per-task<span class="o">=</span><span class="m">2</span> --mem<span class="o">=</span>4G --time<span class="o">=</span><span class="m">00</span>:30:00 --pty /bin/bash -l
 </pre></div>
 </div>
 <p>We have a lot of software installed on Picotte, but most of it is organized into <em>modules</em>, which
 need to be loaded. To see which modules are available on Picotte, please type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>avail
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module avail
 </pre></div>
 </div>
 <p>Hit <code class="docutils literal notranslate"><span class="pre">SPACE</span></code> several times to get to the end of the module list. This is a very long list, and you can see that
 there is a lot of software installed for you. If you want to see which versions of MATLAB are installed, you can type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>avail<span class="w"> </span>matlab
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module avail matlab
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@node047<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>avail<span class="w"> </span>matlab
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@node047 ~<span class="o">]</span>$ module avail matlab
 
--------------------------------------------------------<span class="w"> </span>/ifs/opt/modulefiles<span class="w"> </span>--------------------------------------------------------
-<span class="w">   </span>matlab/R2020b<span class="w">    </span>matlab/R2021a<span class="w">    </span>matlab/R2022b<span class="w"> </span><span class="o">(</span>D<span class="o">)</span>
+------------------------------------------------------- /ifs/opt/modulefiles --------------------------------------------------------
+   matlab/R2020b    matlab/R2021a    matlab/R2022b <span class="o">(</span>D<span class="o">)</span>
 
-<span class="w">  </span>Where:
-<span class="w">   </span>D:<span class="w">  </span>Default<span class="w"> </span>Module
+  Where:
+   D:  Default Module
 
-Module<span class="w"> </span>defaults<span class="w"> </span>are<span class="w"> </span>chosen<span class="w"> </span>based<span class="w"> </span>on<span class="w"> </span>Find<span class="w"> </span>First<span class="w"> </span>Rules<span class="w"> </span>due<span class="w"> </span>to<span class="w"> </span>Name/Version/Version<span class="w"> </span>modules<span class="w"> </span>found<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span>tree.
-See<span class="w"> </span>https://lmod.readthedocs.io/en/latest/060_locating.html<span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+Module defaults are chosen based on Find First Rules due to Name/Version/Version modules found <span class="k">in</span> the module tree.
+See https://lmod.readthedocs.io/en/latest/060_locating.html <span class="k">for</span> details.
 
-Use<span class="w"> </span><span class="s2">&quot;module spider&quot;</span><span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>and<span class="w"> </span>extensions.
-Use<span class="w"> </span><span class="s2">&quot;module keyword key1 key2 ...&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matching<span class="w"> </span>any<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;keys&quot;</span>.
+Use <span class="s2">&quot;module spider&quot;</span> to find all possible modules and extensions.
+Use <span class="s2">&quot;module keyword key1 key2 ...&quot;</span> to search <span class="k">for</span> all possible modules matching any of the <span class="s2">&quot;keys&quot;</span>.
 
 
-<span class="o">[</span>lbn28@node047<span class="w"> </span>~<span class="o">]</span>$
+<span class="o">[</span>lbn28@node047 ~<span class="o">]</span>$
 </pre></div>
 </div>
 <p>Let’s say you want to use R. To load the module, you will need to specify its full <a class="reference external" href="http://name.To">name.To</a> see which versions
 of R are available, type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@node047<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>avail<span class="w"> </span>R/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@node047 ~<span class="o">]</span>$ module avail R/
 
--------------------------------------------------------<span class="w"> </span>/ifs/opt/modulefiles<span class="w"> </span>--------------------------------------------------------
-<span class="w">   </span>R/4.1.3<span class="w">          </span>grinder/0.5.4<span class="w">    </span>maeparser/gcc/1.2.4<span class="w">           </span>mothur/1.44.3<span class="w">    </span>piler/1.0
-<span class="w">   </span>R/4.2.2<span class="w"> </span><span class="o">(</span>L,D<span class="o">)</span><span class="w">    </span>ior/3.3.0<span class="w">        </span>maeparser/intel/2020/1.2.4<span class="w">    </span>mpfr/4.1.0<span class="w">       </span>pilercr/1.06
+------------------------------------------------------- /ifs/opt/modulefiles --------------------------------------------------------
+   R/4.1.3          grinder/0.5.4    maeparser/gcc/1.2.4           mothur/1.44.3    piler/1.0
+   R/4.2.2 <span class="o">(</span>L,D<span class="o">)</span>    ior/3.3.0        maeparser/intel/2020/1.2.4    mpfr/4.1.0       pilercr/1.06
 
-------------------------------------------------------<span class="w"> </span>/cm/shared/modulefiles<span class="w"> </span>-------------------------------------------------------
-<span class="w">   </span>cuda10.1/profiler/10.1.243<span class="w">    </span>cuda11.1/profiler/11.1.1<span class="w">    </span>intel/compiler/32/2019/19.0.5<span class="w">    </span>intel/compiler/64/2020/19.1.3<span class="w"> </span><span class="o">(</span>D<span class="o">)</span>
-<span class="w">   </span>cuda10.2/profiler/10.2.89<span class="w">     </span>cuda11.2/profiler/11.2.2<span class="w">    </span>intel/compiler/32/2020/19.1.3<span class="w">    </span>jupyter/12.3.0
-<span class="w">   </span>cuda11.0/profiler/11.0.3<span class="w">      </span>cuda11.4/profiler/11.4.2<span class="w">    </span>intel/compiler/64/2019/19.0.5<span class="w">    </span>nvhpc-byo-compiler/21.2
+------------------------------------------------------ /cm/shared/modulefiles -------------------------------------------------------
+   cuda10.1/profiler/10.1.243    cuda11.1/profiler/11.1.1    intel/compiler/32/2019/19.0.5    intel/compiler/64/2020/19.1.3 <span class="o">(</span>D<span class="o">)</span>
+   cuda10.2/profiler/10.2.89     cuda11.2/profiler/11.2.2    intel/compiler/32/2020/19.1.3    jupyter/12.3.0
+   cuda11.0/profiler/11.0.3      cuda11.4/profiler/11.4.2    intel/compiler/64/2019/19.0.5    nvhpc-byo-compiler/21.2
 
-<span class="w">  </span>Where:
-<span class="w">   </span>L:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>loaded
-<span class="w">   </span>D:<span class="w">  </span>Default<span class="w"> </span>Module
+  Where:
+   L:  Module is loaded
+   D:  Default Module
 
-Module<span class="w"> </span>defaults<span class="w"> </span>are<span class="w"> </span>chosen<span class="w"> </span>based<span class="w"> </span>on<span class="w"> </span>Find<span class="w"> </span>First<span class="w"> </span>Rules<span class="w"> </span>due<span class="w"> </span>to<span class="w"> </span>Name/Version/Version<span class="w"> </span>modules<span class="w"> </span>found<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span>tree.
-See<span class="w"> </span>https://lmod.readthedocs.io/en/latest/060_locating.html<span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+Module defaults are chosen based on Find First Rules due to Name/Version/Version modules found <span class="k">in</span> the module tree.
+See https://lmod.readthedocs.io/en/latest/060_locating.html <span class="k">for</span> details.
 
-Use<span class="w"> </span><span class="s2">&quot;module spider&quot;</span><span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>and<span class="w"> </span>extensions.
-Use<span class="w"> </span><span class="s2">&quot;module keyword key1 key2 ...&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matching<span class="w"> </span>any<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;keys&quot;</span>.
+Use <span class="s2">&quot;module spider&quot;</span> to find all possible modules and extensions.
+Use <span class="s2">&quot;module keyword key1 key2 ...&quot;</span> to search <span class="k">for</span> all possible modules matching any of the <span class="s2">&quot;keys&quot;</span>.
 </pre></div>
 </div>
 <p>This will give you a list of all modules which have the phrase “R/” in them (<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code> is
 not very sophisticated). Let’s see what happens when you load the <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">4.2.2</span></code> module:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>R/4.2.2
-module<span class="w"> </span>list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load R/4.2.2
+module list
 </pre></div>
 </div>
 <p>R depends on other software to run, so we have configured the R module in a way that when
@@ -589,7 +790,7 @@ you load it, it automatically loads other modules that it depends on.</p>
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./intro_picotte"
         },
         predefinedOutput: true
@@ -597,104 +798,52 @@ you load it, it automatically loads other modules that it depends on.</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="storage.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Storage on Picotte</p>
-      </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="storage.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Storage on Picotte</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="file-transfer.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="file-transfer.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Transferring files to and from Picotte</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div></div>
-  
-</div>
-
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm">SLURM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm-partitions">Slurm partitions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm-accounts">Slurm accounts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">Modules</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Linh Ngo
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-<div class="extra_footer">
-  <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-</div>
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
     </div>
-  </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>
