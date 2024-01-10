@@ -69,7 +69,7 @@ pwd
 To go to your home directory, you can do
 
 ```bash
-cd /home/<your Picotte username>
+cd /home/${USER}
 ```
 
 :::{hint}
