@@ -29,7 +29,7 @@ while `?` matches any one character.
 We can use this to get the names of all the CSV files in the current directory:
 
 ```python
-print(glob.glob('inflammation*.csv'))
+print(glob.glob('data/inflammation*.csv'))
 ```
 
 ```output

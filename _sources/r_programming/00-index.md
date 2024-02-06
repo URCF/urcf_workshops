@@ -1,9 +1,8 @@
 # Introduction to R
 
-## Instructor
-- **Instructors**: Linh B. Ngo
-- **Office Hours**: Wed 8.30-11.30 Zoom
-- **Email**: lngo@clemson.edu
+- **Instructor**: Linh B. Ngo
+- **Office**: 358 Curtis Hall
+- **Email**: lbn28 AT drexel DOT edu
 
 ## Workshop Description
 
@@ -17,4 +16,10 @@ programming in general is required.
 ## Prerequisites
 
 This workshop requires a personal computer with online access. 
+
+
+## Software Setup on PC (Laptop or Desktop)
+
+- [Download and install R](https://www.r-project.org/)
+- [Download and install RStudio Desktop](https://posit.co/download/rstudio-desktop/#download)
 
