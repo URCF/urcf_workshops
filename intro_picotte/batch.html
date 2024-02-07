@@ -580,6 +580,8 @@ saved properly, print it on screen using the <code class="docutils literal notra
 <span class="c1">#SBATCH --cpus-per-task=2</span>
 <span class="c1">#SBATCH --mem=1GB</span>
 <span class="c1">#SBATCH --time=0:30:00</span>
+<span class="c1">#SBATCH --mail-type=BEGIN,END,FAIL</span>
+<span class="c1">#SBATCH --mail-user=lbn28@drexel.edu</span>
 
 module load R/4.2.2
 Rscript randmatrix.R
@@ -596,7 +598,10 @@ to the scheduler (they start with <code class="docutils literal notranslate"><sp
 <li><p><code class="docutils literal notranslate"><span class="pre">--ntasks-per-node=1</span></code> means we are asking to run 1 process per node;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=2</span></code> means that we only need two CPUs on the node</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--mem=1gb</span></code> means that we are asking for 1 Gb of RAM;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">time=00:30:00</span></code> means that we are asking to use the node for half an hour;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--time=00:30:00</span></code> means that we are asking to use the node for half an hour;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mail-type=BEGIN,END,FAIL</span></code> means that Slurm will send out email notification when job
+begins, ends, or fails.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mail-user=lbn28&#64;drexel.edu</span></code> specifies the address where notification emails will be sent.</p></li>
 </ul>
 <p>A very common question is how much time we should ask for. It’s a tricky question because
 there is no way of knowing how much time you will need until you actually try it. One rule of

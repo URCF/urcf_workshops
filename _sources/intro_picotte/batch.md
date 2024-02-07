@@ -79,6 +79,8 @@ Inside the `nano` text editor, type this (or paste from the Web browser):
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=1GB
 #SBATCH --time=0:30:00
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --mail-user=lbn28@drexel.edu
 
 module load R/4.2.2
 Rscript randmatrix.R
@@ -95,7 +97,10 @@ to the scheduler (they start with `#SBATCH`):
 - `--ntasks-per-node=1` means we are asking to run 1 process per node;
 - `--cpus-per-task=2` means that we only need two CPUs on the node 
 - `--mem=1gb` means that we are asking for 1 Gb of RAM; 
-- `time=00:30:00` means that we are asking to use the node for half an hour; 
+- `--time=00:30:00` means that we are asking to use the node for half an hour;
+- `--mail-type=BEGIN,END,FAIL` means that Slurm will send out email notification when job 
+begins, ends, or fails. 
+- `--mail-user=lbn28@drexel.edu` specifies the address where notification emails will be sent.  
 
 A very common question is how much time we should ask for. It's a tricky question because 
 there is no way of knowing how much time you will need until you actually try it. One rule of 
