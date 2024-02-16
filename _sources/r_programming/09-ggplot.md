@@ -1,4 +1,4 @@
-# Basic plotting with R
+# Visualization in R
 
 
 ~~~
