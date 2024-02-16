@@ -252,12 +252,12 @@ plot(sex)
 Using `stringsAsFactors=FALSE`
 
 ~~~
-surveys <- read.csv('data/combined.csv', stringsAsFactors = TRUE)
+surveys <- read.csv('combined.csv', stringsAsFactors = TRUE)
 str(surveys)
 ~~~
 
 ~~~
-surveys <- read.csv('data/combined.csv', stringsAsFactors = FALSE)
+surveys <- read.csv('combined.csv', stringsAsFactors = FALSE)
 str(surveys)
 ~~~
 
