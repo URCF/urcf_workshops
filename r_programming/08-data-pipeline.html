@@ -765,9 +765,9 @@ behavior of <code class="docutils literal notranslate"><span class="pre">head(su
 <li><p><code class="docutils literal notranslate"><span class="pre">summarize()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code></p></li>
 </ul>
-<p>** Cheatsheet: **
+<p>Cheatsheet:
 <a class="reference external" href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></p>
-<p>** Selecting columns and filtering rows **</p>
+<p>Selecting columns and filtering rows</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span> <span class="n">plot_id</span><span class="p">,</span> <span class="n">species_id</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -787,9 +787,9 @@ behavior of <code class="docutils literal notranslate"><span class="pre">head(su
 <span class="n">surveys_sml</span>
 </pre></div>
 </div>
-<p>** Challenge: **</p>
+<p>Challenge:</p>
 <p>Using pipes, subset the <code class="docutils literal notranslate"><span class="pre">survey</span></code> data to include individuals collected before 1995 and retain only the columns <code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">sex</span></code>, and <code class="docutils literal notranslate"><span class="pre">weight</span></code>.</p>
-<p>** Mutate: create new columns based on existing columns **</p>
+<p>Mutate: create new columns based on existing columns</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">%&gt;%</span>
   <span class="n">mutate</span><span class="p">(</span><span class="n">weight_kg</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">%&gt;%</span>
   <span class="n">head</span>  
@@ -805,16 +805,16 @@ behavior of <code class="docutils literal notranslate"><span class="pre">head(su
 <li><p><code class="docutils literal notranslate"><span class="pre">is.na</span></code>: determines whether something is NA (not available - missing values)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">!</span></code>: negates a logical value</p></li>
 </ul>
-<p>** Challenge: **</p>
+<p>Challenge:</p>
 <p>Create a new data frame from the survey data that meets the following criteria:</p>
 <p>contains only the species_id column and a new column called hindfoot_half containing values that are half the hindfoot_length values. In this hindfoot_half column, there are no NAs and all values are less than 30.</p>
-<p>** Split-apply-combine data analysis and the summarize() function **</p>
+<p>Split-apply-combine data analysis and the summarize() function</p>
 <ul class="simple">
 <li><p>split data into groups</p></li>
 <li><p>apply some analysis to each group</p></li>
 <li><p>combine the results</p></li>
 </ul>
-<p>** <code class="docutils literal notranslate"><span class="pre">group_by()</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize()</span></code>: **</p>
+<p><code class="docutils literal notranslate"><span class="pre">group_by()</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize()</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">%&gt;%</span>
   <span class="n">group_by</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span> <span class="o">%&gt;%</span>
   <span class="n">summarize</span><span class="p">(</span><span class="n">mean_weight</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">na</span><span class="o">.</span><span class="n">rm</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">))</span>
@@ -860,18 +860,18 @@ str(x)
             min_weight = min(weight))
 </pre></div>
 </div>
-<p>** Tallying: simply counting things: **</p>
+<p>Tallying: simply counting things:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">%&gt;%</span>
   <span class="n">group_by</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span> <span class="o">%&gt;%</span>
   <span class="n">tally</span>
 </pre></div>
 </div>
-<p>** Challenge: **</p>
+<p>Challenge:</p>
 <ul class="simple">
 <li><p>How many individuals were caught in each plot_type surveyed?</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">group_by()</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize()</span></code> to find the mean, min, and max hindfoot length for each species (using <code class="docutils literal notranslate"><span class="pre">species_id</span></code>).</p></li>
 </ul>
-<p>** Exporting data to file: **</p>
+<p>Exporting data to file:</p>
 <ul class="simple">
 <li><p>Write cleaned data to file, so that data cleaning process does not have to redone</p></li>
 <li><p>Output data should be stored in different location from original raw data</p></li>

@@ -283,10 +283,10 @@ if (!require('dplyr', character.only = TRUE)){
 - `summarize()`
 - `%>%`
 
-** Cheatsheet: **
+Cheatsheet:
 http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
 
-** Selecting columns and filtering rows **
+Selecting columns and filtering rows
 
 ~~~
 select(surveys, plot_id, species_id, weight)
@@ -313,11 +313,11 @@ surveys_sml <- surveys %>%
 surveys_sml
 ~~~
 
-** Challenge: **
+Challenge:
 
 Using pipes, subset the `survey` data to include individuals collected before 1995 and retain only the columns `year`, `sex`, and `weight`. 
 
-** Mutate: create new columns based on existing columns **
+Mutate: create new columns based on existing columns
 
 ~~~
 surveys %>%
@@ -335,19 +335,19 @@ surveys %>%
 - `is.na`: determines whether something is NA (not available - missing values)
 - `!`: negates a logical value
 
-** Challenge: **
+Challenge:
 
 Create a new data frame from the survey data that meets the following criteria: 
 
 contains only the species_id column and a new column called hindfoot_half containing values that are half the hindfoot_length values. In this hindfoot_half column, there are no NAs and all values are less than 30.
 
-** Split-apply-combine data analysis and the summarize() function **
+Split-apply-combine data analysis and the summarize() function
 
 - split data into groups
 - apply some analysis to each group
 - combine the results
 
-** `group_by()` and `summarize()`: **
+`group_by()` and `summarize()`:
 
 ~~~
 surveys %>%
@@ -399,7 +399,7 @@ surveys %>%
             min_weight = min(weight))
 ~~~
 
-** Tallying: simply counting things: **
+Tallying: simply counting things:
 
 ~~~
 surveys %>%
@@ -407,12 +407,12 @@ surveys %>%
   tally
 ~~~
 
-** Challenge: **
+Challenge:
 
 - How many individuals were caught in each plot_type surveyed?
 - Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot length for each species (using `species_id`).
 
-** Exporting data to file: **
+Exporting data to file:
 
 - Write cleaned data to file, so that data cleaning process does not have to redone
 - Output data should be stored in different location from original raw data
