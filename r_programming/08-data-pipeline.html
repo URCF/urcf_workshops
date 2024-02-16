@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Basic plotting with R &#8212; University Research Computing Facility Workshop</title>
+    <title>Ploting with ggplot &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Ploting with ggplot" href="09-Plotting-with-ggplot.html" />
+    <link rel="next" title="Basic plotting with R" href="09-ggplot.html" />
     <link rel="prev" title="Parallel Computing in R" href="07-Parallel-Computing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -288,12 +288,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Basic plotting with R
+     Ploting with ggplot
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="09-Plotting-with-ggplot.html">
-     Ploting with ggplot
+    <a class="reference internal" href="09-ggplot.html">
+     Basic plotting with R
     </a>
    </li>
   </ul>
@@ -450,7 +450,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/r_programming/08-Basic-Plotting.md"
+        <a href="../_sources/r_programming/08-data-pipeline.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -487,23 +487,60 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   Preparation
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Basic plotting with R</h1>
+                <h1>Ploting with ggplot</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   Preparation
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -511,183 +548,130 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="basic-plotting-with-r">
-<h1>Basic plotting with R<a class="headerlink" href="#basic-plotting-with-r" title="Permalink to this headline">#</a></h1>
-<div class="dropdown admonition">
-<p class="admonition-title">Learning objectives</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ploting-with-ggplot">
+<h1>Ploting with ggplot<a class="headerlink" href="#ploting-with-ggplot" title="Permalink to this headline">#</a></h1>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">#</a></h2>
+<p>Download the following data files</p>
 <ul class="simple">
-<li><p>Questions:</p>
-<ul>
-<li><p>How to plot in R</p></li>
+<li><p><a class="reference external" href="https://github.com/URCF/urcf_workshops/blob/master/data/surveys.csv">surveys</a></p></li>
+<li><p><a class="reference external" href="https://github.com/URCF/urcf_workshops/blob/master/data/combined.csv">combined</a></p></li>
+<li><p><a class="reference external" href="https://github.com/URCF/urcf_workshops/blob/master/data/species.csv">species</a></p></li>
 </ul>
-</li>
-<li><p>Objectives:</p>
-<ul>
-<li><p>Learn basic plotting tools in R</p></li>
-<li><p>Learn to export graphics to a file</p></li>
-</ul>
-</li>
-<li><p>Keypoints:</p>
-<ul>
-<li><p>Plot</p></li>
-</ul>
-</li>
-</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Reading data frames from files</p>
+<p><em>Header is TRUE or Header is FALSE, that is the question!</em></p>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">Data visualization:</p>
+<p class="admonition-title">Data types</p>
 <ul class="simple">
-<li><p>Making exploratory graphs</p>
-<ul>
-<li><p>To understand data properties</p></li>
-<li><p>To find patterns in data</p></li>
-<li><p>To suggest modeling strategies</p></li>
-<li><p>To “debug” analyses</p></li>
-<li><p>To communicate results</p></li>
+<li><p>Data frames are the <em>de facto</em> data structure for R’s tabular data, and
+conceptionally equivalent to an Excel spreadsheet but is more powerful and versatile.</p></li>
+<li><p>Matrices (multi-dimensional) and vectors (one dimension) are also available
+for computational purposes.</p></li>
+<li><p>Data frames represents a table whose columns are vectors with same length
+but possible different data types</p></li>
 </ul>
-</li>
-<li><p>Principles of analytic graphics</p></li>
-<li><p>Plotting systems and graphics devices in R</p></li>
-<li><p>The base, lattice, and ggplot2 plotting systems in R</p></li>
+<p><em>Structure of a data frame</em></p>
+<p><em>Size of a data frame</em></p>
+<p><em>Content of a data frame</em></p>
+<p><em>Names</em></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Indexing and subsetting</p>
+<p>Similar to an Excel spreadsheet, we can extract specific data from a dataframe via ‘coordinates’: row/column combinations</p>
+<p>Accessing a single element</p>
+<p>Accessing a block of elements</p>
+<p>Accessing scattered groups of elements</p>
+<p>Excluding data with the <code class="docutils literal notranslate"><span class="pre">-</span></code> notation:</p>
+<p>Accessing columns by names:</p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Challenge</p>
+<ul class="simple">
+<li><p>Create a data frame containing on observations from row 200 to the
+end of the <code class="docutils literal notranslate"><span class="pre">surveys</span></code> data set</p></li>
+<li><p>Create a data frame containing the row that is in the middle of the
+data frame. Store the content in a variable named <code class="docutils literal notranslate"><span class="pre">surveys_middle</span></code>.</p></li>
+<li><p>Combine <code class="docutils literal notranslate"><span class="pre">nrow</span></code> with the <code class="docutils literal notranslate"><span class="pre">-</span></code> notation to reproduce the
+behavior of <code class="docutils literal notranslate"><span class="pre">head(surveys)</span></code></p></li>
 </ul>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">Plotting system</p>
+<p class="admonition-title">Factors</p>
 <ul class="simple">
-<li><p>There are 3 main plotting systems in R:</p>
-<ul>
-<li><p>The base plotting system</p></li>
-<li><p>Start with blank plot and build up the plot</p></li>
-<li><p>Plot is just a series of R command</p></li>
-<li><p>Flexible</p></li>
+<li><p>Special class, representing categorical data</p></li>
+<li><p>Can be ordered or unordered</p></li>
+<li><p>Stored as integers with labels (text) associated with these unique integers</p></li>
+<li><p>Looked and behave like character vectors but are integers under the hood</p></li>
+<li><p>Once created, a <code class="docutils literal notranslate"><span class="pre">factor</span></code> object can only contain a pre-defined set of values, known as <em>levels</em>.</p></li>
+<li><p><em>Levels</em> are sorted alphabetically by default.</p></li>
 </ul>
-</li>
-<li><p>The Lattice plotting system (using <code class="docutils literal notranslate"><span class="pre">package::lattice</span></code>)</p>
-<ul>
-<li><p>Plots created using single function call</p></li>
-<li><p>Good for putting many plots to screen</p></li>
-<li><p>Cannot add to plots once created</p></li>
-</ul>
-</li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> plotting system (using <code class="docutils literal notranslate"><span class="pre">package::ggplot2</span></code>)</p>
-<ul>
-<li><p>Similar to Lattice but easier</p></li>
-<li><p>Many default mode</p></li>
-<li><p>Flexible between Base and Lattice</p></li>
-</ul>
-</li>
-</ul>
-<p><img alt="image" src="https://user-images.githubusercontent.com/43855029/114093880-a7515980-9889-11eb-800e-0152f2e8c207.png" />
-<img alt="image" src="https://user-images.githubusercontent.com/43855029/114093825-94d72000-9889-11eb-953f-2b232708b37d.png" />
-<img alt="image" src="https://user-images.githubusercontent.com/43855029/114093954-b932fc80-9889-11eb-8532-f3db53f6278f.png" />
-<img alt="image" src="https://user-images.githubusercontent.com/43855029/114093764-82f57d00-9889-11eb-8e8a-bb7d11340f02.png" />
-<img alt="image" src="https://user-images.githubusercontent.com/43855029/114094073-dff13300-9889-11eb-9f97-6675f7408d04.png" /></p>
-<ul class="simple">
-<li><p>R is a data analysis language, so naturally it comes with many
-built-in functions for plotting. Let’s look at some of them, in
-application to the <code class="docutils literal notranslate"><span class="pre">mtcars</span></code> data set.</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span>
-<span class="nf">dim</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span>
-<span class="nf">names</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>First, let’s make a bar plot of the miles-per-gallon values of the 32
-cars. <code class="docutils literal notranslate"><span class="pre">col</span></code> specifies the color.</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">barplot</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">mpg</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;green&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Now, let’s make a histogram for horsepower values.</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">hp</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;magenta&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Let’s display two jistorgrams on the same plot. We’ll use the
-function <code class="docutils literal notranslate"><span class="pre">par</span></code> to specify that the two histograms will be plotted
-stacked to each other, one on the left and one on the right.</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
-<span class="nf">hist</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">mpg</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
-<span class="nf">hist</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">wt</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Let’s create a box plot for miles-per-gallon data. We’ll have to
-reset the plot options to let R know we don’t use multiple plots
-anymore; this is done with <code class="docutils literal notranslate"><span class="pre">dev.off()</span></code>.</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dev.off</span><span class="p">()</span>
-<span class="nf">boxplot</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">mpg</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Boxplot for mpg&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Now, let’s make this box plot for every value of cylinders (<code class="docutils literal notranslate"><span class="pre">mtars$cyl</span></code>).
-We will use the same function <code class="docutils literal notranslate"><span class="pre">boxplot</span></code>, but with a few more parameters.
-We will specify the data explicitly, as well as <code class="docutils literal notranslate"><span class="pre">col</span></code> (for colour scheme),
-<code class="docutils literal notranslate"><span class="pre">main</span></code> (main figure title), <code class="docutils literal notranslate"><span class="pre">xlab</span></code> and <code class="docutils literal notranslate"><span class="pre">ylab</span></code> (X- and Y-axis labels). We
-will use the function <code class="docutils literal notranslate"><span class="pre">legend</span></code> to create a legend. We call <code class="docutils literal notranslate"><span class="pre">factors</span></code> to
-find out the unique cylinder values.</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">factor</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">cyl</span><span class="p">)</span>
-<span class="nf">boxplot</span><span class="p">(</span><span class="n">mpg</span><span class="o">~</span><span class="n">cyl</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">mtcars</span><span class="p">,</span>
-        <span class="n">col</span><span class="o">=</span><span class="nf">terrain.colors</span><span class="p">(</span><span class="m">3</span><span class="p">),</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;MPG by car cylinders&quot;</span><span class="p">,</span>
-        <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;cylinders&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;mpg&quot;</span><span class="p">)</span>
-<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;4&quot;</span><span class="p">,</span><span class="s">&quot;6&quot;</span><span class="p">,</span><span class="s">&quot;8&quot;</span><span class="p">),</span><span class="n">fill</span> <span class="o">=</span> <span class="nf">terrain.colors</span><span class="p">(</span><span class="m">3</span><span class="p">))</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>And a scatter plot. We’ll use the <code class="docutils literal notranslate"><span class="pre">plot</span></code> function for this purpose.
-The dots will be coloured according to the number of cylinders.</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">mpg</span><span class="p">,</span> <span class="n">mtcars</span><span class="o">$</span><span class="n">wt</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Car Fuel vs Weight&quot;</span><span class="p">,</span>
-     <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Mileage per Gallon&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Weight&quot;</span><span class="p">,</span>
-     <span class="n">col</span> <span class="o">=</span> <span class="n">mtcars</span><span class="o">$</span><span class="n">cyl</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="n">cex</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
-<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span><span class="n">legend</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="n">cex</span><span class="o">=</span><span class="m">3</span><span class="p">,</span>
-       <span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">4</span><span class="p">))</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Here, <code class="docutils literal notranslate"><span class="pre">pch</span></code> is the plotting character; 16 corresponds to a circle, and
-<code class="docutils literal notranslate"><span class="pre">cex</span></code> is the size of the plotting characters. The full table of plotting characters is here:</p></li>
-</ul>
-<p><img alt="img" src="https://r-lang.com/wp-content/uploads/2021/02/plot-character-in-R.png" /></p>
-<ul class="simple">
-<li><p>What if we want to save a plot? Let’s save it as a PDF. Here’s how we do it:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pdf</span><span class="p">(</span><span class="s">&quot;myplot.pdf&quot;</span><span class="p">)</span>
-<span class="nf">boxplot</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">mpg</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Boxplot for mpg&quot;</span><span class="p">)</span>
-<span class="nf">dev.off</span><span class="p">()</span>
-</pre></div>
-</div>
+<p>Converting factors:</p>
+<p>Renaming factors:</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">stringsAsFactors=FALSE</span></code></p>
 </div>
 <div class="dropdown admonition">
-<p class="admonition-title">Graphics Devices</p>
+<p class="admonition-title">Data frames manipulation</p>
+<p>** Common <code class="docutils literal notranslate"><span class="pre">dplyr</span></code> functions: **</p>
 <ul class="simple">
-<li><p>A graphics device is something where you can make a plot appear When
-you make a plot in R, it has to be “sent” to a specific graphics device.</p></li>
-<li><p>A window on your computer (screen device): quick visualization</p></li>
-<li><p>A PDF, PNG, JPEG file (file device) #recommended for documents, paper, presentation</p></li>
-<li><p>The most common place for a plot to be “sent” is the screen device</p>
-<ul>
-<li><p>On a Mac the screen device is launched with the quartz()</p></li>
-<li><p>On Windows the screen device is launched with windows()</p></li>
-<li><p>On Unix/Linux the screen device is launched with x11()</p></li>
-<li><p>save graphic to PDF</p></li>
-<li><p>save graphic to PNG, JPEG</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">select()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mutate()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">groupby()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">summarize()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code></p></li>
 </ul>
-</li>
+<p>** Cheatsheet: **
+<a class="reference external" href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></p>
+<p>** Selecting columns and filtering rows **</p>
+<p>** Pipes: combining multile select and filter actions **</p>
+<p>** Challenge: **</p>
+<p>Using pipes, subset the <code class="docutils literal notranslate"><span class="pre">survey</span></code> data to include individuals collected before 1995 and retain only the columns <code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">sex</span></code>, and <code class="docutils literal notranslate"><span class="pre">weight</span></code>.</p>
+<p>** Mutate: create new columns based on existing columns **</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">is.na</span></code>: determines whether something is NA (not available - missing values)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!</span></code>: negates a logical value</p></li>
 </ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dev.copy</span><span class="p">(</span><span class="n">png</span><span class="p">,</span><span class="s">&quot;filename.png&quot;</span><span class="p">)</span> <span class="c1"># to save the image to file</span>
-<span class="nf">dev.off</span><span class="p">()</span> <span class="c1"># to close all the graphical devices</span>
-</pre></div>
+<p>** Challenge: **</p>
+<p>Create a new data frame from the survey data that meets the following criteria:</p>
+<p>contains only the species_id column and a new column called hindfoot_half containing values that are half the hindfoot_length values. In this hindfoot_half column, there are no NAs and all values are less than 30.</p>
+<p>** Split-apply-combine data analysis and the summarize() function **</p>
+<ul class="simple">
+<li><p>split data into groups</p></li>
+<li><p>apply some analysis to each group</p></li>
+<li><p>combine the results</p></li>
+</ul>
+<p>** <code class="docutils literal notranslate"><span class="pre">group_by()</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize()</span></code>: **</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: not a number</p></li>
+<li><p>Need filtering to remove missing values</p></li>
+</ul>
+<ul class="simple">
+<li><p>If you want to display more data, you use the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function at the end of your chain with the argument <code class="docutils literal notranslate"><span class="pre">n</span></code> specifying the number of rows to display:</p></li>
+</ul>
+<p>Summarization on multiple variables at the same time is also possible</p>
+<p>** Tallying: simply counting things: **</p>
+<p>** Challenge: **</p>
+<ul class="simple">
+<li><p>How many individuals were caught in each plot_type surveyed?</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">group_by()</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize()</span></code> to find the mean, min, and max hindfoot length for each species (using <code class="docutils literal notranslate"><span class="pre">species_id</span></code>).</p></li>
+</ul>
+<p>** Exporting data to file: **</p>
+<ul class="simple">
+<li><p>Write cleaned data to file, so that data cleaning process does not have to redone</p></li>
+<li><p>Output data should be stored in different location from original raw data</p></li>
+</ul>
+<p>Conditional statement:</p>
+<p>Create a clean data set with missing observations removed</p>
+<p>Additional filters: Remove rare species (less than 50 observations)</p>
+<ul class="simple">
+<li><p>Create index of rare species</p></li>
+<li><p>Filter rare species from the cleaned data set</p></li>
+</ul>
+<p>Write data to file</p>
 </div>
-</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -724,10 +708,10 @@ you make a plot in R, it has to be “sent” to a specific graphics device.</p>
             <p class="prev-next-title">Parallel Computing in R</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="09-Plotting-with-ggplot.html" title="next page">
+    <a class='right-next' id="next-link" href="09-ggplot.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Ploting with ggplot</p>
+        <p class="prev-next-title">Basic plotting with R</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

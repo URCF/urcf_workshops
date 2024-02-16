@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Data Structures &#8212; University Research Computing Facility Workshop</title>
+    <title>Basic plotting with R &#8212; University Research Computing Facility Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Vectors, Matrices, Lists and Data Frames" href="04-Matrix.html" />
-    <link rel="prev" title="Basics of R" href="02-Basic-R.html" />
+    <link rel="next" title="Introduction to Python Programming" href="../python_programming/00-index.html" />
+    <link rel="prev" title="Ploting with ggplot" href="08-data-pipeline.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -261,8 +261,8 @@ const thebe_selector_output = ".output, .cell_output"
      Basics of R
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-Data-Structures.html">
      Data Structures
     </a>
    </li>
@@ -291,8 +291,8 @@ const thebe_selector_output = ".output, .cell_output"
      Ploting with ggplot
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-ggplot.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Basic plotting with R
     </a>
    </li>
@@ -450,7 +450,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/r_programming/03-Data-Structures.md"
+        <a href="../_sources/r_programming/09-ggplot.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -487,23 +487,60 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-visualization">
+   Data visualization
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Data Structures</h1>
+                <h1>Basic plotting with R</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-visualization">
+   Data visualization
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -511,255 +548,63 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="data-structures">
-<h1>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h1>
-<div class="dropdown admonition">
-<p class="admonition-title">Learning objectives</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-plotting-with-r">
+<h1>Basic plotting with R<a class="headerlink" href="#basic-plotting-with-r" title="Permalink to this headline">#</a></h1>
+<section id="data-visualization">
+<h2>Data visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">#</a></h2>
+<p>** Installation: **</p>
+<p>ggplot: graphical presentations are described as a combination of elements and built by adding new elements</p>
+<p>** Steps to build a ggplot **</p>
+<p>Bind the plot to a specific data frame using the <code class="docutils literal notranslate"><span class="pre">data</span></code> argument</p>
+<p>define aesthetics (<strong><code class="docutils literal notranslate"><span class="pre">aes</span></code></strong>), by selecting the variables to be plotted and the variables to define presentation such as plotting size, shape, color, etc …</p>
+<p>add <strong><code class="docutils literal notranslate"><span class="pre">geoms</span></code></strong> – graphical representation of the data in the plot (points, lines, bars). To add a geom to the plot use <strong><code class="docutils literal notranslate"><span class="pre">+</span></code></strong> operator:</p>
+<p>The <strong><code class="docutils literal notranslate"><span class="pre">+</span></code></strong> enables using plot templates to explore various plot designs:</p>
+<p>** Notes: **</p>
 <ul class="simple">
-<li><p>Questions:</p>
-<ul>
-<li><p>Data types / classes in R</p></li>
-<li><p>Random numbers</p></li>
-<li><p>Vectors</p></li>
-<li><p>Missing values</p></li>
+<li><p>Any configurations defined inside <code class="docutils literal notranslate"><span class="pre">ggplot()</span></code> are also visible by all <code class="docutils literal notranslate"><span class="pre">geom_</span></code> layers. This includes x and y axis set up in <code class="docutils literal notranslate"><span class="pre">aes()</span></code>.</p></li>
+<li><p>Individual <code class="docutils literal notranslate"><span class="pre">aes()</span></code> for a given <code class="docutils literal notranslate"><span class="pre">geom_</span></code> can be set independely of the global <code class="docutils literal notranslate"><span class="pre">aes()</span></code> in <code class="docutils literal notranslate"><span class="pre">ggplot()</span></code>.</p></li>
+<li><p>In the case of multi-line presentation, the <code class="docutils literal notranslate"><span class="pre">+</span></code> sign must be placed at the end of each line containing layer(s)</p></li>
 </ul>
-</li>
-<li><p>Objectives:</p>
-<ul>
-<li><p>5 data types / classes of objects</p></li>
-<li><p>Working with vectors</p></li>
-</ul>
-</li>
-<li><p>Keypoints:</p>
-<ul>
-<li><p>Classes of objects</p></li>
-<li><p>Vectors</p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Classes of objects</p>
+<p>** Challenge: **</p>
+<p>Scatter plots can be useful exploratory tools for small datasets. For data sets with large numbers of observations, such as the surveys_complete data set, overplotting of points can be a limitation of scatter plots. One strategy for handling such settings is to use hexagonal binning of observations. The plot space is tesselated into hexagons. Each hexagon is assigned a color based on the number of observations that fall within its boundaries. To use hexagonal binning with ggplot2, first install the R package hexbin from CRAN:</p>
+<p>Then use <code class="docutils literal notranslate"><span class="pre">geom_hex()</span></code> function from the ggplot2 package to visualize data</p>
+<p>** Building plots iteratively: **</p>
+<p>Start with a template:</p>
+<p>Choose a geom:</p>
+<p>Customize geom:</p>
+<p>Change to a different geom, <code class="docutils literal notranslate"><span class="pre">geom_boxplot()</span></code></p>
+<p>** Challenge: **</p>
+<p>How can we show the box plot?</p>
+<p>** Challenge: **</p>
+<p>Boxplots are useful summaries, but hide the shape of the distribution. For example, if there is a bimodal distribution, it would not be observed with a boxplot. An alternative to the boxplot is the violin plot (sometimes known as a beanplot), where the shape (of the density of points) is drawn.</p>
 <ul class="simple">
-<li><p>In R, there are 5 main classes of objects:</p>
-<ul>
-<li><p>characters a, b</p></li>
-<li><p>numeric: 2.3</p></li>
-<li><p>integer: 5 or 5L</p></li>
-<li><p>complex: 2+3i #consists of real and imaginary parts</p></li>
-<li><p>logical: TRUE/FALSE</p></li>
+<li><p>Replace the box plot with a violin plot; see <code class="docutils literal notranslate"><span class="pre">geom_violin()</span></code></p></li>
 </ul>
-</li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">str</span> <span class="o">&lt;-</span> <span class="s">&quot;string&quot;</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">&lt;-</span> <span class="m">5</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">&lt;-</span> <span class="m">4L</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="n">c</span> <span class="o">&lt;-</span> <span class="m">1+6i</span> 
-<span class="nf">class</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">d</span> <span class="o">&lt;-</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="m">5</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Logical operations</p>
+<p>In many types of data, it is important to consider the scale of the observations. For example, it may be worth changing the scale of the axis to better distribute the observations in the space of the plot. Changing the scale of the axes is done similarly to adding/modifying other components (i.e., by incrementally adding commands). Try making these modifications:</p>
 <ul class="simple">
-<li><p>Logical operations <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> are computed with <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">||</span></code>:</p></li>
+<li><p>Create boxplot for the weights.</p></li>
+<li><p>Represent weight on the log10 scale; see <code class="docutils literal notranslate"><span class="pre">scale_y_log10()</span></code></p></li>
+<li><p>Add color to the datapoints on your boxplot according to the species from which the sample was taken (species_id)</p></li>
 </ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">&lt;-</span><span class="kc">TRUE</span>
-<span class="n">b</span><span class="o">&lt;-</span><span class="kc">FALSE</span>
-<span class="n">a</span><span class="o">&amp;&amp;</span><span class="n">b</span>
-<span class="n">a</span><span class="o">||</span><span class="n">b</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Logical <code class="docutils literal notranslate"><span class="pre">not</span></code> is computed with !:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="n">a</span>
-<span class="o">!</span><span class="n">b</span>
-<span class="n">a</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">b</span>
-</pre></div>
-</div>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Numbers</p>
-<ul class="simple">
-<li><p>In R, a number is considered a numeric type:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">&lt;-</span> <span class="m">5</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>To get an integer, insert <code class="docutils literal notranslate"><span class="pre">L</span></code> as suffix</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">&lt;-</span> <span class="m">5L</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Special number: <code class="docutils literal notranslate"><span class="pre">Inf</span></code>: infinity</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">&lt;-</span><span class="m">5</span><span class="o">/</span><span class="m">0</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-<span class="m">5</span><span class="o">/</span><span class="m">0</span>
-<span class="m">-5</span><span class="o">/</span><span class="m">0</span>
-<span class="nf">log</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> (Not a Number) specifies an undefined value:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">&lt;-</span> <span class="m">0</span><span class="o">/</span><span class="m">0</span>
-<span class="n">h</span>
-<span class="nf">log</span><span class="p">(</span><span class="m">-1</span><span class="p">)</span>
-<span class="nf">asin</span><span class="p">(</span><span class="m">4</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Sometimes, when you are dealing with data, you have missing values.
-In R, there is a special way to denote missing values: <code class="docutils literal notranslate"><span class="pre">NA</span></code> (“not available”).
-<code class="docutils literal notranslate"><span class="pre">NaN</span></code> is a special type of <code class="docutils literal notranslate"><span class="pre">NA</span></code>.</p></li>
-</ul>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Random Number &amp; seed</p>
-<ul class="simple">
-<li><p>Create random numeric numbers using runif</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-<span class="nf">runif</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
-<span class="nf">runif</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Set the seed of R’s random number generator, which
-is useful for creating simulations or random objects that can be reproduced.</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
-<span class="nf">runif</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Create a sample of random numbers:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sample</span><span class="p">(</span><span class="m">12</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
-<span class="nf">sample</span><span class="p">(</span><span class="m">12</span><span class="p">)</span>
-<span class="nf">sample</span><span class="p">(</span><span class="kc">letters</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sample</span></code> returns a set of variables, rather than one variable.
-Sets of variables of the same type are called vectors.</p></li>
-</ul>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Vectors</p>
-<ul class="simple">
-<li><p>Vectors are sets of variables of the same class, in a certain
-order. The simplest, and a very useful, type of a vector is a range
-of values, specified with a colon:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">:</span><span class="m">5</span>
-<span class="n">x</span> <span class="o">&lt;-</span> <span class="m">-3</span><span class="o">:</span><span class="m">3</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>The same could be accomplished with the <code class="docutils literal notranslate"><span class="pre">seq</span></code> function:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">seq </span><span class="p">(</span><span class="n">from</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
-<span class="nf">seq </span><span class="p">(</span><span class="n">from</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
-<span class="nf">seq </span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>You can also define a vector by combining a bunch of values
-(<code class="docutils literal notranslate"><span class="pre">c</span></code> stands for “combine”):</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">str</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">)</span>
-<span class="n">a</span>   <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">5.6</span><span class="p">,</span> <span class="m">20</span><span class="p">)</span>
-<span class="n">b</span>   <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;TRUE&quot;</span><span class="p">,</span> <span class="s">&quot;FALSE&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>To create a vector where all elements have the same value,
-use the <code class="docutils literal notranslate"><span class="pre">rep</span></code> function (for “repetition”):</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">rep </span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>If a vector is combined from variables of different
-types, R tries to <em>coerce</em> them into the same type.
-For example, logical values can be coerced into numbers (TRUE becomes
-1, and FALSE becomes 0):</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span>
-<span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Likewise, numbers can be coerced into characters:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">c </span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;a&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>In this example, everything is ultimately coerced into characters:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">4.5</span><span class="p">)</span>
-<span class="n">str1</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">str1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Explicit Coercion</p>
-<ul class="simple">
-<li><p>Convert objects from one class to another, using <code class="docutils literal notranslate"><span class="pre">as.</span></code> function:</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">&lt;-</span> <span class="m">0</span><span class="o">:</span><span class="m">5</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="nf">as.numeric</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="nf">as.logical</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="nf">as.character</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>How about Nonsensical Coercion?</p></li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">str</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="s">&quot;c&quot;</span><span class="p">)</span>
-<span class="nf">class</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-<span class="nf">as.numeric</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-<span class="nf">as.logical</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-<span class="nf">as.character</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Missing values</p>
-<ul class="simple">
-<li><p>In order to detect missing values or bad values
-(<code class="docutils literal notranslate"><span class="pre">NaN</span></code>, <code class="docutils literal notranslate"><span class="pre">NA</span></code>, <code class="docutils literal notranslate"><span class="pre">Inf</span></code>), we can use these functions:</p>
-<ul>
-<li><p><a class="reference external" href="http://is.na">is.na</a>() test NA value</p></li>
-<li><p>is.nan() test NaN value</p></li>
-<li><p>is.infinite() test Inf value</p></li>
-<li><p>NaN is NA but the reverse is false</p></li>
-</ul>
-</li>
-</ul>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">1</span><span class="o">/</span><span class="m">0</span><span class="p">,</span><span class="kc">NA</span><span class="p">,</span> <span class="kc">NaN</span><span class="p">,</span><span class="m">-6</span><span class="o">/</span><span class="m">0</span><span class="p">)</span>
-<span class="n">v</span>
-<span class="nf">is.na</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-<span class="nf">is.nan</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-<span class="nf">is.infinite</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<p>** Plotting time-series data: **</p>
+<p>Number of counts per year for each species:</p>
+<p>Plot everything!</p>
+<p>We can improve the clarity of the graphs by separating them into individual lines for individual species</p>
+<p>We can make this even better!</p>
+<p>** Faceting: **</p>
+<p>It is possible to create multiple plots within a larger plot frame based on a factor variable within the data set.</p>
+<p>Further customization on faceted plots can be done. For example, we can split data within each individual plots into lines presenting male and female:</p>
+<p>To improve this presentation, we can customize the theme layers</p>
+<p>Since we already separate species into individual plots, we do not need to color the plot, but we will need to differentiate between the male and femal lines within each plot</p>
+<p>** Challenge: **</p>
+<p>Create a plot that shows how the average weight of each species changes over the years.</p>
+<p>** Customization: **</p>
+<p>Cheatsheet: <a class="reference external" href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf</a></p>
+<p>Customize title and axis’ titles</p>
+<p>Change font size</p>
+<p>Change label orientation:</p>
+<p>** Save plots to files: **</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -789,17 +634,17 @@ For example, logical values can be coerced into numbers (TRUE becomes
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="02-Basic-R.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="08-data-pipeline.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Basics of R</p>
+            <p class="prev-next-title">Ploting with ggplot</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="04-Matrix.html" title="next page">
+    <a class='right-next' id="next-link" href="../python_programming/00-index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Vectors, Matrices, Lists and Data Frames</p>
+        <p class="prev-next-title">Introduction to Python Programming</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
