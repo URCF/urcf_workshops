@@ -8,7 +8,7 @@ head(surveys_complete)
 
 ## Data visualization
 
-** Installation: **
+Installation:
 
 ~~~
 setupLibrary <- function(libraryName){
@@ -29,7 +29,7 @@ setupLibrary('ggplot2')
 
 ggplot: graphical presentations are described as a combination of elements and built by adding new elements
 
-** Steps to build a ggplot **
+Steps to build a ggplot
 
 Bind the plot to a specific data frame using the `data` argument
 
@@ -43,14 +43,14 @@ define aesthetics (**`aes`**), by selecting the variables to be plotted and the 
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 ~~~
 
-add **`geoms`** – graphical representation of the data in the plot (points, lines, bars). To add a geom to the plot use **`+`** operator:
+add`geoms`– graphical representation of the data in the plot (points, lines, bars). To add a geom to the plot use`+`operator:
 
 ~~~
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
     geom_point()
 ~~~
 
-The **`+`** enables using plot templates to explore various plot designs:
+The`+`enables using plot templates to explore various plot designs:
 
 ~~~
 surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
@@ -60,13 +60,13 @@ surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_len
 surveys_plot + geom_point()
 ~~~
 
-** Notes: **
+Notes:
 
 - Any configurations defined inside `ggplot()` are also visible by all `geom_` layers. This includes x and y axis set up in `aes()`. 
 - Individual `aes()` for a given `geom_` can be set independely of the global `aes()` in `ggplot()`.
 - In the case of multi-line presentation, the `+` sign must be placed at the end of each line containing layer(s)
 
-** Challenge: **
+Challenge:
 
 Scatter plots can be useful exploratory tools for small datasets. For data sets with large numbers of observations, such as the surveys_complete data set, overplotting of points can be a limitation of scatter plots. One strategy for handling such settings is to use hexagonal binning of observations. The plot space is tesselated into hexagons. Each hexagon is assigned a color based on the number of observations that fall within its boundaries. To use hexagonal binning with ggplot2, first install the R package hexbin from CRAN:
 
@@ -81,7 +81,7 @@ Then use `geom_hex()` function from the ggplot2 package to visualize data
 ~~~
 
 
-** Building plots iteratively: **
+Building plots iteratively:
 
 Start with a template:
 
@@ -126,7 +126,7 @@ surveys_plot + geom_boxplot(alpha = 0) +
     geom_jitter(alpha = 0.3, color = "tomato")
 ~~~
 
-** Challenge: **
+Challenge:
 
 How can we show the box plot?     
 
@@ -134,7 +134,7 @@ How can we show the box plot?
 
 ~~~
 
-** Challenge: **
+Challenge:
 
 Boxplots are useful summaries, but hide the shape of the distribution. For example, if there is a bimodal distribution, it would not be observed with a boxplot. An alternative to the boxplot is the violin plot (sometimes known as a beanplot), where the shape (of the density of points) is drawn.
 
@@ -154,7 +154,7 @@ In many types of data, it is important to consider the scale of the observations
 
 ~~~
 
-** Plotting time-series data: **
+Plotting time-series data:
 
 Number of counts per year for each species:
 
@@ -186,7 +186,7 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = s
     geom_line()
 ~~~
 
-** Faceting: ** 
+Faceting: 
 
 It is possible to create multiple plots within a larger plot frame based on a factor variable within the data set. 
 
@@ -238,7 +238,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
     theme_bw()
 ~~~
 
-** Challenge: **
+Challenge:
 
 Create a plot that shows how the average weight of each species changes over the years. 
 
@@ -246,7 +246,7 @@ Create a plot that shows how the average weight of each species changes over the
 
 ~~~
 
-** Customization: **
+Customization:
 
 Cheatsheet: https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf
 
@@ -290,7 +290,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
           text=element_text(size=16, family="Arial"))
 ~~~
 
-** Save plots to files: **
+Save plots to files:
 
 ~~~
 my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
