@@ -560,7 +560,19 @@ title="Print to PDF"
 </ul>
 <div class="dropdown admonition">
 <p class="admonition-title">Reading data frames from files</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;surveys.csv&quot;</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
 <p><em>Header is TRUE or Header is FALSE, that is the question!</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;combined.csv&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;combined.csv&quot;</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Data types</p>
@@ -573,18 +585,91 @@ for computational purposes.</p></li>
 but possible different data types</p></li>
 </ul>
 <p><em>Structure of a data frame</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
 <p><em>Size of a data frame</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dim</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nrow</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncol</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
 <p><em>Content of a data frame</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tail</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tail</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
 <p><em>Names</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_colnames</span> <span class="o">&lt;-</span> <span class="n">names</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_colnames</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_rownames</span> <span class="o">&lt;-</span> <span class="n">rownames</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">surveys_rownames</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Indexing and subsetting</p>
 <p>Similar to an Excel spreadsheet, we can extract specific data from a dataframe via ‘coordinates’: row/column combinations</p>
 <p>Accessing a single element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
 <p>Accessing a block of elements</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
 <p>Accessing scattered groups of elements</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>?c
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span><span class="p">[</span><span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">:</span><span class="mi">7</span><span class="p">),]</span>
+</pre></div>
+</div>
 <p>Excluding data with the <code class="docutils literal notranslate"><span class="pre">-</span></code> notation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
 <p>Accessing columns by names:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="s2">&quot;month&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span><span class="p">[[</span><span class="s2">&quot;month&quot;</span><span class="p">]][</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>surveys$month[1:5]
+</pre></div>
+</div>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Challenge</p>
@@ -607,12 +692,70 @@ behavior of <code class="docutils literal notranslate"><span class="pre">head(su
 <li><p>Once created, a <code class="docutils literal notranslate"><span class="pre">factor</span></code> object can only contain a pre-defined set of values, known as <em>levels</em>.</p></li>
 <li><p><em>Levels</em> are sorted alphabetically by default.</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>levels(surveys$sex)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nlevels(surveys$sex)
+</pre></div>
+</div>
 <p>Converting factors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>as.character(surveys$sex)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">&lt;-</span> <span class="n">factor</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span><span class="mi">1983</span><span class="p">,</span><span class="mi">1977</span><span class="p">,</span><span class="mi">1998</span><span class="p">,</span><span class="mi">1990</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span><span class="o">.</span><span class="n">numeric</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="c1">#incorrect</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span><span class="o">.</span><span class="n">numeric</span><span class="p">(</span><span class="k">as</span><span class="o">.</span><span class="n">character</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="c1">#works</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">as</span><span class="o">.</span><span class="n">numeric</span><span class="p">(</span><span class="n">levels</span><span class="p">(</span><span class="n">f</span><span class="p">))[</span><span class="n">f</span><span class="p">]</span> <span class="c1">#recommended</span>
+</pre></div>
+</div>
 <p>Renaming factors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>plot(surveys$sex)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sex &lt;- surveys$sex
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">levels</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">levels</span><span class="p">(</span><span class="n">sex</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s2">&quot;missing&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Using <code class="docutils literal notranslate"><span class="pre">stringsAsFactors=FALSE</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;data/combined.csv&#39;</span><span class="p">,</span> <span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;data/combined.csv&#39;</span><span class="p">,</span> <span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Data frames manipulation</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (!require(&#39;dplyr&#39;, character.only = TRUE)){
+  install.packages(&#39;dplyr&#39;, dep = TRUE)
+  if (!require(&#39;dplyr&#39;, character.only = TRUE)){
+    print (&#39;Package not found&#39;)
+  }
+}
+</pre></div>
+</div>
 <p>** Common <code class="docutils literal notranslate"><span class="pre">dplyr</span></code> functions: **</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">select()</span></code></p></li>
@@ -625,10 +768,39 @@ behavior of <code class="docutils literal notranslate"><span class="pre">head(su
 <p>** Cheatsheet: **
 <a class="reference external" href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></p>
 <p>** Selecting columns and filtering rows **</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span> <span class="n">plot_id</span><span class="p">,</span> <span class="n">species_id</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">filter</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">1995</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>** Pipes: combining multile select and filter actions **</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">%&gt;%</span>
+  <span class="nb">filter</span><span class="p">(</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="n">select</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span> <span class="n">sex</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_sml</span> <span class="o">&lt;-</span> <span class="n">surveys</span> <span class="o">%&gt;%</span>
+  <span class="nb">filter</span><span class="p">(</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="n">select</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span> <span class="n">sex</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+
+<span class="n">surveys_sml</span>
+</pre></div>
+</div>
 <p>** Challenge: **</p>
 <p>Using pipes, subset the <code class="docutils literal notranslate"><span class="pre">survey</span></code> data to include individuals collected before 1995 and retain only the columns <code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">sex</span></code>, and <code class="docutils literal notranslate"><span class="pre">weight</span></code>.</p>
 <p>** Mutate: create new columns based on existing columns **</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">%&gt;%</span>
+  <span class="n">mutate</span><span class="p">(</span><span class="n">weight_kg</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="n">head</span>  
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>surveys %&gt;%
+  filter(!is.na(weight)) %&gt;%
+  mutate(weight_kg = weight / 1000) %&gt;%
+  head
+</pre></div>
+</div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">is.na</span></code>: determines whether something is NA (not available - missing values)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">!</span></code>: negates a logical value</p></li>
@@ -643,15 +815,57 @@ behavior of <code class="docutils literal notranslate"><span class="pre">head(su
 <li><p>combine the results</p></li>
 </ul>
 <p>** <code class="docutils literal notranslate"><span class="pre">group_by()</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize()</span></code>: **</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">%&gt;%</span>
+  <span class="n">group_by</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="n">summarize</span><span class="p">(</span><span class="n">mean_weight</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">na</span><span class="o">.</span><span class="n">rm</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">%&gt;%</span>
+  <span class="n">group_by</span><span class="p">(</span><span class="n">sex</span><span class="p">,</span> <span class="n">species_id</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="n">summarize</span><span class="p">(</span><span class="n">mean_weight</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">na</span><span class="o">.</span><span class="n">rm</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: not a number</p></li>
 <li><p>Need filtering to remove missing values</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>surveys %&gt;%
+  filter(!is.na(weight)) %&gt;%
+  group_by(sex, species_id) %&gt;%
+  summarize(mean_weight = mean(weight))
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>x &lt;- surveys %&gt;%
+       filter(!is.na(weight)) %&gt;%
+       group_by(sex, species_id) %&gt;%
+       summarize(mean_weight = mean(weight))
+str(x)
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>If you want to display more data, you use the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function at the end of your chain with the argument <code class="docutils literal notranslate"><span class="pre">n</span></code> specifying the number of rows to display:</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>surveys %&gt;%
+  filter(!is.na(weight)) %&gt;%
+  group_by(sex, species_id) %&gt;%
+  summarize(mean_weight = mean(weight)) %&gt;%
+  print(n = 15)
+</pre></div>
+</div>
 <p>Summarization on multiple variables at the same time is also possible</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>surveys %&gt;%
+  filter(!is.na(weight)) %&gt;%
+  group_by(sex, species_id) %&gt;%
+  summarize(mean_weight = mean(weight),
+            min_weight = min(weight))
+</pre></div>
+</div>
 <p>** Tallying: simply counting things: **</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys</span> <span class="o">%&gt;%</span>
+  <span class="n">group_by</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="n">tally</span>
+</pre></div>
+</div>
 <p>** Challenge: **</p>
 <ul class="simple">
 <li><p>How many individuals were caught in each plot_type surveyed?</p></li>
@@ -663,13 +877,59 @@ behavior of <code class="docutils literal notranslate"><span class="pre">head(su
 <li><p>Output data should be stored in different location from original raw data</p></li>
 </ul>
 <p>Conditional statement:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">condition</span> <span class="ow">is</span> <span class="n">true</span><span class="p">){</span>
+    <span class="n">do</span> <span class="n">something</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">do</span> <span class="n">something</span> <span class="k">else</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>current_dir &lt;- getwd()
+output_data_dir &lt;- &#39;output_data&#39;
+
+if (!file.exists(output_data_dir)){
+    dir.create(file.path(current_dir, output_data_dir))
+} else {
+    print (&quot;Directory already exists&quot;)
+}
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>?dir.create
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>?file.path
+</pre></div>
+</div>
 <p>Create a clean data set with missing observations removed</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>surveys_complete &lt;- surveys %&gt;%
+  filter(species_id != &quot;&quot;,         # remove missing species_id
+         !is.na(weight),           # remove missing weight
+         !is.na(hindfoot_length),  # remove missing hindfoot_length
+         sex != &quot;&quot;)                # remove missing sex
+</pre></div>
+</div>
 <p>Additional filters: Remove rare species (less than 50 observations)</p>
 <ul class="simple">
 <li><p>Create index of rare species</p></li>
 <li><p>Filter rare species from the cleaned data set</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Extract the most common species_id</span>
+<span class="n">species_counts</span> <span class="o">&lt;-</span> <span class="n">surveys_complete</span> <span class="o">%&gt;%</span>
+  <span class="n">group_by</span><span class="p">(</span><span class="n">species_id</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="n">tally</span> <span class="o">%&gt;%</span>
+  <span class="nb">filter</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>## Only keep the most common species
+surveys_complete &lt;- surveys_complete %&gt;%
+  filter(species_id %in% species_counts$species_id)
+</pre></div>
+</div>
 <p>Write data to file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">write</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="n">surveys_complete</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">output_data_dir</span><span class="p">,</span> <span class="s2">&quot;surveys_complete.csv&quot;</span><span class="p">),</span>
+          <span class="n">row</span><span class="o">.</span><span class="n">names</span><span class="o">=</span><span class="n">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </section>
 </section>

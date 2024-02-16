@@ -1,7 +1,7 @@
 # Basic plotting with R
 
 
-~~~{r}
+~~~
 surveys_complete <- read.csv("output_data/surveys_complete.csv")
 head(surveys_complete)
 ~~~
@@ -10,7 +10,7 @@ head(surveys_complete)
 
 ** Installation: **
 
-~~~{r}
+~~~
 setupLibrary <- function(libraryName){
   if (!require(libraryName, character.only = TRUE)){
     install.packages(libraryName, dep = TRUE)
@@ -33,30 +33,30 @@ ggplot: graphical presentations are described as a combination of elements and b
 
 Bind the plot to a specific data frame using the `data` argument
 
-~~~{r}
+~~~
 ggplot(data=surveys_complete)
 ~~~
 
 define aesthetics (**`aes`**), by selecting the variables to be plotted and the variables to define presentation such as plotting size, shape, color, etc ...
 
-~~~{r}
+~~~
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 ~~~
 
 add **`geoms`** – graphical representation of the data in the plot (points, lines, bars). To add a geom to the plot use **`+`** operator:
 
-~~~{r}
+~~~
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
     geom_point()
 ~~~
 
 The **`+`** enables using plot templates to explore various plot designs:
 
-~~~{r}
+~~~
 surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 ~~~
 
-~~~{r}
+~~~
 surveys_plot + geom_point()
 ~~~
 
@@ -70,13 +70,13 @@ surveys_plot + geom_point()
 
 Scatter plots can be useful exploratory tools for small datasets. For data sets with large numbers of observations, such as the surveys_complete data set, overplotting of points can be a limitation of scatter plots. One strategy for handling such settings is to use hexagonal binning of observations. The plot space is tesselated into hexagons. Each hexagon is assigned a color based on the number of observations that fall within its boundaries. To use hexagonal binning with ggplot2, first install the R package hexbin from CRAN:
 
-~~~{r}
+~~~
 install.packages("hexbin")
 ~~~
 
 Then use `geom_hex()` function from the ggplot2 package to visualize data
 
-~~~{r}
+~~~
 
 ~~~
 
@@ -85,42 +85,42 @@ Then use `geom_hex()` function from the ggplot2 package to visualize data
 
 Start with a template:
 
-~~~{r}
+~~~
 surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 ~~~
 
 Choose a geom:
 
-~~~{r}
+~~~
 surveys_plot + geom_point()
 ~~~
 
 Customize geom:
 
-~~~{r}
+~~~
 # add transparency
 surveys_plot + geom_point(alpha = 0.1)
 ~~~
 
 
-~~~{r}
+~~~
 # add colors for all the points:
 surveys_plot + geom_point(alpha = 0.1, color = "blue")
 ~~~
 
-~~~{r}
+~~~
 # color each species in the plot differently:
 surveys_plot + geom_point(alpha = 0.1, aes(color=species_id))
 ~~~
 
 Change to a different geom, `geom_boxplot()`
 
-~~~{r}
+~~~
 surveys_plot <- ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length))
 surveys_plot + geom_boxplot()
 ~~~
 
-~~~{r}
+~~~
 # adding points to boxplot to understand number of measurements and distribution:
 surveys_plot + geom_boxplot(alpha = 0) +
     geom_jitter(alpha = 0.3, color = "tomato")
@@ -130,7 +130,7 @@ surveys_plot + geom_boxplot(alpha = 0) +
 
 How can we show the box plot?     
 
-~~~{r}
+~~~
 
 ~~~
 
@@ -140,7 +140,7 @@ Boxplots are useful summaries, but hide the shape of the distribution. For examp
 
 - Replace the box plot with a violin plot; see `geom_violin()`
 
-~~~{r}
+~~~
 
 ~~~
 
@@ -150,7 +150,7 @@ In many types of data, it is important to consider the scale of the observations
 - Represent weight on the log10 scale; see `scale_y_log10()`
 - Add color to the datapoints on your boxplot according to the species from which the sample was taken (species_id)
 
-~~~{r}
+~~~
 
 ~~~
 
@@ -158,7 +158,7 @@ In many types of data, it is important to consider the scale of the observations
 
 Number of counts per year for each species:
 
-~~~{r}
+~~~
 yearly_counts <- surveys_complete %>%
                  group_by(year, species_id) %>%
                  tally
@@ -167,21 +167,21 @@ head(yearly_counts)
 
 Plot everything!
 
-~~~{r}
+~~~
 ggplot(data = yearly_counts, aes(x = year, y = n)) +
      geom_line()
 ~~~
 
 We can improve the clarity of the graphs by separating them into individual lines for individual species
 
-~~~{r}
+~~~
 ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id)) +
     geom_line()
 ~~~
 
 We can make this even better!
 
-~~~{r}
+~~~
 ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = species_id)) +
     geom_line()
 ~~~
@@ -190,11 +190,11 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = s
 
 It is possible to create multiple plots within a larger plot frame based on a factor variable within the data set. 
 
-~~~{r}
+~~~
 str(yearly_counts)
 ~~~
 
-~~~{r}
+~~~
 ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = species_id)) +
     geom_line() +
     facet_wrap(~ species_id)
@@ -202,7 +202,7 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = s
 
 Further customization on faceted plots can be done. For example, we can split data within each individual plots into lines presenting male and female:
 
-~~~{r}
+~~~
 yearly_sex_counts <- surveys_complete %>%
                       group_by(year, species_id, sex) %>%
                       tally
@@ -210,7 +210,7 @@ yearly_sex_counts <- surveys_complete %>%
 head(yearly_sex_counts)
 ~~~
 
-~~~{r}
+~~~
  ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
      geom_line() +
      facet_wrap(~ species_id)
@@ -218,7 +218,7 @@ head(yearly_sex_counts)
 
 To improve this presentation, we can customize the theme layers
 
-~~~{r}
+~~~
  ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
      geom_line() +
      facet_wrap(~ species_id) +
@@ -231,7 +231,7 @@ To improve this presentation, we can customize the theme layers
 
 Since we already separate species into individual plots, we do not need to color the plot, but we will need to differentiate between the male and femal lines within each plot
 
-~~~{r}
+~~~
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
@@ -242,7 +242,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
 
 Create a plot that shows how the average weight of each species changes over the years. 
 
-~~~{r}
+~~~
 
 ~~~
 
@@ -252,7 +252,7 @@ Cheatsheet: https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatshee
 
 Customize title and axis' titles
 
-~~~{r}
+~~~
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
@@ -264,7 +264,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
 
 Change font size
 
-~~~{r}
+~~~
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
@@ -277,7 +277,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
 
 Change label orientation:
 
-~~~{r}
+~~~
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
@@ -292,7 +292,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
 
 ** Save plots to files: **
 
-~~~{r}
+~~~
 my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
@@ -305,7 +305,7 @@ my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, gr
           text=element_text(size=16, family="Arial"))
 ~~~
 
-~~~{r}
+~~~
 current_dir <- getwd()
 output_graph_dir <- 'output_graph'
 
@@ -316,7 +316,7 @@ if (!file.exists(output_graph_dir)){
 }
 ~~~
 
-~~~{r}
+~~~
 ggsave(file.path(current_dir, output_graph_dir,"yearly_sex_counts.png"), 
        my_plot, width=15, height=10)
 ~~~

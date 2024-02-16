@@ -550,15 +550,50 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="basic-plotting-with-r">
 <h1>Basic plotting with R<a class="headerlink" href="#basic-plotting-with-r" title="Permalink to this headline">#</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_complete</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;output_data/surveys_complete.csv&quot;</span><span class="p">)</span>
+<span class="n">head</span><span class="p">(</span><span class="n">surveys_complete</span><span class="p">)</span>
+</pre></div>
+</div>
 <section id="data-visualization">
 <h2>Data visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">#</a></h2>
 <p>** Installation: **</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>setupLibrary &lt;- function(libraryName){
+  if (!require(libraryName, character.only = TRUE)){
+    install.packages(libraryName, dep = TRUE)
+    if (!require(libraryName, character.only = TRUE)){
+      print(&#39;Package not found&#39;)
+    }
+  } else {
+    print(&#39;Package is loaded&#39;)
+  }
+}
+
+setupLibrary(&#39;dplyr&#39;)
+setupLibrary(&#39;ggplot2&#39;)
+</pre></div>
+</div>
 <p>ggplot: graphical presentations are described as a combination of elements and built by adding new elements</p>
 <p>** Steps to build a ggplot **</p>
 <p>Bind the plot to a specific data frame using the <code class="docutils literal notranslate"><span class="pre">data</span></code> argument</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">surveys_complete</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>define aesthetics (<strong><code class="docutils literal notranslate"><span class="pre">aes</span></code></strong>), by selecting the variables to be plotted and the variables to define presentation such as plotting size, shape, color, etc …</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">surveys_complete</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">weight</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">hindfoot_length</span><span class="p">))</span>
+</pre></div>
+</div>
 <p>add <strong><code class="docutils literal notranslate"><span class="pre">geoms</span></code></strong> – graphical representation of the data in the plot (points, lines, bars). To add a geom to the plot use <strong><code class="docutils literal notranslate"><span class="pre">+</span></code></strong> operator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">surveys_complete</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">weight</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">hindfoot_length</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>The <strong><code class="docutils literal notranslate"><span class="pre">+</span></code></strong> enables using plot templates to explore various plot designs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_plot</span> <span class="o">&lt;-</span> <span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">surveys_complete</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">weight</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">hindfoot_length</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_plot</span> <span class="o">+</span> <span class="n">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>** Notes: **</p>
 <ul class="simple">
 <li><p>Any configurations defined inside <code class="docutils literal notranslate"><span class="pre">ggplot()</span></code> are also visible by all <code class="docutils literal notranslate"><span class="pre">geom_</span></code> layers. This includes x and y axis set up in <code class="docutils literal notranslate"><span class="pre">aes()</span></code>.</p></li>
@@ -567,43 +602,199 @@ title="Print to PDF"
 </ul>
 <p>** Challenge: **</p>
 <p>Scatter plots can be useful exploratory tools for small datasets. For data sets with large numbers of observations, such as the surveys_complete data set, overplotting of points can be a limitation of scatter plots. One strategy for handling such settings is to use hexagonal binning of observations. The plot space is tesselated into hexagons. Each hexagon is assigned a color based on the number of observations that fall within its boundaries. To use hexagonal binning with ggplot2, first install the R package hexbin from CRAN:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;hexbin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Then use <code class="docutils literal notranslate"><span class="pre">geom_hex()</span></code> function from the ggplot2 package to visualize data</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <p>** Building plots iteratively: **</p>
 <p>Start with a template:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_plot</span> <span class="o">&lt;-</span> <span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">surveys_complete</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">weight</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">hindfoot_length</span><span class="p">))</span>
+</pre></div>
+</div>
 <p>Choose a geom:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_plot</span> <span class="o">+</span> <span class="n">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>Customize geom:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># add transparency</span>
+<span class="n">surveys_plot</span> <span class="o">+</span> <span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># add colors for all the points:</span>
+<span class="n">surveys_plot</span> <span class="o">+</span> <span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># color each species in the plot differently:</span>
+<span class="n">surveys_plot</span> <span class="o">+</span> <span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">species_id</span><span class="p">))</span>
+</pre></div>
+</div>
 <p>Change to a different geom, <code class="docutils literal notranslate"><span class="pre">geom_boxplot()</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">surveys_plot</span> <span class="o">&lt;-</span> <span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">surveys_complete</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">species_id</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">hindfoot_length</span><span class="p">))</span>
+<span class="n">surveys_plot</span> <span class="o">+</span> <span class="n">geom_boxplot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># adding points to boxplot to understand number of measurements and distribution:</span>
+<span class="n">surveys_plot</span> <span class="o">+</span> <span class="n">geom_boxplot</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_jitter</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;tomato&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>** Challenge: **</p>
 <p>How can we show the box plot?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <p>** Challenge: **</p>
 <p>Boxplots are useful summaries, but hide the shape of the distribution. For example, if there is a bimodal distribution, it would not be observed with a boxplot. An alternative to the boxplot is the violin plot (sometimes known as a beanplot), where the shape (of the density of points) is drawn.</p>
 <ul class="simple">
 <li><p>Replace the box plot with a violin plot; see <code class="docutils literal notranslate"><span class="pre">geom_violin()</span></code></p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <p>In many types of data, it is important to consider the scale of the observations. For example, it may be worth changing the scale of the axis to better distribute the observations in the space of the plot. Changing the scale of the axes is done similarly to adding/modifying other components (i.e., by incrementally adding commands). Try making these modifications:</p>
 <ul class="simple">
 <li><p>Create boxplot for the weights.</p></li>
 <li><p>Represent weight on the log10 scale; see <code class="docutils literal notranslate"><span class="pre">scale_y_log10()</span></code></p></li>
 <li><p>Add color to the datapoints on your boxplot according to the species from which the sample was taken (species_id)</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <p>** Plotting time-series data: **</p>
 <p>Number of counts per year for each species:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yearly_counts</span> <span class="o">&lt;-</span> <span class="n">surveys_complete</span> <span class="o">%&gt;%</span>
+                 <span class="n">group_by</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">species_id</span><span class="p">)</span> <span class="o">%&gt;%</span>
+                 <span class="n">tally</span>
+<span class="n">head</span><span class="p">(</span><span class="n">yearly_counts</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Plot everything!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">))</span> <span class="o">+</span>
+     <span class="n">geom_line</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>We can improve the clarity of the graphs by separating them into individual lines for individual species</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">species_id</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">geom_line</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>We can make this even better!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">species_id</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="n">species_id</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">geom_line</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>** Faceting: **</p>
 <p>It is possible to create multiple plots within a larger plot frame based on a factor variable within the data set.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">yearly_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">species_id</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="n">species_id</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span> <span class="n">species_id</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Further customization on faceted plots can be done. For example, we can split data within each individual plots into lines presenting male and female:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yearly_sex_counts</span> <span class="o">&lt;-</span> <span class="n">surveys_complete</span> <span class="o">%&gt;%</span>
+                      <span class="n">group_by</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">species_id</span><span class="p">,</span> <span class="n">sex</span><span class="p">)</span> <span class="o">%&gt;%</span>
+                      <span class="n">tally</span>
+
+<span class="n">head</span><span class="p">(</span><span class="n">yearly_sex_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_sex_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">species_id</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">sex</span><span class="p">))</span> <span class="o">+</span>
+     <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+     <span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span> <span class="n">species_id</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>To improve this presentation, we can customize the theme layers</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_sex_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">species_id</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">sex</span><span class="p">))</span> <span class="o">+</span>
+     <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+     <span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span> <span class="n">species_id</span><span class="p">)</span> <span class="o">+</span>
+     <span class="n">theme_bw</span><span class="p">()</span> <span class="o">+</span>
+     <span class="n">theme</span><span class="p">(</span><span class="n">panel</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">major</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">element_blank</span><span class="p">(),</span>
+       <span class="n">panel</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">minor</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">element_blank</span><span class="p">(),</span>
+       <span class="n">panel</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">major</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">element_blank</span><span class="p">(),</span>
+       <span class="n">panel</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">minor</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">element_blank</span><span class="p">())</span>
+</pre></div>
+</div>
 <p>Since we already separate species into individual plots, we do not need to color the plot, but we will need to differentiate between the male and femal lines within each plot</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_sex_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sex</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">sex</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span> <span class="n">species_id</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">theme_bw</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>** Challenge: **</p>
 <p>Create a plot that shows how the average weight of each species changes over the years.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <p>** Customization: **</p>
 <p>Cheatsheet: <a class="reference external" href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf</a></p>
 <p>Customize title and axis’ titles</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_sex_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sex</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">sex</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span> <span class="n">species_id</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Observed species in time&#39;</span><span class="p">,</span>
+         <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Year of observation&#39;</span><span class="p">,</span>
+         <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Number of species&#39;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">theme_bw</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>Change font size</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_sex_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sex</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">sex</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span> <span class="n">species_id</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Observed species in time&#39;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Year of observation&#39;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Number of species&#39;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">theme_bw</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">theme</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
 <p>Change label orientation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_sex_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sex</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">sex</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span> <span class="n">species_id</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Observed species in time&#39;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Year of observation&#39;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Number of species&#39;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">theme_bw</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">theme</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">element_text</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s2">&quot;grey20&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">hjust</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">vjust</span><span class="o">=</span><span class="mf">.5</span><span class="p">),</span>
+                        <span class="n">axis</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">element_text</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s2">&quot;grey20&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">),</span>
+          <span class="n">text</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
 <p>** Save plots to files: **</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_plot</span> <span class="o">&lt;-</span> <span class="n">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">yearly_sex_counts</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">year</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">sex</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">sex</span><span class="p">))</span> <span class="o">+</span>
+    <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span> <span class="n">species_id</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Observed species in time&#39;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Year of observation&#39;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Number of species&#39;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">theme_bw</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">theme</span><span class="p">(</span><span class="n">axis</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">element_text</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s2">&quot;grey20&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">hjust</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">vjust</span><span class="o">=</span><span class="mf">.5</span><span class="p">),</span>
+                        <span class="n">axis</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">element_text</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s2">&quot;grey20&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">),</span>
+          <span class="n">text</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>current_dir &lt;- getwd()
+output_graph_dir &lt;- &#39;output_graph&#39;
+
+if (!file.exists(output_graph_dir)){
+    dir.create(file.path(current_dir, output_graph_dir))
+} else {
+    print (&quot;Directory already exists&quot;)
+}
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggsave</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="n">output_graph_dir</span><span class="p">,</span><span class="s2">&quot;yearly_sex_counts.png&quot;</span><span class="p">),</span> 
+       <span class="n">my_plot</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
