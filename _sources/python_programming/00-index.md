@@ -21,6 +21,35 @@ Programming with Python lesson.
 
 No prerequisites are required
 
+## Software Setup on Picotte
+
+- Require valid Picotte's account.
+- You can follow [Picotte's JupyterHub](https://docs.urcf.drexel.edu/software/jupyterhub/jupyterhub/) 
+instructions to launch a Jupyter Server on Picotte's compute nodes. 
+- For the workshop, the following parameters should be used:
+  - `Account`: `urcfprj`
+  - `Partition`: def-sm
+  - `CPU(s)`: 2
+  - `Memory(in GB)`: 4
+  - `Wall Time (in hours)`: 4
+- Open a terminal from inside JupyterHub and run the following command to 
+get the data. 
+
+~~~bash
+cd
+mkdir swc-python
+cd swc-python
+wget https://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip
+wget https://swcarpentry.github.io/python-novice-inflammation/files/code/python-novice-inflammation-code.zip
+unzip python-novice-inflammation-data.zip
+unzip python-novice-inflammation-code.zip
+ls data/
+ls code/ 
+~~~
+
+![Getting data for Picotte](../fig/python_programming/00-index/picotte-data.png)
+
+
 ## Software Setup on PC (Laptop or Desktop)
 
 ```{admonition} Windows

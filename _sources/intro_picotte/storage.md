@@ -31,7 +31,7 @@ To see how much space you are using in your home directory, please type:
 
 ```bash
 cd ~
-du -h -d 1
+du -h -d -1
 ```
 
 Since most of you are new users of Picotte, you should be using very little storage 
@@ -69,7 +69,7 @@ pwd
 To go to your home directory, you can do
 
 ```bash
-cd /home/${USER}
+cd /home/<your Picotte username>
 ```
 
 :::{hint}

@@ -1,4 +1,4 @@
-# Research Computing on Picotte
+# Introduction to Research Computing on Picotte
 
 - **Instructor**: Linh B. Ngo
 - **Email**: lbn28 AT drexel DOT edu
