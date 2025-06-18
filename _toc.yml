@@ -12,7 +12,6 @@ parts:
       - file: intro_linux/getting-started.md
       - file: intro_linux/file-system.md
       - file: intro_linux/working_with_files_and_directories.md
-      - file: intro_linux/file-permissions.md
       - file: intro_linux/pipes.md
       - file: intro_linux/loop.md
       - file: intro_linux/utilities.md

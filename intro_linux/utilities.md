@@ -20,7 +20,7 @@ Let's start by making sure we're in the `alkanes` directory, and then creating a
 which will become our shell script:
 
 ```bash
-cd ~/Desktop/shell-lesson-data/exercise-data/alkanes
+cd ~/Downloads/shell-lesson-data/exercise-data/alkanes
 nano middle.sh
 ```
 

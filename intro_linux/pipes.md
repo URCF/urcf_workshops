@@ -10,7 +10,7 @@ We'll keep working in the `shell-lesson-data/exercise-data/alkanes` directory.
 
 
 ```bash
-$ cd ~/Desktop/shell-lesson-data/exercise-data/alkanes
+$ cd ~/Downloads/shell-lesson-data/exercise-data/alkanes
 $ ls
 cubane.pdb  ethane.pdb  methane.pdb octane.pdb  pentane.pdb propane.pdb
 ```
