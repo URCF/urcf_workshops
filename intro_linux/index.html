@@ -394,37 +394,13 @@ ready with both of these.</p>
 </input><label class="sd-tab-label" for="sd-tab-item-0">
 Windows</label><div class="sd-tab-content docutils">
 <p>Prior to workshop, Windows users should download and install
-<a class="reference external" href="https://gitforwindows.org/">Git for Windows</a>. If you already have this installed, it is perhaps
-time for an update, as the latest Git for Windows software will have Git Bash integrated
-with Windows Terminal.</p>
-<p>After running the installer, make sure the following steps are done correctly:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Components</span></code>: check the <strong>Add a Git Bash Profile to Windows Terminal</strong> box.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choose</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">editor</span> <span class="pre">used</span> <span class="pre">by</span> <span class="pre">Git</span></code>: scroll up on the dropdown list
-and choose <strong>User the Nano editor by default</strong>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Adjusting</span> <span class="pre">the</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">initial</span> <span class="pre">branch</span> <span class="pre">in</span> <span class="pre">new</span> <span class="pre">repositories</span></code>: ensure that
-<strong>Let Git decide</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Adjusting</span> <span class="pre">your</span> <span class="pre">PATH</span> <span class="pre">environment</span></code>: ensure that
-<strong>Git from the command line and also from 3rd-party software</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choosing</span> <span class="pre">the</span> <span class="pre">SSH</span> <span class="pre">executable</span></code>: select <strong>Use bundled OpenSSH</strong>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choosing</span> <span class="pre">HTTPS</span> <span class="pre">transport</span> <span class="pre">backend</span></code>: ensure that
-<strong>Use the native Windows Secure Channel Library</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Configuring</span> <span class="pre">the</span> <span class="pre">line</span> <span class="pre">ending</span> <span class="pre">conversion</span></code>: ensure that <strong>Checkout Windows-style, commit Unix-style line endings</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Configuring</span> <span class="pre">the</span> <span class="pre">terminal</span> <span class="pre">emulator</span> <span class="pre">to</span> <span class="pre">use</span> <span class="pre">with</span> <span class="pre">Git</span> <span class="pre">Bash</span></code>: ensure that <strong>Use Windows’ default console window</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choose</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">behavior</span> <span class="pre">of</span> <span class="pre">'git</span> <span class="pre">pull'</span></code>: ensure that <strong>Fast-forward or merge</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choose</span> <span class="pre">a</span> <span class="pre">credential</span> <span class="pre">helper</span></code>: ensure that “Git Credential Manager” is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Configuring</span> <span class="pre">extra</span> <span class="pre">options</span></code>: check both boxes on <strong>Enable file system caching</strong> and
-<strong>Enable symbolic links</strong>.</p></li>
-<li><p>Do not check any <code class="docutils literal notranslate"><span class="pre">Configurating</span> <span class="pre">experimental</span> <span class="pre">options</span></code> boxes.</p></li>
-<li><p>Click on “Install”.
-= Click on “Finish”.</p></li>
-</ul>
-<p>To launch Git Bash, you can launch the Git Bash app directly via Windows Main Menu</p>
+<a class="reference external" href="https://gitforwindows.org/">Git for Windows</a>. Git for Windows comes with an app called “Git Bash”, which is a Unix shell. If you already have Git for Windows installed, please update it, as only more recent versions come with Git Bash.</p>
+<p>You can launch the “Git Bash” app from the Windows Main Menu:</p>
 <p><img alt="Git Bash" src="../_images/gitbash.png" /></p>
 <p>You can also launch Git Bash via Windows Terminal. Windows Terminal is a powerful
-terminal program intended to replace the older <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Prompt</span></code> and <code class="docutils literal notranslate"><span class="pre">Power</span> <span class="pre">Shell</span></code>
-launchers. The terminal is available by default with Windows 11. For earlier version,
-it can be downloaded and installed via <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">App</span> <span class="pre">Store</span></code>. More detailed instructions
+terminal program intended to replace the older Command Prompt and PowerShell
+launchers. The terminal is available by default with Windows 11. For earlier versions,
+it can be downloaded and installed via the Windows App Store. More detailed instructions
 can be found at <a class="reference external" href="https://learn.microsoft.com/en-us/windows/terminal/install">https://learn.microsoft.com/en-us/windows/terminal/install</a>.</p>
 <p><img alt="Windows Terminal" src="../_images/windows_terminal.png" /></p>
 </div>
@@ -442,9 +418,8 @@ macOS</label><div class="sd-tab-content docutils">
 <p class="admonition-title">Download example data</p>
 <ul class="simple">
 <li><p>Download <a class="reference external" href="https://github.com/URCF/urcf_workshops/raw/master/data/shell-lesson-data.zip">the workshop data</a>
-to your computer’s Desktop.</p></li>
-<li><p>Unzip the file. You should see the following contents in an unzipped directory called <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> on
-your Desktop.</p></li>
+to your computer’s Downloads folder. Make sure to leave it in the Downloads folder, as the exact location is important in the workshop.</p></li>
+<li><p>Unzip the file. You should see the following contents in an unzipped folder called “shell-lesson-data”:</p></li>
 </ul>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">

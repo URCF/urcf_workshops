@@ -2,18 +2,17 @@
 
 We now know how to explore files and directories, but how do we create them?
 
-Let's change into the `shell-lesson-data` directory that you downloaded to your Desktop earlier.
+Let's change into the `shell-lesson-data` directory that you downloaded earlier. Specifically, the "writing" directory under "exercise-data":
 
 ```
-$ cd ~/Desktop/shell-lesson-data
+$ cd ~/Downloads/shell-lesson-data/exercise-data/writing/
 ```
 
 <!-- TODO add note about how to do so if you didn't -->
 
-Next we’ll move to the `exercise-data/writing` directory and see what it contains:
+Let's see what it contains:
 
 ```
-$ cd exercise-data/writing/
 $ ls
 haiku.txt  LittleWomen.txt
 ```
@@ -150,7 +149,7 @@ Let's go "up" one directory, back to `shell-lesson-data/exercise-data/writing`:
 ```
 $ cd ..
 $ pwd
-/Users/jjp366/Desktop/shell-lesson-data/exercise-data/writing
+/Users/jjp366/Dowloads/shell-lesson-data/exercise-data/writing
 ```
 
 Now let's say we want to change the name of our `draft.txt` file. For this we
@@ -332,7 +331,7 @@ select subsets of files to work on using pattern matching.
 Let's move to the `alkanes` directory to try it out:
 
 ```
-$ cd ~/Desktop/shell-lesson-data/exercise-data/alkanes
+$ cd ~/Downloads/shell-lesson-data/exercise-data/alkanes
 $ ls
 cubane.pdb  ethane.pdb  methane.pdb octane.pdb  pentane.pdb propane.pdb
 ```

@@ -381,14 +381,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="working-with-files-and-directories">
 <h1>Working with files and directories<a class="headerlink" href="#working-with-files-and-directories" title="Permalink to this heading">#</a></h1>
 <p>We now know how to explore files and directories, but how do we create them?</p>
-<p>Let’s change into the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory that you downloaded to your Desktop earlier.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Desktop/shell-lesson-data
+<p>Let’s change into the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory that you downloaded earlier. Specifically, the “writing” directory under “exercise-data”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Downloads/shell-lesson-data/exercise-data/writing/
 </pre></div>
 </div>
 <!-- TODO add note about how to do so if you didn't -->
-<p>Next we’ll move to the <code class="docutils literal notranslate"><span class="pre">exercise-data/writing</span></code> directory and see what it contains:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd exercise-data/writing/
-$ ls
+<p>Let’s see what it contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
 haiku.txt  LittleWomen.txt
 </pre></div>
 </div>
@@ -491,7 +490,7 @@ it&#39;s share and thrive.
 <p>Let’s go “up” one directory, back to <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/writing</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ..
 $ pwd
-/Users/jjp366/Desktop/shell-lesson-data/exercise-data/writing
+/Users/jjp366/Dowloads/shell-lesson-data/exercise-data/writing
 </pre></div>
 </div>
 <p>Now let’s say we want to change the name of our <code class="docutils literal notranslate"><span class="pre">draft.txt</span></code> file. For this we
@@ -636,7 +635,7 @@ lot of files without asking for confirmation if you make a mistake.</p>
 <p><code class="docutils literal notranslate"><span class="pre">*</span></code> is a <strong>wildcard</strong>, which matches zero or more characters. This lets us
 select subsets of files to work on using pattern matching.</p>
 <p>Let’s move to the <code class="docutils literal notranslate"><span class="pre">alkanes</span></code> directory to try it out:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Desktop/shell-lesson-data/exercise-data/alkanes
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Downloads/shell-lesson-data/exercise-data/alkanes
 $ ls
 cubane.pdb  ethane.pdb  methane.pdb octane.pdb  pentane.pdb propane.pdb
 </pre></div>

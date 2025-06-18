@@ -173,7 +173,6 @@ in "long" format, which contains much more detail:
 
 ```
 $ ls -l
-[Desktop] ls -l
 total 30608
 total 6208
 -rw-------@  1 jjp366  DREXEL\Domain Users   202057 Mar 19 15:57 NW-19207 Estimate IT Approved by Network Mgmt..pdf
