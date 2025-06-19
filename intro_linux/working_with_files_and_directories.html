@@ -437,18 +437,19 @@ quit and return to the shell prompt, press <code class="docutils literal notrans
 haiku.txt       LittleWomen.txt thesis
 </pre></div>
 </div>
-<p>Since we just created it, it has nothing in it, which we can confirm with <code class="docutils literal notranslate"><span class="pre">ls</span></code>:</p>
+<p>Since we just created it, it has nothing in it, which we can confirm using <code class="docutils literal notranslate"><span class="pre">ls</span></code>. So far, we’ve only used <code class="docutils literal notranslate"><span class="pre">ls</span></code> with no arguments, but <code class="docutils literal notranslate"><span class="pre">ls</span></code> can take an argument: the name of a different directory to list. By default, it lists the current working directory, but we can give it any other directory instead. Let’s list the contents of the <code class="docutils literal notranslate"><span class="pre">thesis</span></code> directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls thesis
 $
 </pre></div>
 </div>
+<p>We can see that there’s nothing there.</p>
 <div class="tip admonition">
 <p class="admonition-title">Challenge: mkdir and good names for directories</p>
 <p>What do you think will happen if you run this command?</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">my</span> <span class="n">directory</span>
 </pre></div>
 </div>
-<p>Think about it for a while, check <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">mkdir</span></code> or <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">--help</span></code>, and decide what you think the result will be, then run the command.</p>
+<p>Think about it, decide what you think the result will be, then run the command.</p>
 <p>What happened? Why do you think this is the case?</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
@@ -527,8 +528,7 @@ haiku.txt       LittleWomen.txt quotes.txt      thesis
 <div class="tip admonition">
 <p class="admonition-title">Challenge: Moving files to a new folder</p>
 <p>After running the following commands, Jamie realizes that she
-put the files <code class="docutils literal notranslate"><span class="pre">sucrose.dat</span></code> and <code class="docutils literal notranslate"><span class="pre">maltose.dat</span></code> into the wrong folder. The
-files should have been placed in the <code class="docutils literal notranslate"><span class="pre">raw</span></code> folder.</p>
+put the file <code class="docutils literal notranslate"><span class="pre">sucrose.dat</span></code> into the wrong directory. It’s in the <code class="docutils literal notranslate"><span class="pre">analyzed</span></code> directory, but she hasn’t actually analyed it yet, so it should be in <code class="docutils literal notranslate"><span class="pre">raw</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls
 analyzed<span class="w"> </span>raw
 $<span class="w"> </span>ls<span class="w"> </span>analyzed
@@ -536,13 +536,14 @@ fructose.dat<span class="w"> </span>glucose.dat<span class="w"> </span>maltose.d
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>analyzed
 </pre></div>
 </div>
-<p>Fill in the blanks to move these files to the <code class="docutils literal notranslate"><span class="pre">raw</span></code> folder:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mv<span class="w"> </span>sucrose.data<span class="w"> </span>maltose.data<span class="w"> </span>____/_____
+<p>Fill in the blanks to move this file into the <code class="docutils literal notranslate"><span class="pre">raw</span></code> folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mv<span class="w"> </span>sucrose.data<span class="w"> </span>____/_____
 </pre></div>
 </div>
+<p><em>Hint:</em> Think about the shortcut characters we’ve seen.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv sucrose.data maltose.data ../raw
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv sucrose.data ../raw
 </pre></div>
 </div>
 </div>
@@ -584,10 +585,10 @@ $<span class="w"> </span>ls
 </pre></div>
 </div>
 <ol class="arabic simple">
-<li><p>proteins-saved.dat recombined</p></li>
-<li><p>recombined</p></li>
-<li><p>proteins.dat recombined</p></li>
-<li><p>proteins-saved.dat</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proteins-saved.dat</span> <span class="pre">recombined</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recombined</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proteins.dat</span> <span class="pre">recombined</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">proteins-saved.dat</span></code></p></li>
 </ol>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>

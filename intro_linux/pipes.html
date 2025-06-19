@@ -522,31 +522,6 @@ of the file; <code class="docutils literal notranslate"><span class="pre">-n</sp
 Since <code class="docutils literal notranslate"><span class="pre">sorted-lengths.txt</span></code> contains the lengths of our files ordered
 from least to greatest, the output of <code class="docutils literal notranslate"><span class="pre">head</span></code> must be the file with
 the fewest lines.</p>
-<div class="tip admonition">
-<p class="admonition-title">The &gt;&gt; operator</p>
-<p>We have seen the use of <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, but there is a similar operator <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>
-which works slightly differently.</p>
-<p>We can use the <code class="docutils literal notranslate"><span class="pre">echo</span></code> command to print strings. For example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>just<span class="w"> </span>testing
-just<span class="w"> </span>testing
-</pre></div>
-</div>
-<p>This might not seem very useful, but we’ll see a use for it shortly.</p>
-<p>Now try the commands below to reveal the difference between the two operators:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;<span class="w"> </span>test01.txt
-<span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;<span class="w"> </span>test01.txt
-<span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;&gt;<span class="w"> </span>test02.txt
-<span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;&gt;<span class="w"> </span>test02.txt
-cat<span class="w"> </span>text01.txt
-cat<span class="w"> </span>text02.txt
-</pre></div>
-</div>
-<p>What does <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> do?</p>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> operator appends the output to the end of the file instead of overwriting it.</p>
-</div>
-</div>
 </section>
 <section id="passing-output-to-another-command">
 <h2>Passing output to another command<a class="headerlink" href="#passing-output-to-another-command" title="Permalink to this heading">#</a></h2>
@@ -624,71 +599,6 @@ and writes lines of text to standard output
 can be combined with every other program that behaves this way as well.
 You can <em>and should</em> write your programs this way
 so that you and other people can put those programs into pipes to multiply their power.</p>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Pipe Reading Comprehension</p>
-<p>A file called <code class="docutils literal notranslate"><span class="pre">animals.csv</span></code> (in the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/animal-counts</span></code> folder)
-contains the following data:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2012</span>-11-05,deer,5
-<span class="m">2012</span>-11-05,rabbit,22
-<span class="m">2012</span>-11-05,raccoon,7
-<span class="m">2012</span>-11-06,rabbit,19
-<span class="m">2012</span>-11-06,deer,2
-<span class="m">2012</span>-11-06,fox,4
-<span class="m">2012</span>-11-07,rabbit,16
-<span class="m">2012</span>-11-07,bear,1
-</pre></div>
-</div>
-<p>What text passes through each of the pipes and the final redirect in the pipeline below?
-Note, the <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-r</span></code> command sorts in reverse order.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cat<span class="w"> </span>animals.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-r<span class="w"> </span>&gt;<span class="w"> </span>final.txt
-</pre></div>
-</div>
-<p>Hint: build the pipeline up one command at a time to test your understanding</p>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">head</span></code> command extracts the first 5 lines from <code class="docutils literal notranslate"><span class="pre">animals.csv</span></code>.
-Then, the last 3 lines are extracted from the previous 5 by using the <code class="docutils literal notranslate"><span class="pre">tail</span></code> command.
-With the <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-r</span></code> command those 3 lines are sorted in reverse order.
-Finally, the output is redirected to a file: <code class="docutils literal notranslate"><span class="pre">final.txt</span></code>.
-The content of this file can be checked by executing <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">final.txt</span></code>.
-The file should contain the following lines:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span><span class="p">,</span><span class="n">rabbit</span><span class="p">,</span><span class="mi">19</span>
-<span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span><span class="p">,</span><span class="n">deer</span><span class="p">,</span><span class="mi">2</span>
-<span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">05</span><span class="p">,</span><span class="n">raccoon</span><span class="p">,</span><span class="mi">7</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Which Pipe?</p>
-<p>The file <code class="docutils literal notranslate"><span class="pre">animals.csv</span></code> contains 8 lines of data formatted as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">05</span><span class="p">,</span><span class="n">deer</span><span class="p">,</span><span class="mi">5</span>
-<span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">05</span><span class="p">,</span><span class="n">rabbit</span><span class="p">,</span><span class="mi">22</span>
-<span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">05</span><span class="p">,</span><span class="n">raccoon</span><span class="p">,</span><span class="mi">7</span>
-<span class="mi">2012</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span><span class="p">,</span><span class="n">rabbit</span><span class="p">,</span><span class="mi">19</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">uniq</span></code> command has a <code class="docutils literal notranslate"><span class="pre">-c</span></code> option which gives a count of the
-number of times a line occurs in its input.  Assuming your current
-directory is <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/animal-counts</span></code>,
-what command would you use to produce a table that shows
-the total count of each type of animal in the file?</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">animals.csv</span> <span class="pre">|</span> <span class="pre">uniq</span> <span class="pre">-c</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-t,</span> <span class="pre">-k2,2</span> <span class="pre">animals.csv</span> <span class="pre">|</span> <span class="pre">uniq</span> <span class="pre">-c</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cut</span> <span class="pre">-d,</span> <span class="pre">-f</span> <span class="pre">2</span> <span class="pre">animals.csv</span> <span class="pre">|</span> <span class="pre">uniq</span> <span class="pre">-c</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cut</span> <span class="pre">-d,</span> <span class="pre">-f</span> <span class="pre">2</span> <span class="pre">animals.csv</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">|</span> <span class="pre">uniq</span> <span class="pre">-c</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cut</span> <span class="pre">-d,</span> <span class="pre">-f</span> <span class="pre">2</span> <span class="pre">animals.csv</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">|</span> <span class="pre">uniq</span> <span class="pre">-c</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code></p></li>
-</ol>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<p>Option 4. is the correct answer.
-If you have difficulty understanding why, try running the commands, or sub-sections of
-the pipelines (make sure you are in the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/animal-counts</span></code>
-directory).</p>
-</div>
-</div>
 </section>
 </section>
 

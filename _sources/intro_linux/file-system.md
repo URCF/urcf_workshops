@@ -77,10 +77,8 @@ To change the current working directory, use the `cd` (short for "change directo
 
 Let's change to the highest-level, or, "root" directory of the filesystem, and see what's there:
 
-<!-- TODO I'm not convinced `/` is the best place to cd to here. What's positive is that everyone will definitely have it. What's negative is that it's a weird and confusing path. -->
-
 ```
-$ cd /
+$ cd Desktop
 ```
 
 Your prompt might change after running this command to show that you're in a
@@ -92,16 +90,15 @@ seeing that the output is different:
 
 ```
 $ pwd
-/
+/Users/jjp366/Desktop
 ```
 
 And run `ls` to see what files are here:
 
 ```
 $ ls
-Applications dev          Library      private      tmp          var
-bin          etc          Network      sbin         Users        Volumes
-cores        home         opt          System       usr
+screenshots                                        URCF.pdf
+quotas.csv                                         shell-lesson-data
 ```
 
 ## Using arguments and options
@@ -114,11 +111,11 @@ called **flags**), which can change their behavior.
 Arguments are inputs that a command operates on. We just used our first argument in our `cd` command:
 
 ```
-$ cd /
+$ cd Desktop
 ```
 
 Arguments are separated from commands by spaces. So here `cd` is the command,
-and `/` is the argument. Arguments have different meanings to different
+and `Desktop` is the argument. Arguments have different meanings to different
 commands. For `cd`, the first argument is the directory we want to change to.
 
 Let's pass a different argument to change back to the home directory. The path
@@ -208,9 +205,9 @@ size *human readable*, i.e. displaying something like 5.3K instead of 5369.
 :class: hint, dropdown
 
 - By default, ls lists the contents of a directory in alphabetical
-order by name. The command `ls -t` lists items by time of last change
-instead of alphabetically. The command `ls -r` lists the contents of a
-directory in reverse order.
+order by name.  The command `ls -r` lists the contents of a
+directory in reverse order. The command `ls -t` lists items by time of last change
+instead of alphabetically.
 - Which file is displayed last when you combine the `-t` and `-r` options?
 Hint: You may need to use the -l option to see the last changed dates.
 
@@ -239,7 +236,7 @@ pnas_sub pnas_final original
 
 1. `ls pwd`
 2. `ls -r`
-3. `ls -r /Users/backup`
+3. `ls -l`
 
 :::{admonition} Solution
 :class: dropdown

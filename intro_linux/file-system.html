@@ -444,8 +444,7 @@ Desktop      Downloads    Movies       Pictures
 <h2>How do we go somewhere else?<a class="headerlink" href="#how-do-we-go-somewhere-else" title="Permalink to this heading">#</a></h2>
 <p>To change the current working directory, use the <code class="docutils literal notranslate"><span class="pre">cd</span></code> (short for “change directory”) command.</p>
 <p>Let’s change to the highest-level, or, “root” directory of the filesystem, and see what’s there:</p>
-<!-- TODO I'm not convinced `/` is the best place to cd to here. What's positive is that everyone will definitely have it. What's negative is that it's a weird and confusing path. -->
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd Desktop
 </pre></div>
 </div>
 <p>Your prompt might change after running this command to show that you’re in a
@@ -454,14 +453,13 @@ easy to see where you are at a glance.</p>
 <p>We can confirm that we’ve changed working directories by running <code class="docutils literal notranslate"><span class="pre">pwd</span></code> again and
 seeing that the output is different:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
-/
+/Users/jjp366/Desktop
 </pre></div>
 </div>
 <p>And run <code class="docutils literal notranslate"><span class="pre">ls</span></code> to see what files are here:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
-Applications dev          Library      private      tmp          var
-bin          etc          Network      sbin         Users        Volumes
-cores        home         opt          System       usr
+screenshots                                        URCF.pdf
+quotas.csv                                         shell-lesson-data
 </pre></div>
 </div>
 </section>
@@ -472,11 +470,11 @@ called <strong>flags</strong>), which can change their behavior.</p>
 <section id="arguments">
 <h3>Arguments<a class="headerlink" href="#arguments" title="Permalink to this heading">#</a></h3>
 <p>Arguments are inputs that a command operates on. We just used our first argument in our <code class="docutils literal notranslate"><span class="pre">cd</span></code> command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd Desktop
 </pre></div>
 </div>
 <p>Arguments are separated from commands by spaces. So here <code class="docutils literal notranslate"><span class="pre">cd</span></code> is the command,
-and <code class="docutils literal notranslate"><span class="pre">/</span></code> is the argument. Arguments have different meanings to different
+and <code class="docutils literal notranslate"><span class="pre">Desktop</span></code> is the argument. Arguments have different meanings to different
 commands. For <code class="docutils literal notranslate"><span class="pre">cd</span></code>, the first argument is the directory we want to change to.</p>
 <p>Let’s pass a different argument to change back to the home directory. The path
 to your home directory will be different depending on your operating system,
@@ -548,9 +546,9 @@ size <em>human readable</em>, i.e. displaying something like 5.3K instead of 536
 <p class="admonition-title">Challenge: listing in reverse chronological order</p>
 <ul class="simple">
 <li><p>By default, ls lists the contents of a directory in alphabetical
-order by name. The command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-t</span></code> lists items by time of last change
-instead of alphabetically. The command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span></code> lists the contents of a
-directory in reverse order.</p></li>
+order by name.  The command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span></code> lists the contents of a
+directory in reverse order. The command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-t</span></code> lists items by time of last change
+instead of alphabetically.</p></li>
 <li><p>Which file is displayed last when you combine the <code class="docutils literal notranslate"><span class="pre">-t</span></code> and <code class="docutils literal notranslate"><span class="pre">-r</span></code> options?
 Hint: You may need to use the -l option to see the last changed dates.</p></li>
 </ul>
@@ -575,7 +573,7 @@ reverse order, what command(s) will result in the following output:</p></li>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">pwd</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span> <span class="pre">/Users/backup</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code></p></li>
 </ol>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>

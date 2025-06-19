@@ -373,16 +373,43 @@ amount of typing required (and hence reduces the number of typing mistakes).</p>
 and <code class="docutils literal notranslate"><span class="pre">unicorn.dat</span></code>. For this example, we’ll use the <code class="docutils literal notranslate"><span class="pre">exercise-data/creatures</span></code>
 directory which only has three example files, but the principles can be
 applied to many many more files at once.</p>
-<p>The structure of these files is the same: the common name, classification,
-and updated date are presented on the first three lines, with DNA sequences
-on the following lines. Let’s look at the files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>basilisk.dat<span class="w"> </span>minotaur.dat<span class="w"> </span>unicorn.dat
+<p>Let’s change to that directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">Downloads</span><span class="o">/</span><span class="n">shell</span><span class="o">-</span><span class="n">lesson</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">exercise</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">creatures</span>
 </pre></div>
 </div>
-<p>We would like to print out the classification for each species, which is
-given on the second line of each file. For each file, we would need to execute the
-command <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">-n</span> <span class="pre">2</span></code> and pipe this to <code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">1</span></code>. We’ll use a loop to solve this
-problem, but first let’s look at the general form of a loop, using the pseudo-code below:</p>
+<p>and check what’s there:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+basilisk.dat minotaur.dat unicorn.dat
+</pre></div>
+</div>
+<p>The structure of these files is the same: the common name, classification,
+and updated date are presented on the first three lines, with DNA sequences
+on the following lines. These files are pretty long, so let’s look at just the beginning of each one using the <code class="docutils literal notranslate"><span class="pre">head</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>*.dat
+</pre></div>
+</div>
+<p>We would like to print out the classification for each species, which is given
+on the second line of each file. To do this, we can combine the <code class="docutils literal notranslate"><span class="pre">head</span></code> command
+with the <code class="docutils literal notranslate"><span class="pre">tail</span></code> command, which works like head except it shows lines from the
+bottom of it’s input. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n 2 minotaur.dat
+TCCAGTCCCA
+GCCTTCACGG
+</pre></div>
+</div>
+<p>We get just the last two lines of the file, which are DNA sequences.</p>
+<p>To get the classification for a file, we need to execute the command <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">-n</span> <span class="pre">2</span></code>
+to get the first two lines, and pipe this to <code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">1</span></code> to get the last line of
+those two (i.e. the second line, which we know is the classification in each
+file).</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n 2 minotaur.dat | tail -n 1
+CLASSIFICATION: bos hominus
+</pre></div>
+</div>
+<p>But we want to do this on every file in the directory all at once, not one at at
+time. We’ll use a loop to solve this problem, but first let’s look at the
+general form of a loop, using the pseudo-code below:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The word &quot;for&quot; indicates the start of a &quot;For-loop&quot; command</span>
 <span class="k">for</span><span class="w"> </span>thing<span class="w"> </span><span class="k">in</span><span class="w"> </span>list_of_things
 <span class="c1">#The word &quot;do&quot; indicates the start of job execution list</span>
@@ -394,7 +421,7 @@ problem, but first let’s look at the general form of a loop, using the pseudo-
 </pre></div>
 </div>
 <p>and we can apply this to our example like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>basilisk.dat<span class="w"> </span>minotaur.dat<span class="w"> </span>unicorn.dat
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.dat
 &gt;<span class="w"> </span><span class="k">do</span>
 &gt;<span class="w">     </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$filename</span>
 &gt;<span class="w">     </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">$filename</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
@@ -422,9 +449,9 @@ problem, but first let’s look at the general form of a loop, using the pseudo-
 <p>How would you write a loop that uses the <code class="docutils literal notranslate"><span class="pre">echo</span></code> command to print all 10 numbers from 0 to 9?</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>loop_variable<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>number<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span>
 &gt;<span class="w"> </span><span class="k">do</span>
-&gt;<span class="w">     </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$loop_variable</span>
+&gt;<span class="w">     </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$number</span>
 &gt;<span class="w"> </span><span class="k">done</span>
 </pre></div>
 </div>
@@ -433,27 +460,27 @@ problem, but first let’s look at the general form of a loop, using the pseudo-
 <div class="tip admonition">
 <p class="admonition-title">Challenge: Variables in loops</p>
 <p>What is the output of the following code? Why?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>loop_variable<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>number<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span>
 &gt;<span class="w"> </span><span class="k">do</span>
-&gt;<span class="w">     </span><span class="nb">echo</span><span class="w"> </span>loop_variable
+&gt;<span class="w">     </span><span class="nb">echo</span><span class="w"> </span>number
 &gt;<span class="w"> </span><span class="k">done</span>
 </pre></div>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">loop_variable</span>
-<span class="go">loop_variable</span>
-<span class="go">loop_variable</span>
-<span class="go">loop_variable</span>
-<span class="go">loop_variable</span>
-<span class="go">loop_variable</span>
-<span class="go">loop_variable</span>
-<span class="go">loop_variable</span>
-<span class="go">loop_variable</span>
-<span class="go">loop_variable</span>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">number</span>
+<span class="go">number</span>
+<span class="go">number</span>
+<span class="go">number</span>
+<span class="go">number</span>
+<span class="go">number</span>
+<span class="go">number</span>
+<span class="go">number</span>
+<span class="go">number</span>
+<span class="go">number</span>
 </pre></div>
 </div>
-<p>Becuase we forgot to use the <code class="docutils literal notranslate"><span class="pre">$</span></code> to tell the shell to treat <code class="docutils literal notranslate"><span class="pre">loop_variable</span></code> as a variable name, the shell will print the literal text <code class="docutils literal notranslate"><span class="pre">loop_variable</span></code> 10 times.</p>
+<p>Becuase we forgot to use the <code class="docutils literal notranslate"><span class="pre">$</span></code> to tell the shell to treat <code class="docutils literal notranslate"><span class="pre">number</span></code> as a variable name, the shell will print   the literal text <code class="docutils literal notranslate"><span class="pre">number</span></code> 10 times.</p>
 </div>
 </div>
 <div class="tip admonition">
@@ -533,32 +560,6 @@ and the text from <code class="docutils literal notranslate"><span class="pre">p
 <p><code class="docutils literal notranslate"><span class="pre">1.</span></code> is the correct answer. The text from each file in turn gets written to the <code class="docutils literal notranslate"><span class="pre">test.pdb</span></code> file.
 However, the file gets overwritten on each loop iteration, so the final content of
 <code class="docutils literal notranslate"><span class="pre">test.pdb</span></code> is the text from the <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> file.</p>
-</div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Saving to a File in a Loop - Part Two</p>
-<p>Also in the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/alkanes</span></code> directory,
-what would be the output of the following loop?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.pdb
-<span class="k">do</span>
-<span class="w">    </span>cat<span class="w"> </span><span class="nv">$file</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>all.pdb
-<span class="k">done</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>All of the text from <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code> will be concatenated and saved to a file called <code class="docutils literal notranslate"><span class="pre">all.pdb</span></code>.</p></li>
-<li><p>The text from <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code> will be saved to a file called <code class="docutils literal notranslate"><span class="pre">all.pdb</span></code>.</p></li>
-<li><p>All of the text from <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code>
-and <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> would be concatenated and saved to a file called <code class="docutils literal notranslate"><span class="pre">all.pdb</span></code>.</p></li>
-<li><p>All of the text from <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code>
-and <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> would be printed to the screen and saved to a file called <code class="docutils literal notranslate"><span class="pre">all.pdb</span></code>.</p></li>
-</ol>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<p><code class="docutils literal notranslate"><span class="pre">3.</span></code> is the correct answer. <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> appends to a file, rather than overwriting it with the redirected
-output from a command.
-Given the output from the <code class="docutils literal notranslate"><span class="pre">cat</span></code> command has been redirected, nothing is printed to the screen.</p>
 </div>
 </div>
 <div class="tip admonition">
