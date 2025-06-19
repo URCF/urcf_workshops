@@ -76,12 +76,14 @@ $ ls
 haiku.txt       LittleWomen.txt thesis
 ```
 
-Since we just created it, it has nothing in it, which we can confirm with `ls`:
+Since we just created it, it has nothing in it, which we can confirm using `ls`. So far, we've only used `ls` with no arguments, but `ls` can take an argument: the name of a different directory to list. By default, it lists the current working directory, but we can give it any other directory instead. Let's list the contents of the `thesis` directory:
 
 ```
 $ ls thesis
 $
 ```
+
+We can see that there's nothing there.
 
 ```{admonition} Challenge: mkdir and good names for directories
 :class: tip
@@ -92,7 +94,7 @@ What do you think will happen if you run this command?
 mkdir my directory
 ~~~
 
-Think about it for a while, check `man mkdir` or `mkdir --help`, and decide what you think the result will be, then run the command.
+Think about it, decide what you think the result will be, then run the command.
 
 What happened? Why do you think this is the case?
 
@@ -199,8 +201,7 @@ haiku.txt       LittleWomen.txt quotes.txt      thesis
 :class: tip
 
 After running the following commands, Jamie realizes that she
-put the files `sucrose.dat` and `maltose.dat` into the wrong folder. The
-files should have been placed in the `raw` folder.
+put the file `sucrose.dat` into the wrong directory. It's in the `analyzed` directory, but she hasn't actually analyed it yet, so it should be in `raw`.
 
 ~~~bash
 $ ls
@@ -210,16 +211,18 @@ fructose.dat glucose.dat maltose.dat sucrose.dat
 $ cd analyzed
 ~~~
 
-Fill in the blanks to move these files to the `raw` folder:
+Fill in the blanks to move this file into the `raw` folder:
 
 ~~~bash
-$ mv sucrose.data maltose.data ____/_____
+$ mv sucrose.data ____/_____
 ~~~
+
+*Hint:* Think about the shortcut characters we've seen.
 
 :::{admonition} Solution
 :class: dropdown
 ~~~
-$ mv sucrose.data maltose.data ../raw
+$ mv sucrose.data ../raw
 ~~~
 :::
 ```
@@ -267,10 +270,10 @@ $ cp recombined/proteins.dat ../proteins-saved.dat
 $ ls
 ~~~
 
-1. proteins-saved.dat recombined
-2. recombined
-3. proteins.dat recombined
-4. proteins-saved.dat
+1. `proteins-saved.dat recombined`
+2. `recombined`
+3. `proteins.dat recombined`
+4. `proteins-saved.dat`
 
 :::{admonition} Solution
 :class: dropdown

@@ -11,18 +11,56 @@ and `unicorn.dat`. For this example, we'll use the `exercise-data/creatures`
 directory which only has three example files, but the principles can be
 applied to many many more files at once.
 
+Let's change to that directory:
+
+```
+cd ~/Downloads/shell-lesson-data/exercise-data/creatures
+```
+
+and check what's there:
+
+```
+$ ls
+basilisk.dat minotaur.dat unicorn.dat
+```
+
 The structure of these files is the same: the common name, classification,
 and updated date are presented on the first three lines, with DNA sequences
-on the following lines. Let's look at the files:
+on the following lines. These files are pretty long, so let's look at just the beginning of each one using the `head` command:
 
 ~~~bash
-head -n 5 basilisk.dat minotaur.dat unicorn.dat
+head -n 5 *.dat
 ~~~
 
-We would like to print out the classification for each species, which is
-given on the second line of each file. For each file, we would need to execute the
-command `head -n 2` and pipe this to `tail -n 1`. We'll use a loop to solve this
-problem, but first let's look at the general form of a loop, using the pseudo-code below:
+We would like to print out the classification for each species, which is given
+on the second line of each file. To do this, we can combine the `head` command
+with the `tail` command, which works like head except it shows lines from the
+bottom of it's input. For example:
+
+```
+$ tail -n 2 minotaur.dat
+TCCAGTCCCA
+GCCTTCACGG
+```
+
+We get just the last two lines of the file, which are DNA sequences.
+
+To get the classification for a file, we need to execute the command `head -n 2`
+to get the first two lines, and pipe this to `tail -n 1` to get the last line of
+those two (i.e. the second line, which we know is the classification in each
+file).
+
+For example:
+
+
+```
+$ head -n 2 minotaur.dat | tail -n 1
+CLASSIFICATION: bos hominus
+```
+
+But we want to do this on every file in the directory all at once, not one at at
+time. We'll use a loop to solve this problem, but first let's look at the
+general form of a loop, using the pseudo-code below:
 
 ~~~bash
 # The word "for" indicates the start of a "For-loop" command
@@ -38,7 +76,7 @@ done
 and we can apply this to our example like this:
 
 ~~~bash
-$ for filename in basilisk.dat minotaur.dat unicorn.dat
+$ for filename in *.dat
 > do
 >     echo $filename
 >     head -n 2 $filename | tail -n 1
@@ -73,9 +111,9 @@ How would you write a loop that uses the `echo` command to print all 10 numbers 
 :class: dropdown
 
 ~~~bash
-$ for loop_variable in 0 1 2 3 4 5 6 7 8 9
+$ for number in 0 1 2 3 4 5 6 7 8 9
 > do
->     echo $loop_variable
+>     echo $number
 > done
 ~~~
 
@@ -88,9 +126,9 @@ $ for loop_variable in 0 1 2 3 4 5 6 7 8 9
 What is the output of the following code? Why?
 
 ~~~bash
-$ for loop_variable in 0 1 2 3 4 5 6 7 8 9
+$ for number in 0 1 2 3 4 5 6 7 8 9
 > do
->     echo loop_variable
+>     echo number
 > done
 ~~~
 
@@ -98,19 +136,19 @@ $ for loop_variable in 0 1 2 3 4 5 6 7 8 9
 :class: dropdown
 
 ~~~output
-loop_variable
-loop_variable
-loop_variable
-loop_variable
-loop_variable
-loop_variable
-loop_variable
-loop_variable
-loop_variable
-loop_variable
+number
+number
+number
+number
+number
+number
+number
+number
+number
+number
 ~~~
 
-Becuase we forgot to use the `$` to tell the shell to treat `loop_variable` as a variable name, the shell will print the literal text `loop_variable` 10 times.
+Becuase we forgot to use the `$` to tell the shell to treat `number` as a variable name, the shell will print   the literal text `number` 10 times.
 ```
 
 ```{admonition} Challenge: more variables in Loops
@@ -209,37 +247,6 @@ done
 `1.` is the correct answer. The text from each file in turn gets written to the `test.pdb` file.
    However, the file gets overwritten on each loop iteration, so the final content of
   `test.pdb` is the text from the `propane.pdb` file.
-
-:::
-```
-
-```{admonition} Challenge: Saving to a File in a Loop - Part Two
-:class: tip
-
-Also in the `shell-lesson-data/exercise-data/alkanes` directory,
-what would be the output of the following loop?
-
-~~~bash
-for file in *.pdb
-do
-    cat $file >> all.pdb
-done
-~~~
-
-1. All of the text from `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, and
-  `pentane.pdb` will be concatenated and saved to a file called `all.pdb`.
-2. The text from `ethane.pdb` will be saved to a file called `all.pdb`.
-3. All of the text from `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, `pentane.pdb`
-  and `propane.pdb` would be concatenated and saved to a file called `all.pdb`.
-4. All of the text from `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, `pentane.pdb`
-  and `propane.pdb` would be printed to the screen and saved to a file called `all.pdb`.
-
-:::{admonition} Solution
-:class: dropdown
-
-`3.` is the correct answer. `>>` appends to a file, rather than overwriting it with the redirected
-output from a command.
-Given the output from the `cat` command has been redirected, nothing is printed to the screen.
 
 :::
 ```
