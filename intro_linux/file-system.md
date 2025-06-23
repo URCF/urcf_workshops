@@ -75,7 +75,7 @@ This is the same list as what you'll see if you open your home directory in Find
 
 To change the current working directory, use the `cd` (short for "change directory") command.
 
-Let's change to the highest-level, or, "root" directory of the filesystem, and see what's there:
+Let's change to the Desktop directory, and see what's there:
 
 ```
 $ cd Desktop
