@@ -157,7 +157,7 @@ Becuase we forgot to use the `$` to tell the shell to treat `number` as a variab
 This exercise uses the `shell-lesson-data/exercise-data/alkanes` directory again. Start by changing into this directory:
 
 ~~~bash
-cd ~/Desktop/shell-lesson-data/exercise-data/alkanes
+cd ~/Downloads/shell-lesson-data/exercise-data/alkanes
 ~~~
 
 `ls *.pdb` gives the following output:
