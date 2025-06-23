@@ -75,10 +75,10 @@ This is the same list as what you'll see if you open your home directory in Find
 
 To change the current working directory, use the `cd` (short for "change directory") command.
 
-Let's change to the Desktop directory, and see what's there:
+Let's change to the Downloads directory, and see what's there:
 
 ```
-$ cd Desktop
+$ cd Downloads
 ```
 
 Your prompt might change after running this command to show that you're in a
@@ -90,7 +90,7 @@ seeing that the output is different:
 
 ```
 $ pwd
-/Users/jjp366/Desktop
+/Users/jjp366/Downloads
 ```
 
 And run `ls` to see what files are here:
@@ -111,11 +111,11 @@ called **flags**), which can change their behavior.
 Arguments are inputs that a command operates on. We just used our first argument in our `cd` command:
 
 ```
-$ cd Desktop
+$ cd Downloads
 ```
 
 Arguments are separated from commands by spaces. So here `cd` is the command,
-and `Desktop` is the argument. Arguments have different meanings to different
+and `Downloads` is the argument. Arguments have different meanings to different
 commands. For `cd`, the first argument is the directory we want to change to.
 
 Let's pass a different argument to change back to the home directory. The path
