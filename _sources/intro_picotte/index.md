@@ -1,69 +1,55 @@
-# Introduction to Research Computing on Picotte
+# Introduction to research computing on Picotte
 
-- **Instructor**: Linh B. Ngo
-- **Email**: lbn28 AT drexel DOT edu
+This workshops teaches you how to use
+[Picotte](https://docs.urcf.drexel.edu/clusters/picotte/), Drexel's
+high-performance computing cluster.
 
+You'll learn how Picotte is organized, how to connect and access Picotte, and
+how to submit jobs to the scheduler.
 
-## Workshop Description
-
-In this workshop, participants are introduced to the Picotte Cluster, Drexel University's 
-high-performance computing resource. We will go over Picotte's structure, its basic usage, and 
-how to submit computational tasks to the cluster.
-
-## Prerequisites
+## Preparation
 
 
-Participants should check and complete the following steps prior to the workshop.
+```{admonition} Understand shell basics
+
+This workshops assumes you know the basics of how to use a Unix shell. If you don't you can learn these in our [Introduction to the Unix shell](https://urcf.github.io/urcf_workshops/intro_linux/index.html) workshop.
+
+```
+
+```{admonition} Get a Unix shell
+
+You'll also need a Unix shell installed on your computer in order to login and use Picotte. Follow the instructions for your operating system below.
 
 :::::{tab-set}
 ::::{tab-item} Windows
-Prior to workshop, Windows users should download and install 
-[Git for Windows](https://gitforwindows.org/). If you already have this installed, it is perhaps 
-time for an update, as the latest Git for Windows software will have Git Bash integrated 
-with Windows Terminal. 
+Prior to workshop, Windows users should download and install
+[Git for Windows](https://gitforwindows.org/). Git for Windows comes with an app called "Git Bash", which is a Unix shell. If you already have Git for Windows installed, please update it, as only more recent versions come with Git Bash.
 
-After running the installer, make sure the following steps are done correctly:
-  - `Select Components`: check the **Add a Git Bash Profile to Windows Terminal** box. 
-  - `Choose the default editor used by Git`: scroll up on the dropdown list 
-  and choose **User the Nano editor by default**.  
-  - `Adjusting the name of the initial branch in new repositories`: ensure that 
-  **Let Git decide** is selected. 
-  - `Adjusting your PATH environment`: ensure that 
-  **Git from the command line and also from 3rd-party software** is selected. 
-  - `Choosing the SSH executable`: select **Use bundled OpenSSH**.
-  - `Choosing HTTPS transport backend`: ensure that 
-  **Use the native Windows Secure Channel Library** is selected.
-  - `Configuring the line ending conversion`: ensure that **Checkout Windows-style, commit Unix-style line endings** is selected.
-  - `Configuring the terminal emulator to use with Git Bash`: ensure that **Use Windows' default console window** is selected.
-  - `Choose the default behavior of 'git pull'`: ensure that **Fast-forward or merge** is selected.
-  - `Choose a credential helper`: ensure that "Git Credential Manager" is selected.
-  - `Configuring extra options`: check both boxes on **Enable file system caching** and 
-  **Enable symbolic links**. 
-  - Do not check any `Configurating experimental options` boxes. 
-  - Click on "Install".
-  = Click on "Finish".
-
-To launch Git Bash, you can launch the Git Bash app directly via Windows Main Menu
+You can launch the "Git Bash" app from the Windows Main Menu:
 
 ![Git Bash](../fig/intro_linux/intro/gitbash.png)
 
-
-You can also launch Git Bash via Windows Terminal. Windows Terminal is a powerful 
-terminal program intended to replace the older `Command Prompt` and `Power Shell`
-launchers. The terminal is available by default with Windows 11. For earlier version, 
-it can be downloaded and installed via `Windows App Store`. More detailed instructions 
+You can also launch Git Bash via Windows Terminal. Windows Terminal is a powerful
+terminal program intended to replace the older Command Prompt and PowerShell
+launchers. The terminal is available by default with Windows 11. For earlier versions,
+it can be downloaded and installed via the Windows App Store. More detailed instructions
 can be found at https://learn.microsoft.com/en-us/windows/terminal/install.
 
 ![Windows Terminal](../fig/intro_linux/intro/windows_terminal.png)
 
 ::::
-::::{tab-item} MacOS
+::::{tab-item} macOS
 
-For Mac users, you can find your Linux-based terminal app by click the search icon (magnifying 
-glass icon in the top right corner of your screen) to open the search box and start typing 
-`terminal` into the box. The Terminal app will show up, and you can launch the app directly. 
+For macOS users, the "Terminal" app provides a Unix shell, and is built-in to the operating system, so you don't need to install anything.
+
+Open Spotlight, the macOS search tool, by clicking the magnifying glass icon in the top right corner of your screen. Start typing
+"terminal" into the search box. The Terminal app will appear, and you can click on it or press `Enter` to launch it.
 
 ![Mac Terminal](../fig/intro_linux/intro/mac_terminal.png)
 
 ::::
 :::::
+
+```
+
+

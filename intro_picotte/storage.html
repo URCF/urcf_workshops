@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Storage on Picotte &#8212; University Research Computing Facility Workshops</title>
+    <title>Data storage and transfer &#8212; University Research Computing Facility Workshops</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/storage';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running an interactive job on Picotte" href="interactive.html" />
-    <link rel="prev" title="The structure of the Picotte Cluster" href="picotte_structure.html" />
+    <link rel="next" title="Running a batch job" href="batch.html" />
+    <link rel="prev" title="Running compute jobs" href="interactive.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,13 +170,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../intro_linux/conclusion.html">Workshop Conclusion</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to Research Computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing the Picotte Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="picotte_structure.html">The structure of the Picotte Cluster</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Storage on Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactive.html">Running an interactive job on Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="file-transfer.html">Transferring files to and from Picotte</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to research computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Picotte?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing Picotte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive.html">Running compute jobs</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data storage and transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch.html">Running a batch job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jupyter-hub.html">Jupyter Hub service to the Picotte Cluster</a></li>
 </ul>
@@ -350,7 +348,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Storage on Picotte</h1>
+    <h1>Data storage and transfer</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -360,11 +358,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#home-storage">Home Storage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-storage">Scratch Storage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-scratch">Local Scratch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-storage">Group Storage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-guidelines">Performance Guidelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-on-picotte">Storage on Picotte</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-space">Scratch space</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transferring-data-to-and-from-picotte">Transferring data to and from Picotte</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cyberduck">CyberDuck</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-scp">Command line (scp)</a></li>
 </ul>
             </nav>
         </div>
@@ -376,139 +378,140 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="storage-on-picotte">
-<h1>Storage on Picotte<a class="headerlink" href="#storage-on-picotte" title="Permalink to this heading">#</a></h1>
-<p>Picotte storage hardware includes</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="data-storage-and-transfer">
+<h1>Data storage and transfer<a class="headerlink" href="#data-storage-and-transfer" title="Permalink to this heading">#</a></h1>
+<p>To run an actually useful compute job, you’ll need to get your data in and out
+of Picotte.</p>
+<p>This section covers how and where to do that.</p>
+<section id="storage-on-picotte">
+<h2>Storage on Picotte<a class="headerlink" href="#storage-on-picotte" title="Permalink to this heading">#</a></h2>
+<p>Picotte has two main storage locations, your home directory, or your research
+group’s shared directory.</p>
+<div class="admonition-home-directory admonition">
+<p class="admonition-title">Home directory</p>
+<p>Your home directory is similar to your home directory on your personal computer: a place for
+you to keep your personal data, scripts, etc.</p>
+<p>Everyone with a Picotte account has a home directory, located at
+<code class="docutils literal notranslate"><span class="pre">/home/{username}</span></code>. So if your username is <code class="docutils literal notranslate"><span class="pre">bn23</span></code>, your home directory is
+<code class="docutils literal notranslate"><span class="pre">/home/bn23</span></code> (You can also use the shortcut <code class="docutils literal notranslate"><span class="pre">~</span></code> to refer to your home
+directory).</p>
+<p>Your home directory is where you are when you log in.</p>
+</div>
+<div class="admonition-research-group-directory admonition">
+<p class="admonition-title">Research group directory</p>
+<p>Very similar to your home directory, except that it’s shared between all members
+of your research group. Research group directories are located in <code class="docutils literal notranslate"><span class="pre">/ifs/groups</span></code>.
+For example, if you’re part of Dr. Einstein’s research group, your group
+directory would be <code class="docutils literal notranslate"><span class="pre">/ifs/groups/einsteinGrp</span></code>.</p>
+<p>Each group gets 500GiB of storage for free, and can pay for more storage beyond
+this limit<a class="footnote-reference brackets" href="#payment" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<p>If you need to store more than 64GiB of data, or have data that other members of
+your group need to access, keep it in your research group directory.</p>
+</div>
+<p>The most important thing to know about both storage locations is that they
+<strong>shared between all Picotte nodes</strong>. This means if you create files in your
+home or group directory on the login node, they’ll be available on all compute
+nodes also, and vice-versa.</p>
+<p>The way this works is that data is actually stored in a separate
+computer<a class="footnote-reference brackets" href="#isilon" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, and accessed by the login and compute over the network when
+you read or write data. This is called <em>network-attached storage</em>.</p>
+<figure class="align-default" id="picotte-storage">
+<img alt="Diagram of Picotte with shared storage shown" src="../_images/storage.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Shared storage on Picotte: nodes read and write data over the network</span><a class="headerlink" href="#picotte-storage" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This is very useful: you can write code and scripts on the login node, and run
+them on the compute nodes without having to copy your code to the compute nodes.
+When your jobs running on the compute nodes produce results, you can easily
+examine them on the login node.</p>
+<section id="scratch-space">
+<h3>Scratch space<a class="headerlink" href="#scratch-space" title="Permalink to this heading">#</a></h3>
+<p>Picotte also has <strong>scratch space</strong> for storing temporary files as part of a
+job’s execution. This is a more advanced topic than we’ll cover in this
+workshop, but you can read more in <a class="reference external" href="https://docs.urcf.drexel.edu/clusters/picotte/scratch/">our
+documentation</a>.</p>
+</section>
+</section>
+<section id="transferring-data-to-and-from-picotte">
+<h2>Transferring data to and from Picotte<a class="headerlink" href="#transferring-data-to-and-from-picotte" title="Permalink to this heading">#</a></h2>
+<section id="cyberduck">
+<h3>CyberDuck<a class="headerlink" href="#cyberduck" title="Permalink to this heading">#</a></h3>
+<p>There are many ways to transfer files between your local computer and Picotte. One piece of
+software that works for both Mac and Windows machines is called CyberDuck. You can download
+it <a class="reference external" href="https://cyberduck.io/download/">here</a>.</p>
+<p>After installation, click on “Open Connection”. A new window will pop up:</p>
+<figure class="align-default" id="id3">
+<img alt="../_images/cyberduck_1.png" src="../_images/cyberduck_1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Cyberduck connection settings to Picotte</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>To configure the connection for Picotte:</p>
 <ul class="simple">
-<li><p>Parallel Scratch Storage</p>
-<ul>
-<li><p>Dell EMC/BeeGFS Solution for HPC</p></li>
-<li><p>175 TB usable capacity aggregate 44 GB/s read, aggregate 41 GB/s write</p></li>
+<li><p>In the drop-down menu on top, select “SFTP” instead of the default “FTP”;</p></li>
+<li><p>In the “Server” input, specify <code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code>;</p></li>
+<li><p>Make sure that “Port” is set to 22;</p></li>
+<li><p>Specify your Picotte username and password.</p></li>
+<li><p>Make sure “Save Password” or “Add to keychain” is checked.</p></li>
 </ul>
-</li>
-<li><p>Persistent Storage</p>
-<ul>
-<li><p>Dell EMC PowerScale Isilon scale-out storage	(Potentially PHI Compliant, talk to us for more details)</p></li>
-<li><p>649 TB usable capacity</p></li>
-<li><p>10 Gbps Ethernet</p></li>
-</ul>
-</li>
-<li><p>Node-local scratch storage</p>
-<ul>
-<li><p>854 GB 12 Gbps SAS SSD (per node)</p></li>
-</ul>
-</li>
-<li><p>Network Fabric</p>
-<ul>
-<li><p>4X HDR Mellanox InfiniBand connected at 100 Gbps</p></li>
-<li><p>10 Gbps Ethernet</p></li>
-</ul>
-</li>
-</ul>
-<p>Picotte provides three data spaces: home, scratch, and paid storage.</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>NAME</p></th>
-<th class="head"><p>SIZE</p></th>
-<th class="head"><p>DISK TYPE</p></th>
-<th class="head"><p>FILE SYSTEM</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/home/{username}</span></code></p></td>
-<td><p>64GB per user</p></td>
-<td><p>HDD</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">isilon</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/beegfs/scratch</span></code></p></td>
-<td><p>127TB (shared)</p></td>
-<td><p>HDD</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">beegfs</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/local_scratch</span></code></p></td>
-<td><p>838GB</p></td>
-<td><p>HDD</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ext4</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/ifs/groups/{Grp}</span></code></p></td>
-<td><p>Varies by owner</p></td>
-<td><p>HDD</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">isilon</span></code></p></td>
-</tr>
-</tbody>
-</table>
-<section id="home-storage">
-<h2>Home Storage<a class="headerlink" href="#home-storage" title="Permalink to this heading">#</a></h2>
-<p>Every Picotte user gets 64GB of storage space; This storage is called <em>home directory</em>.</p>
-<p>To see how much space you are using in your home directory, please type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
-du<span class="w"> </span>-h<span class="w"> </span>-d<span class="w"> </span>-1
-</pre></div>
-</div>
-<p>Since most of you are new users of Picotte, you should be using very little storage
-at the moment.</p>
-<p>When you log into Picotte, you end up in your home directory. To see which directory you are
-in, type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
-</pre></div>
-</div>
-<p>…which stands for “print working directory”. It should give you something like</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/&lt;</span><span class="n">your</span> <span class="n">Picotte</span> <span class="n">username</span><span class="o">&gt;</span>
-</pre></div>
-</div>
+<p>Then, click on “Connect”. If it complains about an “unknown fingerprint”, click “Allow”:</p>
+<figure class="align-default" id="id4">
+<img alt="../_images/cyberduck_2.png" src="../_images/cyberduck_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Cyberduck connection settings to Picotte</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>At this point, another new window will pop up, which contains the contents of
+your Picotte home directory (if this is your first time using Picotte, it will
+be empty). You can go to any other directory on Picotte by changing the path
+(e.g. your research group directory). You can upload files by clicking the
+“Upload” button, and download files by right-clicking them and selecting
+“Download” (these might be under the “Actions” menu). You can also drag-and-drop
+files to and from Picotte using this window.</p>
+<figure class="align-default" id="id5">
+<img alt="../_images/cyberduck_2fa.png" src="../_images/cyberduck_2fa.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Home directory contents</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
-<section id="scratch-storage">
-<h2>Scratch Storage<a class="headerlink" href="#scratch-storage" title="Permalink to this heading">#</a></h2>
-<p>64 Gb might be enough for some, but for people dealing with extensive amounts of data that would not be enough.
-We also offer the access to <em>scratch space</em>, which is about 127TB in total. Scratch space is not backed up; files
-that haven’t been used for more than a month are automatically deleted (and cannot be restored). We strongly
-encourage people to use scratch space, but please be aware of its temporary nature. When you get anything that is
-worth keeping, please back it up.</p>
-<p>To set up your scratch directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>/beegfs/scratch/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
-<span class="nb">cd</span><span class="w"> </span>/beegfs/scratch/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
-<span class="nb">pwd</span>
+</section>
+<section id="command-line-scp">
+<h2>Command line (scp)<a class="headerlink" href="#command-line-scp" title="Permalink to this heading">#</a></h2>
+<p>Another option for advanced Mac and Linux users is the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command. Open a new
+terminal, but <strong>don’t connect to Picotte</strong>. The <code class="docutils literal notranslate"><span class="pre">scp</span></code> command works like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>&lt;path_to_source&gt;<span class="w"> </span>username@picottelogin.urcf.drexel.edu:&lt;path_to_destination&gt;
 </pre></div>
 </div>
-<p>To go to your home directory, you can do</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/home/&lt;your<span class="w"> </span>Picotte<span class="w"> </span>username&gt;
+<p>For example, here is the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command to copy a file from the current directory on my local machine
+to my home directory on Picotte (<code class="docutils literal notranslate"><span class="pre">lbn28</span></code> is my Picotte username):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>myfile.txt<span class="w"> </span>username@picottelogin.urcf.drexel.edu:/home/lbn28/
 </pre></div>
 </div>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>There is also a shortcut; to go to your home directory, you can simply type</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span>
+<p>… and to do the same in reverse, i.e., copy from Picotte to my local machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/myfile.txt<span class="w"> </span>.
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.</span></code> represents the working directory on the local machine.</p>
+<p>To copy entire folders, include the <code class="docutils literal notranslate"><span class="pre">-r</span></code> switch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>-r<span class="w"> </span>myfolder<span class="w"> </span>lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/
+</pre></div>
 </div>
-</section>
-<section id="local-scratch">
-<h2>Local Scratch<a class="headerlink" href="#local-scratch" title="Permalink to this heading">#</a></h2>
-<p>Every Picotte compute node has storage on the node itself and is referred to as local scratch.
-This scratch space can only be accessed by a job running on the node.</p>
-<p>To access this space in your Slurm script, use the <code class="docutils literal notranslate"><span class="pre">$TMP</span></code> environment variable or the location <code class="docutils literal notranslate"><span class="pre">/local/scratch/$SLURM_JOBID</span></code>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Files in local scratch will be purged automatically when your job terminates. Copy files elsewhere before your job ends.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Please don’t use <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> for temporary storage! Use <code class="docutils literal notranslate"><span class="pre">/beegfs/scratch</span></code> or <code class="docutils literal notranslate"><span class="pre">$TMP</span></code>.</p>
-</div>
-</section>
-<section id="group-storage">
-<h2>Group Storage<a class="headerlink" href="#group-storage" title="Permalink to this heading">#</a></h2>
-<p>Group storage space on Picotte is available at a charge for faculty members. Please contact us
-for further information.</p>
-</section>
-<section id="performance-guidelines">
-<h2>Performance Guidelines<a class="headerlink" href="#performance-guidelines" title="Permalink to this heading">#</a></h2>
-<p>Generally speaking, <code class="docutils literal notranslate"><span class="pre">$TMP</span></code> will always be the fastest file system to use because there is no network involved.
-However, this space cannot be shared between a group of nodes participating in a job, and the data must be
-moved to permanent storage before the job completes.</p>
-<p>`beegfs/scratch`` is a parallel file system that runs atop spinning disk drives and is best suited for workflows
-issuing sequential, large read or write requests. The Picotte support team encourages you to test your workflows
-against all three file systems to see which one works best for you.</p>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="payment" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>See <a class="reference external" href="https://docs.urcf.drexel.edu/clusters/picotte/usage-rates/#costs">our
+documentation</a>
+for more on Picotte storage costs.</p>
+</aside>
+<aside class="footnote brackets" id="isilon" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>In actuality, the network attached storage service is provided not
+just by a single computer, but a 12-node cluster dedicated to this task. We
+use a system from Dell called <em>Isilon</em>, so you might also hear or read the
+word “Isilon” used to refer to the shared storage on Picotte.</p>
+</aside>
 </section>
 </section>
 
@@ -541,20 +544,20 @@ against all three file systems to see which one works best for you.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="picotte_structure.html"
+       href="interactive.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">The structure of the Picotte Cluster</p>
+        <p class="prev-next-title">Running compute jobs</p>
       </div>
     </a>
     <a class="right-next"
-       href="interactive.html"
+       href="batch.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Running an interactive job on Picotte</p>
+        <p class="prev-next-title">Running a batch job</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -573,11 +576,15 @@ against all three file systems to see which one works best for you.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#home-storage">Home Storage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-storage">Scratch Storage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-scratch">Local Scratch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-storage">Group Storage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-guidelines">Performance Guidelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-on-picotte">Storage on Picotte</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-space">Scratch space</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transferring-data-to-and-from-picotte">Transferring data to and from Picotte</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cyberduck">CyberDuck</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-scp">Command line (scp)</a></li>
 </ul>
   </nav></div>
 

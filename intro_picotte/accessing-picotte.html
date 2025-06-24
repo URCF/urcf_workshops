@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Accessing the Picotte Cluster &#8212; University Research Computing Facility Workshops</title>
+    <title>Accessing Picotte &#8212; University Research Computing Facility Workshops</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/accessing-picotte';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The structure of the Picotte Cluster" href="picotte_structure.html" />
-    <link rel="prev" title="Introduction" href="introduction.html" />
+    <link rel="next" title="Running compute jobs" href="interactive.html" />
+    <link rel="prev" title="What is Picotte?" href="introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,13 +170,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../intro_linux/conclusion.html">Workshop Conclusion</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to Research Computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Accessing the Picotte Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="picotte_structure.html">The structure of the Picotte Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="storage.html">Storage on Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactive.html">Running an interactive job on Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="file-transfer.html">Transferring files to and from Picotte</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to research computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Picotte?</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Accessing Picotte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive.html">Running compute jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html">Data storage and transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch.html">Running a batch job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jupyter-hub.html">Jupyter Hub service to the Picotte Cluster</a></li>
 </ul>
@@ -350,7 +348,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Accessing the Picotte Cluster</h1>
+    <h1>Accessing Picotte</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -360,7 +358,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-login-ssh">Remote login (SSH)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-login-with-ssh">Remote login with SSH</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-ssh-work">How does SSH work?</a></li>
 </ul>
             </nav>
         </div>
@@ -372,33 +371,38 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="accessing-the-picotte-cluster">
-<h1>Accessing the Picotte Cluster<a class="headerlink" href="#accessing-the-picotte-cluster" title="Permalink to this heading">#</a></h1>
-<section id="remote-login-ssh">
-<h2>Remote login (SSH)<a class="headerlink" href="#remote-login-ssh" title="Permalink to this heading">#</a></h2>
-<p>To be able to run commands on Picotte from your own machine, you will first
-need to log in. We will login via <strong>SSH</strong> which will provide us a shell on
-Picotte’s login nodes.</p>
-<ul class="simple">
-<li><p>For Mac OS X, you can open the Terminal Application.</p></li>
-<li><p>For Windows, you can launch either the Git Bash app or its integration
-through Windows Terminal.</p></li>
-<li><p>Type the following into your terminal.</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">YOUR_PICOTTE_USERNAME</span></code> is your Drexel username (without the <code class="docutils literal notranslate"><span class="pre">&#64;drexel.edu</span></code>)</p></li>
-</ul>
-</li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="accessing-picotte">
+<h1>Accessing Picotte<a class="headerlink" href="#accessing-picotte" title="Permalink to this heading">#</a></h1>
+<section id="remote-login-with-ssh">
+<h2>Remote login with SSH<a class="headerlink" href="#remote-login-with-ssh" title="Permalink to this heading">#</a></h2>
+<p>To access Picotte, we use a program called
+<a class="reference external" href="https://en.wikipedia.org/wiki/Secure_Shell">SSH</a><a class="footnote-reference brackets" href="#ssh" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, which lets you connect
+your terminal to another computer (called the “remote”) over the network. Once
+connected, commands you type will be sent to the remote machine, run there, and
+the output will be sent back to your terminal. This gives you the feeling of
+having your screen and keyboard directly connected to the remote machine. SSH is
+a powerful, flexible tool that’s very widely used in technical computing, and
+worth learning well.</p>
+<p>To start, open your shell app (Terminal on macOS, Git Bash or WSL on Windows)
+and type the following command, replacing <code class="docutils literal notranslate"><span class="pre">YOUR_PICOTTE_USERNAME</span></code> with your
+actual Picotte username. This is usually the same as your Drexel
+username (your email address without the <code class="docutils literal notranslate"><span class="pre">&#64;drexel.edu</span></code><a class="footnote-reference brackets" href="#username" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>YOUR_PICOTTE_USERNAME@picottelogin.urcf.drexel.edu
 </pre></div>
 </div>
-<p>When logged in, you are presented with a welcome message and the following “prompt”,
-with <code class="docutils literal notranslate"><span class="pre">username</span></code> is replaced by your actual Picotte username:</p>
+<p>You’ll be prompted to enter your password. <strong>This is your Picotte password, not
+your main Drexel password!</strong> Your Picotte account is seperate from your main
+Drexel account, and the passwords are independent from each other, they just use
+the same username for convenience.</p>
+<p>Once logged in, you are presented with a welcome message and the following prompt,
+with <code class="docutils literal notranslate"><span class="pre">username</span></code> replaced by your actual Picotte username:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>username@picotte001<span class="w"> </span>~<span class="o">]</span>$
 </pre></div>
 </div>
-<p>Let’s enter our first command!
-Type the command <code class="docutils literal notranslate"><span class="pre">whoami</span></code>, then press the Enter key (sometimes marked Return) to send the command to the shell. The command’s output is the ID of the current user.</p>
+<p><code class="docutils literal notranslate"><span class="pre">picotte001</span></code> is another name for <code class="docutils literal notranslate"><span class="pre">picottelogin</span></code>—this is telling us that we’re
+connected to Picotte.</p>
+<p>Let’s enter our first command! Type the command <code class="docutils literal notranslate"><span class="pre">whoami</span></code>, then press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to
+send the command to Picotte. The command’s output is your username.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>whoami
 </pre></div>
 </div>
@@ -414,6 +418,48 @@ MacOS</label><div class="sd-tab-content docutils">
 <p><img alt="Mac Terminal" src="../_images/mac_login.png" /></p>
 </div>
 </div>
+</section>
+<section id="how-does-ssh-work">
+<h2>How does SSH work?<a class="headerlink" href="#how-does-ssh-work" title="Permalink to this heading">#</a></h2>
+<p>What’s actually happening when we run the SSH command? Let’s imagine your username is <code class="docutils literal notranslate"><span class="pre">bn23</span></code> When you say:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">bn23</span><span class="nd">@picottelogin</span><span class="o">.</span><span class="n">urcf</span><span class="o">.</span><span class="n">drexel</span><span class="o">.</span><span class="n">edu</span>
+</pre></div>
+</div>
+<p>We’re telling SSH “I want to connect to the computer called
+<code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code>, logging in as the username <code class="docutils literal notranslate"><span class="pre">bn23</span></code>”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code> is called the <strong>hostname</strong> or <strong>address</strong> of the
+remote machine. It’s just a name that lets you refer to another computer on a
+network. This is just like typing <code class="docutils literal notranslate"><span class="pre">google.com</span></code> into your web browser:
+<code class="docutils literal notranslate"><span class="pre">google.com</span></code> is just a name you use to refer to Google’s servers;
+<code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code> is a name you use to refer to Picotte.</p>
+<p>After you’re connected, when you type a command like <code class="docutils literal notranslate"><span class="pre">whoami</span></code> and press enter,
+rather than running <code class="docutils literal notranslate"><span class="pre">whoami</span></code> on your local computer, SSH sends a message to the
+remote machine, asking it:</p>
+<blockquote>
+<div><p>Can you please run the command <code class="docutils literal notranslate"><span class="pre">whoami</span></code> and send me the output?</p>
+</div></blockquote>
+<p>The remote machine (<code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code>) does so, and responds:</p>
+<blockquote>
+<div><p>OK, the output is: <code class="docutils literal notranslate"><span class="pre">bn23</span></code>.</p>
+</div></blockquote>
+<p>SSH then takes that output and prints it for you. In this way, it feels like
+you’re directly connect to the remote machine because SSH is shuffling the
+commands you want to run and their output over the network for you.</p>
+<figure class="align-center" id="id3">
+<img alt="SSH diagram showing command and output flow" src="../_images/ssh.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">SSH sends commands to a remote server and receives output back</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="ssh" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>“SSH” is short for “<strong>S</strong>ecure <strong>SH</strong>ell”</p>
+</aside>
+<aside class="footnote brackets" id="username" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>So if my Drexel email is <code class="docutils literal notranslate"><span class="pre">bn23&#64;drexel.edu</span></code>, my Picotte username is <code class="docutils literal notranslate"><span class="pre">bn23</span></code>.</p>
+</aside>
 </section>
 </section>
 
@@ -451,15 +497,15 @@ MacOS</label><div class="sd-tab-content docutils">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title">What is Picotte?</p>
       </div>
     </a>
     <a class="right-next"
-       href="picotte_structure.html"
+       href="interactive.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The structure of the Picotte Cluster</p>
+        <p class="prev-next-title">Running compute jobs</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -478,7 +524,8 @@ MacOS</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-login-ssh">Remote login (SSH)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-login-with-ssh">Remote login with SSH</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-ssh-work">How does SSH work?</a></li>
 </ul>
   </nav></div>
 

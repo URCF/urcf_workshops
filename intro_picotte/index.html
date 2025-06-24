@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to Research Computing on Picotte &#8212; University Research Computing Facility Workshops</title>
+    <title>Introduction to research computing on Picotte &#8212; University Research Computing Facility Workshops</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/index';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Introduction" href="introduction.html" />
+    <link rel="next" title="What is Picotte?" href="introduction.html" />
     <link rel="prev" title="Workshop Conclusion" href="../intro_linux/conclusion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -170,13 +170,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../intro_linux/conclusion.html">Workshop Conclusion</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction to Research Computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing the Picotte Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="picotte_structure.html">The structure of the Picotte Cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="storage.html">Storage on Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactive.html">Running an interactive job on Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="file-transfer.html">Transferring files to and from Picotte</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction to research computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Picotte?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing Picotte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactive.html">Running compute jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html">Data storage and transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch.html">Running a batch job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jupyter-hub.html">Jupyter Hub service to the Picotte Cluster</a></li>
 </ul>
@@ -350,7 +348,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to Research Computing on Picotte</h1>
+    <h1>Introduction to research computing on Picotte</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -360,8 +358,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop-description">Workshop Description</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
 </ul>
             </nav>
         </div>
@@ -374,66 +371,44 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-research-computing-on-picotte">
-<h1>Introduction to Research Computing on Picotte<a class="headerlink" href="#introduction-to-research-computing-on-picotte" title="Permalink to this heading">#</a></h1>
-<ul class="simple">
-<li><p><strong>Instructor</strong>: Linh B. Ngo</p></li>
-<li><p><strong>Email</strong>: lbn28 AT drexel DOT edu</p></li>
-</ul>
-<section id="workshop-description">
-<h2>Workshop Description<a class="headerlink" href="#workshop-description" title="Permalink to this heading">#</a></h2>
-<p>In this workshop, participants are introduced to the Picotte Cluster, Drexel University’s
-high-performance computing resource. We will go over Picotte’s structure, its basic usage, and
-how to submit computational tasks to the cluster.</p>
-</section>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
-<p>Participants should check and complete the following steps prior to the workshop.</p>
+<h1>Introduction to research computing on Picotte<a class="headerlink" href="#introduction-to-research-computing-on-picotte" title="Permalink to this heading">#</a></h1>
+<p>This workshops teaches you how to use
+<a class="reference external" href="https://docs.urcf.drexel.edu/clusters/picotte/">Picotte</a>, Drexel’s
+high-performance computing cluster.</p>
+<p>You’ll learn how Picotte is organized, how to connect and access Picotte, and
+how to submit jobs to the scheduler.</p>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading">#</a></h2>
+<div class="admonition-understand-shell-basics admonition">
+<p class="admonition-title">Understand shell basics</p>
+<p>This workshops assumes you know the basics of how to use a Unix shell. If you don’t you can learn these in our <a class="reference external" href="https://urcf.github.io/urcf_workshops/intro_linux/index.html">Introduction to the Unix shell</a> workshop.</p>
+</div>
+<div class="admonition-get-a-unix-shell admonition">
+<p class="admonition-title">Get a Unix shell</p>
+<p>You’ll also need a Unix shell installed on your computer in order to login and use Picotte. Follow the instructions for your operating system below.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-0">
 Windows</label><div class="sd-tab-content docutils">
 <p>Prior to workshop, Windows users should download and install
-<a class="reference external" href="https://gitforwindows.org/">Git for Windows</a>. If you already have this installed, it is perhaps
-time for an update, as the latest Git for Windows software will have Git Bash integrated
-with Windows Terminal.</p>
-<p>After running the installer, make sure the following steps are done correctly:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Components</span></code>: check the <strong>Add a Git Bash Profile to Windows Terminal</strong> box.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choose</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">editor</span> <span class="pre">used</span> <span class="pre">by</span> <span class="pre">Git</span></code>: scroll up on the dropdown list
-and choose <strong>User the Nano editor by default</strong>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Adjusting</span> <span class="pre">the</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">initial</span> <span class="pre">branch</span> <span class="pre">in</span> <span class="pre">new</span> <span class="pre">repositories</span></code>: ensure that
-<strong>Let Git decide</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Adjusting</span> <span class="pre">your</span> <span class="pre">PATH</span> <span class="pre">environment</span></code>: ensure that
-<strong>Git from the command line and also from 3rd-party software</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choosing</span> <span class="pre">the</span> <span class="pre">SSH</span> <span class="pre">executable</span></code>: select <strong>Use bundled OpenSSH</strong>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choosing</span> <span class="pre">HTTPS</span> <span class="pre">transport</span> <span class="pre">backend</span></code>: ensure that
-<strong>Use the native Windows Secure Channel Library</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Configuring</span> <span class="pre">the</span> <span class="pre">line</span> <span class="pre">ending</span> <span class="pre">conversion</span></code>: ensure that <strong>Checkout Windows-style, commit Unix-style line endings</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Configuring</span> <span class="pre">the</span> <span class="pre">terminal</span> <span class="pre">emulator</span> <span class="pre">to</span> <span class="pre">use</span> <span class="pre">with</span> <span class="pre">Git</span> <span class="pre">Bash</span></code>: ensure that <strong>Use Windows’ default console window</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choose</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">behavior</span> <span class="pre">of</span> <span class="pre">'git</span> <span class="pre">pull'</span></code>: ensure that <strong>Fast-forward or merge</strong> is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Choose</span> <span class="pre">a</span> <span class="pre">credential</span> <span class="pre">helper</span></code>: ensure that “Git Credential Manager” is selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Configuring</span> <span class="pre">extra</span> <span class="pre">options</span></code>: check both boxes on <strong>Enable file system caching</strong> and
-<strong>Enable symbolic links</strong>.</p></li>
-<li><p>Do not check any <code class="docutils literal notranslate"><span class="pre">Configurating</span> <span class="pre">experimental</span> <span class="pre">options</span></code> boxes.</p></li>
-<li><p>Click on “Install”.
-= Click on “Finish”.</p></li>
-</ul>
-<p>To launch Git Bash, you can launch the Git Bash app directly via Windows Main Menu</p>
+<a class="reference external" href="https://gitforwindows.org/">Git for Windows</a>. Git for Windows comes with an app called “Git Bash”, which is a Unix shell. If you already have Git for Windows installed, please update it, as only more recent versions come with Git Bash.</p>
+<p>You can launch the “Git Bash” app from the Windows Main Menu:</p>
 <p><img alt="Git Bash" src="../_images/gitbash.png" /></p>
 <p>You can also launch Git Bash via Windows Terminal. Windows Terminal is a powerful
-terminal program intended to replace the older <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Prompt</span></code> and <code class="docutils literal notranslate"><span class="pre">Power</span> <span class="pre">Shell</span></code>
-launchers. The terminal is available by default with Windows 11. For earlier version,
-it can be downloaded and installed via <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">App</span> <span class="pre">Store</span></code>. More detailed instructions
+terminal program intended to replace the older Command Prompt and PowerShell
+launchers. The terminal is available by default with Windows 11. For earlier versions,
+it can be downloaded and installed via the Windows App Store. More detailed instructions
 can be found at <a class="reference external" href="https://learn.microsoft.com/en-us/windows/terminal/install">https://learn.microsoft.com/en-us/windows/terminal/install</a>.</p>
 <p><img alt="Windows Terminal" src="../_images/windows_terminal.png" /></p>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-1">
-MacOS</label><div class="sd-tab-content docutils">
-<p>For Mac users, you can find your Linux-based terminal app by click the search icon (magnifying
-glass icon in the top right corner of your screen) to open the search box and start typing
-<code class="docutils literal notranslate"><span class="pre">terminal</span></code> into the box. The Terminal app will show up, and you can launch the app directly.</p>
+macOS</label><div class="sd-tab-content docutils">
+<p>For macOS users, the “Terminal” app provides a Unix shell, and is built-in to the operating system, so you don’t need to install anything.</p>
+<p>Open Spotlight, the macOS search tool, by clicking the magnifying glass icon in the top right corner of your screen. Start typing
+“terminal” into the search box. The Terminal app will appear, and you can click on it or press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to launch it.</p>
 <p><img alt="Mac Terminal" src="../_images/mac_terminal.png" /></p>
+</div>
 </div>
 </div>
 </section>
@@ -483,7 +458,7 @@ glass icon in the top right corner of your screen) to open the search box and st
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title">What is Picotte?</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -502,8 +477,7 @@ glass icon in the top right corner of your screen) to open the search box and st
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop-description">Workshop Description</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
 </ul>
   </nav></div>
 
