@@ -1,7 +1,8 @@
 # What is Picotte?
 
-Picotte is a *supercomputing cluster*: a set of powerful computers that are
-connected to each other and accessible via a uniform interface.
+Picotte is a *supercomputing cluster* or *high-performance computing (HPC)
+cluster*: a set of powerful computers that are connected to each other and
+accessible via a uniform interface.
 
 Picotte is built and maintained by the University Research Computing Facility,
 and located in the URCF server room in Curtis hall.

@@ -32,6 +32,9 @@ with `username` replaced by your actual Picotte username:
 [username@picotte001 ~]$
 ~~~
 
+`picotte001` is another name for `picottelogin`—this is telling us that we're
+connected to Picotte.
+
 Let's enter our first command! Type the command `whoami`, then press `Enter` to
 send the command to Picotte. The command's output is your username.
 
