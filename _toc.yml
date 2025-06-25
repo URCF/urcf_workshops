@@ -23,6 +23,7 @@ parts:
       - file: intro_picotte/accessing-picotte.md
       - file: intro_picotte/interactive.md
       - file: intro_picotte/storage.md
+      - file: intro_picotte/environment.md
       - file: intro_picotte/batch.md
       - file: intro_picotte/jupyter-hub.md
 
