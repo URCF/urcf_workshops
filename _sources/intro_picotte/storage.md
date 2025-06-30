@@ -67,7 +67,7 @@ documentation](https://docs.urcf.drexel.edu/clusters/picotte/scratch/).
 
 ## Transferring data to and from Picotte
 
-### CyberDuck
+### CyberDuck {#cyberduck}
 
 There are many ways to transfer files between your local computer and Picotte. One piece of
 software that works for both Mac and Windows machines is called CyberDuck. You can download

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to research computing on Picotte &#8212; University Research Computing Facility Workshops</title>
+    <title>Environment modules &#8212; University Research Computing Facility Workshops</title>
   
   
   
@@ -62,11 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/environment';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="What is Picotte?" href="introduction.html" />
-    <link rel="prev" title="Workshop Conclusion" href="../intro_linux/conclusion.html" />
+    <link rel="next" title="Running a batch job" href="batch.html" />
+    <link rel="prev" title="Data storage and transfer" href="storage.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,12 +170,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../intro_linux/conclusion.html">Workshop Conclusion</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction to research computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to research computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Picotte?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing Picotte</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interactive.html">Running compute jobs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage.html">Data storage and transfer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="environment.html">Environment modules</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Environment modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch.html">Running a batch job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jupyter-hub.html">Jupyter Hub service to the Picotte Cluster</a></li>
 </ul>
@@ -267,7 +267,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/intro_picotte/index.md" target="_blank"
+      <li><a href="../_sources/intro_picotte/environment.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -349,7 +349,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to research computing on Picotte</h1>
+    <h1>Environment modules</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -359,7 +359,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-use-modulefiles">Why do we use modulefiles?</a></li>
 </ul>
             </nav>
         </div>
@@ -371,50 +371,94 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-research-computing-on-picotte">
-<h1>Introduction to research computing on Picotte<a class="headerlink" href="#introduction-to-research-computing-on-picotte" title="Permalink to this heading">#</a></h1>
-<p>This workshops teaches you how to use
-<a class="reference external" href="https://docs.urcf.drexel.edu/clusters/picotte/">Picotte</a>, Drexel’s
-high-performance computing cluster.</p>
-<p>You’ll learn how Picotte is organized, how to connect and access Picotte, and
-how to submit jobs to the scheduler.</p>
-<section id="preparation">
-<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading">#</a></h2>
-<div class="admonition-understand-shell-basics admonition">
-<p class="admonition-title">Understand shell basics</p>
-<p>This workshops assumes you know the basics of how to use a Unix shell. If you don’t you can learn these in our <a class="reference external" href="https://urcf.github.io/urcf_workshops/intro_linux/index.html">Introduction to the Unix shell</a> workshop.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="environment-modules">
+<h1>Environment modules<a class="headerlink" href="#environment-modules" title="Permalink to this heading">#</a></h1>
+<p>We mentioned earlier that Picotte has a lot of research software pre-installed.
+How do you use it? The answer is a system called <strong>environment modules</strong>.</p>
+<p>Imagine we want to use, <a class="reference external" href="https://julialang.org/">Julia</a>, a programming language
+for scientific computing, which is installed on Picotte.</p>
+<p>Normally, on a system where Julia is installed, you just type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span>
+</pre></div>
 </div>
-<div class="admonition-get-a-unix-shell admonition">
-<p class="admonition-title">Get a Unix shell</p>
-<p>You’ll also need a Unix shell installed on your computer in order to login and use Picotte. Follow the instructions for your operating system below.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-0">
-Windows</label><div class="sd-tab-content docutils">
-<p>Prior to workshop, Windows users should download and install
-<a class="reference external" href="https://gitforwindows.org/">Git for Windows</a>. Git for Windows comes with an app called “Git Bash”, which is a Unix shell. If you already have Git for Windows installed, please update it, as only more recent versions come with Git Bash.</p>
-<p>You can launch the “Git Bash” app from the Windows Main Menu:</p>
-<p><img alt="Git Bash" src="../_images/gitbash.png" /></p>
-<p>You can also launch Git Bash via Windows Terminal. Windows Terminal is a powerful
-terminal program intended to replace the older Command Prompt and PowerShell
-launchers. The terminal is available by default with Windows 11. For earlier versions,
-it can be downloaded and installed via the Windows App Store. More detailed instructions
-can be found at <a class="reference external" href="https://learn.microsoft.com/en-us/windows/terminal/install">https://learn.microsoft.com/en-us/windows/terminal/install</a>.</p>
-<p><img alt="Windows Terminal" src="../_images/windows_terminal.png" /></p>
+<p>at the prompt to start it. However, if we try that on Picotte we get:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ julia
+-bash: julia: command not found
+</pre></div>
 </div>
-<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-1">
-macOS</label><div class="sd-tab-content docutils">
-<p>For macOS users, the “Terminal” app provides a Unix shell, and is built-in to the operating system, so you don’t need to install anything.</p>
-<p>Open Spotlight, the macOS search tool, by clicking the magnifying glass icon in the top right corner of your screen. Start typing
-“terminal” into the search box. The Terminal app will appear, and you can click on it or press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to launch it.</p>
-<p><img alt="Mac Terminal" src="../_images/mac_terminal.png" /></p>
+<p>This is because Julia, like most software on Picotte, is not installed globally
+and available by default, but has to first be loaded using an environment
+module. To work with environment modules, use the <code class="docutils literal notranslate"><span class="pre">module</span></code> command.</p>
+<p>To see all the modules available for loading, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
+</pre></div>
 </div>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">SPACE</span></code> key to scroll through this output. As you can see,
+there’s a lot of software installed on Picotte. This is a little overwhelming,
+so to narrow our search, we can run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span> <span class="n">julia</span>
+</pre></div>
 </div>
+<p>This gives us more manageable output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------</span> <span class="o">/</span><span class="n">ifs</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">modulefiles</span> <span class="o">---------------------------------------------</span>
+   <span class="n">julia</span><span class="o">/</span><span class="mf">1.5.2</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.6.0</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.6.7</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.7.3</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.8.3</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.8.5</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.10.0</span> <span class="p">(</span><span class="n">D</span><span class="p">)</span>
+   <span class="n">julia</span><span class="o">/</span><span class="mf">1.5.3</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.6.5</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.7.1</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.8.2</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.8.4</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.9.1</span>
+
+  <span class="n">Where</span><span class="p">:</span>
+   <span class="n">D</span><span class="p">:</span>  <span class="n">Default</span> <span class="n">Module</span>
+
+<span class="n">Module</span> <span class="n">defaults</span> <span class="n">are</span> <span class="n">chosen</span> <span class="n">based</span> <span class="n">on</span> <span class="n">Find</span> <span class="n">First</span> <span class="n">Rules</span> <span class="n">due</span> <span class="n">to</span> <span class="n">Name</span><span class="o">/</span><span class="n">Version</span><span class="o">/</span><span class="n">Version</span> <span class="n">modules</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">module</span> <span class="n">tree</span><span class="o">.</span>
+<span class="n">See</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">lmod</span><span class="o">.</span><span class="n">readthedocs</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">en</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="mi">060</span><span class="n">_locating</span><span class="o">.</span><span class="n">html</span> <span class="k">for</span> <span class="n">details</span><span class="o">.</span>
+
+<span class="n">Use</span> <span class="s2">&quot;module spider&quot;</span> <span class="n">to</span> <span class="n">find</span> <span class="nb">all</span> <span class="n">possible</span> <span class="n">modules</span> <span class="ow">and</span> <span class="n">extensions</span><span class="o">.</span>
+<span class="n">Use</span> <span class="s2">&quot;module keyword key1 key2 ...&quot;</span> <span class="n">to</span> <span class="n">search</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">possible</span> <span class="n">modules</span> <span class="n">matching</span> <span class="nb">any</span> <span class="n">of</span> <span class="n">the</span> <span class="s2">&quot;keys&quot;</span><span class="o">.</span>
+</pre></div>
 </div>
+<p>To load a module, we specify it’s full name, including the version number. Let’s
+say we want to use Julia version 1.10.0. The command for this is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">julia</span><span class="o">/</span><span class="mf">1.10.0</span>
+</pre></div>
+</div>
+<p>This command gives no output, but Julia has now been “loaded” into our shell
+environment and is ready for use. Now if we try the <code class="docutils literal notranslate"><span class="pre">julia</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ julia
+               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type &quot;?&quot; for help, &quot;]?&quot; for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.10.0 (2023-12-25)
+ _/ |\__&#39;_|_|_|\__&#39;_|  |  Official https://julialang.org/ release
+|__/                   |
+
+julia&gt;
+</pre></div>
+</div>
+<p>We get the result we expect, being dropped into an interactive shell.</p>
+<p>We can return to the shell by typing <code class="docutils literal notranslate"><span class="pre">exit()</span></code> and pressing <code class="docutils literal notranslate"><span class="pre">Enter</span></code>:</p>
+<section id="why-do-we-use-modulefiles">
+<h2>Why do we use modulefiles?<a class="headerlink" href="#why-do-we-use-modulefiles" title="Permalink to this heading">#</a></h2>
+<p>Why is it like this? Why not just have all software installed on Picotte
+immediately available?</p>
+<p>There’s a hint above, in the form of the version numbers. Imagine you’re working
+on a project that uses Julia version 1.10, but another research group’s code
+Julia version 1.04.</p>
+<p>If there was a single, globally Julia installation, it would have to be one
+version or the other, so one of you would be out of luck.</p>
+<p>Environment modules solve this problem, and a number of similar
+problems<a class="footnote-reference brackets" href="#problems" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> by isolating software packages from each other, and letting
+you only load the ones you need.</p>
+<p>On Picotte, environment modules are managed by a tool called
+<a class="reference external" href="https://lmod.readthedocs.io/en/latest/index.html">Lmod</a>. You can read the Lmod
+documentation for much more detail about how it works and other options for the
+<code class="docutils literal notranslate"><span class="pre">module</span></code> command.</p>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="problems" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>For example, two pieces of software that conflict with each other,
+perhaps because they use the same name for their commands.</p>
+</aside>
 </section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -446,20 +490,20 @@ macOS</label><div class="sd-tab-content docutils">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../intro_linux/conclusion.html"
+       href="storage.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Workshop Conclusion</p>
+        <p class="prev-next-title">Data storage and transfer</p>
       </div>
     </a>
     <a class="right-next"
-       href="introduction.html"
+       href="batch.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">What is Picotte?</p>
+        <p class="prev-next-title">Running a batch job</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -478,7 +522,7 @@ macOS</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-use-modulefiles">Why do we use modulefiles?</a></li>
 </ul>
   </nav></div>
 

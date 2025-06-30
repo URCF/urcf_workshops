@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Jupyter Hub service to the Picotte Cluster" href="jupyter-hub.html" />
-    <link rel="prev" title="Data storage and transfer" href="storage.html" />
+    <link rel="prev" title="Environment modules" href="environment.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,6 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing Picotte</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interactive.html">Running compute jobs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage.html">Data storage and transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.html">Environment modules</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Running a batch job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jupyter-hub.html">Jupyter Hub service to the Picotte Cluster</a></li>
 </ul>
@@ -335,7 +336,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -351,6 +354,22 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-first-batch-job-blast-search">Our first batch job: BLAST search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-query-sequence">Download query sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-slurm-script">Prepare SLURM script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-the-job">Submitting the job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-the-job">Monitoring the job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requesting-more-resources">Requesting more resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-types-of-resources">Other types of resources</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -362,144 +381,404 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="running-a-batch-job">
 <h1>Running a batch job<a class="headerlink" href="#running-a-batch-job" title="Permalink to this heading">#</a></h1>
-<p>Interactive jobs are great if you need to do something quick, or perhaps visualize some data.
-If you have some code which runs for seven hours, interactive jobs are not a great idea. Please
-keep in mind that an interactive job gets killed if you close the SSH connection. So for example,
-you connect to Picotte from your laptop, start an interactive job, but then your laptop runs out
-of battery power and you can’t find your charger. SSH client quits, and your interactive job is killed.</p>
-<p>If you have some truly serious, multi-hour computation project (and that’s what Picotte is really
-good for), a better idea is to run it on the background. This is called a <em>batch job</em>. You submit
-it in a fashion which is conceptually similar to an interactive job, but then it runs on the compute
-node on the background until it’s over. If it needs to take two days, it takes two days. You can quit
-the SSH client or close your laptop, it won’t affect the batch job.</p>
-<p>To submit a batch job, we usually create a separate file called a <em>Slurm script</em>. This file asks the
-scheduler for specific resources, and then specifies the actions that will be done once we get on a
-compute node.</p>
-<p>Let us go through an example. We will use batch mode to create a small random matrix with
-normally-distributed values. We will create two scripts: an R script which does the computation,
-and a Slurm script which will execute the R script on a compute node in batch mode.</p>
-<p>Picotte has a simple text editor which is called <code class="docutils literal notranslate"><span class="pre">nano</span></code>. It doesn’t offer any fancy formatting,
-but it suffices for ceating and editing simple texts. Let’s go to our home directory and create the
-R script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>
-nano<span class="w"> </span>randmatrix.R
+<p>Interactive jobs are great if you need to do something quick (perhaps visualize
+some data). If you have code that runs for seven hours, an interactive job is
+not a great idea. This is because an interactive job is killed if you close the
+SSH connection. So, for example, if you start an interactive job, but then your
+laptop falls asleep, the SSH connection will disconnect and your job will be
+killed.</p>
+<p>If you have some truly serious, multi-hour (or multi-day) computation (and
+that’s what Picotte is really good for), a better idea is to run it in the
+background using a <strong>batch job</strong>. Submitting a batch job is conceptually similar
+to an interactive job (just a different command), but the job will run on its
+assigned compute node in the background until it’s over. If it needs to take two
+days, it takes two days. You can quit the SSH client or close your laptop, it
+won’t affect a batch job.</p>
+<p>Let’s walk through an example of running a batch job. This will put together
+everything we’ve learned, from job submission, to using environment modules to
+load scientific software on Picotte.</p>
+<section id="our-first-batch-job-blast-search">
+<h2>Our first batch job: BLAST search<a class="headerlink" href="#our-first-batch-job-blast-search" title="Permalink to this heading">#</a></h2>
+<p>As an example to test Picotte’s capabilities, we’re going to run a DNA sequence
+search using <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>. BLAST (Basic
+Local Alignment Search Tool) is a tool for searching DNA and RNA sequences
+databases—you give it a sequence you’re interested in (called a “query
+sequence”) and it searches databases of known sequences (for example, the human
+genome) to find similar sequences to the query, using an algorithmic process
+called “alignment”. The details aren’t important, don’t worry if you don’t
+understand bioinformatics—we’re just using it as an example.</p>
+<section id="download-query-sequence">
+<h3>Download query sequence<a class="headerlink" href="#download-query-sequence" title="Permalink to this heading">#</a></h3>
+<p>We’re going to search using the sequence of the
+<a class="reference external" href="https://en.wikipedia.org/wiki/BRCA1">BRCA1</a> gene as our query. BRCA1 is a
+<em>tumor suppressor gene</em>, mutations in which can cause breast cancer. It’s famous
+as an early example of a specific gene that could be linked to cancer.</p>
+<p>To start, download the gene sequence file by clicking here:
+<a class="reference external" href="https://github.com/URCF/urcf_workshops/raw/master/data/BRCA1.fasta"><code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code></a>.</p>
+<p>Then, connect to Picotte with <a class="reference internal" href="storage.html"><span class="doc std std-doc">Cyberduck</span></a> and upload the
+<code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code> file by dragging and dropping it into the Cyberduck window. Make
+sure you’re putting the file in your home directory.</p>
+<p>If you SSH into Picotte, you can confirm the file is there:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls BRCA1.fasta
+BRCA1.fasta
 </pre></div>
 </div>
-<p>This will open the <code class="docutils literal notranslate"><span class="pre">nano</span></code> text editor:</p>
-<figure class="align-default" id="id1">
+<p>And check it’s contents to see that it’s a DNA sequence:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span>
+<span class="o">&gt;</span><span class="n">BRCA1</span>
+<span class="n">AGCTCGCTGAGACTTCCTGGACCCCGCACCAGGCTGTGGGGTTTCTCAGATAACTGGGCCCCTGCGCTCAGGAGGCCTTC</span>
+<span class="n">ACCCTCTGCTCTGGGTAAAGTTCATTGGAACAGAAAGAAATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGT</span>
+<span class="n">CATTAATGCTATGCAGAAAATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTGACC</span>
+<span class="n">ACATATTTTGCAAATTTTGCATGCTGAAACTTCTCAACCAGAAGAAAGGGCCTTCACAGTGTCCTTTATGTAAGAATGAT</span>
+<span class="n">ATAACCAAAAGGAGCCTACAAGAAAGTACGAGATTTAGTCAACTTGTTGAAGAGCTATTGAAAATCATTTGTGCTTTTCA</span>
+<span class="n">GCTTGACACAGGTTTGGAGTATGCAAACAGCTATAATTTTGCAAAAAAGGAAAATAACTCTCCTGAACATCTAAAAGATG</span>
+<span class="n">AAGTTTCTATCATCCAAAGTATGGGCTACAGAAACCGTGCCAAAAGACTTCTACAGAGTGAACCCGAAAATCCTTCCTTG</span>
+<span class="n">CAGGAAACCAGTCTCAGTGTCCAACTCTCTAACCTTGGAACTGTGAGAACTCTGAGGACAAAGCAGCGGATACAACCTCA</span>
+<span class="n">AAAGACGTCTGTCTACATTGAATTGGGATCTGATTCTTCTGAAGATACCGTTAATAAGGCAACTTATTGCAGTGTGGGAG</span>
+<span class="n">ATCAAGAATTGTTACAAATCACCCCTCAAGGAACCAGGGATGAAATCAGTTTGGATTCTGCAAAAAAGGCTGCTTGTGAA</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>If you can’t get the transfer to work with Cyberduck, you can instead use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">URCF</span><span class="o">/</span><span class="n">urcf_workshops</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span>
+</pre></div>
+</div>
+<p>To download the <code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code> file directly onto Picotte instead.</p>
+</section>
+<section id="prepare-slurm-script">
+<h3>Prepare SLURM script<a class="headerlink" href="#prepare-slurm-script" title="Permalink to this heading">#</a></h3>
+<p>To run a batch job, we need to write a <strong>SLURM script</strong>. This is file containing
+a series of commands we want the job to run, along with configuration arguments,
+like the account and partition, or requests for additional resources.</p>
+<p>Making sure you’re in your home directory on Picotte (you can get there with <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~</span></code>), type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>blast_job.sh
+</pre></div>
+</div>
+<p>This will open the <code class="docutils literal notranslate"><span class="pre">nano</span></code> text editor with an empty file:</p>
+<figure class="align-default" id="id2">
 <img alt="../_images/nano_empty.png" src="../_images/nano_empty.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Nano just opened with empty file.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Nano just opened with empty file.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Inside the editor, type this:</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5000</span>
-<span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="n">size</span><span class="o">*</span><span class="n">size</span><span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
-<span class="n">ev</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">eigen</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-<span class="n">values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ev</span><span class="o">$</span><span class="n">values</span>
-<span class="n">values</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Instead of typing, you can copy the text from the Web browser and paste it into <code class="docutils literal notranslate"><span class="pre">nano</span></code>. Windows users
-can paste with <code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">Ins</span></code> (or by right-clicking the mouse). Mac users can paste with <code class="docutils literal notranslate"><span class="pre">Cmd</span></code>+<code class="docutils literal notranslate"><span class="pre">V</span></code>. At
-the end, your screen should look like this:</p>
-<figure class="align-default" id="id2">
-<img alt="../_images/nano_r.png" src="../_images/nano_r.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Nano with the R script filled in</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>To save it, press <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">O</span></code>, and hit enter. To exit the editor, press <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">X</span></code>. To make sure the text is
-saved properly, print it on screen using the <code class="docutils literal notranslate"><span class="pre">cat</span></code> command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>randmatrix.R
-</pre></div>
-</div>
-<p>Now, let’s create the Slurm script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>randmatrix.sh
-</pre></div>
-</div>
-<p>Inside the <code class="docutils literal notranslate"><span class="pre">nano</span></code> text editor, type this (or paste from the Web browser):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#</span>
-<span class="c1">#SBATCH --job-name=random_matrix</span>
-<span class="c1">#SBATCH --account=urcfprj</span>
-<span class="c1">#SBATCH --partition=def-sm</span>
-<span class="c1">#SBATCH --nodes=1</span>
-<span class="c1">#SBATCH --ntasks-per-node=1</span>
-<span class="c1">#SBATCH --cpus-per-task=2</span>
-<span class="c1">#SBATCH --mem=1GB</span>
-<span class="c1">#SBATCH --time=0:30:00</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
-module<span class="w"> </span>load<span class="w"> </span>R/4.2.2
-Rscript<span class="w"> </span>randmatrix.R
+<span class="c1">#SBATCH --account=workshopprj</span>
+<span class="c1">#SBATCH --partition=def-sm</span>
+
+<span class="n">module</span> <span class="n">load</span> <span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span><span class="o">/</span><span class="mf">2.13.0</span>
+
+<span class="n">blastn</span> <span class="o">-</span><span class="n">query</span> <span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">db</span> <span class="n">patnt</span>
 </pre></div>
 </div>
-<p>Let’s go through the script, line by line. The first cryptic line says that it’s a script that is
-executed by the Linux shell. The next line is empty, followed by five lines that are the instructions
-to the scheduler (they start with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code>):</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">--job-name</span></code> specifies the name of the job;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--partition</span></code>: specify the resource partition this job is going to</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--account</span></code>: specify the <strong>Slurm account</strong> this job is going to</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code> means we are asking for one compute node;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--ntasks-per-node=1</span></code> means we are asking to run 1 process per node;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=2</span></code> means that we only need two CPUs on the node</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--mem=1gb</span></code> means that we are asking for 1 Gb of RAM;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">time=00:30:00</span></code> means that we are asking to use the node for half an hour;</p></li>
-</ul>
-<p>A very common question is how much time we should ask for. It’s a tricky question because
-there is no way of knowing how much time you will need until you actually try it. One rule of
-thumb is: make a rough guess, and ask for twice as much.</p>
-<p>Now, let’s submit our batch job!</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@picotte001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>sbatch<span class="w"> </span>randmatrix.sh
-Submitted<span class="w"> </span>batch<span class="w"> </span>job<span class="w"> </span><span class="m">9539504</span>
-<span class="o">[</span>lbn28@picotte001<span class="w"> </span>~<span class="o">]</span>$
+<p>Instead of typing, you can copy the text from the Web browser and paste it into
+<code class="docutils literal notranslate"><span class="pre">nano</span></code>. Windows users can paste with <code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">Ins</span></code> (or by right-clicking the
+mouse). Mac users can paste with <code class="docutils literal notranslate"><span class="pre">Cmd</span></code>+<code class="docutils literal notranslate"><span class="pre">V</span></code>. At the end, your screen should look
+like this:</p>
+<p>To save the script, press <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">o</span></code>, and then press <code class="docutils literal notranslate"><span class="pre">Enter</span></code>. <code class="docutils literal notranslate"><span class="pre">nano</span></code> will prompt
+you to choose a name for the new file. Press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> again to accept the default
+name or <code class="docutils literal notranslate"><span class="pre">blast_job.sh</span></code>. To exit <code class="docutils literal notranslate"><span class="pre">nano</span></code>, press <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">x</span></code>. To make sure the text
+is saved properly, print it on screen using the <code class="docutils literal notranslate"><span class="pre">cat</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>blast_job.sh
 </pre></div>
 </div>
-<p>If the submission was successful, it will give you the job ID, as shown above.
-We can monitor the job’s progress with the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command. This is an example to list
-all jobs that are currently executed by you:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@picotte001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>squeue<span class="w"> </span>-u<span class="w"> </span>lbn28
-<span class="w">             </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
-<span class="w">           </span><span class="m">9539504</span><span class="w">    </span>def-sm<span class="w"> </span>random_m<span class="w">    </span>lbn28<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:42<span class="w">      </span><span class="m">1</span><span class="w"> </span>node047
-<span class="o">[</span>lbn28@picotte001<span class="w"> </span>~<span class="o">]</span>$
+<p>What do these lines mean? Let’s look at them one by one:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+1.</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 </pre></div>
 </div>
-<p>You see the job ID, your Picotte username, the name of the queue (more on that later),
-the name of the job (<code class="docutils literal notranslate"><span class="pre">random_matrix</span></code>), and the node(s) the job is placed on.</p>
-<p>Wait a little bit and do <code class="docutils literal notranslate"><span class="pre">squeue</span></code> again (you can hit the <code class="docutils literal notranslate"><span class="pre">UP</span></code> arrow to show the previous command).
-<code class="docutils literal notranslate"><span class="pre">TIME</span></code> should now be a bit longer. The script should take a few minutes or so to execute.</p>
-<p>If everything went well, you should now see the file <code class="docutils literal notranslate"><span class="pre">slurm-9539504.out</span></code>. Let’s print it on screen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@picotte001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>cat<span class="w"> </span>slurm-9539504.out
-<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">25</span>.87044+66.89629i
-<span class="o">[</span>lbn28@picotte001<span class="w"> </span>~<span class="o">]</span>$
+<p class="sd-card-text">This somewhat cryptic line is called a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Shebang_(Unix)">“shebang”</a>. The details are
+beyond the scope of this workshop, but it tells the system that this script is
+meant to be executed using the bash shell (as opposed to, say, a programming
+language like <code class="docutils literal notranslate"><span class="pre">python</span></code> or <code class="docutils literal notranslate"><span class="pre">R</span></code>).</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+2.</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --account=workshopprj</span>
 </pre></div>
 </div>
-<p>We can look at the performance of the job</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>lbn28@picotte001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>seff<span class="w"> </span><span class="m">9539504</span>
-Job<span class="w"> </span>ID:<span class="w"> </span><span class="m">9539504</span>
-Cluster:<span class="w"> </span>picotte
-User/Group:<span class="w"> </span>lbn28/lbn28
-State:<span class="w"> </span>COMPLETED<span class="w"> </span><span class="o">(</span><span class="nb">exit</span><span class="w"> </span>code<span class="w"> </span><span class="m">0</span><span class="o">)</span>
-Nodes:<span class="w"> </span><span class="m">1</span>
-Cores<span class="w"> </span>per<span class="w"> </span>node:<span class="w"> </span><span class="m">2</span>
-CPU<span class="w"> </span>Utilized:<span class="w"> </span><span class="m">00</span>:01:15
-CPU<span class="w"> </span>Efficiency:<span class="w"> </span><span class="m">81</span>.52%<span class="w"> </span>of<span class="w"> </span><span class="m">00</span>:01:32<span class="w"> </span>core-walltime
-Job<span class="w"> </span>Wall-clock<span class="w"> </span>time:<span class="w"> </span><span class="m">00</span>:00:46
-Memory<span class="w"> </span>Utilized:<span class="w"> </span><span class="m">662</span>.08<span class="w"> </span>MB
-Memory<span class="w"> </span>Efficiency:<span class="w"> </span><span class="m">64</span>.66%<span class="w"> </span>of<span class="w"> </span><span class="m">1</span>.00<span class="w"> </span>GB
-<span class="o">[</span>lbn28@picotte001<span class="w"> </span>~<span class="o">]</span>$
+<p class="sd-card-text">This line passes an argument to the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>. In an <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> script, any line
+that starts with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> will be passed as arguments, just as though you had
+typed it on the command line. This lets you save your arguments in your script,
+so you don’t have to type them out every time you run the job.</p>
+<p class="sd-card-text">Here we say we want to submit this job using the <code class="docutils literal notranslate"><span class="pre">workshopprj</span></code> project. This is
+just like when we submitted our interactive job.</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+3.</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --partition=def-sm</span>
 </pre></div>
 </div>
-<p>We want to make sure that <code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">Efficiency</span></code> and <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Efficiency</span></code> are as closed to <code class="docutils literal notranslate"><span class="pre">100%</span></code> as
-possible. If you increased the <code class="docutils literal notranslate"><span class="pre">--cpus-per-task=</span></code> value to <code class="docutils literal notranslate"><span class="pre">4</span></code>, you will see that the
-efficiency values are reduced, indicitating that you asked for more resources and not able to
-utilize all of them.</p>
-<p>How many jobs can you run at the same time? It depends on how much resources you ask for. If
-each job asks for a small amount of resources, you can do a large amount of jobs simultaneously.
-If each job needs a large amount of resources, only a few of them can be running simultaneously,
-and the rest of them will be waiting in the queue until the jobs that are running are completed.
-This is a way to ensure that Picotte is used fairly.</p>
+<p class="sd-card-text">Similar to the above line. Here we specify the <code class="docutils literal notranslate"><span class="pre">def-sm</span></code> partition. Again, this
+is just like when we specified the partition in our interactive job.</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+4.</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span><span class="o">/</span><span class="mf">2.13.0</span>
+</pre></div>
+</div>
+<p class="sd-card-text">This should look more familiar. Here we’re using <a class="reference internal" href="environment.html"><span class="doc std std-doc">Environment
+modules</span></a> to load version 2.13.0 of the BLAST command line
+tools.</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+5.</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blastn</span> <span class="o">-</span><span class="n">query</span> <span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">db</span> <span class="n">patnt</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Finally, this line actually invokes the <code class="docutils literal notranslate"><span class="pre">blastn</span></code> command to run the BLAST
+search. The <code class="docutils literal notranslate"><span class="pre">-query</span> <span class="pre">BRCA1.fasta</span></code> means we want to search using the contents of
+<code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code> as our query sequence. The <code class="docutils literal notranslate"><span class="pre">-db</span></code> argument tells BLAST which
+database we want to search. Here we’re searching the <code class="docutils literal notranslate"><span class="pre">patnt</span></code> database, which is
+a database of nucleotide (DNA or RNA) sequences that have appeared in patents.</p>
+</div>
+</div>
+</section>
+<section id="submitting-the-job">
+<h3>Submitting the job<a class="headerlink" href="#submitting-the-job" title="Permalink to this heading">#</a></h3>
+<p>Now, let’s submit our batch job! We do this using another SLURM command,
+<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>. <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> takes a single argument, the name of the job script to
+submit. Let’s try it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ sbatch blast_job.sh
+Submitted batch job 11755768
+</pre></div>
+</div>
+<p>If the submission was successful, it will give you a <strong>job ID</strong>, as shown above.
+You can use the job ID to monitor the job’s progress and check its output.</p>
+</section>
+<section id="monitoring-the-job">
+<h3>Monitoring the job<a class="headerlink" href="#monitoring-the-job" title="Permalink to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">scontrol</span></code> command shows detailed information about a job’s progress. To use
+this command, run <code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span> <span class="pre">&lt;job</span> <span class="pre">id&gt;</span></code>, replacing <code class="docutils literal notranslate"><span class="pre">&lt;job</span> <span class="pre">id&gt;</span></code> with the
+job ID output by sbatch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ scontrol show job 11755768
+JobId=11755768 JobName=blast_job.sh
+   UserId=jjp366(2451) GroupId=jjp366(2462) MCS_label=N/A
+   Priority=11927 Nice=0 Account=workshopprj QOS=normal WCKey=*
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:06 TimeLimit=00:30:00 TimeMin=N/A
+   SubmitTime=2025-06-27T19:03:10 EligibleTime=2025-06-27T19:03:10
+   AccrueTime=2025-06-27T19:03:10
+   StartTime=2025-06-27T19:03:10 EndTime=2025-06-27T19:33:11 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2025-06-27T19:03:10 Scheduler=Main
+   Partition=def-sm AllocNode:Sid=picotte001:21706
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=node035
+   BatchHost=node035
+   NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   TRES=cpu=1,mem=4000M,node=1,billing=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=1 MinMemoryCPU=4000M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/home/jjp366/blast_job.sh
+   WorkDir=/home/jjp366
+   StdErr=/home/jjp366/slurm-11755768.out
+   StdIn=/dev/null
+   StdOut=/home/jjp366/slurm-11755768.out
+   Power=
+</pre></div>
+</div>
+<p>This is a lot of details! Not all of these are relevant to us, but there are some useful things:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>What we can tell</p></th>
+<th class="head"><p>How we know</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Job is running</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">JobState=RUNNING</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Assigned to node035</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NodeList=node035</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Running for 6 seconds</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RunTime=00:00:06</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Output will be in <code class="docutils literal notranslate"><span class="pre">slurm-11755768.out</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">StdOut=/home/jjp366/slurm-11755768.out</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p>If you don’t want all these details, you can get a quick overview of the jobs
+you have running using the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command and passing your username as the
+<code class="docutils literal notranslate"><span class="pre">-u</span></code> option. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ squeue -u jjp366
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          11755768    def-sm blast_jo   jjp366  R       0:17      1 node035
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ST</span></code> column means “status” and <code class="docutils literal notranslate"><span class="pre">R</span></code> means the job is running. You might also
+see <code class="docutils literal notranslate"><span class="pre">PD</span></code>, for “pending”. This means your job is waiting for resources to become
+available.</p>
+<p>If you keep checking the status of the job with <code class="docutils literal notranslate"><span class="pre">scontrol</span></code>, you’ll eventually
+see <code class="docutils literal notranslate"><span class="pre">JobState=RUNNING</span></code> change to <code class="docutils literal notranslate"><span class="pre">JobState=COMPLETED</span></code> (usually within a minute
+if your job didn’t have to wait in the queue). This means the job is done!</p>
+<p>Let’s check the output with less:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">less</span> <span class="n">slurm</span><span class="o">-</span><span class="mf">11755768.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Remember to replace <code class="docutils literal notranslate"><span class="pre">11755768</span></code> with your job ID. You should see something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BLASTN</span> <span class="mf">2.13.0</span><span class="o">+</span>
+
+
+<span class="n">Reference</span><span class="p">:</span> <span class="n">Zheng</span> <span class="n">Zhang</span><span class="p">,</span> <span class="n">Scott</span> <span class="n">Schwartz</span><span class="p">,</span> <span class="n">Lukas</span> <span class="n">Wagner</span><span class="p">,</span> <span class="ow">and</span> <span class="n">Webb</span>
+<span class="n">Miller</span> <span class="p">(</span><span class="mi">2000</span><span class="p">),</span> <span class="s2">&quot;A greedy algorithm for aligning DNA sequences&quot;</span><span class="p">,</span> <span class="n">J</span>
+<span class="n">Comput</span> <span class="n">Biol</span> <span class="mi">2000</span><span class="p">;</span> <span class="mi">7</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span><span class="mi">203</span><span class="o">-</span><span class="mf">14.</span>
+
+
+
+<span class="n">Database</span><span class="p">:</span> <span class="n">Nucleotide</span> <span class="n">sequences</span> <span class="n">derived</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">Patent</span> <span class="n">division</span> <span class="n">of</span> <span class="n">GenBank</span>
+           <span class="mi">46</span><span class="p">,</span><span class="mi">121</span><span class="p">,</span><span class="mi">564</span> <span class="n">sequences</span><span class="p">;</span> <span class="mi">25</span><span class="p">,</span><span class="mi">865</span><span class="p">,</span><span class="mi">402</span><span class="p">,</span><span class="mi">917</span> <span class="n">total</span> <span class="n">letters</span>
+
+
+
+<span class="n">Query</span><span class="o">=</span> <span class="n">BRCA1</span>
+
+<span class="n">Length</span><span class="o">=</span><span class="mi">5914</span>
+                                                                      <span class="n">Score</span>     <span class="n">E</span>
+<span class="n">Sequences</span> <span class="n">producing</span> <span class="n">significant</span> <span class="n">alignments</span><span class="p">:</span>                          <span class="p">(</span><span class="n">Bits</span><span class="p">)</span>  <span class="n">Value</span>
+
+<span class="n">DL205917</span><span class="mf">.1</span> <span class="mi">17</span><span class="n">q</span><span class="o">-</span><span class="n">Linked</span> <span class="n">Breast</span> <span class="ow">and</span> <span class="n">Ovarian</span> <span class="n">Cancer</span> <span class="n">Susceptibility</span> <span class="n">Gene</span>   <span class="mi">10922</span>   <span class="mf">0.0</span>
+<span class="n">DL212974</span><span class="mf">.1</span> <span class="mi">17</span><span class="n">q</span><span class="o">-</span><span class="n">Linked</span> <span class="n">Breast</span> <span class="ow">and</span> <span class="n">Ovarian</span> <span class="n">Cancer</span> <span class="n">Susceptibility</span> <span class="n">Gene</span>   <span class="mi">10922</span>   <span class="mf">0.0</span>
+<span class="n">BD105583</span><span class="mf">.1</span> <span class="n">Genes</span> <span class="n">sensitive</span> <span class="n">to</span> <span class="mi">17</span><span class="n">q</span><span class="o">-</span><span class="n">chained</span> <span class="n">breast</span> <span class="n">cancer</span> <span class="ow">and</span> <span class="n">ovari</span><span class="o">...</span>  <span class="mi">10922</span>   <span class="mf">0.0</span>
+<span class="n">AR136942</span><span class="mf">.1</span> <span class="n">Sequence</span> <span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">patent</span> <span class="n">US</span> <span class="mi">6162897</span>                          <span class="mi">10922</span>   <span class="mf">0.0</span>
+<span class="n">AR008159</span><span class="mf">.1</span> <span class="n">Sequence</span> <span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">patent</span> <span class="n">US</span> <span class="mi">5753441</span>                          <span class="mi">10922</span>   <span class="mf">0.0</span>
+<span class="n">AR004673</span><span class="mf">.1</span> <span class="n">Sequence</span> <span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">patent</span> <span class="n">US</span> <span class="mi">5747282</span>                          <span class="mi">10922</span>   <span class="mf">0.0</span>
+<span class="n">I81034</span><span class="mf">.1</span> <span class="n">Sequence</span> <span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">patent</span> <span class="n">US</span> <span class="mi">5710001</span>                            <span class="mi">10922</span>   <span class="mf">0.0</span>
+<span class="n">I80938</span><span class="mf">.1</span> <span class="n">Sequence</span> <span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">patent</span> <span class="n">US</span> <span class="mi">5709999</span>                            <span class="mi">10922</span>   <span class="mf">0.0</span>
+<span class="n">I76943</span><span class="mf">.1</span> <span class="n">Sequence</span> <span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">patent</span> <span class="n">US</span> <span class="mi">5693473</span>                            <span class="mi">10922</span>   <span class="mf">0.0</span>
+<span class="n">DJ442504</span><span class="mf">.1</span> <span class="n">ORPHAN</span> <span class="n">RECEPTOR</span> <span class="n">TYROSINE</span> <span class="n">KINASE</span> <span class="n">AS</span> <span class="n">A</span> <span class="n">TARGET</span> <span class="n">IN</span> <span class="n">BREAST</span> <span class="o">...</span>  <span class="mi">10914</span>   <span class="mf">0.0</span>
+<span class="n">DI151791</span><span class="mf">.1</span> <span class="n">CARCINOMA</span> <span class="n">CELL</span><span class="o">-</span><span class="n">SPECIFIC</span> <span class="n">APOPTOSIS</span> <span class="n">INDUCING</span> <span class="n">AGENT</span> <span class="n">TARGE</span><span class="o">...</span>  <span class="mi">10914</span>   <span class="mf">0.0</span>
+<span class="n">DJ032279</span><span class="mf">.1</span> <span class="n">BIOMARKERS</span> <span class="n">OF</span> <span class="n">CYCLIN</span><span class="o">-</span><span class="n">DEPENDENT</span> <span class="n">KINASE</span> <span class="n">MODULATION</span>           <span class="mi">10914</span>   <span class="mf">0.0</span>
+<span class="n">DD328314</span><span class="mf">.1</span> <span class="n">Method</span> <span class="k">for</span> <span class="n">Predicting</span> <span class="n">Autoimmune</span> <span class="n">Disease</span>                   <span class="mi">10914</span>   <span class="mf">0.0</span>
+<span class="n">DD237544</span><span class="mf">.1</span> <span class="n">Agent</span> <span class="k">for</span> <span class="n">inducing</span> <span class="n">apoptosis</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">cancer</span> <span class="n">cell</span> <span class="n">by</span> <span class="n">inhib</span><span class="o">...</span>  <span class="mi">10914</span>   <span class="mf">0.0</span>
+<span class="n">MX626585</span><span class="mf">.1</span> <span class="n">Sequence</span> <span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">patent</span> <span class="n">US</span> <span class="mi">10989719</span>                         <span class="mi">10892</span>   <span class="mf">0.0</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Unsurprisingly for BRCA1, most of the sequences we found are from patents about
+cancer or cancer testing. Several of these patents (e.g. <a class="reference external" href="https://patents.google.com/patent/US5747282A/en">Patent
+5747282</a>) were the subject of a
+Supreme Court case, <a class="reference external" href="https://en.wikipedia.org/wiki/Association_for_Molecular_Pathology_v._Myriad_Genetics,_Inc.">Association for Molecular Pathology v. Myriad Genetics,
+Inc.</a>,
+which decided that naturally occurring DNA sequences are not patentable.</p>
+</section>
+<section id="requesting-more-resources">
+<h3>Requesting more resources<a class="headerlink" href="#requesting-more-resources" title="Permalink to this heading">#</a></h3>
+<p>This job was pretty fast, but if we were searching a much bigger database, or
+searching with many sequences, and the job was taking a long time? How could we
+speed it up?</p>
+<p>A lot of research software can use multiple CPU cores to improve performance,
+and BLAST is no exception. Let’s try it by editing our job script with <code class="docutils literal notranslate"><span class="pre">nano</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="n">blast_job</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Add the following line next to the other <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --cpus-per-task=2</span>
+</pre></div>
+</div>
+<p>This tells SLURM that our job requires two CPU cores (the default is one).</p>
+<p>However, this is not enough to improve the performance. Just because SLURM
+allocates two cores, does not mean BLAST will automatically use them. We have
+explicitly tell BLAST that we want it to use multiple cores.</p>
+<p>Change the final <code class="docutils literal notranslate"><span class="pre">blastn</span></code> command to add the argument <code class="docutils literal notranslate"><span class="pre">-num_threads</span> <span class="pre">2</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blastn</span> <span class="o">-</span><span class="n">query</span> <span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">db</span> <span class="n">patnt</span> <span class="o">-</span><span class="n">num_threads</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>The file should now look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --account=workshopprj</span>
+<span class="c1">#SBATCH --partition=def-sm</span>
+<span class="c1">#SBATCH --cpus-per-task=2</span>
+
+<span class="n">module</span> <span class="n">load</span> <span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span><span class="o">/</span><span class="mf">2.13.0</span>
+
+<span class="n">blastn</span> <span class="o">-</span><span class="n">query</span> <span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">db</span> <span class="n">patnt</span> <span class="o">-</span><span class="n">num_threads</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Like before, save the file using <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">o</span></code>, press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> when prompted for the
+filename, and quit <code class="docutils literal notranslate"><span class="pre">nano</span></code> using <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<hr class="docutils" />
+<p>We can now run the job again with <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picottemgmt ~]$ sbatch blast_job.sh
+Submitted batch job 11755850
+</pre></div>
+</div>
+<p>And track it’s progress:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picottemgmt ~]$ scontrol show job 11755850
+JobId=11755850 JobName=blast_job.sh
+   UserId=jjp366(2451) GroupId=jjp366(2462) MCS_label=N/A
+   Priority=11927 Nice=0 Account=workshopprj QOS=normal WCKey=*
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:05 TimeLimit=00:30:00 TimeMin=N/A
+   SubmitTime=2025-06-30T11:28:58 EligibleTime=2025-06-30T11:28:58
+   AccrueTime=2025-06-30T11:28:58
+   StartTime=2025-06-30T11:28:59 EndTime=2025-06-30T11:58:59 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2025-06-30T11:28:59 Scheduler=Main
+   Partition=def-sm AllocNode:Sid=picottemgmt:2653761
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=node039
+   BatchHost=node039
+   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*
+   TRES=cpu=2,mem=8000M,node=1,billing=2
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=2 MinMemoryCPU=4000M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/home/jjp366/blast_job.sh
+   WorkDir=/home/jjp366
+   StdErr=/home/jjp366/slurm-11755850.out
+   StdIn=/dev/null
+   StdOut=/home/jjp366/slurm-11755850.out
+   Power=
+</pre></div>
+</div>
+<p>We can see that we’ve succesfully assigned two CPUS by <code class="docutils literal notranslate"><span class="pre">NumCPUs=2</span></code>.</p>
+<p>The job should finish faster than when it ran with only one CPU<a class="footnote-reference brackets" href="#speed" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+</section>
+<section id="other-types-of-resources">
+<h3>Other types of resources<a class="headerlink" href="#other-types-of-resources" title="Permalink to this heading">#</a></h3>
+<p>In this example, we just requested more CPUs. Your jobs can request much more
+than just that though: additional memory, multiple nodes, time limit, GPUs and
+more can all be requested using arguments to <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p>
+<p>The details are beyond the scope of this workshop, but for more see the <a class="reference external" href="https://docs.urcf.drexel.edu/learning/slurm/reference/">URCF
+SLURM documentation</a> and
+the <a class="reference external" href="https://slurm.schedmd.com/sbatch.html">official <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> documentation</a>.</p>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="speed" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>This will be highly variable because a lot of the work of this job is
+loading the nucleotide database from disk, which can be faster or sloweer
+depending on cacheing, how many other people are accessing the database,
+etc. This is a valuable lesson: software performance is very hard to
+predict! Simply adding more cores won’t always make things faster. You need
+to carefully profile your code to ensure you’re optimizing the right thing.</p>
+</aside>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -531,12 +810,12 @@ This is a way to ensure that Picotte is used fairly.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="storage.html"
+       href="environment.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Data storage and transfer</p>
+        <p class="prev-next-title">Environment modules</p>
       </div>
     </a>
     <a class="right-next"
@@ -554,6 +833,28 @@ This is a way to ensure that Picotte is used fairly.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-first-batch-job-blast-search">Our first batch job: BLAST search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-query-sequence">Download query sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-slurm-script">Prepare SLURM script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-the-job">Submitting the job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-the-job">Monitoring the job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requesting-more-resources">Requesting more resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-types-of-resources">Other types of resources</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
