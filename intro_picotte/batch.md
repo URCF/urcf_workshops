@@ -79,12 +79,12 @@ To download the `BRCA1.fasta` file directly onto Picotte instead.
 
 ### Prepare SLURM script
 
-To run a batch job, we need to write a ** SLURM script**. This is file
-containing a series of commands we want the job to run. It can also have
-configuration that tells the scheduler how many resources (CPUs, memory, etc.)
-the job requires.
+To run a batch job, we need to write a **SLURM script**. This is file containing
+a series of commands we want the job to run, along with configuration arguments,
+like the account and partition, or requests for additional resources.
 
-Making sure you're in your home directory on Picotte (you can get there with `cd ~`), type:
+Making sure you're in your home directory on Picotte (you can get there with `cd
+~`), type:
 
 ~~~bash
 nano blast_job.sh
@@ -114,9 +114,9 @@ Instead of typing, you can copy the text from the Web browser and paste it into
 mouse). Mac users can paste with `Cmd`+`V`. At the end, your screen should look
 like this:
 
-To save the script, press `Ctrl`+`O`, and then press `Enter`. `nano` will prompt
+To save the script, press `Ctrl`+`o`, and then press `Enter`. `nano` will prompt
 you to choose a name for the new file. Press `Enter` again to accept the default
-name or `blast_job.sh`. To exit `nano`, press `Ctrl`+`X`. To make sure the text
+name or `blast_job.sh`. To exit `nano`, press `Ctrl`+`x`. To make sure the text
 is saved properly, print it on screen using the `cat` command:
 
 ~~~bash
@@ -143,8 +143,8 @@ language like `python` or `R`).
 ```
 
 This line passes an argument to the `sbatch`. In an `sbatch` script, any line
-that starts with `#SBATCH` will be passed to `sbatch`, just as though you had
-typed it on the command line. This lets you save your argument in your script,
+that starts with `#SBATCH` will be passed as arguments, just as though you had
+typed it on the command line. This lets you save your arguments in your script,
 so you don't have to type them out every time you run the job.
 
 Here we say we want to submit this job using the `workshopprj` project. This is
@@ -175,7 +175,7 @@ tools.
 blastn -query BRCA1.fasta -db patnt
 ```
 
-Finally, this command actually invokes the `blastn` command to run the BLAST
+Finally, this line actually invokes the `blastn` command to run the BLAST
 search. The `-query BRCA1.fasta` means we want to search using the contents of
 `BRCA1.fasta` as our query sequence. The `-db` argument tells BLAST which
 database we want to search. Here we're searching the `patnt` database, which is
@@ -194,7 +194,7 @@ Submitted batch job 11755768
 ~~~
 
 If the submission was successful, it will give you a **job ID**, as shown above.
-You can use the job ID to monitor the job's progress and check it's output.
+You can use the job ID to monitor the job's progress and check its output.
 
 ### Monitoring the job
 
@@ -254,7 +254,7 @@ you have running using the `squeue` command and passing your username as the
 ```
 
 The `ST` column means "status" and `R` means the job is running. You might also
-see `PD`, for "pending". This means your job is waiting for resource to become
+see `PD`, for "pending". This means your job is waiting for resources to become
 available.
 
 If you keep checking the status of the job with `scontrol`, you'll eventually
@@ -308,29 +308,120 @@ MX626585.1 Sequence 3 from patent US 10989719                         10892   0.
 ...
 ```
 
-Unsurprisingly for BRCA1, most of the patents that came up in our search are
-about cancer or cancer testing. The sixth result, [Patent
-5747282](https://patents.google.com/patent/US5747282A/en) is somewhat famous—it
-was the subject of a Supreme Court case, [Association for Molecular Pathology v.
-Myriad Genetics,
+Unsurprisingly for BRCA1, most of the sequences we found are from patents about
+cancer or cancer testing. Several of these patents (e.g. [Patent
+5747282](https://patents.google.com/patent/US5747282A/en)) were the subject of a
+Supreme Court case, [Association for Molecular Pathology v. Myriad Genetics,
 Inc.](https://en.wikipedia.org/wiki/Association_for_Molecular_Pathology_v._Myriad_Genetics,_Inc.),
 which decided that naturally occurring DNA sequences are not patentable.
 
 ### Requesting more resources
 
-What this job was taking too long and we wanted to speed it up? A lot of
-research software can use multiple CPU cores to improve performance, and BLAST
-is no exception. Let's try it by editing our job script with `nano`:
+This job was pretty fast, but if we were searching a much bigger database, or
+searching with many sequences, and the job was taking a long time? How could we
+ speed it up?
+
+A lot of research software can use multiple CPU cores to improve performance,
+and BLAST is no exception. Let's try it by editing our job script with `nano`:
 
 ```
 nano blast_job.sh
 ```
 
-next:
+Add the following line next to the other `#SBATCH` lines:
 
-- add SBATCH request for two cores
-- add num_threads argument
-  - mention the importance of this distinction: just because you request more resources from SLURM, doesn't mean your software will use them
-- run it
-- see that it's faster
-- talk about / link to examples of other things that can be requested/configured with SBATCH arguments
+```
+#SBATCH --cpus-per-task=2
+```
+
+This tells SLURM that our job requires two CPU cores (the default is one).
+
+However, this is not enough to improve the performance. Just because SLURM
+allocates two cores, does not mean BLAST will automatically use them. We have
+explicitly tell BLAST that we want it to use multiple cores.
+
+Change the final `blastn` command to add the argument `-num_threads 2`:
+
+```
+blastn -query BRCA1.fasta -db patnt -num_threads 2
+```
+
+The file should now look like this:
+
+
+```
+#!/bin/bash
+
+#SBATCH --account=workshopprj
+#SBATCH --partition=def-sm
+#SBATCH --cpus-per-task=2
+
+module load ncbi-blast/2.13.0
+
+blastn -query BRCA1.fasta -db patnt -num_threads 2
+```
+
+Like before, save the file using `Ctrl`+`o`, press `Enter` when prompted for the
+filename, and quit `nano` using `Ctrl`+`x`.
+
+----
+
+We can now run the job again with `sbatch`:
+
+```
+[jjp366@picottemgmt ~]$ sbatch blast_job.sh
+Submitted batch job 11755850
+```
+
+And track it's progress:
+
+```
+[jjp366@picottemgmt ~]$ scontrol show job 11755850
+JobId=11755850 JobName=blast_job.sh
+   UserId=jjp366(2451) GroupId=jjp366(2462) MCS_label=N/A
+   Priority=11927 Nice=0 Account=workshopprj QOS=normal WCKey=*
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:05 TimeLimit=00:30:00 TimeMin=N/A
+   SubmitTime=2025-06-30T11:28:58 EligibleTime=2025-06-30T11:28:58
+   AccrueTime=2025-06-30T11:28:58
+   StartTime=2025-06-30T11:28:59 EndTime=2025-06-30T11:58:59 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2025-06-30T11:28:59 Scheduler=Main
+   Partition=def-sm AllocNode:Sid=picottemgmt:2653761
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=node039
+   BatchHost=node039
+   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*
+   TRES=cpu=2,mem=8000M,node=1,billing=2
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=2 MinMemoryCPU=4000M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/home/jjp366/blast_job.sh
+   WorkDir=/home/jjp366
+   StdErr=/home/jjp366/slurm-11755850.out
+   StdIn=/dev/null
+   StdOut=/home/jjp366/slurm-11755850.out
+   Power=
+```
+
+We can see that we've succesfully assigned two CPUS by `NumCPUs=2`.
+
+The job should finish faster than when it ran with only one CPU[^speed].
+
+### Other types of resources
+
+In this example, we just requested more CPUs. Your jobs can request much more
+than just that though: additional memory, multiple nodes, time limit, GPUs and
+more can all be requested using arguments to `sbatch`.
+
+The details are beyond the scope of this workshop, but for more see the [URCF
+SLURM documentation](https://docs.urcf.drexel.edu/learning/slurm/reference/) and
+the [official `sbatch` documentation](https://slurm.schedmd.com/sbatch.html).
+
+[^speed]: This will be highly variable because a lot of the work of this job is
+    loading the nucleotide database from disk, which can be faster or sloweer
+    depending on cacheing, how many other people are accessing the database,
+    etc. This is a valuable lesson: software performance is very hard to
+    predict! Simply adding more cores won't always make things faster. You need
+    to carefully profile your code to ensure you're optimizing the right thing.
