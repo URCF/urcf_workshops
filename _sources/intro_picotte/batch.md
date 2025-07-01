@@ -51,7 +51,7 @@ $ ls BRCA1.fasta
 BRCA1.fasta
 ```
 
-And check it's contents to see that it's a DNA sequence:
+And check its contents to see that its a DNA sequence:
 
 ```
 cat BRCA1.fasta
@@ -373,7 +373,7 @@ We can now run the job again with `sbatch`:
 Submitted batch job 11755850
 ```
 
-And track it's progress:
+And track its progress:
 
 ```
 [jjp366@picottemgmt ~]$ scontrol show job 11755850

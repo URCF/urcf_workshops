@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Jupyter Hub service to the Picotte Cluster &#8212; University Research Computing Facility Workshops</title>
+    <title>Accessing Picotte using JupyterHub &#8212; University Research Computing Facility Workshops</title>
   
   
   
@@ -177,7 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="storage.html">Data storage and transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environment.html">Environment modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch.html">Running a batch job</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Jupyter Hub service to the Picotte Cluster</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Accessing Picotte using JupyterHub</a></li>
 </ul>
 </li>
 </ul>
@@ -347,7 +347,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Jupyter Hub service to the Picotte Cluster</h1>
+    <h1>Accessing Picotte using JupyterHub</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -361,12 +361,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="jupyter-hub-service-to-the-picotte-cluster">
-<h1>Jupyter Hub service to the Picotte Cluster<a class="headerlink" href="#jupyter-hub-service-to-the-picotte-cluster" title="Permalink to this heading">#</a></h1>
-<p>Picotte has a Jupyter Hub service that works through a Web browser. To access it, go to</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://picottemgmt.urcf.drexel.edu:8000
-</pre></div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="accessing-picotte-using-jupyterhub">
+<h1>Accessing Picotte using JupyterHub<a class="headerlink" href="#accessing-picotte-using-jupyterhub" title="Permalink to this heading">#</a></h1>
+<p>In addition to SSH using the command line, you can also access Picotte using
+<a class="reference external" href="https://jupyter.org/hub">JupyterHub</a>.</p>
+<p>JupyterHub gives you a web-based “notebook” interface for doing computation
+using Picotte. Jupyter has its roots in the Python community, but works with
+many other programming languages. It’s great for interactive and exploratory
+work, especially data visualization.</p>
+<p>To use JupyterHub on Picotte, go to: <a class="reference external" href="https://jupyterhub.urcf.drexel.edu">https://jupyterhub.urcf.drexel.edu</a>.</p>
 <p>You will need to login with your Picotte username and password:</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/jupyter-1.png" src="../_images/jupyter-1.png" />
@@ -381,26 +384,38 @@ document.write(`
 <p><span class="caption-number">Fig. 12 </span><span class="caption-text">JupyterHub interface</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Reservation</span></code>: This is available for special requests.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Account</span></code>: This is a list of Slurm accounts associated with your Picotte account. Go ahead
-and select <code class="docutils literal notranslate"><span class="pre">urcfprj</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Partition</span></code>: List of partitions available on Picotte. Select <code class="docutils literal notranslate"><span class="pre">def-sm</span></code> for this workshop.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CPU(s)</span></code>: This is equivalent to <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code>. Select <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">(in</span> <span class="pre">GB)</span></code>: This is quivalent to <code class="docutils literal notranslate"><span class="pre">--mem</span></code>. Select <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">GPU(s)</span></code>: is available when the <code class="docutils literal notranslate"><span class="pre">gpu</span></code> or <code class="docutils literal notranslate"><span class="pre">gpulong</span></code> partitions are selected.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">Time</span> <span class="pre">(in</span> <span class="pre">hours)</span></code>: select <code class="docutils literal notranslate"><span class="pre">1</span></code>. Maximum value is <code class="docutils literal notranslate"><span class="pre">12</span></code>.</p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Hub</span></code> will launch a job on Picotte with the resource request specified. This job will
-launch a <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Server</span></code> on the compute node, then proxied to the user directly.</p>
+<p>This screen lets you configure the resources your JupyterHub session will need.
+These are the same arguments we used before with <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>, just shown in a
+web-based GUI rather than on the command line.</p>
+<p>We’re going to leave them all at their defaults, except for <strong>Account</strong> and
+<strong>Partition</strong>. Set these just as we have for all our other jobs:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Account</p></td>
+<td><p>workshopprj</p></td>
+</tr>
+<tr class="row-odd"><td><p>Partition</p></td>
+<td><p>def-sm</p></td>
+</tr>
+</tbody>
+</table>
+<p>This will launch the Jupyter notebook interface as a job on a compute node and
+connect you to it in your browser. Then you can choose a kernel and start
+coding:</p>
 <figure class="align-default" id="id3">
 <img alt="../_images/jupyter-3.png" src="../_images/jupyter-3.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 13 </span><span class="caption-text">Jupyter Server interface</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>More details on running Python notebooks and RStudio server can be found at:</p>
-<p><a class="reference external" href="https://docs.urcf.drexel.edu/software/jupyterhub/jupyterhub/">https://docs.urcf.drexel.edu/software/jupyterhub/jupyterhub/</a></p>
+<p>You can find more details about using JupyterHub (for example, with other
+programming languages and custom kernels) in the <a class="reference external" href="https://docs.urcf.drexel.edu/software/jupyterhub/">official URCF
+documentation</a>.</p>
 </section>
 
     <script type="text/x-thebe-config">

@@ -1,10 +1,15 @@
-# Jupyter Hub service to the Picotte Cluster
+# Accessing Picotte using JupyterHub
 
-Picotte has a Jupyter Hub service that works through a Web browser. To access it, go to
+In addition to SSH using the command line, you can also access Picotte using
+[JupyterHub](https://jupyter.org/hub).
 
-~~~bash
-https://picottemgmt.urcf.drexel.edu:8000
-~~~
+JupyterHub gives you a web-based "notebook" interface for doing computation
+using Picotte. Jupyter has its roots in the Python community, but works with
+many other programming languages. It's great for interactive and exploratory
+work, especially data visualization.
+
+To use JupyterHub on Picotte, go to: https://jupyterhub.urcf.drexel.edu.
+
 
 You will need to login with your Picotte username and password:
 
@@ -19,24 +24,30 @@ Once you are logged, the following interface appears:
 JupyterHub interface
 :::
 
-- `Reservation`: This is available for special requests. 
-- `Account`: This is a list of Slurm accounts associated with your Picotte account. Go ahead 
-and select `urcfprj`.
-- `Partition`: List of partitions available on Picotte. Select `def-sm` for this workshop. 
-- `CPU(s)`: This is equivalent to `--cpus-per-task`. Select `1`
-- `Memory (in GB)`: This is quivalent to `--mem`. Select `1`
-- `GPU(s)`: is available when the `gpu` or `gpulong` partitions are selected. 
-- `Wall Time (in hours)`: select `1`. Maximum value is `12`. 
+This screen lets you configure the resources your JupyterHub session will need.
+These are the same arguments we used before with `sbatch`, just shown in a
+web-based GUI rather than on the command line.
 
-`Jupyter Hub` will launch a job on Picotte with the resource request specified. This job will 
-launch a `Jupyter Server` on the compute node, then proxied to the user directly. 
+We're going to leave them all at their defaults, except for **Account** and
+**Partition**. Set these just as we have for all our other jobs:
+
+| Parameter | Value |
+|-----------|-------|
+| Account   | workshopprj |
+| Partition | def-sm |
+
+This will launch the Jupyter notebook interface as a job on a compute node and
+connect you to it in your browser. Then you can choose a kernel and start
+coding:
 
 :::{figure} ../fig/intro_picotte/jupyter-3.png
 Jupyter Server interface
 :::
 
-More details on running Python notebooks and RStudio server can be found at:
+You can find more details about using JupyterHub (for example, with other
+programming languages and custom kernels) in the [official URCF
+documentation](https://docs.urcf.drexel.edu/software/jupyterhub/).
 
-https://docs.urcf.drexel.edu/software/jupyterhub/jupyterhub/
+
 
 

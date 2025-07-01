@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/batch';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Jupyter Hub service to the Picotte Cluster" href="jupyter-hub.html" />
+    <link rel="next" title="Accessing Picotte using JupyterHub" href="jupyter-hub.html" />
     <link rel="prev" title="Environment modules" href="environment.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -177,7 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="storage.html">Data storage and transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environment.html">Environment modules</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Running a batch job</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jupyter-hub.html">Jupyter Hub service to the Picotte Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jupyter-hub.html">Accessing Picotte using JupyterHub</a></li>
 </ul>
 </li>
 </ul>
@@ -423,7 +423,7 @@ sure you’re putting the file in your home directory.</p>
 BRCA1.fasta
 </pre></div>
 </div>
-<p>And check it’s contents to see that it’s a DNA sequence:</p>
+<p>And check its contents to see that its a DNA sequence:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span>
 <span class="o">&gt;</span><span class="n">BRCA1</span>
 <span class="n">AGCTCGCTGAGACTTCCTGGACCCCGCACCAGGCTGTGGGGTTTCTCAGATAACTGGGCCCCTGCGCTCAGGAGGCCTTC</span>
@@ -726,7 +726,7 @@ filename, and quit <code class="docutils literal notranslate"><span class="pre">
 Submitted batch job 11755850
 </pre></div>
 </div>
-<p>And track it’s progress:</p>
+<p>And track its progress:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picottemgmt ~]$ scontrol show job 11755850
 JobId=11755850 JobName=blast_job.sh
    UserId=jjp366(2451) GroupId=jjp366(2462) MCS_label=N/A
@@ -823,7 +823,7 @@ to carefully profile your code to ensure you’re optimizing the right thing.</p
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Jupyter Hub service to the Picotte Cluster</p>
+        <p class="prev-next-title">Accessing Picotte using JupyterHub</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
