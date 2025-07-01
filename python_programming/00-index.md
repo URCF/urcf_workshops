@@ -41,8 +41,6 @@ You're now ready for the workshop. There are some additional preparation steps, 
 
 ~~~bash
 cd
-mkdir swc-python
-cd swc-python
 wget https://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip
 wget https://swcarpentry.github.io/python-novice-inflammation/files/code/python-novice-inflammation-code.zip
 unzip python-novice-inflammation-data.zip
