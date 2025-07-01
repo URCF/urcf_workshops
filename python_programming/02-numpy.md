@@ -14,17 +14,16 @@
 
 ## Scenario: A Miracle Arthiritis Inflamation Cure
 
-Our imaginary colleague "Dr. Maverick" has invented a new miracle drug that promises to
-cure arthritis inflammation flare-ups after only 3 weeks since initially taking the
-medication! Naturally, we wish to see the clinical trial data, and after months of asking
-for the data they have finally provided us with a CSV spreadsheet containing the clinical
-trial data.
+Our imaginary colleague "Dr. Maverick" has invented a new miracle drug that
+promises to cure arthritis inflammation flare-ups in only 3 weeks! Naturally, we
+want to see the clinical trial data, and after months of asking, they have
+finally provided us with a spreadsheet containing the clinical trial data.
 
-The CSV file contains the number of inflammation flare-ups per day for the 60 patients
-in the initial clinical trial, with the trial lasting 40 days. Each row corresponds to a
-patient, and each column corresponds to a day in the trial. Once a patient has their first
-inflammation flare-up they take the medication and wait a few weeks for it to take effect
-and reduce flare-ups.
+The file contains the number of inflammation flare-ups per day for the 60
+patients in the initial clinical trial, with the trial lasting 40 days. Each row
+corresponds to a patient, and each column corresponds to a day in the trial.
+Once a patient has their first inflammation flare-up they take the medication
+and wait a few weeks for it to take effect and reduce flare-ups.
 
 To see how effective the treatment is we would like to:
 
@@ -37,8 +36,8 @@ To see how effective the treatment is we would like to:
 
 The data sets are stored in **comma-separated values** (CSV) format:
 
-- each row holds information for a single patient,
-- columns represent successive days.
+- Each row holds information for a single patient.
+- Columns represent successive days.
 
 The first three rows of our first file look like this:
 
@@ -207,7 +206,7 @@ attributes. This extra information describes `data` in the same way an adjective
 dotted notation for the attributes of variables that we use for the functions in libraries because
 they have the same part-and-whole relationship.
 
-If we want to get a single number from the array, we must provide an **index** in square brackets 
+If we want to get a single number from the array, we must provide an **index** in square brackets
 after the variable name, just as we
 do in math when referring to an element of a matrix.  Our inflammation data has two dimensions, so
 we will need to use two indices to refer to one specific value:

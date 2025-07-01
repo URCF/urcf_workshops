@@ -27,6 +27,23 @@ parts:
       - file: intro_picotte/batch.md
       - file: intro_picotte/jupyter-hub.md
 
+- caption: Python
+  chapters:
+    - file: python_programming/00-index.md
+      sections:
+      - file: python_programming/01-intro.md
+      - file: python_programming/02-numpy.md
+      - file: python_programming/03-matplotlib.md
+      - file: python_programming/04-lists.md
+      - file: python_programming/05-loop.md
+      - file: python_programming/06-files.md
+      - file: python_programming/07-cond.md
+      - file: python_programming/08-func.md
+      - file: python_programming/09-errors.md
+      - file: python_programming/10-defensive.md
+      - file: python_programming/11-debugging.md
+      - file: python_programming/12-cmdline.md
+
 - caption: R
   chapters:
     - file: r_programming/00-index.md
@@ -55,22 +72,9 @@ parts:
 #      - file: r_machine_learning/10-Unsupervised-Learning.md
 #      - file: r_machine_learning/11-Neural-Network.md
 #      - file: r_machine_learning/Project.md
-- caption: Python
-  chapters:
-    - file: python_programming/00-index.md
-      sections:
-      - file: python_programming/01-intro.md
-      - file: python_programming/02-numpy.md
-      - file: python_programming/03-matplotlib.md
-      - file: python_programming/04-lists.md
-      - file: python_programming/05-loop.md
-      - file: python_programming/06-files.md
-      - file: python_programming/07-cond.md
-      - file: python_programming/08-func.md
-      - file: python_programming/09-errors.md
-      - file: python_programming/10-defensive.md
-      - file: python_programming/11-debugging.md
-      - file: python_programming/12-cmdline.md
+
+
+
 #    - file: python_sklearn/00-index.md
 #      sections:
 #      - file: python_sklearn/01-TLDR.ipynb
@@ -135,3 +139,5 @@ parts:
 #      - file: intro_git_gitlab/06-gitlab.md
 #      - file: intro_git_gitlab/07-collaboration-conflicts.md
 #      - file: intro_git_gitlab/09-more-resources.md
+
+

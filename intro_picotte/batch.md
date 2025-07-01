@@ -37,8 +37,9 @@ We're going to search using the sequence of the
 *tumor suppressor gene*, mutations in which can cause breast cancer. It's famous
 as an early example of a specific gene that could be linked to cancer.
 
-To start, download the gene sequence file by clicking here:
-[`BRCA1.fasta`](https://github.com/URCF/urcf_workshops/raw/master/data/BRCA1.fasta).
+To start, download the gene sequence file by right clicking here:
+[`BRCA1.fasta`](https://github.com/URCF/urcf_workshops/raw/master/data/BRCA1.fasta)
+and choosing "Download" or "Save file".
 
 Then, connect to Picotte with [Cyberduck](./storage.md) and upload the
 `BRCA1.fasta` file by dragging and dropping it into the Cyberduck window. Make
