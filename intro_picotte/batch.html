@@ -181,24 +181,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/04-Matrix.html">Vectors, Matrices, Lists and Data Frames</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/05-Control-Structure.html">Control Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/06-Functions.html">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/07-Parallel-Computing.html">Parallel Computing in R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
-</ul>
-</li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_programming/00-index.html">Introduction to Python Programming</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_programming/00-index.html">Introduction to Python Programming</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/01-intro.html">Python Fundamentals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/02-numpy.html">Analyzing Patient Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/03-matplotlib.html">Visualizing Tabular Data</a></li>
@@ -211,6 +196,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/10-defensive.html">Defensive Programming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/11-debugging.html">Debugging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/12-cmdline.html">Command-Line Programs</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/04-Matrix.html">Vectors, Matrices, Lists and Data Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/05-Control-Structure.html">Control Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/06-Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/07-Parallel-Computing.html">Parallel Computing in R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
 </ul>
 </li>
 </ul>
@@ -413,8 +413,9 @@ understand bioinformatics—we’re just using it as an example.</p>
 <a class="reference external" href="https://en.wikipedia.org/wiki/BRCA1">BRCA1</a> gene as our query. BRCA1 is a
 <em>tumor suppressor gene</em>, mutations in which can cause breast cancer. It’s famous
 as an early example of a specific gene that could be linked to cancer.</p>
-<p>To start, download the gene sequence file by clicking here:
-<a class="reference external" href="https://github.com/URCF/urcf_workshops/raw/master/data/BRCA1.fasta"><code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code></a>.</p>
+<p>To start, download the gene sequence file by right clicking here:
+<a class="reference external" href="https://github.com/URCF/urcf_workshops/raw/master/data/BRCA1.fasta"><code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code></a>
+and choosing “Download” or “Save file”.</p>
 <p>Then, connect to Picotte with <a class="reference internal" href="storage.html"><span class="doc std std-doc">Cyberduck</span></a> and upload the
 <code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code> file by dragging and dropping it into the Cyberduck window. Make
 sure you’re putting the file in your home directory.</p>

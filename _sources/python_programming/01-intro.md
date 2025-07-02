@@ -13,7 +13,7 @@
 
 ## Variables
 
-Any Python interpreter can be used as a calculator:
+At it's simplest, Python can be used as a calculator.
 
 ```python
 3 + 5 * 4
@@ -24,6 +24,7 @@ Any Python interpreter can be used as a calculator:
 ```
 
 This is great but not very interesting.
+
 To do anything useful with data, we need to assign its value to a *variable*.
 In Python, we can assign a value to a variable, using the equals sign `=`.
 For example, we can track the weight of a patient who weighs 60 kilograms by
@@ -34,8 +35,9 @@ weight_kg = 60
 ```
 
 From now on, whenever we use `weight_kg`, Python will substitute the value we assigned to
-it. In layperson's terms, **a variable is a name for a value**.
+it. You can think of it like this: **a variable is a name for a value**.
 
+```{tip}
 In Python, variable names:
 
 - can include letters, digits, and underscores
@@ -46,14 +48,15 @@ This means that, for example:
 
 - `weight0` is a valid variable name, whereas `0weight` is not
 - `weight` and `Weight` are different variables
+```
 
 ## Types of data
 
 Python knows various types of data. Three common ones are:
 
 - integer numbers
-- floating point numbers, and
-- strings.
+- floating point (a.k.a. decimal) numbers, and
+- text. In programming textual data is called "strings".
 
 In the example above, variable `weight_kg` has an integer value of `60`.
 If we want to more precisely track the weight of our patient,
@@ -63,18 +66,19 @@ we can use a floating point value by executing:
 weight_kg = 60.3
 ```
 
-To create a string, we add single or double quotes around some text.
-To identify and track a patient throughout our study,
-we can assign each person a unique identifier by storing it in a string:
+To create a string, we add single or double quotes around some text. To identify
+and track a patient throughout our study, we can assign each person a unique
+identifier by storing it in a string:
 
 ```python
-patient_id = '001'
+patient_id = 'pat23'
 ```
 
 ## Using Variables in Python
 
-Once we have data stored with variable names, we can make use of it in calculations.
-We may want to store our patient's weight in pounds as well as kilograms:
+Once we have data stored with variable names, we can make use of it in
+calculations. We may want to store our patient's weight in pounds as well as
+kilograms, we can convert by multiplying:
 
 ```python
 weight_lb = 2.2 * weight_kg
@@ -102,13 +106,13 @@ print(patient_id)
 inflam_001
 ```
 
-When we want to make use of a function, referred to as calling the function,
-we follow its name by parentheses. The parentheses are important:
-if you leave them off, the function doesn't actually run!
-Sometimes you will include values or variables inside the parentheses for the function to use.
-In the case of `print`,
-we use the parentheses to tell the function what value we want to display.
-We will learn more about how functions work and how to create our own in later episodes.
+When we want to make use of a function, referred to as *calling* the function,
+we type its name, followed by parentheses. The parentheses are important: if you
+leave them off, the function doesn't actually run! Sometimes you will include
+values or variables inside the parentheses for the function to use. In the case
+of `print`, we use the parentheses to tell the function what value we want to
+display. We will learn more about how functions work and how to create our own
+in later episodes.
 
 We can display multiple things at once using only one `print` call:
 
@@ -165,7 +169,8 @@ print('weight in kilograms is now:', weight_kg)
 weight in kilograms is now: 65.0
 ```
 
-## Variables as Sticky Notes
+~~~{admonition} Variables as Sticky Notes
+:class: tip
 
 A variable in Python is analogous to a sticky note with a name written on it:
 assigning a value to a variable is like putting that sticky note on a particular value.
@@ -213,6 +218,8 @@ weight in kilograms is now: 100.0 and weight in pounds is still: 143.0
 
 Since `weight_lb` doesn't "remember" where its value comes from,
 it is not updated when we change `weight_kg`.
+
+~~~
 
 ## Challenge 1: Check Your Understanding
 

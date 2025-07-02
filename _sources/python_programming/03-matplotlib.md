@@ -86,66 +86,8 @@ Neither trend seems particularly likely, so either there's a mistake in our calc
 something is wrong with our data. This insight would have been difficult to reach by examining
 the numbers themselves without visualization tools.
 
-### Grouping plots
-
-You can group similar plots in a single figure using subplots.
-This script below uses a number of new commands. The function `matplotlib.pyplot.figure()`
-creates a space into which we will place all of our plots. The parameter `figsize`
-tells Python how big to make this space. Each subplot is placed into the figure using
-its `add_subplot` **method**. The `add_subplot` method takes
-3 parameters. The first denotes how many total rows of subplots there are, the second parameter
-refers to the total number of subplot columns, and the final parameter denotes which subplot
-your variable is referencing (left-to-right, top-to-bottom). Each subplot is stored in a
-different variable (`axes1`, `axes2`, `axes3`). Once a subplot is created, the axes can
-be titled using the `set_xlabel()` command (or `set_ylabel()`).
-Here are our three plots side by side:
-
-```python
-import numpy
-import matplotlib.pyplot
-
-data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
-
-fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
-
-axes1 = fig.add_subplot(1, 3, 1)
-axes2 = fig.add_subplot(1, 3, 2)
-axes3 = fig.add_subplot(1, 3, 3)
-
-axes1.set_ylabel('average')
-axes1.plot(numpy.mean(data, axis=0))
-
-axes2.set_ylabel('max')
-axes2.plot(numpy.amax(data, axis=0))
-
-axes3.set_ylabel('min')
-axes3.plot(numpy.amin(data, axis=0))
-
-fig.tight_layout()
-
-matplotlib.pyplot.savefig('inflammation.png')
-matplotlib.pyplot.show()
-```
-
-![Three line graphs showing the daily average, maximum and minimum inflammation over a 40-day period.](../fig/python_programming/03-matplotlib/inflammation-01-group-plot.svg)
-
-The **call** to `loadtxt` reads our data,
-and the rest of the program tells the plotting library
-how large we want the figure to be,
-that we're creating three subplots,
-what to draw for each one,
-and that we want a tight layout.
-(If we leave out that call to `fig.tight_layout()`,
-the graphs will actually be squeezed together more closely.)
-
-The call to `savefig` stores the plot as a graphics file. This can be
-a convenient way to store your plots for use in other documents, web
-pages etc. The graphics format is automatically determined by
-Matplotlib from the file name ending we specify; here PNG from
-'inflammation.png'. Matplotlib supports many different graphics
-formats, including SVG, PDF, and JPEG.
-
-## Importing libraries with shortcuts
+```{admonition} Importing libraries with shortcuts
+:class: tip
 
 In this lesson we use the `import matplotlib.pyplot`
 **syntax** to import the `pyplot` module of `matplotlib`. However, shortcuts such as
@@ -165,88 +107,11 @@ approach you choose to take, but you must be consistent as if you use
 you must use `plt.plot(...)` instead. Because of this, when working with other people it
 is important you agree on how libraries are imported.
 
-
-## Challenge 1: Plot Scaling
-
-Why do all of our plots stop just short of the upper end of our graph?
-
-:::{dropdown} Solution
-Because matplotlib normally sets x and y axes limits to the min and max of our data
-(depending on data range)
-:::
-
-If we want to change this, we can use the `set_ylim(min, max)` method of each 'axes',
-for example:
-
-```python
-axes3.set_ylim(0, 6)
 ```
 
-Update your plotting code to automatically set a more appropriate scale.
-(Hint: you can make use of the `max` and `min` methods to help.)
 
-:::{dropdown} Solution
-```python
-# One method
-axes3.set_ylabel('min')
-axes3.plot(numpy.amin(data, axis=0))
-axes3.set_ylim(0, 6)
-```
-:::
-
-:::{dropdown} Solution
-```python
-# A more automated approach
-min_data = numpy.amin(data, axis=0)
-axes3.set_ylabel('min')
-axes3.plot(min_data)
-axes3.set_ylim(numpy.amin(min_data), numpy.amax(min_data) * 1.1)
-```
-:::
-
-## Challenge 2: Drawing Straight Lines
-
-In the center and right subplots above, we expect all lines to look like step functions because
-non-integer value are not realistic for the minimum and maximum values. However, you can see
-that the lines are not always vertical or horizontal, and in particular the step function
-in the subplot on the right looks slanted. Why is this?
-
-:::{dropdown} Solution
-
-Because matplotlib interpolates (draws a straight line) between the points.
-One way to do avoid this is to use the Matplotlib `drawstyle` option:
-
-```python
-import numpy
-import matplotlib.pyplot
-
-data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
-
-fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
-
-axes1 = fig.add_subplot(1, 3, 1)
-axes2 = fig.add_subplot(1, 3, 2)
-axes3 = fig.add_subplot(1, 3, 3)
-
-axes1.set_ylabel('average')
-axes1.plot(numpy.mean(data, axis=0), drawstyle='steps-mid')
-
-axes2.set_ylabel('max')
-axes2.plot(numpy.amax(data, axis=0), drawstyle='steps-mid')
-
-axes3.set_ylabel('min')
-axes3.plot(numpy.amin(data, axis=0), drawstyle='steps-mid')
-
-fig.tight_layout()
-
-matplotlib.pyplot.show()
-```
-
-![Three line graphs, with step lines connecting the points, showing the daily average, maximumand minimum inflammation over a 40-day period.](../fig/python_programming/03-matplotlib/inflammation-01-line-styles.svg)
-
-:::
-
-## Challenge 3:  Make Your Own Plot
+~~~{admonition} Challenge: Make Your Own Plot
+:class: note
 
 Create a plot showing the standard deviation (`numpy.std`)
 of the inflammation data for each day across all patients.
@@ -257,41 +122,8 @@ std_plot = matplotlib.pyplot.plot(numpy.std(data, axis=0))
 matplotlib.pyplot.show()
 ```
 :::
+~~~
 
-## Challenge 4: Moving Plots Around
-
-Modify the program to display the three plots on top of one another
-instead of side by side.
-
-:::{dropdown} Solution
-```python
-import numpy
-import matplotlib.pyplot
-
-data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
-
-# change figsize (swap width and height)
-fig = matplotlib.pyplot.figure(figsize=(3.0, 10.0))
-
-# change add_subplot (swap first two parameters)
-axes1 = fig.add_subplot(3, 1, 1)
-axes2 = fig.add_subplot(3, 1, 2)
-axes3 = fig.add_subplot(3, 1, 3)
-
-axes1.set_ylabel('average')
-axes1.plot(numpy.mean(data, axis=0))
-
-axes2.set_ylabel('max')
-axes2.plot(numpy.amax(data, axis=0))
-
-axes3.set_ylabel('min')
-axes3.plot(numpy.amin(data, axis=0))
-
-fig.tight_layout()
-
-matplotlib.pyplot.show()
-```
-:::
 
 ```{admonition} Keypoints
 - Use the `pyplot` module from the `matplotlib` library for creating simple visualizations.

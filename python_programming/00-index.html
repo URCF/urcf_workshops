@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Python Fundamentals" href="01-intro.html" />
-    <link rel="prev" title="Ploting with ggplot" href="../r_programming/09-Plotting-with-ggplot.html" />
+    <link rel="prev" title="Accessing Picotte using JupyterHub" href="../intro_picotte/jupyter-hub.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,24 +181,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/04-Matrix.html">Vectors, Matrices, Lists and Data Frames</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/05-Control-Structure.html">Control Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/06-Functions.html">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/07-Parallel-Computing.html">Parallel Computing in R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
-</ul>
-</li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction to Python Programming</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction to Python Programming</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="01-intro.html">Python Fundamentals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02-numpy.html">Analyzing Patient Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03-matplotlib.html">Visualizing Tabular Data</a></li>
@@ -211,6 +196,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="10-defensive.html">Defensive Programming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11-debugging.html">Debugging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12-cmdline.html">Command-Line Programs</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/04-Matrix.html">Vectors, Matrices, Lists and Data Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/05-Control-Structure.html">Control Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/06-Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/07-Parallel-Computing.html">Parallel Computing in R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
 </ul>
 </li>
 </ul>
@@ -359,10 +359,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop-description">Workshop Description</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-setup-on-picotte">Software Setup on Picotte</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-setup-on-pc-laptop-or-desktop">Software Setup on PC (Laptop or Desktop)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
 </ul>
             </nav>
         </div>
@@ -376,140 +373,63 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-python-programming">
 <h1>Introduction to Python Programming<a class="headerlink" href="#introduction-to-python-programming" title="Permalink to this heading">#</a></h1>
-<ul class="simple">
-<li><p><strong>Instructor</strong>: Linh B. Ngo</p></li>
-<li><p><strong>Office</strong>: 358 Curtis Hall</p></li>
-<li><p><strong>Email</strong>: lbn28 AT drexel DOT edu</p></li>
-</ul>
-<section id="workshop-description">
-<h2>Workshop Description<a class="headerlink" href="#workshop-description" title="Permalink to this heading">#</a></h2>
-<p>This Workshop will introduce Python for those that have little to no
-programming experience and consists of two parts:</p>
-<ul class="simple">
-<li><p>Part 1: A quick introduction to Python and its basic data analytic
-capability in processing and visualizing data.</p></li>
-<li><p>Part 2: A more in-depth view into programming concepts in Python,
-including loops, conditions, functions, and testing and debugging.</p></li>
-</ul>
-<p>The workshop uses materials from <a class="reference external" href="https://software-carpentry.org/">Software Carpentry</a>’s
-Programming with Python lesson.</p>
-</section>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
-<p>No prerequisites are required</p>
-</section>
-<section id="software-setup-on-picotte">
-<h2>Software Setup on Picotte<a class="headerlink" href="#software-setup-on-picotte" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Require valid Picotte’s account.</p></li>
-<li><p>You can follow <a class="reference external" href="https://docs.urcf.drexel.edu/software/jupyterhub/jupyterhub/">Picotte’s JupyterHub</a>
-instructions to launch a Jupyter Server on Picotte’s compute nodes.</p></li>
-<li><p>For the workshop, the following parameters should be used:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Account</span></code>: <code class="docutils literal notranslate"><span class="pre">urcfprj</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Partition</span></code>: def-sm</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CPU(s)</span></code>: 2</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Memory(in</span> <span class="pre">GB)</span></code>: 4</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">Time</span> <span class="pre">(in</span> <span class="pre">hours)</span></code>: 4</p></li>
-</ul>
-</li>
-<li><p>Open a terminal from inside JupyterHub and run the following command to
-get the data.</p></li>
-</ul>
+<p>This workshop introduces Python for those that have little to no programming
+experience, and has two parts:</p>
+<ol class="arabic simple">
+<li><p>A quick introduction to Python and the basics of processing and visualizing
+data.</p></li>
+<li><p>A more in-depth view into programming concepts in Python, including loops,
+conditions, functions, and debugging.</p></li>
+</ol>
+<p>The workshop uses material from <a class="reference external" href="https://swcarpentry.github.io/python-novice-inflammation/">Software Carpentry’s <em>Programming with Python</em>
+lesson</a>.</p>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading">#</a></h2>
+<p>We’ll be using a hosted JupyterHub service for this workshop. <strong>Be sure to do
+the “Before the workshop” steps before and confirm they work for you prior to
+the start of the workshop.</strong></p>
+<div class="note admonition">
+<p class="admonition-title">Before the workshop</p>
+<ol class="arabic simple">
+<li><p>Go to <a class="reference external" href="https://drexeljupyter.eastus.cloudapp.azure.com/">https://drexeljupyter.eastus.cloudapp.azure.com/</a></p></li>
+<li><p>Click the “Sign in with Globus” button.</p></li>
+<li><p>Under “Use your existing organizational login” choose “Drexel University” from the list of institutions and click “Continue”.</p></li>
+<li><p>Sign in using Drexel Connect.</p></li>
+<li><p>You’ll now be presented with a “Server Options” page. Choose “Jupyter Datascience” and click “Start”</p></li>
+<li><p>Wait for the loading screen to finish, then you should see the Jupyter notebook interface, which looks like this:</p></li>
+</ol>
+<p><img alt="Jupyter notebook interface" src="../_images/jupyter_notebook.png" /></p>
+<p>You’re now ready for the workshop. There are some additional preparation steps, but we’ll do them together at the beginning of the workshop.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">At the start of the workshop.</p>
+<ol class="arabic simple">
+<li><p>From the Jupyter notebook interface, click the “Terminal” button in the “Other” section to open a new shell.</p></li>
+<li><p>In the shell, copy and paste the following lines to download the data we’ll be using:</p></li>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>
-mkdir<span class="w"> </span>swc-python
-<span class="nb">cd</span><span class="w"> </span>swc-python
 wget<span class="w"> </span>https://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip
 wget<span class="w"> </span>https://swcarpentry.github.io/python-novice-inflammation/files/code/python-novice-inflammation-code.zip
 unzip<span class="w"> </span>python-novice-inflammation-data.zip
 unzip<span class="w"> </span>python-novice-inflammation-code.zip
-ls<span class="w"> </span>data/
-ls<span class="w"> </span>code/<span class="w"> </span>
 </pre></div>
 </div>
-<p><img alt="Getting data for Picotte" src="../_images/picotte-data.png" /></p>
-</section>
-<section id="software-setup-on-pc-laptop-or-desktop">
-<h2>Software Setup on PC (Laptop or Desktop)<a class="headerlink" href="#software-setup-on-pc-laptop-or-desktop" title="Permalink to this heading">#</a></h2>
-<div class="dropdown admonition">
-<p class="admonition-title">Windows</p>
-<ul class="simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">https://www.anaconda.com/products/individual#download-section</span></code> with your web browser.</p></li>
-<li><p>Download the Anaconda for Windows installer with Python 3. (If you are not sure which
-version to choose, you probably want the 64-bit Graphical Installer <em>Anaconda3-…-Windows-x86_64.exe</em>)</p></li>
-<li><p>Install `Python 3`` by running the Anaconda Installer, using all of the defaults for installation except make sure to check <strong>Add Anaconda to my PATH environment variable</strong>.</p></li>
-</ul>
+<p>Your screen should look like this:</p>
+<p><img alt="Getting data using the terminal" src="../_images/download_commands.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>To confirm the download worked, run <code class="docutils literal notranslate"><span class="pre">ls</span></code>. You should see <code class="docutils literal notranslate"><span class="pre">code</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> directories:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>jovyan@jupyter-jjp366:~/swc-python$ ls
+code  data  python-novice-inflammation-code.zip  python-novice-inflammation-data.zip
+</pre></div>
 </div>
-<div class="dropdown admonition">
-<p class="admonition-title">MacOS</p>
-<ul class="simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">https://www.anaconda.com/products/individual#download-section</span></code> with your web browser.</p></li>
-<li><p>Download the Anaconda Installer with Python 3 for macOS (you can either use the Graphical or
-the Command Line Installer).</p></li>
-<li><p>Install Python 3 by running the Anaconda Installer using all of the defaults for installation.</p></li>
-</ul>
+<ol class="arabic simple" start="4">
+<li><p>Click the “+” button next to the tabs at the top of the screen to open the Launcher again.</p></li>
+<li><p>Click on “Python 3 (ipykernel)” in the “Notebook” section. Your screen should look like this:</p></li>
+</ol>
+<p><img alt="Getting data using the terminal" src="../_images/python_kernel.png" /></p>
+<p>The textbox you see is called a “cell” You can type Python code and press <code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run it and create a new cell. You’re now ready to start the workshop!</p>
 </div>
-<div class="dropdown admonition">
-<p class="admonition-title">Linux</p>
-<ul class="simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">https://www.anaconda.com/products/individual#download-section</span></code> with your web browser.</p></li>
-<li><p>Download the Anaconda Installer with Python 3 for Linux. The installation requires using the shell.</p></li>
-<li><p>Open a terminal window and navigate to the directory where the executable is downloaded
-(e.g., <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/Downloads</span></code>).</p></li>
-<li><p>Type <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Anaconda3</span></code> and then press <code class="docutils literal notranslate"><span class="pre">Tab</span></code> to autocomplete the full file name. The name of
-file you just downloaded should appear.</p></li>
-<li><p>Press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code> depending on your keyboard). You will follow the text-only prompts.</p>
-<ul>
-<li><p>To move through the text, press <code class="docutils literal notranslate"><span class="pre">Spacebar</span></code>.</p></li>
-<li><p>Type yes and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code>) to approve the license.</p></li>
-<li><p>Press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code>) to approve the default location for the files.</p></li>
-<li><p>Type <code class="docutils literal notranslate"><span class="pre">yes</span></code> and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or <code class="docutils literal notranslate"><span class="pre">Return</span></code>) to prepend Anaconda to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>
-(this makes the Anaconda distribution the default Python).</p></li>
-<li><p>Close the terminal window.</p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="admonition-data-preparation admonition">
-<p class="admonition-title">Data preparation</p>
-<ul class="simple">
-<li><p>Create a directory on your Desktop called <code class="docutils literal notranslate"><span class="pre">swc-python</span></code>. Download the following files
-into the <code class="docutils literal notranslate"><span class="pre">swc-python</span></code> directory:</p>
-<ul>
-<li><p><a class="reference external" href="https://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip">zipped data file</a></p></li>
-<li><p><a class="reference external" href="https://swcarpentry.github.io/python-novice-inflammation/files/code/python-novice-inflammation-code.zip">zipped code file</a></p></li>
-</ul>
-</li>
-<li><p>Go to <code class="docutils literal notranslate"><span class="pre">swc-python</span></code> and unzip these two files. You should see the two directories: <code class="docutils literal notranslate"><span class="pre">data</span></code> and
-<code class="docutils literal notranslate"><span class="pre">code</span></code> created.</p></li>
-</ul>
-</div>
-<p><img alt="Getting data for Desktops" src="../_images/desktop-files.png" /></p>
-<div class="admonition-launch-jupyter-notebook-step-1 admonition">
-<p class="admonition-title">Launch Jupyter Notebook (Step 1)</p>
-<ul class="simple">
-<li><p>Launch Anaconda Navigator</p>
-<ul>
-<li><p>On Windows, type Anaconda Navigator into the Search Bar and launch the app</p></li>
-<li><p>On Mac, type Anaconda Navigator into the search box (magnifying glass on
-top right corner) and launch the app.</p></li>
-</ul>
-</li>
-<li><p>Launch JupyterLab</p></li>
-</ul>
-</div>
-<p><img alt="Launch Anaconda Navigator" src="../_images/navigator.png" /></p>
-<div class="admonition-launch-jupyter-notebook-step-2 admonition">
-<p class="admonition-title">Launch Jupyter Notebook (Step 2)</p>
-<ul class="simple">
-<li><p>By default, Jupyter Notebook will launch inside your Document folder (Windows),
-or inside your home directory (MacOS).</p></li>
-<li><p>You can see the Desktop directory.</p></li>
-<li><p>Double-click to get into Desktop, then into <code class="docutils literal notranslate"><span class="pre">swc-python</span></code>. You should see the
-<code class="docutils literal notranslate"><span class="pre">data</span></code> and <code class="docutils literal notranslate"><span class="pre">code</span></code> directores ready.</p></li>
-</ul>
-</div>
-<p><img alt="Launch Anaconda Navigator" src="../_images/jupyter.png" /></p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -544,12 +464,12 @@ or inside your home directory (MacOS).</p></li>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../r_programming/09-Plotting-with-ggplot.html"
+       href="../intro_picotte/jupyter-hub.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ploting with ggplot</p>
+        <p class="prev-next-title">Accessing Picotte using JupyterHub</p>
       </div>
     </a>
     <a class="right-next"
@@ -576,10 +496,7 @@ or inside your home directory (MacOS).</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop-description">Workshop Description</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-setup-on-picotte">Software Setup on Picotte</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-setup-on-pc-laptop-or-desktop">Software Setup on PC (Laptop or Desktop)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation">Preparation</a></li>
 </ul>
   </nav></div>
 
