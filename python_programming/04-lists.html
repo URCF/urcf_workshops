@@ -360,11 +360,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-lists">Python lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ch-ch-ch-ch-changes">Ch-Ch-Ch-Ch-Changes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-lists">Nested Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneous-lists">Heterogeneous Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-slicing-from-the-end">Challenge 1: Slicing From the End</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-non-continuous-slices">Challenge 2: Non-Continuous Slices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-with-different-data-types">Lists with different data types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-lists-and-strings">Slicing lists and strings</a></li>
 </ul>
             </nav>
         </div>
@@ -432,128 +429,14 @@ These positions are numbered starting at 0, so the first element has an index of
 <p>Yes, we can use negative numbers as indices in Python. When we do so, the index <code class="docutils literal notranslate"><span class="pre">-1</span></code> gives us the
 last element in the list, <code class="docutils literal notranslate"><span class="pre">-2</span></code> the second to last, and so on.
 Because of this, <code class="docutils literal notranslate"><span class="pre">odds[3]</span></code> and <code class="docutils literal notranslate"><span class="pre">odds[-1]</span></code> point to the same element here.</p>
-<p>There is one important difference between lists and strings:
-we can change the values in a list,
-but we cannot change individual characters in a string.
-For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Curie&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwing&#39;</span><span class="p">,</span> <span class="s1">&#39;Turing&#39;</span><span class="p">]</span>  <span class="c1"># typo in Darwin&#39;s name</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;names is originally:&#39;</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
-<span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Darwin&#39;</span>  <span class="c1"># correct the name</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;final value of names:&#39;</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">names is originally: [&#39;Curie&#39;, &#39;Darwing&#39;, &#39;Turing&#39;]</span>
-<span class="go">final value of names: [&#39;Curie&#39;, &#39;Darwin&#39;, &#39;Turing&#39;]</span>
-</pre></div>
-</div>
-<p>works, but:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Darwin&#39;</span>
-<span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;d&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-TypeError                                 Traceback (most recent call last)
-&lt;ipython-input-8-220df48aeb2e&gt; in &lt;module&gt;()
-      1 name = &#39;Darwin&#39;
-----&gt; 2 name[0] = &#39;d&#39;
-
-TypeError: &#39;str&#39; object does not support item assignment
-</pre></div>
-</div>
-<p>does not.</p>
 </section>
-<section id="ch-ch-ch-ch-changes">
-<h2>Ch-Ch-Ch-Ch-Changes<a class="headerlink" href="#ch-ch-ch-ch-changes" title="Permalink to this heading">#</a></h2>
-<p>Data which can be modified in place is called <span class="xref myst">mutable</span>,
-while data which cannot be modified is called
-<span class="xref myst">immutable</span>.
-Strings and numbers are immutable. This does not mean that variables with string or number values
-are constants, but when we want to change the value of a string or number variable, we can only
-replace the old value with a completely new value.</p>
-<p>Lists and arrays, on the other hand, are mutable: we can modify them after they have been
-created. We can change individual elements, append new elements, or reorder the whole list. For
-some operations, like sorting, we can choose whether to use a function that modifies the data
-in-place or a function that returns a modified copy and leaves the original unchanged.</p>
-<p>Be careful when modifying data in-place. If two variables refer to the same list, and you modify
-the list value, it will change for both variables!</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mild_salsa</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;onions&#39;</span><span class="p">,</span> <span class="s1">&#39;cilantro&#39;</span><span class="p">,</span> <span class="s1">&#39;tomatoes&#39;</span><span class="p">]</span>
-<span class="n">hot_salsa</span> <span class="o">=</span> <span class="n">mild_salsa</span>        <span class="c1"># &lt;-- mild_salsa and hot_salsa point to the *same* list data in memory</span>
-<span class="n">hot_salsa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;hot peppers&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ingredients in mild salsa:&#39;</span><span class="p">,</span> <span class="n">mild_salsa</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ingredients in hot salsa:&#39;</span><span class="p">,</span> <span class="n">hot_salsa</span><span class="p">)</span>
+<section id="lists-with-different-data-types">
+<h2>Lists with different data types<a class="headerlink" href="#lists-with-different-data-types" title="Permalink to this heading">#</a></h2>
+<p>Unlike NumPy arrays, which can only hold numbers, lists can hold any type of data.</p>
+<div class="highlight-pthon notranslate"><div class="highlight"><pre><span></span>fruits = [&quot;apple&quot;, &quot;pear&quot;, &quot;orange&quot;]
 </pre></div>
 </div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Ingredients in mild salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</span>
-<span class="go">Ingredients in hot salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</span>
-</pre></div>
-</div>
-<p>If you want variables with mutable values to be independent, you
-must make a copy of the value when you assign it.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mild_salsa</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;onions&#39;</span><span class="p">,</span> <span class="s1">&#39;cilantro&#39;</span><span class="p">,</span> <span class="s1">&#39;tomatoes&#39;</span><span class="p">]</span>
-<span class="n">hot_salsa</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mild_salsa</span><span class="p">)</span>        <span class="c1"># &lt;-- makes a *copy* of the list</span>
-<span class="n">hot_salsa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;hot peppers&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ingredients in mild salsa:&#39;</span><span class="p">,</span> <span class="n">mild_salsa</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ingredients in hot salsa:&#39;</span><span class="p">,</span> <span class="n">hot_salsa</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Ingredients in mild salsa: [&#39;peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</span>
-<span class="go">Ingredients in hot salsa: [&#39;hot peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</span>
-</pre></div>
-</div>
-<p>Because of pitfalls like this, code which modifies data in place can be more difficult to
-understand. However, it is often far more efficient to modify a large data structure in place
-than to create a modified copy for every small change. You should consider both of these aspects
-when writing your code.</p>
-</section>
-<section id="nested-lists">
-<h2>Nested Lists<a class="headerlink" href="#nested-lists" title="Permalink to this heading">#</a></h2>
-<p>Since a list can contain any Python variables, it can even contain other lists.</p>
-<p>For example, you could represent the products on the shelves of a small grocery shop
-as a nested list called <code class="docutils literal notranslate"><span class="pre">veg</span></code>:</p>
-<p><img alt="" src="../_images/04_groceries_veg.png" />{alt=’veg is represented as a shelf full of produce. There are three rows of vegetableson the shelf, and each row contains three baskets of vegetables. We can labeleach basket according to the type of vegetable it contains, so the top rowcontains (from left to right) lettuce, lettuce, and peppers.’}</p>
-<p>To store the contents of the shelf in a nested list, you write it this way:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">veg</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;zucchini&#39;</span><span class="p">],</span>
-     <span class="p">[</span><span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;zucchini&#39;</span><span class="p">],</span>
-     <span class="p">[</span><span class="s1">&#39;lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;cilantro&#39;</span><span class="p">,</span> <span class="s1">&#39;peppers&#39;</span><span class="p">,</span> <span class="s1">&#39;zucchini&#39;</span><span class="p">]]</span>
-</pre></div>
-</div>
-<p>Here are some visual examples of how indexing a list of lists <code class="docutils literal notranslate"><span class="pre">veg</span></code> works. First,
-you can reference each row on the shelf as a separate list. For example, <code class="docutils literal notranslate"><span class="pre">veg[2]</span></code>
-represents the bottom row, which is a list of the baskets in that row.</p>
-<p><img alt="" src="../_images/04_groceries_veg0.png" />{alt=’veg is now shown as a list of three rows, with veg[0] representing the top row ofthree baskets, veg[1] representing the second row, and veg[2] representing the bottom row.’}</p>
-<p>Index operations using the image would work like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veg</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[&#39;lettuce&#39;, &#39;cilantro&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veg</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[&#39;lettuce&#39;, &#39;lettuce&#39;, &#39;peppers&#39;, &#39;zucchini&#39;]</span>
-</pre></div>
-</div>
-<p>To reference a specific basket on a specific shelf, you use two indexes. The first
-index represents the row (from top to bottom) and the second index represents
-the specific basket (from left to right).
-<img alt="" src="../_images/04_groceries_veg00.png" />{alt=’veg is now shown as a two-dimensional grid, with each basket labeled according toits index in the nested list. The first index is the row number and the secondindex is the basket number, so veg[1][3] represents the basket on the far rightside of the second row (basket 4 on row 2): zucchini’}</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veg</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&#39;lettuce&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veg</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&#39;peppers&#39;</span>
-</pre></div>
-</div>
-</section>
-<section id="heterogeneous-lists">
-<h2>Heterogeneous Lists<a class="headerlink" href="#heterogeneous-lists" title="Permalink to this heading">#</a></h2>
-<p>Lists in Python can contain elements of different types. Example:</p>
+<p>Lists can even contain elements of different types. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_ages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">,</span> <span class="s1">&#39;Unknown&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -582,11 +465,11 @@ individual elements:</p>
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">odds after reversing: [11, 7, 5, 3]</span>
 </pre></div>
 </div>
-<p>While modifying in place, it is useful to remember that Python treats lists in a slightly
-counter-intuitive way.</p>
-<p>As we saw earlier, when we modified the <code class="docutils literal notranslate"><span class="pre">mild_salsa</span></code> list item in-place, if we make a list, (attempt to)
-copy it and then modify this list, we can cause all sorts of trouble. This also applies to modifying
-the list using the above functions:</p>
+<p>While modifying in place, it is useful to remember that Python treats lists in a
+slightly counter-intuitive way.</p>
+<p>If we make a list, (attempt to) copy it and then modify this list, we can cause
+all sorts of trouble. This also applies to modifying the list using the above
+functions:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 <span class="n">primes</span> <span class="o">=</span> <span class="n">odds</span>
 <span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -598,31 +481,18 @@ the list using the above functions:</p>
 <span class="go">odds: [3, 5, 7, 2]</span>
 </pre></div>
 </div>
-<p>This is because Python stores a list in memory, and then can use multiple names to refer to the
-same list. If all we want to do is copy a (simple) list, we can again use the <code class="docutils literal notranslate"><span class="pre">list</span></code> function, so we
-do not modify a list we did not mean to:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
-<span class="n">primes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">odds</span><span class="p">)</span>
-<span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;primes:&#39;</span><span class="p">,</span> <span class="n">primes</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;odds:&#39;</span><span class="p">,</span> <span class="n">odds</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">primes: [3, 5, 7, 2]</span>
-<span class="go">odds: [3, 5, 7]</span>
-</pre></div>
-</div>
-<p>Subsets of lists and strings can be accessed by specifying ranges of values in brackets,
-similar to how we accessed ranges of positions in a NumPy array.
-This is commonly referred to as “slicing” the list/string.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">binomial_name</span> <span class="o">=</span> <span class="s1">&#39;Drosophila melanogaster&#39;</span>
-<span class="n">group</span> <span class="o">=</span> <span class="n">binomial_name</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;group:&#39;</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
-
-<span class="n">species</span> <span class="o">=</span> <span class="n">binomial_name</span><span class="p">[</span><span class="mi">11</span><span class="p">:</span><span class="mi">23</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;species:&#39;</span><span class="p">,</span> <span class="n">species</span><span class="p">)</span>
-
-<span class="n">chromosomes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">]</span>
+<p>This is because Python lets us use multiple names to refer to the <em>same list</em>.
+The variable names are like two sticky notes stuck to the same drawer (the
+list). In the code above, we add <code class="docutils literal notranslate"><span class="pre">2</span></code> to the drawer labeled <code class="docutils literal notranslate"><span class="pre">primes</span></code>, and then
+check the contents of the drawer labeled <code class="docutils literal notranslate"><span class="pre">odds</span></code>. We find <code class="docutils literal notranslate"><span class="pre">2</span></code> there, because
+they’re the same drawer—it just has two labels on it.</p>
+</section>
+<section id="slicing-lists-and-strings">
+<h2>Slicing lists and strings<a class="headerlink" href="#slicing-lists-and-strings" title="Permalink to this heading">#</a></h2>
+<p>Subsets of lists can be accessed by specifying ranges of values in brackets,
+similar to how we accessed ranges of positions in a NumPy array. This is
+commonly referred to as “slicing” the list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chromosomes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">]</span>
 <span class="n">autosomes</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;autosomes:&#39;</span><span class="p">,</span> <span class="n">autosomes</span><span class="p">)</span>
 
@@ -630,33 +500,37 @@ This is commonly referred to as “slicing” the list/string.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;last:&#39;</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">group: Drosophila</span>
-<span class="go">species: melanogaster</span>
-<span class="go">autosomes: [&#39;2&#39;, &#39;3&#39;, &#39;4&#39;]</span>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">autosomes: [&#39;2&#39;, &#39;3&#39;, &#39;4&#39;]</span>
 <span class="go">last: 4</span>
 </pre></div>
 </div>
-</section>
-<section id="challenge-1-slicing-from-the-end">
-<h2>Challenge 1: Slicing From the End<a class="headerlink" href="#challenge-1-slicing-from-the-end" title="Permalink to this heading">#</a></h2>
-<p>Use slicing to access only the last four characters of a string or entries of a list.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string_for_slicing</span> <span class="o">=</span> <span class="s1">&#39;Observation date: 02-Feb-2013&#39;</span>
-<span class="n">list_for_slicing</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;fluorine&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">],</span>
-                    <span class="p">[</span><span class="s1">&#39;chlorine&#39;</span><span class="p">,</span> <span class="s1">&#39;Cl&#39;</span><span class="p">],</span>
-                    <span class="p">[</span><span class="s1">&#39;bromine&#39;</span><span class="p">,</span> <span class="s1">&#39;Br&#39;</span><span class="p">],</span>
-                    <span class="p">[</span><span class="s1">&#39;iodine&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">],</span>
-                    <span class="p">[</span><span class="s1">&#39;astatine&#39;</span><span class="p">,</span> <span class="s1">&#39;At&#39;</span><span class="p">]]</span>
+<p>We can also slice strings in the same way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">binomial_name</span> <span class="o">=</span> <span class="s1">&#39;Drosophila melanogaster&#39;</span>
+<span class="n">group</span> <span class="o">=</span> <span class="n">binomial_name</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;group:&#39;</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+
+<span class="n">species</span> <span class="o">=</span> <span class="n">binomial_name</span><span class="p">[</span><span class="mi">11</span><span class="p">:</span><span class="mi">23</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;species:&#39;</span><span class="p">,</span> <span class="n">species</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">&#39;2013&#39;</span>
-<span class="go">[[&#39;chlorine&#39;, &#39;Cl&#39;], [&#39;bromine&#39;, &#39;Br&#39;], [&#39;iodine&#39;, &#39;I&#39;], [&#39;astatine&#39;, &#39;At&#39;]]</span>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">group: Drosophila</span>
+<span class="go">species: melanogaster</span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Slicing From the End</p>
+<p>Use slicing to access only the last four entries of a list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">list_for_slicing</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[7, 8, 9, 10]</span>
 </pre></div>
 </div>
 <p>Would your solution work regardless of whether you knew beforehand
 the length of the string or list
 (e.g. if you wanted to apply the solution to a set of lists of different lengths)?
 If not, try to change your approach to make it more robust.</p>
-<p>Hint: Remember that indices can be negative as well as positive</p>
+<p><em>Hint</em>: Remember that indices can be negative as well as positive</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 Solution<div class="sd-summary-down docutils">
@@ -665,106 +539,13 @@ Solution<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Use negative indices to count elements from the end of a container (such as list or string):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string_for_slicing</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
-<span class="n">list_for_slicing</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">list_for_slicing</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="challenge-2-non-continuous-slices">
-<h2>Challenge 2: Non-Continuous Slices<a class="headerlink" href="#challenge-2-non-continuous-slices" title="Permalink to this heading">#</a></h2>
-<p>So far we’ve seen how to use slicing to take single blocks
-of successive entries from a sequence.
-But what if we want to take a subset of entries
-that aren’t next to each other in the sequence?</p>
-<p>You can achieve this by providing a third argument
-to the range within the brackets, called the <em>step size</em>.
-The example below shows how you can take every third entry in a list:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">]</span>
-<span class="n">subset</span> <span class="o">=</span> <span class="n">primes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;subset&#39;</span><span class="p">,</span> <span class="n">subset</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">subset [2, 7, 17, 29]</span>
-</pre></div>
-</div>
-<p>Notice that the slice taken begins with the first entry in the range,
-followed by entries taken at equally-spaced intervals (the steps) thereafter.
-If you wanted to begin the subset with the third entry,
-you would need to specify that as the starting point of the sliced range:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">]</span>
-<span class="n">subset</span> <span class="o">=</span> <span class="n">primes</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;subset&#39;</span><span class="p">,</span> <span class="n">subset</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">subset [5, 13, 23, 37]</span>
-</pre></div>
-</div>
-<p>Use the step size argument to create a new string
-that contains only every other character in the string
-“In an octopus’s garden in the shade”. Start with
-creating a variable to hold the string:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">beatles</span> <span class="o">=</span> <span class="s2">&quot;In an octopus&#39;s garden in the shade&quot;</span>
-</pre></div>
-</div>
-<p>What slice of <code class="docutils literal notranslate"><span class="pre">beatles</span></code> will produce the
-following output (i.e., the first character, third
-character, and every other character through the end
-of the string)?</p>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">I notpssgre ntesae</span>
-</pre></div>
-</div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Solution<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">To obtain every other character you need to provide a slice with the step
-size of 2:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">beatles</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-</div>
-<p class="sd-card-text">You can also leave out the beginning and end of the slice to take the whole string
-and provide only the step argument to go every second
-element:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">beatles</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</details><p>If you want to take a slice from the beginning of a sequence, you can omit the first index in the
-range:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="s1">&#39;Monday 4 January 2016&#39;</span>
-<span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using 0 to begin range:&#39;</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
-<span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Omitting beginning index:&#39;</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Using 0 to begin range: Monday</span>
-<span class="go">Omitting beginning index: Monday</span>
-</pre></div>
-</div>
-<p>And similarly, you can omit the ending index in the range to take a slice to the very end of the
-sequence:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jan&#39;</span><span class="p">,</span> <span class="s1">&#39;feb&#39;</span><span class="p">,</span> <span class="s1">&#39;mar&#39;</span><span class="p">,</span> <span class="s1">&#39;apr&#39;</span><span class="p">,</span> <span class="s1">&#39;may&#39;</span><span class="p">,</span> <span class="s1">&#39;jun&#39;</span><span class="p">,</span> <span class="s1">&#39;jul&#39;</span><span class="p">,</span> <span class="s1">&#39;aug&#39;</span><span class="p">,</span> <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;oct&#39;</span><span class="p">,</span> <span class="s1">&#39;nov&#39;</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">]</span>
-<span class="n">sond</span> <span class="o">=</span> <span class="n">months</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;With known last position:&#39;</span><span class="p">,</span> <span class="n">sond</span><span class="p">)</span>
-<span class="n">sond</span> <span class="o">=</span> <span class="n">months</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">months</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using len() to get last entry:&#39;</span><span class="p">,</span> <span class="n">sond</span><span class="p">)</span>
-<span class="n">sond</span> <span class="o">=</span> <span class="n">months</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Omitting ending index:&#39;</span><span class="p">,</span> <span class="n">sond</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">With known last position: [&#39;sep&#39;, &#39;oct&#39;, &#39;nov&#39;, &#39;dec&#39;]</span>
-<span class="go">Using len() to get last entry: [&#39;sep&#39;, &#39;oct&#39;, &#39;nov&#39;, &#39;dec&#39;]</span>
-<span class="go">Omitting ending index: [&#39;sep&#39;, &#39;oct&#39;, &#39;nov&#39;, &#39;dec&#39;]</span>
-</pre></div>
-</div>
-<div class="admonition-challenge admonition">
-<p class="admonition-title">Challenge</p>
-<p class="rubric">Challenge 3: Overloading</p>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Overloading</p>
 <p><code class="docutils literal notranslate"><span class="pre">+</span></code> usually means addition, but when used on strings or lists, it means “concatenate”.
 Given that, what do you think the multiplication operator <code class="docutils literal notranslate"><span class="pre">*</span></code> does on lists?
 In particular, what will be the output of the following code?</p>
@@ -875,11 +656,8 @@ them together:</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-lists">Python lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ch-ch-ch-ch-changes">Ch-Ch-Ch-Ch-Changes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-lists">Nested Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneous-lists">Heterogeneous Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-slicing-from-the-end">Challenge 1: Slicing From the End</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-non-continuous-slices">Challenge 2: Non-Continuous Slices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-with-different-data-types">Lists with different data types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-lists-and-strings">Slicing lists and strings</a></li>
 </ul>
   </nav></div>
 

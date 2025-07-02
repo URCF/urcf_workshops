@@ -26,7 +26,7 @@ notebook at this point, you need the following two lines:
 
 ```python
 import numpy
-data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
+data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
 ```
 :::
 
@@ -55,7 +55,7 @@ Now let's take a look at the average inflammation over time:
 
 ```python
 ave_inflammation = numpy.mean(data, axis=0)
-ave_plot = matplotlib.pyplot.plot(ave_inflammation)
+matplotlib.pyplot.plot(ave_inflammation)
 matplotlib.pyplot.show()
 ```
 
@@ -68,14 +68,14 @@ the medication takes 3 weeks to take effect.  But a good data scientist doesn't 
 average of a dataset, so let's have a look at two other statistics:
 
 ```python
-max_plot = matplotlib.pyplot.plot(numpy.amax(data, axis=0))
+matplotlib.pyplot.plot(numpy.amax(data, axis=0))
 matplotlib.pyplot.show()
 ```
 
 ![A line graph showing the maximum inflammation across all patients over a 40-day period.](../fig/python_programming/03-matplotlib/inflammation-01-maximum.svg)
 
 ```python
-min_plot = matplotlib.pyplot.plot(numpy.amin(data, axis=0))
+matplotlib.pyplot.plot(numpy.amin(data, axis=0))
 matplotlib.pyplot.show()
 ```
 
@@ -85,6 +85,17 @@ The maximum value rises and falls linearly, while the minimum seems to be a step
 Neither trend seems particularly likely, so either there's a mistake in our calculations or
 something is wrong with our data. This insight would have been difficult to reach by examining
 the numbers themselves without visualization tools.
+
+If we want, we can even look at all three graphs on the same plot:
+
+```python
+matplotlib.pyplot.plot(numpy.mean(data, axis=0))
+matplotlib.pyplot.plot(numpy.amax(data, axis=0))
+matplotlib.pyplot.plot(numpy.amin(data, axis=0))
+matplotlib.pyplot.show()
+```
+
+![A line graph showing all three statistics across all patients over a 40-day period.](../fig/python_programming/03-matplotlib/inflammation-01-all.png)
 
 ```{admonition} Importing libraries with shortcuts
 :class: tip
@@ -118,7 +129,7 @@ of the inflammation data for each day across all patients.
 
 :::{dropdown} Solution
 ```python
-std_plot = matplotlib.pyplot.plot(numpy.std(data, axis=0))
+matplotlib.pyplot.plot(numpy.std(data, axis=0))
 matplotlib.pyplot.show()
 ```
 :::

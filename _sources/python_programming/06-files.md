@@ -21,15 +21,13 @@ The following library will help us to achieve this:
 import glob
 ```
 
-The `glob` library contains a function, also called `glob`,
-that finds files and directories whose names match a pattern.
-We provide those patterns as strings:
-the character `*` matches zero or more characters,
-while `?` matches any one character.
-We can use this to get the names of all the CSV files in the current directory:
+The `glob` library contains a function, also called `glob`, that finds files and
+directories whose names match a pattern. We provide those patterns as strings:
+the character `*` matches zero or more of any character. We can use this to get
+the names of all the CSV files in the `data`` directory:
 
 ```python
-print(glob.glob('inflammation*.csv'))
+print(glob.glob('data/inflammation*.csv'))
 ```
 
 ```output
@@ -38,44 +36,25 @@ print(glob.glob('inflammation*.csv'))
 'inflammation-10.csv', 'inflammation-02.csv', 'inflammation-04.csv', 'inflammation-01.csv']
 ```
 
-As these examples show,
-`glob.glob`'s result is a list of file and directory paths in arbitrary order.
-This means we can loop over it
-to do something with each filename in turn.
-In our case,
-the "something" we want to do is generate a set of plots for each file in our inflammation dataset.
+As this output shows, `glob.glob`'s result is a list of paths in arbitrary
+order. This means we can loop over it to do something with each filename in
+turn. In our case, the "something" we want to do is plot the data in each file.
 
-If we want to start by analyzing just the first three files in alphabetical order, we can use the
-`sorted` built-in function to generate a new sorted list from the `glob.glob` output:
+If we want to start by analyzing just the first three files in alphabetical
+order, we can use the `sorted` built-in function to generate a new sorted list
+from the `glob.glob` output:
 
 ```python
-import glob
-import numpy
-import matplotlib.pyplot
-
-filenames = sorted(glob.glob('inflammation*.csv'))
+filenames = sorted(glob.glob('data/inflammation*.csv'))
 filenames = filenames[0:3]
 for filename in filenames:
     print(filename)
 
-    data = numpy.loadtxt(fname=filename, delimiter=',')
+    data = numpy.loadtxt(fname=filename, delimiter=",")
 
-    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
-
-    axes1 = fig.add_subplot(1, 3, 1)
-    axes2 = fig.add_subplot(1, 3, 2)
-    axes3 = fig.add_subplot(1, 3, 3)
-
-    axes1.set_ylabel('average')
-    axes1.plot(numpy.mean(data, axis=0))
-
-    axes2.set_ylabel('max')
-    axes2.plot(numpy.amax(data, axis=0))
-
-    axes3.set_ylabel('min')
-    axes3.plot(numpy.amin(data, axis=0))
-
-    fig.tight_layout()
+    matplotlib.pyplot.plot(numpy.mean(data, axis=0))
+    matplotlib.pyplot.plot(numpy.amax(data, axis=0))
+    matplotlib.pyplot.plot(numpy.amin(data, axis=0))
     matplotlib.pyplot.show()
 ```
 
@@ -83,83 +62,74 @@ for filename in filenames:
 inflammation-01.csv
 ```
 
-![](../fig/python_programming/03-loop_49_1.png){alt='Output from the first iteration of the for loop. Three line graphs showing the daily average, maximum and minimum inflammation over a 40-day period for all patients in the first dataset.'}
+![](../fig/python_programming/06_files/all-1.png)
 
 ```output
 inflammation-02.csv
 ```
 
-![](../fig/python_programming/03-loop_49_3.png){alt='Output from the second iteration of the for loop. Three line graphs showing the daily average, maximum and minimum inflammation over a 40-day period for all patients in the seconddataset.'}
+![](../fig/python_programming/06_files/all-2.png)
 
 ```output
 inflammation-03.csv
 ```
 
-![](../fig/python_programming/03-loop_49_5.png){alt='Output from the third iteration of the for loop. Three line graphs showing the daily average, maximum and minimum inflammation over a 40-day period for all patients in the thirddataset.'}
+![](../fig/python_programming/06_files/all-3.png)
 
-The plots generated for the second clinical trial file look very similar to the plots for
-the first file: their average plots show similar "noisy" rises and falls; their maxima plots
-show exactly the same linear rise and fall; and their minima plots show similar staircase
-structures.
+The plots generated for the second clinical trial file look very similar to the
+plots for the first file: their average plots show similar "noisy" rises and
+falls; their maxima plots show exactly the same linear rise and fall; and their
+minima plots show similar staircase structures.
 
-The third dataset shows much noisier average and maxima plots that are far less suspicious than
-the first two datasets, however the minima plot shows that the third dataset minima is
-consistently zero across every day of the trial. If we produce a heat map for the third data file
-we see the following:
+The third dataset shows much noisier average and maxima plots that are far less
+suspicious than the first two datasets, however the minima plot shows that the
+third dataset minima is consistently zero across every day of the trial. If we
+produce a heat map for the third data file we see the following:
 
-![](../fig/python_programming/inflammation-03-imshow.svg){alt='Heat map of the third inflammation dataset. Note that there are sporadic zero values throughoutthe entire dataset, and the last patient only has zero values over the 40 day study.'}
+```python
+data = numpy.loadtxt(fname="data/inflammation-03.csv", delimiter=",")
+matplotlib.pyplot.imshow(data)
+```
 
-We can see that there are zero values sporadically distributed across all patients and days of the
-clinical trial, suggesting that there were potential issues with data collection throughout the
-trial. In addition, we can see that the last patient in the study didn't have any inflammation
-flare-ups at all throughout the trial, suggesting that they may not even suffer from arthritis!
+![](../fig/python_programming/inflammation-03-imshow.svg)
 
-## Challenge 1: Plotting Differences
+We can see that there are zero values sporadically distributed across all
+patients and days of the clinical trial, suggesting that there were potential
+issues with data collection throughout the trial. In addition, we can see that
+the last patient in the study didn't have any inflammation flare-ups at all
+throughout the trial, suggesting that they may not even suffer from arthritis!
+
+~~~{admonition} Challenge: Plotting Differences
+:class: note
+
+Change the code above to plot the average, minimum, and maximum for all the inflammation datasets, not just the first three.
+
+Do you notice anything else suspicious about the data?
+
+:::{dropdown} Solution
+
+Simply remove the line:
+
+```python
+filenames = filenames[0:3]
+```
+
+and the code will plot all the datasets.
+
+Notice that `inflammation-08.csv` and `inflammation-11.csv` have the same suspicious features as `inflammation-03.csv`: very noisy, with minima that are consistently zero across every day of the trial.
+
+:::
+
+~~~
+
+~~~{admonition} Challenge: Plotting Differences
+:class: note
 
 Plot the difference between the average inflammations reported in the first and second datasets
 (stored in `inflammation-01.csv` and `inflammation-02.csv`, correspondingly),
 i.e., the difference between the leftmost plots of the first two figures.
 
-:::{dropdown} Solution
-
-```python
-import glob
-import numpy
-import matplotlib.pyplot
-
-filenames = sorted(glob.glob('inflammation*.csv'))
-
-data0 = numpy.loadtxt(fname=filenames[0], delimiter=',')
-data1 = numpy.loadtxt(fname=filenames[1], delimiter=',')
-
-fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
-
-matplotlib.pyplot.ylabel('Difference in average')
-matplotlib.pyplot.plot(numpy.mean(data0, axis=0) - numpy.mean(data1, axis=0))
-
-fig.tight_layout()
-matplotlib.pyplot.show()
-```
-
-:::
-
-
-
-## Challenge 2: Generate Composite Statistics
-
-Use each of the files once to generate a dataset containing values averaged over all patients by completing the code inside the loop given below:
-
-```python
-filenames = glob.glob('inflammation*.csv')
-composite_data = numpy.zeros((60, 40))
-for filename in filenames:
-    # sum each new file's data into composite_data as it's read
-    #
-# and then divide the composite_data by number of samples
-composite_data = composite_data / len(filenames)
-```
-
-Then use pyplot to generate average, max, and min for all patients.
+*Hint*: You can get the difference between two NumPy arrays using the `-` operator (e.g. `data1 - data2`)
 
 :::{dropdown} Solution
 
@@ -168,39 +138,45 @@ import glob
 import numpy
 import matplotlib.pyplot
 
-filenames = glob.glob('inflammation*.csv')
-composite_data = numpy.zeros((60, 40))
+data1 = numpy.loadtxt(fname="data/inflammation-01.csv", delimiter=',')
+data2 = numpy.loadtxt(fname="data/inflammation-02.csv", delimiter=',')
 
-for filename in filenames:
-    data = numpy.loadtxt(fname = filename, delimiter=',')
-    composite_data = composite_data + data
-
-composite_data = composite_data / len(filenames)
-
-fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
-
-axes1 = fig.add_subplot(1, 3, 1)
-axes2 = fig.add_subplot(1, 3, 2)
-axes3 = fig.add_subplot(1, 3, 3)
-
-axes1.set_ylabel('average')
-axes1.plot(numpy.mean(composite_data, axis=0))
-
-axes2.set_ylabel('max')
-axes2.plot(numpy.amax(composite_data, axis=0))
-
-axes3.set_ylabel('min')
-axes3.plot(numpy.amin(composite_data, axis=0))
-
-fig.tight_layout()
-
+matplotlib.pyplot.plot(numpy.mean(data1, axis=0) - numpy.mean(data2, axis=0))
 matplotlib.pyplot.show()
 ```
+
 :::
 
-After spending some time investigating the heat map and statistical plots, as well as
-doing the above exercises to plot differences between datasets and to generate composite
-patient statistics, we gain some insight into the twelve clinical trial datasets.
+~~~
+
+~~~{admonition} Challenge: Finding suspicious datasets
+:class: note
+
+Change the code you wrote for the previous challenge to compare the daily averages for two of the datasets with suspicious minima plots (`inflammation-03.csv`, `inflammation-08.csv`, and `inflammation-11.csv`) in our earlier investigation.
+
+:::{dropdown} Solution
+
+```python
+import glob
+import numpy
+import matplotlib.pyplot
+
+data1 = numpy.loadtxt(fname="data/inflammation-03.csv", delimiter=',')
+data2 = numpy.loadtxt(fname="data/inflammation-08.csv", delimiter=',')
+
+matplotlib.pyplot.plot(numpy.mean(data1, axis=0) - numpy.mean(data2, axis=0))
+matplotlib.pyplot.show()
+```
+
+Notice that the result is a flat line at zero: the averages for these datasets are exactly the same on each day of the trial, meaning the datasets are identical!
+
+:::
+
+~~~
+
+After spending some time investigating the heat map and plots, as well as doing
+the above exercises to plot differences between datasets, we gain some insight
+into the twelve clinical trial datasets.
 
 The datasets appear to fall into two categories:
 
@@ -208,7 +184,7 @@ The datasets appear to fall into two categories:
   but display suspicious maxima and minima (such as `inflammation-01.csv` and `inflammation-02.csv`)
 - "noisy" datasets that somewhat agree with Dr. Maverick's claims, but show concerning
   data collection issues such as sporadic missing values and even an unsuitable candidate
-  making it into the clinical trial.
+  making it into the clinical trial (such as `inflammation-03.csv`).
 
 In fact, it appears that all three of the "noisy" datasets (`inflammation-03.csv`,
 `inflammation-08.csv`, and `inflammation-11.csv`) are identical down to the last value.

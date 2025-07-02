@@ -221,7 +221,8 @@ it is not updated when we change `weight_kg`.
 
 ~~~
 
-## Challenge 1: Check Your Understanding
+~~~{admonition} Challenge: Check Your Understanding
+:class: note
 
 What values do the variables `mass` and `age` have after each of the following statements?
 Test your answer by executing the lines.
@@ -234,15 +235,16 @@ age = age - 20
 ```
 
 :::{dropdown} Solution
-
 `mass` holds a value of 47.5, `age` does not exist
 `mass` still holds a value of 47.5, `age` holds a value of 122
 `mass` now has a value of 95.0, `age`'s value is still 122
 `mass` still has a value of 95.0, `age` now holds 102
-
 :::
 
-## Challenge 2: Sorting Out References
+~~~
+
+~~~{admonition} Challenge: Sorting Out References
+:class: note
 
 Python allows you to assign multiple values to multiple variables in one line by separating
 the variables and values with commas. What does the following program print out?
@@ -259,7 +261,10 @@ Hopper Grace
 
 :::
 
-## Challenge 3: Seeing Data Types
+~~~
+
+~~~{admonition} Challenge: Seeing Data Types
+:class: note
 
 What are the data types of the following variables?
 
@@ -269,21 +274,23 @@ apples = 5
 distance = 10.5
 ```
 
-```{dropdown} Solution
+:::{dropdown} Solution
 
-~~~python
+```python
 print(type(planet))
 print(type(apples))
 print(type(distance))
-~~~
+```
 
-~~~output
+```output
 <class 'str'>
 <class 'int'>
 <class 'float'>
-~~~
-
 ```
+
+:::
+
+~~~
 
 ```{admonition} Keypoints
 - Basic data types in Python include integers, strings, and floating-point numbers.

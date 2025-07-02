@@ -359,12 +359,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-in-a-name">What’s in a name?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-from-1-to-n">Challenge 1: From 1 to N</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-understanding-the-loops">Challenge 2: Understanding the loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-computing-powers-with-loops">Challenge 3: Computing Powers With Loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-summing-a-list">Challenge 4: Summing a list</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-5-computing-the-value-of-a-polynomial">Challenge 5: Computing the Value of a Polynomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-other-things">Looping over other things</a></li>
 </ul>
             </nav>
         </div>
@@ -407,11 +402,9 @@ will do by printing each number on a line of its own.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>In Python, a list is basically an ordered collection of elements, and every
-element has a unique number associated with it — its index. This means that
-we can access elements in a list using their indices.
-For example, we can get the first number in the list <code class="docutils literal notranslate"><span class="pre">odds</span></code>,
-by using <code class="docutils literal notranslate"><span class="pre">odds[0]</span></code>. One way to print each number is to use four <code class="docutils literal notranslate"><span class="pre">print</span></code> statements:</p>
+<p>As we saw in the previous episode, we can access an element of a list using its
+index. For example, we can get the first number in the list <code class="docutils literal notranslate"><span class="pre">odds</span></code>, by using
+<code class="docutils literal notranslate"><span class="pre">odds[0]</span></code>. So one way to print each number is to use four <code class="docutils literal notranslate"><span class="pre">print</span></code> statements:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">odds</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
@@ -502,8 +495,8 @@ being the first loop cycle, and 6 being the final loop cycle).</p>
 there must be a colon at the end of the line starting the loop, and we must indent anything we
 want to run inside the loop. Unlike many other languages, there is no command to signify the end
 of the loop body (e.g. <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">for</span></code>); everything indented after the <code class="docutils literal notranslate"><span class="pre">for</span></code> statement belongs to the loop.</p>
-<section id="what-s-in-a-name">
-<h2>What’s in a name?<a class="headerlink" href="#what-s-in-a-name" title="Permalink to this heading">#</a></h2>
+<div class="tip admonition">
+<p class="admonition-title">What’s in a name?</p>
 <p>In the example above, the loop variable was given the name <code class="docutils literal notranslate"><span class="pre">num</span></code> as a mnemonic;
 it is short for ‘number’.
 We can choose any name we want for variables.  We might just as easily have chosen the name
@@ -524,10 +517,11 @@ the loop:</p>
 </div>
 <p>It is a good idea to choose variable names that are meaningful, otherwise it would be more
 difficult to understand what the loop is doing.</p>
+</div>
 <p>Here’s another loop that repeatedly updates a variable:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Curie&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">,</span> <span class="s1">&#39;Turing&#39;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
     <span class="n">length</span> <span class="o">=</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are&#39;</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="s1">&#39;names in the list.&#39;</span><span class="p">)</span>
 </pre></div>
@@ -535,53 +529,43 @@ difficult to understand what the loop is doing.</p>
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">There are 3 names in the list.</span>
 </pre></div>
 </div>
-<p>It’s worth tracing the execution of this little program step by step.
-Since there are three names in <code class="docutils literal notranslate"><span class="pre">names</span></code>,
-the statement on line 4 will be executed three times.
-The first time around,
-<code class="docutils literal notranslate"><span class="pre">length</span></code> is zero (the value assigned to it on line 1)
-and <code class="docutils literal notranslate"><span class="pre">value</span></code> is <code class="docutils literal notranslate"><span class="pre">Curie</span></code>.
-The statement adds 1 to the old value of <code class="docutils literal notranslate"><span class="pre">length</span></code>,
-producing 1,
-and updates <code class="docutils literal notranslate"><span class="pre">length</span></code> to refer to that new value.
-The next time around,
-<code class="docutils literal notranslate"><span class="pre">value</span></code> is <code class="docutils literal notranslate"><span class="pre">Darwin</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> is 1,
-so <code class="docutils literal notranslate"><span class="pre">length</span></code> is updated to be 2.
-After one more update,
-<code class="docutils literal notranslate"><span class="pre">length</span></code> is 3;
-since there is nothing left in <code class="docutils literal notranslate"><span class="pre">names</span></code> for Python to process,
-the loop finishes
-and the <code class="docutils literal notranslate"><span class="pre">print</span></code> function on line 5 tells us our final answer.</p>
-<p>Note that a loop variable is a variable that is being used to record progress in a loop.
-It still exists after the loop is over,
-and we can re-use variables previously defined as loop variables as well:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Rosalind&#39;</span>
-<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Curie&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">,</span> <span class="s1">&#39;Turing&#39;</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;after the loop, name is&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Curie</span>
-<span class="go">Darwin</span>
-<span class="go">Turing</span>
-<span class="go">after the loop, name is Turing</span>
-</pre></div>
-</div>
-<p>Note also that finding the length of an object is such a common operation
-that Python actually has a built-in function to do it called <code class="docutils literal notranslate"><span class="pre">len</span></code>:</p>
+<p>It’s worth tracing the execution of this little program step by step:</p>
+<ul class="simple">
+<li><p>Since there are three names in <code class="docutils literal notranslate"><span class="pre">names</span></code>, the statement on line 4 will be executed three times.</p></li>
+<li><p>The first time around, <code class="docutils literal notranslate"><span class="pre">length</span></code> is zero (the value assigned to it on line (1)
+and <code class="docutils literal notranslate"><span class="pre">name</span></code> is <code class="docutils literal notranslate"><span class="pre">Curie</span></code>. The statement adds 1 to the old value of <code class="docutils literal notranslate"><span class="pre">length</span></code>,
+producing 1, and updates <code class="docutils literal notranslate"><span class="pre">length</span></code> to refer to that new value.</p></li>
+<li><p>The next time around, <code class="docutils literal notranslate"><span class="pre">name</span></code> is <code class="docutils literal notranslate"><span class="pre">Darwin</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> is 1, so <code class="docutils literal notranslate"><span class="pre">length</span></code> is
+updated to be 2.</p></li>
+<li><p>After one more update, <code class="docutils literal notranslate"><span class="pre">length</span></code> is 3. Since there is nothing left in <code class="docutils literal notranslate"><span class="pre">names</span></code>
+for Python to process, the loop finishes and the <code class="docutils literal notranslate"><span class="pre">print</span></code> function on line 5
+tells us our final answer.</p></li>
+</ul>
+<p>Note that finding the length of an object is such a common operation that Python
+actually has a built-in function to do it called <code class="docutils literal notranslate"><span class="pre">len</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
 </pre></div>
 </div>
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">4</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">len</span></code> is much faster than any function we could write ourselves,
-and much easier to read than a two-line loop;
-it will also give us the length of many other things that we haven’t met yet,
-so we should always use it when we can.</p>
-</section>
-<section id="challenge-1-from-1-to-n">
-<h2>Challenge 1: From 1 to N<a class="headerlink" href="#challenge-1-from-1-to-n" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">len</span></code> is much faster than any function we could write ourselves, and much easier
+to read than a two-line loop, so we should always use it when we can.</p>
+<section id="looping-over-other-things">
+<h2>Looping over other things<a class="headerlink" href="#looping-over-other-things" title="Permalink to this heading">#</a></h2>
+<p>We can loop over any collection of values, not just a list. For example, we can loop over the letters in a string:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;cow&#39;</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">c</span>
+<span class="go">o</span>
+<span class="go">w</span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: From 1 to N</p>
 <p>Python has a built-in function called <code class="docutils literal notranslate"><span class="pre">range</span></code> that generates a sequence of numbers. <code class="docutils literal notranslate"><span class="pre">range</span></code> can
 accept 1, 2, or 3 parameters.</p>
 <ul class="simple">
@@ -614,9 +598,30 @@ Solution<div class="sd-summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="challenge-2-understanding-the-loops">
-<h2>Challenge 2: Understanding the loops<a class="headerlink" href="#challenge-2-understanding-the-loops" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Summing a list</p>
+<p>Write a loop that calculates the sum of elements in a list
+by adding each element and printing the final value,
+so <code class="docutils literal notranslate"><span class="pre">[124,</span> <span class="pre">402,</span> <span class="pre">36]</span></code> prints 562</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">124</span><span class="p">,</span> <span class="mi">402</span><span class="p">,</span> <span class="mi">36</span><span class="p">]</span>
+<span class="n">summed</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="n">summed</span> <span class="o">=</span> <span class="n">summed</span> <span class="o">+</span> <span class="n">num</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Understanding the loops</p>
 <p>Given the following loop:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;oxygen&#39;</span>
 <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
@@ -639,9 +644,9 @@ Solution<div class="sd-summary-down docutils">
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">The body of the loop is executed 6 times.</p>
 </div>
-</details></section>
-<section id="challenge-3-computing-powers-with-loops">
-<h2>Challenge 3: Computing Powers With Loops<a class="headerlink" href="#challenge-3-computing-powers-with-loops" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Computing Powers With Loops</p>
 <p>Exponentiation is built into Python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
@@ -665,67 +670,8 @@ Solution<div class="sd-summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="challenge-4-summing-a-list">
-<h2>Challenge 4: Summing a list<a class="headerlink" href="#challenge-4-summing-a-list" title="Permalink to this heading">#</a></h2>
-<p>Write a loop that calculates the sum of elements in a list
-by adding each element and printing the final value,
-so <code class="docutils literal notranslate"><span class="pre">[124,</span> <span class="pre">402,</span> <span class="pre">36]</span></code> prints 562</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Solution<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">124</span><span class="p">,</span> <span class="mi">402</span><span class="p">,</span> <span class="mi">36</span><span class="p">]</span>
-<span class="n">summed</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
-    <span class="n">summed</span> <span class="o">=</span> <span class="n">summed</span> <span class="o">+</span> <span class="n">num</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">summed</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details></section>
-<section id="challenge-5-computing-the-value-of-a-polynomial">
-<h2>Challenge 5: Computing the Value of a Polynomial<a class="headerlink" href="#challenge-5-computing-the-value-of-a-polynomial" title="Permalink to this heading">#</a></h2>
-<p>The built-in function <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> takes a sequence (e.g. a <a class="reference internal" href="04-lists.html"><span class="doc std std-doc">list</span></a>) and
-generates a new sequence of the same length. Each element of the new sequence is a pair composed
-of the index (0, 1, 2,…) and the value from the original sequence:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a_list</span><span class="p">):</span>
-    <span class="c1"># Do something using idx and val</span>
-</pre></div>
-</div>
-<p>The code above loops through <code class="docutils literal notranslate"><span class="pre">a_list</span></code>, assigning the index to <code class="docutils literal notranslate"><span class="pre">idx</span></code> and the value to <code class="docutils literal notranslate"><span class="pre">val</span></code>.</p>
-<p>Suppose you have encoded a polynomial as a list of coefficients in
-the following way: the first element is the constant term, the
-second element is the coefficient of the linear term, the third is the
-coefficient of the quadratic term, etc.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">coefs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">coefs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">0</span> <span class="o">+</span> <span class="n">coefs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">1</span> <span class="o">+</span> <span class="n">coefs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">97</span>
-</pre></div>
-</div>
-<p>Write a loop using <code class="docutils literal notranslate"><span class="pre">enumerate(coefs)</span></code> which computes the value <code class="docutils literal notranslate"><span class="pre">y</span></code> of any
-polynomial, given <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">coefs</span></code>.</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Solution<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">coef</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coefs</span><span class="p">):</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">coef</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="n">idx</span>
-</pre></div>
-</div>
-</div>
-</details><div class="admonition-keypoints admonition">
+</details></div>
+<div class="admonition-keypoints admonition">
 <p class="admonition-title">Keypoints</p>
 <ul class="simple">
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">variable</span> <span class="pre">in</span> <span class="pre">sequence</span></code> to process the elements of a sequence one at a time.</p></li>
@@ -797,12 +743,7 @@ Solution<div class="sd-summary-down docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-in-a-name">What’s in a name?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-from-1-to-n">Challenge 1: From 1 to N</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-understanding-the-loops">Challenge 2: Understanding the loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-computing-powers-with-loops">Challenge 3: Computing Powers With Loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-summing-a-list">Challenge 4: Summing a list</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-5-computing-the-value-of-a-polynomial">Challenge 5: Computing the Value of a Polynomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-other-things">Looping over other things</a></li>
 </ul>
   </nav></div>
 
