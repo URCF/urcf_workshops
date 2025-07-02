@@ -30,11 +30,9 @@ will do by printing each number on a line of its own.
 odds = [1, 3, 5, 7]
 ```
 
-In Python, a list is basically an ordered collection of elements, and every
-element has a unique number associated with it --- its index. This means that
-we can access elements in a list using their indices.
-For example, we can get the first number in the list `odds`,
-by using `odds[0]`. One way to print each number is to use four `print` statements:
+As we saw in the previous episode, we can access an element of a list using its
+index. For example, we can get the first number in the list `odds`, by using
+`odds[0]`. So one way to print each number is to use four `print` statements:
 
 ```python
 print(odds[0])
@@ -145,7 +143,8 @@ there must be a colon at the end of the line starting the loop, and we must inde
 want to run inside the loop. Unlike many other languages, there is no command to signify the end
 of the loop body (e.g. `end for`); everything indented after the `for` statement belongs to the loop.
 
-## What's in a name?
+~~~{admonition} What's in a name?
+:class: tip
 
 In the example above, the loop variable was given the name `num` as a mnemonic;
 it is short for 'number'.
@@ -171,12 +170,15 @@ for banana in odds:
 It is a good idea to choose variable names that are meaningful, otherwise it would be more
 difficult to understand what the loop is doing.
 
+~~~
+
+
 Here's another loop that repeatedly updates a variable:
 
 ```python
 length = 0
 names = ['Curie', 'Darwin', 'Turing']
-for value in names:
+for name in names:
     length = length + 1
 print('There are', length, 'names in the list.')
 ```
@@ -185,44 +187,21 @@ print('There are', length, 'names in the list.')
 There are 3 names in the list.
 ```
 
-It's worth tracing the execution of this little program step by step.
-Since there are three names in `names`,
-the statement on line 4 will be executed three times.
-The first time around,
-`length` is zero (the value assigned to it on line 1)
-and `value` is `Curie`.
-The statement adds 1 to the old value of `length`,
-producing 1,
-and updates `length` to refer to that new value.
-The next time around,
-`value` is `Darwin` and `length` is 1,
-so `length` is updated to be 2.
-After one more update,
-`length` is 3;
-since there is nothing left in `names` for Python to process,
-the loop finishes
-and the `print` function on line 5 tells us our final answer.
+It's worth tracing the execution of this little program step by step:
 
-Note that a loop variable is a variable that is being used to record progress in a loop.
-It still exists after the loop is over,
-and we can re-use variables previously defined as loop variables as well:
+- Since there are three names in `names`, the statement on line 4 will be executed three times.
 
-```python
-name = 'Rosalind'
-for name in ['Curie', 'Darwin', 'Turing']:
-    print(name)
-print('after the loop, name is', name)
-```
+- The first time around, `length` is zero (the value assigned to it on line (1)
+  and `name` is `Curie`. The statement adds 1 to the old value of `length`,
+  producing 1, and updates `length` to refer to that new value.
+- The next time around, `name` is `Darwin` and `length` is 1, so `length` is
+  updated to be 2.
+- After one more update, `length` is 3. Since there is nothing left in `names`
+  for Python to process, the loop finishes and the `print` function on line 5
+  tells us our final answer.
 
-```output
-Curie
-Darwin
-Turing
-after the loop, name is Turing
-```
-
-Note also that finding the length of an object is such a common operation
-that Python actually has a built-in function to do it called `len`:
+Note that finding the length of an object is such a common operation that Python
+actually has a built-in function to do it called `len`:
 
 ```python
 print(len([0, 1, 2, 3]))
@@ -232,12 +211,27 @@ print(len([0, 1, 2, 3]))
 4
 ```
 
-`len` is much faster than any function we could write ourselves,
-and much easier to read than a two-line loop;
-it will also give us the length of many other things that we haven't met yet,
-so we should always use it when we can.
+`len` is much faster than any function we could write ourselves, and much easier
+to read than a two-line loop, so we should always use it when we can.
 
-## Challenge 1: From 1 to N
+## Looping over other things
+
+We can loop over any collection of values, not just a list. For example, we can loop over the letters in a string:
+
+```python
+word = 'cow'
+for letter in word:
+    print(letter)
+```
+
+```output
+c
+o
+w
+```
+
+~~~{admonition} Challenge: From 1 to N
+:class: note
 
 Python has a built-in function called `range` that generates a sequence of numbers. `range` can
 accept 1, 2, or 3 parameters.
@@ -267,8 +261,27 @@ for number in range(1, 4):
     print(number)
 ```
 :::
+~~~
 
-## Challenge 2: Understanding the loops
+~~~{admonition} Challenge: Summing a list
+:class: note
+Write a loop that calculates the sum of elements in a list
+by adding each element and printing the final value,
+so `[124, 402, 36]` prints 562
+
+:::{dropdown} Solution
+```python
+numbers = [124, 402, 36]
+summed = 0
+for num in numbers:
+    summed = summed + num
+print(summed)
+```
+:::
+~~~
+
+~~~{admonition} Challenge: Understanding the loops
+:class: note
 
 Given the following loop:
 
@@ -288,9 +301,10 @@ How many times is the body of the loop executed?
 :::{dropdown} Solution
 The body of the loop is executed 6 times.
 :::
+~~~
 
-
-## Challenge 3: Computing Powers With Loops
+~~~{admonition} Challenge: Computing Powers With Loops
+:class: note
 Exponentiation is built into Python:
 
 ```python
@@ -312,62 +326,7 @@ for number in range(0, 3):
 print(result)
 ```
 :::
-
-## Challenge 4: Summing a list
-Write a loop that calculates the sum of elements in a list
-by adding each element and printing the final value,
-so `[124, 402, 36]` prints 562
-
-:::{dropdown} Solution
-```python
-numbers = [124, 402, 36]
-summed = 0
-for num in numbers:
-    summed = summed + num
-print(summed)
-```
-:::
-
-
-## Challenge 5: Computing the Value of a Polynomial
-
-The built-in function `enumerate` takes a sequence (e.g. a [list](04-lists.md)) and
-generates a new sequence of the same length. Each element of the new sequence is a pair composed
-of the index (0, 1, 2,...) and the value from the original sequence:
-
-```python
-for idx, val in enumerate(a_list):
-    # Do something using idx and val
-```
-
-The code above loops through `a_list`, assigning the index to `idx` and the value to `val`.
-
-Suppose you have encoded a polynomial as a list of coefficients in
-the following way: the first element is the constant term, the
-second element is the coefficient of the linear term, the third is the
-coefficient of the quadratic term, etc.
-
-```python
-x = 5
-coefs = [2, 4, 3]
-y = coefs[0] * x**0 + coefs[1] * x**1 + coefs[2] * x**2
-print(y)
-```
-
-```output
-97
-```
-
-Write a loop using `enumerate(coefs)` which computes the value `y` of any
-polynomial, given `x` and `coefs`.
-
-:::{dropdown} Solution
-```python
-y = 0
-for idx, coef in enumerate(coefs):
-    y = y + coef * x**idx
-```
-:::
+~~~
 
 :::{admonition} Keypoints
 - Use `for variable in sequence` to process the elements of a sequence one at a time.
