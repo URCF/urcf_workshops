@@ -11,20 +11,16 @@
 - How can I do the same operations on many different values?
 :::
 
-In the episode about visualizing data,
-we wrote Python code that plots values of interest from our first
-inflammation dataset (`inflammation-01.csv`), which revealed some suspicious features in it.
+Remember: our goal is to do the same visualization we did on the first
+inflammation dataset on all 12 datasets that Dr. Maverick has given us.
 
-![Line graphs showing average, maximum and minimum inflammation across all patients over a 40-dayperiod.](../fig/python_programming/05-loop/03-loop_2_0.png)
-
-We have a dozen data sets right now and potentially more on the way if Dr. Maverick
-can keep up their surprisingly fast clinical trial rate. We want to create plots for all of
-our data sets with a single statement. To do that, we'll have to teach the computer how to
-repeat things.
+We'll use lists to collect all these datasets together, but we also need a way
+to do the same analysis on each dataset. To do that, we'll have to teach the
+computer how to repeat things.
 
 An example task that we might want to repeat is accessing numbers in a list,
-which we
-will do by printing each number on a line of its own.
+which we will do by printing each number on a line of its own.
+
 
 ```python
 odds = [1, 3, 5, 7]
@@ -189,9 +185,9 @@ There are 3 names in the list.
 
 It's worth tracing the execution of this little program step by step:
 
-- Since there are three names in `names`, the statement on line 4 will be executed three times.
+- Since there are three names in `names`, the loop will be executed three times.
 
-- The first time around, `length` is zero (the value assigned to it on line (1)
+- The first time around, `length` is zero (the value assigned to it at the start)
   and `name` is `Curie`. The statement adds 1 to the old value of `length`,
   producing 1, and updates `length` to refer to that new value.
 - The next time around, `name` is `Darwin` and `length` is 1, so `length` is
@@ -230,6 +226,53 @@ o
 w
 ```
 
+~~~{admonition} Challenge: Summing a list
+:class: note
+
+Let's say we have the following list:
+
+```python
+numbers = [124, 402, 36]
+```
+
+Write a loop that calculates the sum of elements in this list
+by adding each element to a running total and printing the final value.
+So for this list of numbers, `[124, 402, 36]`, your code should print `562`.
+
+:::{dropdown} Solution
+```python
+numbers = [124, 402, 36]
+total = 0
+for num in numbers:
+    total = total + num
+print(total)
+```
+:::
+~~~
+
+~~~{admonition} Challenge: Understanding loops
+:class: note
+
+Given the following loop:
+
+```python
+word = 'oxygen'
+for letter in word:
+    print(letter)
+```
+
+How many times is the body of the loop executed?
+
+- 3 times
+- 4 times
+- 5 times
+- 6 times
+
+:::{dropdown} Solution
+The body of the loop is executed six times. This is because it's executed once per each character in the word "oxygen", which is six characters long.
+:::
+~~~
+
 ~~~{admonition} Challenge: From 1 to N
 :class: note
 
@@ -260,46 +303,6 @@ write a loop that prints the first 3 natural numbers:
 for number in range(1, 4):
     print(number)
 ```
-:::
-~~~
-
-~~~{admonition} Challenge: Summing a list
-:class: note
-Write a loop that calculates the sum of elements in a list
-by adding each element and printing the final value,
-so `[124, 402, 36]` prints 562
-
-:::{dropdown} Solution
-```python
-numbers = [124, 402, 36]
-summed = 0
-for num in numbers:
-    summed = summed + num
-print(summed)
-```
-:::
-~~~
-
-~~~{admonition} Challenge: Understanding the loops
-:class: note
-
-Given the following loop:
-
-```python
-word = 'oxygen'
-for letter in word:
-    print(letter)
-```
-
-How many times is the body of the loop executed?
-
-- 3 times
-- 4 times
-- 5 times
-- 6 times
-
-:::{dropdown} Solution
-The body of the loop is executed 6 times.
 :::
 ~~~
 
