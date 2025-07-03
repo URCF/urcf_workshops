@@ -13,11 +13,12 @@
 - How can I store many values together?
 :::
 
-In the previous episode, we analyzed a single file of clinical trial inflammation data. However,
-after finding some peculiar and potentially suspicious trends in the trial data we ask
-Dr. Maverick if they have performed any other clinical trials. Surprisingly, they say that they
-have and provide us with 11 more CSV files for a further 11 clinical trials they have undertaken
-since the initial trial.
+In the previous episode, we analyzed a single file of clinical trial
+inflammation data. After finding some peculiar and potentially suspicious trends
+in the trial data we ask Dr. Maverick if they have performed any other clinical
+trials. Surprisingly, they say that they have and provide us with 11 more CSV
+files for a further 11 clinical trials they have undertaken since the initial
+trial.
 
 Our goal now is to process all the inflammation data we have, which means that we still have
 eleven more files to go!
@@ -74,8 +75,16 @@ Lists can even contain elements of different types. Example:
 sample_ages = [10, 12.5, 'Unknown']
 ```
 
-There are many ways to change the contents of lists besides assigning new values to
-individual elements:
+There are many ways to change the contents of lists:
+
+```python
+odds[0] = 15
+print("odds after changing first value:", odds)
+```
+
+```output
+odds after changing first value: [15, 3, 5, 7]
+```
 
 ```python
 odds.append(11)
@@ -83,7 +92,7 @@ print('odds after adding a value:', odds)
 ```
 
 ```output
-odds after adding a value: [1, 3, 5, 7, 11]
+odds after adding a value: [15, 3, 5, 7, 11]
 ```
 
 ```python
@@ -94,7 +103,7 @@ print('removed_element:', removed_element)
 
 ```output
 odds after removing the first element: [3, 5, 7, 11]
-removed_element: 1
+removed_element: 15
 ```
 
 ```python
@@ -186,7 +195,7 @@ the length of the string or list
 (e.g. if you wanted to apply the solution to a set of lists of different lengths)?
 If not, try to change your approach to make it more robust.
 
-*Hint*: Remember that indices can be negative as well as positive
+*Hint*: Remember that indices can be negative as well as positive.
 
 :::{dropdown} Solution
 Use negative indices to count elements from the end of a container (such as list or string):

@@ -362,13 +362,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditionals">Conditionals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#true-and-false"><code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-our-data">Checking our Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-how-many-paths">Challenge 1: How Many Paths?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-truth">What Is Truth?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#that-s-not-not-what-i-meant">That’s Not Not What I Meant</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-close-enough">Challenge 2: Close Enough</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-in-place-operators">Challenge 3: In-Place Operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-sorting-a-list-into-buckets">Challenge 4: Sorting a List Into Buckets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-5-counting-vowels">Challenge 5: Counting Vowels</a></li>
 </ul>
             </nav>
         </div>
@@ -422,9 +415,8 @@ the body of the <code class="docutils literal notranslate"><span class="pre">if<
 If the test is false,
 the body of the <code class="docutils literal notranslate"><span class="pre">else</span></code> is executed instead, and “not greater” is printed.
 Only one or the other is ever executed before continuing on with program execution to print “done”:</p>
-<p><img alt="" src="../_images/python-flowchart-conditional.png" />{alt=’A flowchart diagram of the if-else construct that tests if variable num is greater than 100’}</p>
-<p>Conditional statements don’t have to include an <code class="docutils literal notranslate"><span class="pre">else</span></code>.
-If there isn’t one,
+<p><img alt="" src="../_images/python-flowchart-conditional.png" /></p>
+<p>Conditional statements don’t have to include an <code class="docutils literal notranslate"><span class="pre">else</span></code>. If there isn’t one,
 Python simply does nothing if the test is false:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="mi">53</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;before conditional...&#39;</span><span class="p">)</span>
@@ -470,7 +462,7 @@ conditionals, there are a few more options to know about:</p>
 </div>
 <p>We can also combine tests using <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code>.
 <code class="docutils literal notranslate"><span class="pre">and</span></code> is only true if both parts are true:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">7</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="ow">and</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;both parts are true&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;at least one part is false&#39;</span><span class="p">)</span>
@@ -480,7 +472,7 @@ conditionals, there are a few more options to know about:</p>
 </pre></div>
 </div>
 <p>while <code class="docutils literal notranslate"><span class="pre">or</span></code> is true if at least one part is true:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">7</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="ow">or</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;at least one test is true&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -490,9 +482,15 @@ conditionals, there are a few more options to know about:</p>
 </section>
 <section id="true-and-false">
 <h2><code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code><a class="headerlink" href="#true-and-false" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> are special words in Python called <code class="docutils literal notranslate"><span class="pre">booleans</span></code>,
-which represent truth values. A statement such as <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> returns
-the value <code class="docutils literal notranslate"><span class="pre">False</span></code>, while <code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> returns the value <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> are special words in Python called <code class="docutils literal notranslate"><span class="pre">booleans</span></code>, which
+represent truth values. A statement such as <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> returns the value <code class="docutils literal notranslate"><span class="pre">False</span></code>,
+while <code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> returns the value <code class="docutils literal notranslate"><span class="pre">True</span></code>. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">False</span>
+</pre></div>
+</div>
 </section>
 <section id="checking-our-data">
 <h2>Checking our Data<a class="headerlink" href="#checking-our-data" title="Permalink to this heading">#</a></h2>
@@ -504,24 +502,23 @@ module with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 </pre></div>
 </div>
-<p>From the first couple of plots, we saw that maximum daily inflammation exhibits
-a strange behavior and raises one unit a day.
-Wouldn’t it be a good idea to detect such behavior and report it as suspicious?
-Let’s do that!
-However, instead of checking every single day of the study, let’s merely check
-if maximum inflammation in the beginning (day 0) and in the middle (day 20) of
-the study are equal to the corresponding day numbers.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">max_inflammation_0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">max_inflammation_20</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">20</span><span class="p">]</span>
+<p>From the first couple of plots, we saw that maximum daily inflammation has a
+perfectly linear rise and fall. Wouldn’t it be a good idea to detect such
+behavior and report it as suspicious? Let’s do that! However, instead of
+checking every single day of the study, let’s merely check if maximum
+inflammation in the beginning (day 0) and in the middle (day 20) of the study
+are equal to the corresponding day numbers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">max_inflammation_0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">max_inflammation_20</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">20</span><span class="p">]</span>
 
 <span class="k">if</span> <span class="n">max_inflammation_0</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_inflammation_20</span> <span class="o">==</span> <span class="mi">20</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Suspicious looking maxima!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We also saw a different problem in the third dataset;
-the minima per day were all zero (looks like a healthy person snuck into our study).
-We can also check for this with an <code class="docutils literal notranslate"><span class="pre">elif</span></code> condition:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<p>We also saw a different problem in the third dataset; the minima per day were
+all zero (looks like a healthy person snuck into our study). We can also check
+for this with an <code class="docutils literal notranslate"><span class="pre">elif</span></code> condition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minima add up to zero!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -531,14 +528,14 @@ We can also check for this with an <code class="docutils literal notranslate"><s
 </pre></div>
 </div>
 <p>Let’s test that out:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
-<span class="n">max_inflammation_0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">max_inflammation_20</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">max_inflammation_0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">max_inflammation_20</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">20</span><span class="p">]</span>
 
 <span class="k">if</span> <span class="n">max_inflammation_0</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_inflammation_20</span> <span class="o">==</span> <span class="mi">20</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Suspicious looking maxima!&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minima add up to zero!&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Seems OK!&#39;</span><span class="p">)</span>
@@ -547,14 +544,14 @@ We can also check for this with an <code class="docutils literal notranslate"><s
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Suspicious looking maxima!</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-03.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;inflammation-03.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
-<span class="n">max_inflammation_0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">max_inflammation_20</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">max_inflammation_0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">max_inflammation_20</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">20</span><span class="p">]</span>
 
 <span class="k">if</span> <span class="n">max_inflammation_0</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_inflammation_20</span> <span class="o">==</span> <span class="mi">20</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Suspicious looking maxima!&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minima add up to zero!&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Seems OK!&#39;</span><span class="p">)</span>
@@ -563,15 +560,13 @@ We can also check for this with an <code class="docutils literal notranslate"><s
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Minima add up to zero!</span>
 </pre></div>
 </div>
-<p>In this way,
-we have asked Python to do something different depending on the condition of our data.
-Here we printed messages in all cases,
-but we could also imagine not using the <code class="docutils literal notranslate"><span class="pre">else</span></code> catch-all
-so that messages are only printed when something is wrong,
-freeing us from having to manually examine every plot for features we’ve seen before.</p>
-</section>
-<section id="challenge-1-how-many-paths">
-<h2>Challenge 1: How Many Paths?<a class="headerlink" href="#challenge-1-how-many-paths" title="Permalink to this heading">#</a></h2>
+<p>In this way, we have asked Python to do something different depending on the
+condition of our data. Here we printed messages in all cases, but we could also
+imagine not using the <code class="docutils literal notranslate"><span class="pre">else</span></code> catch-all so that messages are only printed when
+something is wrong, freeing us from having to manually examine every plot for
+features we’ve seen before.</p>
+<div class="admonition-challenge-how-many-paths admonition">
+<p class="admonition-title">Challenge: How Many Paths?</p>
 <p>Consider this code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">4</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
@@ -602,18 +597,18 @@ In this case only one of these conditions can be true for at a time, but in othe
 scenarios multiple <code class="docutils literal notranslate"><span class="pre">elif</span></code> conditions could be met. In these scenarios only the action
 associated with the first true <code class="docutils literal notranslate"><span class="pre">elif</span></code> condition will occur, starting from the top of the
 conditional section.
-<img alt="" src="../_images/python-else-if.png" />{alt=’A flowchart diagram of a conditional section with multiple elif conditions and some possible outcomes.’}
+<img alt="" src="../_images/python-else-if.png" />
 This contrasts with the case of multiple <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, where every action can occur
 as long as their condition is met.
-<img alt="" src="../_images/python-multi-if.png" />{alt=’A flowchart diagram of a conditional section with multiple if statements and some possible outcomes.’}</p>
+<img alt="" src="../_images/python-multi-if.png" /></p>
 </div>
-</details></section>
-<section id="what-is-truth">
-<h2>What Is Truth?<a class="headerlink" href="#what-is-truth" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> booleans are not the only values in Python that are true and false.
-In fact, <em>any</em> value can be used in an <code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">elif</span></code>.
-After reading and running the code below,
-explain what the rule is for which values are considered true and which are considered false.</p>
+</details></div>
+<div class="admonition-challenge-what-is-truth admonition">
+<p class="admonition-title">Challenge: What Is Truth?</p>
+<p><code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> booleans are not the only values in Python that are true and
+false. In fact, <em>any</em> value can be used in an <code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">elif</span></code>. After reading and
+running the code below, explain what the rule is for which values are considered
+true and which are considered false.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;empty string is true&#39;</span><span class="p">)</span>
 <span class="k">if</span> <span class="s1">&#39;word&#39;</span><span class="p">:</span>
@@ -628,14 +623,30 @@ explain what the rule is for which values are considered true and which are cons
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;one is true&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="that-s-not-not-what-i-meant">
-<h2>That’s Not Not What I Meant<a class="headerlink" href="#that-s-not-not-what-i-meant" title="Permalink to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">The rule is that any non-zero number is true, any empty collection (like an empty string or list) is false, and any non-empty collection is true.</p>
+</div>
+</details></div>
+<div class="admonition-challenge-that-s-not-not-what-i-meant admonition">
+<p class="admonition-title">Challenge: That’s Not Not What I Meant</p>
 <p>Sometimes it is useful to check whether some condition is not true.
 The Boolean operator <code class="docutils literal notranslate"><span class="pre">not</span></code> can do this explicitly.
 After reading and running the code below,
 write some <code class="docutils literal notranslate"><span class="pre">if</span></code> statements that use <code class="docutils literal notranslate"><span class="pre">not</span></code> to test the rule
 that you formulated in the previous challenge.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;empty string is not true&#39;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;word&#39;</span><span class="p">:</span>
@@ -644,166 +655,10 @@ that you formulated in the previous challenge.</p>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not not True is true&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="challenge-2-close-enough">
-<h2>Challenge 2: Close Enough<a class="headerlink" href="#challenge-2-close-enough" title="Permalink to this heading">#</a></h2>
-<p>Write some conditions that print <code class="docutils literal notranslate"><span class="pre">True</span></code> if the variable <code class="docutils literal notranslate"><span class="pre">a</span></code> is within 10% of the variable <code class="docutils literal notranslate"><span class="pre">b</span></code>
-and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.
-Compare your implementation with your partner’s:
-do you get the same answer for all possible pairs of numbers?</p>
-<p>There is a built-in function <code class="docutils literal notranslate"><span class="pre">abs</span></code> that returns the absolute value of
-a number:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">))</span>
-</pre></div>
 </div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">12</span>
-</pre></div>
-</div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Solution 1<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mf">5.1</span>
-
-<span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Solution 2<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
-</pre></div>
-</div>
-<p class="sd-card-text">This works because the Booleans <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>
-have string representations which can be printed.</p>
-</div>
-</details></section>
-<section id="challenge-3-in-place-operators">
-<h2>Challenge 3: In-Place Operators<a class="headerlink" href="#challenge-3-in-place-operators" title="Permalink to this heading">#</a></h2>
-<p>Python (and most other languages in the C family) provides
-<span class="xref myst">in-place operators</span>
-that work like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># original value</span>
-<span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># add one to x, assigning result back to x</span>
-<span class="n">x</span> <span class="o">*=</span> <span class="mi">3</span> <span class="c1"># multiply x by 3</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">6</span>
-</pre></div>
-</div>
-<p>Write some code that sums the positive and negative numbers in a list separately,
-using in-place operators.
-Do you think the result is more or less readable
-than writing the same without in-place operators?</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Solution 1 <div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">positive_sum</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">negative_sum</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">test_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">test_list</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">positive_sum</span> <span class="o">+=</span> <span class="n">num</span>
-    <span class="k">elif</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">pass</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">negative_sum</span> <span class="o">+=</span> <span class="n">num</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">positive_sum</span><span class="p">,</span> <span class="n">negative_sum</span><span class="p">)</span>
-</pre></div>
-</div>
-<p class="sd-card-text">Here <code class="docutils literal notranslate"><span class="pre">pass</span></code> means “don’t do anything”.
-In this particular case, it’s not actually needed, since if <code class="docutils literal notranslate"><span class="pre">num</span> <span class="pre">==</span> <span class="pre">0</span></code> neither
-sum needs to change, but it illustrates the use of <code class="docutils literal notranslate"><span class="pre">elif</span></code> and <code class="docutils literal notranslate"><span class="pre">pass</span></code>.</p>
-</div>
-</details></section>
-<section id="challenge-4-sorting-a-list-into-buckets">
-<h2>Challenge 4: Sorting a List Into Buckets<a class="headerlink" href="#challenge-4-sorting-a-list-into-buckets" title="Permalink to this heading">#</a></h2>
-<p>In our <code class="docutils literal notranslate"><span class="pre">data</span></code> folder, large data sets are stored in files whose names start with
-“inflammation-” and small data sets – in files whose names start with “small-”. We
-also have some other files that we do not care about at this point. We’d like to break all
-these files into three lists called <code class="docutils literal notranslate"><span class="pre">large_files</span></code>, <code class="docutils literal notranslate"><span class="pre">small_files</span></code>, and <code class="docutils literal notranslate"><span class="pre">other_files</span></code>,
-respectively.</p>
-<p>Add code to the template below to do this. Note that the string method
-<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.startswith"><code class="docutils literal notranslate"><span class="pre">startswith</span></code></a>
-returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if and only if the string it is called on starts with the string
-passed as an argument, that is:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;String&#39;</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Str&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">True</span>
-</pre></div>
-</div>
-<p>But</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;String&#39;</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">False</span>
-</pre></div>
-</div>
-<p>Use the following Python code as your starting point:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span>
-         <span class="s1">&#39;myscript.py&#39;</span><span class="p">,</span>
-         <span class="s1">&#39;inflammation-02.csv&#39;</span><span class="p">,</span>
-         <span class="s1">&#39;small-01.csv&#39;</span><span class="p">,</span>
-         <span class="s1">&#39;small-02.csv&#39;</span><span class="p">]</span>
-<span class="n">large_files</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">small_files</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">other_files</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
-</div>
-<p>Your solution should:</p>
-<ol class="arabic simple">
-<li><p>loop over the names of the files</p></li>
-<li><p>figure out which group each filename belongs in</p></li>
-<li><p>append the filename to that list</p></li>
-</ol>
-<p>In the end the three lists should be:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">large_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;inflammation-02.csv&#39;</span><span class="p">]</span>
-<span class="n">small_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;small-01.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;small-02.csv&#39;</span><span class="p">]</span>
-<span class="n">other_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;myscript.py&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Solution<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;inflammation-&#39;</span><span class="p">):</span>
-        <span class="n">large_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;small-&#39;</span><span class="p">):</span>
-        <span class="n">small_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">other_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;large_files:&#39;</span><span class="p">,</span> <span class="n">large_files</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;small_files:&#39;</span><span class="p">,</span> <span class="n">small_files</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;other_files:&#39;</span><span class="p">,</span> <span class="n">other_files</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details></section>
-<section id="challenge-5-counting-vowels">
-<h2>Challenge 5: Counting Vowels<a class="headerlink" href="#challenge-5-counting-vowels" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="admonition-challenge-counting-vowels admonition">
+<p class="admonition-title">Challenge: Counting Vowels</p>
 <ol class="arabic simple">
 <li><p>Write a loop that counts the number of vowels in a character string.</p></li>
 <li><p>Test it on a few individual words and full sentences.</p></li>
@@ -811,6 +666,14 @@ Solution<div class="sd-summary-down docutils">
 Did you make the same decisions about how to handle the letter ‘y’
 (which some people think is a vowel, and some do not)?</p></li>
 </ol>
+<p><em>Hint</em>: You can check for membership in a collection using the keyword <code class="docutils literal notranslate"><span class="pre">in</span></code>. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="s1">&#39;aardvark&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a is in aardvark&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">a is in aardvark</span>
+</pre></div>
+</div>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 Solution<div class="sd-summary-down docutils">
@@ -829,7 +692,8 @@ Solution<div class="sd-summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details><div class="admonition-keypoints admonition">
+</details></div>
+<div class="admonition-keypoints admonition">
 <p class="admonition-title">Keypoints</p>
 <ul class="simple">
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">condition</span></code> to start a conditional statement, <code class="docutils literal notranslate"><span class="pre">elif</span> <span class="pre">condition</span></code> to provide additional tests, and <code class="docutils literal notranslate"><span class="pre">else</span></code> to provide a default.</p></li>
@@ -908,13 +772,6 @@ Solution<div class="sd-summary-down docutils">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditionals">Conditionals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#true-and-false"><code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-our-data">Checking our Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-how-many-paths">Challenge 1: How Many Paths?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-truth">What Is Truth?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#that-s-not-not-what-i-meant">That’s Not Not What I Meant</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-close-enough">Challenge 2: Close Enough</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-in-place-operators">Challenge 3: In-Place Operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-sorting-a-list-into-buckets">Challenge 4: Sorting a List Into Buckets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-5-counting-vowels">Challenge 5: Counting Vowels</a></li>
 </ul>
   </nav></div>
 

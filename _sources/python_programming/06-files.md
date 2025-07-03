@@ -37,24 +37,27 @@ print(glob.glob('data/inflammation*.csv'))
 ```
 
 As this output shows, `glob.glob`'s result is a list of paths in arbitrary
-order. This means we can loop over it to do something with each filename in
-turn. In our case, the "something" we want to do is plot the data in each file.
-
-If we want to start by analyzing just the first three files in alphabetical
-order, we can use the `sorted` built-in function to generate a new sorted list
-from the `glob.glob` output:
+order. Let's just look at the first three datasets. So we need to sort the glob
+output, and then take the first three:
 
 ```python
 filenames = sorted(glob.glob('data/inflammation*.csv'))
 filenames = filenames[0:3]
+```
+
+Now that we have our list of files to analyze, let's use matplotlib to make a
+plot of the minimum, mean, and maximum inflammation on each day during the
+trial:
+
+```python
 for filename in filenames:
     print(filename)
 
-    data = numpy.loadtxt(fname=filename, delimiter=",")
+    data = numpy.loadtxt(filename, delimiter=",")
 
     matplotlib.pyplot.plot(numpy.mean(data, axis=0))
-    matplotlib.pyplot.plot(numpy.amax(data, axis=0))
-    matplotlib.pyplot.plot(numpy.amin(data, axis=0))
+    matplotlib.pyplot.plot(numpy.max(data, axis=0))
+    matplotlib.pyplot.plot(numpy.min(data, axis=0))
     matplotlib.pyplot.show()
 ```
 
@@ -87,7 +90,7 @@ third dataset minima is consistently zero across every day of the trial. If we
 produce a heat map for the third data file we see the following:
 
 ```python
-data = numpy.loadtxt(fname="data/inflammation-03.csv", delimiter=",")
+data = numpy.loadtxt("data/inflammation-03.csv", delimiter=",")
 matplotlib.pyplot.imshow(data)
 ```
 
@@ -138,8 +141,8 @@ import glob
 import numpy
 import matplotlib.pyplot
 
-data1 = numpy.loadtxt(fname="data/inflammation-01.csv", delimiter=',')
-data2 = numpy.loadtxt(fname="data/inflammation-02.csv", delimiter=',')
+data1 = numpy.loadtxt("data/inflammation-01.csv", delimiter=',')
+data2 = numpy.loadtxt("data/inflammation-02.csv", delimiter=',')
 
 matplotlib.pyplot.plot(numpy.mean(data1, axis=0) - numpy.mean(data2, axis=0))
 matplotlib.pyplot.show()
@@ -161,8 +164,8 @@ import glob
 import numpy
 import matplotlib.pyplot
 
-data1 = numpy.loadtxt(fname="data/inflammation-03.csv", delimiter=',')
-data2 = numpy.loadtxt(fname="data/inflammation-08.csv", delimiter=',')
+data1 = numpy.loadtxt("data/inflammation-03.csv", delimiter=',')
+data2 = numpy.loadtxt("data/inflammation-08.csv", delimiter=',')
 
 matplotlib.pyplot.plot(numpy.mean(data1, axis=0) - numpy.mean(data2, axis=0))
 matplotlib.pyplot.show()

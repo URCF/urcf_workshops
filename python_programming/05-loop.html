@@ -388,17 +388,13 @@ document.write(`
 <li><p>How can I do the same operations on many different values?</p></li>
 </ul>
 </div>
-<p>In the episode about visualizing data,
-we wrote Python code that plots values of interest from our first
-inflammation dataset (<code class="docutils literal notranslate"><span class="pre">inflammation-01.csv</span></code>), which revealed some suspicious features in it.</p>
-<p><img alt="Line graphs showing average, maximum and minimum inflammation across all patients over a 40-dayperiod." src="../_images/03-loop_2_0.png" /></p>
-<p>We have a dozen data sets right now and potentially more on the way if Dr. Maverick
-can keep up their surprisingly fast clinical trial rate. We want to create plots for all of
-our data sets with a single statement. To do that, we’ll have to teach the computer how to
-repeat things.</p>
+<p>Remember: our goal is to do the same visualization we did on the first
+inflammation dataset on all 12 datasets that Dr. Maverick has given us.</p>
+<p>We’ll use lists to collect all these datasets together, but we also need a way
+to do the same analysis on each dataset. To do that, we’ll have to teach the
+computer how to repeat things.</p>
 <p>An example task that we might want to repeat is accessing numbers in a list,
-which we
-will do by printing each number on a line of its own.</p>
+which we will do by printing each number on a line of its own.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -531,8 +527,8 @@ difficult to understand what the loop is doing.</p>
 </div>
 <p>It’s worth tracing the execution of this little program step by step:</p>
 <ul class="simple">
-<li><p>Since there are three names in <code class="docutils literal notranslate"><span class="pre">names</span></code>, the statement on line 4 will be executed three times.</p></li>
-<li><p>The first time around, <code class="docutils literal notranslate"><span class="pre">length</span></code> is zero (the value assigned to it on line (1)
+<li><p>Since there are three names in <code class="docutils literal notranslate"><span class="pre">names</span></code>, the loop will be executed three times.</p></li>
+<li><p>The first time around, <code class="docutils literal notranslate"><span class="pre">length</span></code> is zero (the value assigned to it at the start)
 and <code class="docutils literal notranslate"><span class="pre">name</span></code> is <code class="docutils literal notranslate"><span class="pre">Curie</span></code>. The statement adds 1 to the old value of <code class="docutils literal notranslate"><span class="pre">length</span></code>,
 producing 1, and updates <code class="docutils literal notranslate"><span class="pre">length</span></code> to refer to that new value.</p></li>
 <li><p>The next time around, <code class="docutils literal notranslate"><span class="pre">name</span></code> is <code class="docutils literal notranslate"><span class="pre">Darwin</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> is 1, so <code class="docutils literal notranslate"><span class="pre">length</span></code> is
@@ -564,6 +560,56 @@ to read than a two-line loop, so we should always use it when we can.</p>
 <span class="go">w</span>
 </pre></div>
 </div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Summing a list</p>
+<p>Let’s say we have the following list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">124</span><span class="p">,</span> <span class="mi">402</span><span class="p">,</span> <span class="mi">36</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Write a loop that calculates the sum of elements in this list
+by adding each element to a running total and printing the final value.
+So for this list of numbers, <code class="docutils literal notranslate"><span class="pre">[124,</span> <span class="pre">402,</span> <span class="pre">36]</span></code>, your code should print <code class="docutils literal notranslate"><span class="pre">562</span></code>.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">124</span><span class="p">,</span> <span class="mi">402</span><span class="p">,</span> <span class="mi">36</span><span class="p">]</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">num</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Understanding loops</p>
+<p>Given the following loop:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;oxygen&#39;</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>How many times is the body of the loop executed?</p>
+<ul class="simple">
+<li><p>3 times</p></li>
+<li><p>4 times</p></li>
+<li><p>5 times</p></li>
+<li><p>6 times</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">The body of the loop is executed six times. This is because it’s executed once per each character in the word “oxygen”, which is six characters long.</p>
+</div>
+</details></div>
 <div class="note admonition">
 <p class="admonition-title">Challenge: From 1 to N</p>
 <p>Python has a built-in function called <code class="docutils literal notranslate"><span class="pre">range</span></code> that generates a sequence of numbers. <code class="docutils literal notranslate"><span class="pre">range</span></code> can
@@ -597,52 +643,6 @@ Solution<div class="sd-summary-down docutils">
     <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</details></div>
-<div class="note admonition">
-<p class="admonition-title">Challenge: Summing a list</p>
-<p>Write a loop that calculates the sum of elements in a list
-by adding each element and printing the final value,
-so <code class="docutils literal notranslate"><span class="pre">[124,</span> <span class="pre">402,</span> <span class="pre">36]</span></code> prints 562</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Solution<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">124</span><span class="p">,</span> <span class="mi">402</span><span class="p">,</span> <span class="mi">36</span><span class="p">]</span>
-<span class="n">summed</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
-    <span class="n">summed</span> <span class="o">=</span> <span class="n">summed</span> <span class="o">+</span> <span class="n">num</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">summed</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details></div>
-<div class="note admonition">
-<p class="admonition-title">Challenge: Understanding the loops</p>
-<p>Given the following loop:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;oxygen&#39;</span>
-<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>How many times is the body of the loop executed?</p>
-<ul class="simple">
-<li><p>3 times</p></li>
-<li><p>4 times</p></li>
-<li><p>5 times</p></li>
-<li><p>6 times</p></li>
-</ul>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Solution<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">The body of the loop is executed 6 times.</p>
 </div>
 </details></div>
 <div class="note admonition">

@@ -12,28 +12,32 @@
 
 ## Visualizing data
 
-The mathematician Richard Hamming once said, "The purpose of computing is insight, not numbers,"
-and the best way to develop insight is often to visualize data.  Visualization deserves an entire
-lecture of its own, but we can explore a few features of Python's `matplotlib` library here.  While
-there is no official plotting library, `matplotlib` is the *de facto* standard.  First, we will
-import the `pyplot` module from `matplotlib` and use two of its functions to create and display a
-**heat map** of our data:
+Now we can compute statistics, but it's often way more helpful and intuitive to
+visualize data with plots and graphs rather than just looking at numbers.
+Visualization deserves an entire workshop of its own, but'll get started here
+with the basics. To do that, we're going to use a library called
+[`matplotlib`](https://matplotlib.org/). Like Numpy, `matplotlib` is not
+built-in to Python, but it's the most popular plotting library, so it's the *de
+facto* standard.
 
-:::{admonition} Episode Prerequisites
-If you are continuing in the same notebook from the previous episode, you already
-have a `data` variable and have imported `numpy`.  If you are starting a new
-notebook at this point, you need the following two lines:
+:::{admonition} Episode Prerequisites If you are continuing in the same notebook
+from the previous episode, you already have a `data` variable and have imported
+`numpy`.  If you are starting a new notebook at this point, you need the
+following two lines:
+
+First, we will import the `pyplot` module from `matplotlib` and use two of its
+functions to create and display a **heat map** of our data:
 
 ```python
 import numpy
-data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
+data = numpy.loadtxt('data/inflammation-01.csv', delimiter=',')
 ```
 :::
 
 
 ```python
 import matplotlib.pyplot
-image = matplotlib.pyplot.imshow(data)
+matplotlib.pyplot.imshow(data)
 matplotlib.pyplot.show()
 ```
 
@@ -68,14 +72,14 @@ the medication takes 3 weeks to take effect.  But a good data scientist doesn't 
 average of a dataset, so let's have a look at two other statistics:
 
 ```python
-matplotlib.pyplot.plot(numpy.amax(data, axis=0))
+matplotlib.pyplot.plot(numpy.max(data, axis=0))
 matplotlib.pyplot.show()
 ```
 
 ![A line graph showing the maximum inflammation across all patients over a 40-day period.](../fig/python_programming/03-matplotlib/inflammation-01-maximum.svg)
 
 ```python
-matplotlib.pyplot.plot(numpy.amin(data, axis=0))
+matplotlib.pyplot.plot(numpy.min(data, axis=0))
 matplotlib.pyplot.show()
 ```
 
@@ -90,8 +94,8 @@ If we want, we can even look at all three graphs on the same plot:
 
 ```python
 matplotlib.pyplot.plot(numpy.mean(data, axis=0))
-matplotlib.pyplot.plot(numpy.amax(data, axis=0))
-matplotlib.pyplot.plot(numpy.amin(data, axis=0))
+matplotlib.pyplot.plot(numpy.max(data, axis=0))
+matplotlib.pyplot.plot(numpy.min(data, axis=0))
 matplotlib.pyplot.show()
 ```
 

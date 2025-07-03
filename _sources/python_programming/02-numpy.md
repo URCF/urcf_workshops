@@ -14,21 +14,15 @@
 
 ## Scenario: A Miracle Arthiritis Inflamation Cure
 
-Our imaginary colleague "Dr. Maverick" has invented a new miracle drug that
-promises to cure arthritis inflammation flare-ups in only 3 weeks! Naturally, we
-want to see the clinical trial data, and after months of asking, they have
-finally provided us with a spreadsheet containing the clinical trial data.
+Now that we've covered some Python basics, we'll learn how to work with data.
 
-The file contains the number of inflammation flare-ups per day for the 60
-patients in the initial clinical trial, with the trial lasting 40 days. Each row
-corresponds to a patient, and each column corresponds to a day in the trial.
-Once a patient has their first inflammation flare-up they take the medication
-and wait a few weeks for it to take effect and reduce flare-ups.
+Imagine we have a colleague "Dr. Maverick". They've invented a new miracle drug
+that claims to cure arthritis inflammation flare-ups in only 3 weeks! Naturally,
+we want to see the clinical trial data, and after months of asking, they have
+finally provided it.
 
-To see how effective the treatment is we would like to:
-
-1. Calculate the average inflammation per day across all patients.
-2. Plot the result to discuss and share with colleagues.
+We're going to use Python to analyze this data and decide if Dr. Maverick's
+claims are true.
 
 ![3-step flowchart shows inflammation data records for patients moving to the Analysis stepwhere a heat map of provided data is generated moving to the Conclusion step that asks the question, How does the medication affect patients?](../fig/python_programming/02-numpy/lesson-overview.svg "Lesson Overview")
 
@@ -80,7 +74,7 @@ Once we've imported the library, we can ask the library to read our data file
 for us:
 
 ```python
-numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
+numpy.loadtxt('data/inflammation-01.csv', delimiter=',')
 ```
 
 ```output
@@ -121,7 +115,7 @@ a variable using the same syntax. Let's re-run `numpy.loadtxt` and save the
 returned data:
 
 ```python
-data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
+data = numpy.loadtxt('data/inflammation-01.csv', delimiter=',')
 ```
 
 This statement doesn't produce any output because we've assigned the output to
@@ -169,13 +163,12 @@ print(data.shape)
 ```
 
 The output tells us that the `data` array variable contains 60 rows and 40
-columns. When we created the variable `data` to store our arthritis data, we did
-not only create the array; we also created information about the array, called
-**members** or attributes. This extra information describes `data` in the same
-way an adjective describes a noun. `data.shape` is an attribute of `data` which
-describes the dimensions of `data`. We use the same "dot" notation for the
-attributes of variables that we use for the functions in libraries because they
-have the same part-and-whole relationship.
+columns. These extras like `data` are called **attributes** or **members**. This
+extra information describes `data` in the same way an adjective describes a
+noun. `data.shape` is an attribute of `data` which describes the dimensions of
+`data`. We use the same "dot" notation for the attributes of variables that we
+use for the functions in libraries because they have the same part-and-whole
+relationship.
 
 If we want to get a single number from the array, we must provide an **index**
 in square brackets after the variable name, just as we do in math when referring
@@ -324,15 +317,15 @@ dataset. We'll also use multiple assignment, a convenient Python feature that
 will enable us to do this all in one line.
 
 ```python
-maxval, minval, stdval = numpy.amax(data), numpy.amin(data), numpy.std(data)
+maxval, minval, stdval = numpy.max(data), numpy.min(data), numpy.std(data)
 
 print('maximum inflammation:', maxval)
 print('minimum inflammation:', minval)
 print('standard deviation:', stdval)
 ```
 
-Here we've assigned the return value from `numpy.amax(data)` to the variable `maxval`, the value
-from `numpy.amin(data)` to `minval`, and so on.
+Here we've assigned the return value from `numpy.max(data)` to the variable `maxval`, the value
+from `numpy.min(data)` to `minval`, and so on.
 
 ```output
 maximum inflammation: 20.0
@@ -364,7 +357,7 @@ inflammation of the first patient in the dataset:
 
 ```python
 patient_0 = data[0, :]
-print('maximum inflammation for patient 0:', numpy.amax(patient_0))
+print('maximum inflammation for patient 0:', numpy.max(patient_0))
 ```
 
 ```output
@@ -377,7 +370,7 @@ maximum inflammation of patient 2 (who, remember is the *third* patient, as in
 Python we start counting from zero).
 
 ```python
-print('maximum inflammation for patient 2:', numpy.amax(data[2, :]))
+print('maximum inflammation for patient 2:', numpy.max(data[2, :]))
 ```
 
 ```output
@@ -389,12 +382,10 @@ the next diagram on the left) or the average for each day (as in the diagram on
 the right)? As the diagram below shows, we want to perform the operation across
 an axis:
 
-![Per-patient maximum inflammation is computed row-wise across all columns usingnumpy.amax(data, axis=1). Per-day average inflammation is computed column-wise across all rows usingnumpy.mean(data, axis=0).](../fig/python_programming/02-numpy/python-operations-across-axes.png)
+![Per-patient maximum inflammation is computed row-wise across all columns usingnumpy.max(data, axis=1). Per-day average inflammation is computed column-wise across all rows usingnumpy.mean(data, axis=0).](../fig/python_programming/02-numpy/python-operations-across-axes.png)
 
-To support this functionality,
-most array functions allow us to specify the axis we want to work on.
-If we ask for the average across axis 0 (rows in our 2D example),
-we get:
+To support this functionality, most array functions allow us to specify the *axis*
+we want to work on. If we ask for the average across axis 0 (the rows), we get:
 
 ```python
 print(numpy.mean(data, axis=0))
@@ -411,20 +402,10 @@ print(numpy.mean(data, axis=0))
    0.56666667]
 ```
 
-As a quick check,
-we can ask this array what its shape is:
+This is a *one-dimensional array*, where each entry corresponds to a day, and
+represents the average inflammation across all patients (rows) for that day.
 
-```python
-print(numpy.mean(data, axis=0).shape)
-```
-
-```output
-(40,)
-```
-
-The expression `(40,)` tells us we have an N×1 vector,
-so this is the average inflammation per day for all patients.
-If we average across axis 1 (columns in our 2D example), we get:
+If we average across axis 1 (columns), we get:
 
 ```python
 print(numpy.mean(data, axis=1))
@@ -441,76 +422,27 @@ print(numpy.mean(data, axis=1))
 
 which is the average inflammation per patient across all days.
 
-~~~{admonition} Challenge: Slicing Strings
+~~~{admonition} Challenge: Calculations on subsets of data
 :class: note
 
-A section of an array is called a **slice**.
-We can take slices of character strings as well:
+How would you calculate the average inflammation for all patients during the first four days of the trial?
+
+:::{dropdown} Solution
 
 ```python
-element = 'oxygen'
-print('first three characters:', element[0:3])
-print('last three characters:', element[3:6])
+print(numpy.mean(data[:,0:4]))
 ```
 
-```output
-first three characters: oxy
-last three characters: gen
+```
+0.8291666666666667
 ```
 
-What is the value of `element[:4]`?
-What about `element[4:]`?
-Or `element[:]`?
+The key is the slice `data[:,0:4]`. We want to include all patients (rows) in the calculation, so we keep every row (`:` in the x index), but only include the first four days (columns), so we exclude the rest with `0:4` in the y index.
 
-:::{dropdown} Solution
-```output
-oxyg
-en
-oxygen
-```
+We could also write this slice as `data[:,:4]`.
+
 :::
 
-What is `element[-1]`?
-What is `element[-2]`?
-
-:::{dropdown} Solution
-```output
-n
-e
-```
-:::
-
-Given those answers,
-explain what `element[1:-1]` does.
-
-:::{dropdown} Solution
-Creates a substring from index 1 up to (not including) the final index,
-effectively removing the first and last letters from 'oxygen'
-:::
-
-How can we rewrite the slice for getting the last three characters of `element`,
-so that it works even if we assign a different string to `element`?
-Test your solution with the following strings: `carpentry`, `clone`, `hi`.
-
-:::{dropdown} Solution
-```python
-element = 'oxygen'
-print('last three characters:', element[-3:])
-element = 'carpentry'
-print('last three characters:', element[-3:])
-element = 'clone'
-print('last three characters:', element[-3:])
-element = 'hi'
-print('last three characters:', element[-3:])
-```
-
-```output
-last three characters: gen
-last three characters: try
-last three characters: one
-last three characters: hi
-```
-:::
 ~~~
 
 ```{admonition} Keypoints
@@ -521,7 +453,7 @@ last three characters: hi
 - Array indices start at 0, not 1.
 - Use `low:high` to specify a `slice` that includes the indices from `low` to `high-1`.
 - Use `# some kind of explanation` to add comments to programs.
-- Use `numpy.mean(array)`, `numpy.amax(array)`, and `numpy.amin(array)` to calculate simple statistics.
+- Use `numpy.mean(array)`, `numpy.max(array)`, and `numpy.min(array)` to calculate simple statistics.
 - Use `numpy.mean(array, axis=0)` or `numpy.mean(array, axis=1)` to calculate statistics across the specified axis.
 ```
 

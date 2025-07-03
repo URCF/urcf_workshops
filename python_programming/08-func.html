@@ -360,20 +360,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composing-functions">Composing Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-scope">Variable Scope</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tidying-up">Tidying up</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-and-documenting">Testing and Documenting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-defaults">Defining Defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readable-functions">Readable functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-combining-strings">Challenge 1: Combining Strings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-return-versus-print">Challenge 2: Return versus print</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-selecting-characters-from-strings">Challenge 3: Selecting Characters From Strings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-rescaling-an-array">Challenge 4: Rescaling an Array</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-5-testing-and-documenting-your-function">Challenge 5: Testing and Documenting Your Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-6-defining-defaults">Challenge 6: Defining Defaults</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-7-variables-inside-and-outside-functions">Challenge 7: Variables Inside and Outside Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-8-mixing-default-and-non-default-parameters">Challenge 8: Mixing Default and Non-Default Parameters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readable-code">Readable Code</a></li>
 </ul>
             </nav>
         </div>
@@ -405,58 +393,54 @@ document.write(`
 <li><p>What happens when I call a function?</p></li>
 </ul>
 </div>
-<p>At this point, we’ve seen that code can have Python make decisions about what it sees in our data. What if we want to convert some of our data, like taking a temperature in Fahrenheit and converting it to Celsius. We could write something like this for converting a single number</p>
+<p>At this point, we’ve seen that code can have Python make decisions about what it
+sees in our data. What if we want to convert some of our data, like taking a
+temperature in Fahrenheit and converting it to Celsius. We could write something
+like this for converting a single number</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fahrenheit_val</span> <span class="o">=</span> <span class="mi">99</span>
-<span class="n">celsius_val</span> <span class="o">=</span> <span class="p">((</span><span class="n">fahrenheit_val</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
+<span class="n">celsius_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">fahrenheit_val</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and for a second number we could just copy the line and rename the variables</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fahrenheit_val</span> <span class="o">=</span> <span class="mi">99</span>
-<span class="n">celsius_val</span> <span class="o">=</span> <span class="p">((</span><span class="n">fahrenheit_val</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
+<span class="n">celsius_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">fahrenheit_val</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
 
 <span class="n">fahrenheit_val2</span> <span class="o">=</span> <span class="mi">43</span>
-<span class="n">celsius_val2</span> <span class="o">=</span> <span class="p">((</span><span class="n">fahrenheit_val2</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
+<span class="n">celsius_val2</span> <span class="o">=</span> <span class="p">(</span><span class="n">fahrenheit_val2</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>But we would be in trouble as soon as we had to do this more than a couple times.
-Cutting and pasting it is going to make our code get very long and very repetitive,
-very quickly.
-We’d like a way to package our code so that it is easier to reuse,
-a shorthand way of re-executing longer pieces of code. In Python we can use ‘functions’.
-Let’s start by defining a function <code class="docutils literal notranslate"><span class="pre">fahr_to_celsius</span></code> that converts temperatures
-from Fahrenheit to Celsius:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">explicit_fahr_to_celsius</span><span class="p">(</span><span class="n">temp</span><span class="p">):</span>
-    <span class="c1"># Assign the converted value to a variable</span>
-    <span class="n">converted</span> <span class="o">=</span> <span class="p">((</span><span class="n">temp</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
-    <span class="c1"># Return the value of the new variable</span>
-    <span class="k">return</span> <span class="n">converted</span>
-    
-<span class="k">def</span><span class="w"> </span><span class="nf">fahr_to_celsius</span><span class="p">(</span><span class="n">temp</span><span class="p">):</span>
-    <span class="c1"># Return converted value more efficiently using the return</span>
-    <span class="c1"># function without creating a new variable. This code does</span>
-    <span class="c1"># the same thing as the previous function but it is more explicit</span>
-    <span class="c1"># in explaining how the return command works.</span>
-    <span class="k">return</span> <span class="p">((</span><span class="n">temp</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">))</span>
+<p>But we would be in trouble as soon as we had to do this more than a couple
+times. Cutting and pasting it is going to make our code get very long and very
+repetitive, very quickly. We’d like a way to package our code so that it is
+easier to reuse, a shorthand way of re-executing longer pieces of code. In
+Python we can use ‘functions’. Let’s start by defining a function
+<code class="docutils literal notranslate"><span class="pre">fahr_to_celsius</span></code> that converts temperatures from Fahrenheit to Celsius:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fahr_to_celsius</span><span class="p">(</span><span class="n">temp</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">temp</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="" src="../_images/python-function.svg" />{alt=’Labeled parts of a Python function definition’}</p>
-<p>The function definition opens with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code> followed by the
-name of the function (<code class="docutils literal notranslate"><span class="pre">fahr_to_celsius</span></code>) and a parenthesized list of parameter names (<code class="docutils literal notranslate"><span class="pre">temp</span></code>). The
-<span class="xref myst">body</span> of the function — the
-statements that are executed when it runs — is indented below the
-definition line.  The body concludes with a <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword followed by the return value.</p>
+<p>Now we can use this function to convert temperatures:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">0.0</span>
+</pre></div>
+</div>
+<p><img alt="" src="../_images/python-function.svg" /></p>
+<p>The function definition opens with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code> followed by the name of the
+function (<code class="docutils literal notranslate"><span class="pre">fahr_to_celsius</span></code>) and a parenthesized list of parameter names
+(<code class="docutils literal notranslate"><span class="pre">temp</span></code>). The <span class="xref myst">body</span> of the function—the
+statements that are executed when it runs—is indented below the definition
+line.  The body concludes with a <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword followed by the return value.</p>
 <p>When we call the function,
 the values we pass to it are assigned to those variables
 so that we can use them inside the function.
 Inside the function,
 we use a <span class="xref myst">return statement</span> to send a result
 back to whoever asked for it.</p>
-<p>Let’s try running our function.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This command should call our function, using “32” as the input and return the function value.</p>
-<p>In fact, calling our own function is no different from calling any other function:</p>
+<p>Calling our own function is no different from calling any other function (like
+built-in functions, or functions from a library). For example, we can use it in
+a print statement:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;freezing point of water:&#39;</span><span class="p">,</span> <span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boiling point of water:&#39;</span><span class="p">,</span> <span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">212</span><span class="p">),</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
 </pre></div>
@@ -465,8 +449,8 @@ back to whoever asked for it.</p>
 <span class="go">boiling point of water: 100.0 C</span>
 </pre></div>
 </div>
-<p>We’ve successfully called the function that we defined,
-and we have access to the value that we returned.</p>
+<p>We’ve successfully called the function that we defined, and we have access to
+the value that we returned.</p>
 <section id="composing-functions">
 <h2>Composing Functions<a class="headerlink" href="#composing-functions" title="Permalink to this heading">#</a></h2>
 <p>Now that we’ve seen how to turn Fahrenheit into Celsius,
@@ -496,15 +480,12 @@ we can <span class="xref myst">compose</span> the two functions we have already 
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">boiling point of water in Kelvin: 373.15</span>
 </pre></div>
 </div>
-<p>This is our first taste of how larger programs are built:
-we define basic operations,
-then combine them in ever-larger chunks to get the effect we want.
-Real-life functions will usually be larger than the ones shown here — typically half a dozen
-to a few dozen lines — but they shouldn’t ever be much longer than that,
-or the next person who reads it won’t be able to understand what’s going on.</p>
-</section>
-<section id="variable-scope">
-<h2>Variable Scope<a class="headerlink" href="#variable-scope" title="Permalink to this heading">#</a></h2>
+<p>This is our first taste of how larger programs are built: we define basic
+operations, then combine them in ever-larger chunks to get the effect we want.
+Real-life functions will usually be larger than the ones shown here—typically
+half a dozen to a few dozen lines.</p>
+<div class="tip admonition">
+<p class="admonition-title">Variable Scope</p>
 <p>In composing our temperature conversion functions, we created variables inside of those functions,
 <code class="docutils literal notranslate"><span class="pre">temp</span></code>, <code class="docutils literal notranslate"><span class="pre">temp_c</span></code>, <code class="docutils literal notranslate"><span class="pre">temp_f</span></code>, and <code class="docutils literal notranslate"><span class="pre">temp_k</span></code>.
 We refer to these variables as <span class="xref myst">local variables</span>
@@ -547,6 +528,7 @@ is said to be <span class="xref myst">global</span>.</p>
 <span class="go">temperature in Kelvin was: 373.15</span>
 </pre></div>
 </div>
+</div>
 </section>
 <section id="tidying-up">
 <h2>Tidying up<a class="headerlink" href="#tidying-up" title="Permalink to this heading">#</a></h2>
@@ -555,24 +537,11 @@ we can make our inflammation analysis easier to read and easier to reuse.
 First, let’s make a <code class="docutils literal notranslate"><span class="pre">visualize</span></code> function that generates our plots:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">visualize</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span>
-
-    <span class="n">axes1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">axes2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">axes3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-
-    <span class="n">axes1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
-    <span class="n">axes1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-
-    <span class="n">axes2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
-    <span class="n">axes2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-
-    <span class="n">axes3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span>
-    <span class="n">axes3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-
-    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
     <span class="n">matplotlib</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -580,11 +549,11 @@ First, let’s make a <code class="docutils literal notranslate"><span class="pr
 we noticed:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">detect_problems</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">20</span><span class="p">]</span> <span class="o">==</span> <span class="mi">20</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">20</span><span class="p">]</span> <span class="o">==</span> <span class="mi">20</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Suspicious looking maxima!&#39;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minima add up to zero!&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Seems OK!&#39;</span><span class="p">)</span>
@@ -609,303 +578,6 @@ We can reproduce the previous analysis with a much simpler <code class="docutils
 we can more easily read and understand what is happening in the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.
 Even better, if at some later date we want to use either of those pieces of code again,
 we can do so in a single line.</p>
-</section>
-<section id="testing-and-documenting">
-<h2>Testing and Documenting<a class="headerlink" href="#testing-and-documenting" title="Permalink to this heading">#</a></h2>
-<p>Once we start putting things in functions so that we can re-use them,
-we need to start testing that those functions are working correctly.
-To see how to do this,
-let’s write a function to offset a dataset so that it’s mean value
-shifts to a user-defined value:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
-</pre></div>
-</div>
-<p>We could test this on our actual data,
-but since we don’t know what the values ought to be,
-it will be hard to tell if the result was correct.
-Instead,
-let’s use NumPy to create a matrix of 0’s
-and then offset its values to have a mean value of 3:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[[ 3.  3.]</span>
-<span class="go"> [ 3.  3.]]</span>
-</pre></div>
-</div>
-<p>That looks right,
-so let’s try <code class="docutils literal notranslate"><span class="pre">offset_mean</span></code> on our real data:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[[-6.14875 -6.14875 -5.14875 ... -3.14875 -6.14875 -6.14875]</span>
-<span class="go"> [-6.14875 -5.14875 -4.14875 ... -5.14875 -6.14875 -5.14875]</span>
-<span class="go"> [-6.14875 -5.14875 -5.14875 ... -4.14875 -5.14875 -5.14875]</span>
-<span class="go"> ...</span>
-<span class="go"> [-6.14875 -5.14875 -5.14875 ... -5.14875 -5.14875 -5.14875]</span>
-<span class="go"> [-6.14875 -6.14875 -6.14875 ... -6.14875 -4.14875 -6.14875]</span>
-<span class="go"> [-6.14875 -6.14875 -5.14875 ... -5.14875 -5.14875 -6.14875]]</span>
-</pre></div>
-</div>
-<p>It’s hard to tell from the default output whether the result is correct,
-but there are a few tests that we can run to reassure us:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;original min, mean, and max are:&#39;</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-<span class="n">offset_data</span> <span class="o">=</span> <span class="n">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;min, mean, and max of offset data are:&#39;</span><span class="p">,</span>
-      <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">offset_data</span><span class="p">),</span>
-      <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">offset_data</span><span class="p">),</span>
-      <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">offset_data</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">original min, mean, and max are: 0.0 6.14875 20.0</span>
-<span class="go">min, mean, and max of offset data are: -6.14875 2.842170943040401e-16 13.85125</span>
-</pre></div>
-</div>
-<p>That seems almost right:
-the original mean was about 6.1,
-so the lower bound from zero is now about -6.1.
-The mean of the offset data isn’t quite zero, but it’s pretty close.
-We can even go further and check that the standard deviation hasn’t changed:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;std dev before and after:&#39;</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">offset_data</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">std dev before and after: 4.613833197118566 4.613833197118566</span>
-</pre></div>
-</div>
-<p>Those values look the same,
-but we probably wouldn’t notice if they were different in the sixth decimal place.
-Let’s do this instead:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;difference in standard deviations before and after:&#39;</span><span class="p">,</span>
-      <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">offset_data</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">difference in standard deviations before and after: 0.0</span>
-</pre></div>
-</div>
-<p>Everything looks good,
-and we should probably get back to doing our analysis.
-We have one more task first, though:
-we should write some <span class="xref myst">documentation</span> for our function
-to remind ourselves later what it’s for and how to use it.</p>
-<p>The usual way to put documentation in software is
-to add <span class="xref myst">comments</span> like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># offset_mean(data, target_mean_value):</span>
-<span class="c1"># return a new array containing the original data with its mean offset to match the desired value.</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
-</pre></div>
-</div>
-<p>There’s a better way, though.
-If the first thing in a function is a string that isn’t assigned to a variable,
-that string is attached to the function as its documentation:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a new array containing the original data</span>
-<span class="sd">       with its mean offset to match the desired value.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
-</pre></div>
-</div>
-<p>This is better because we can now ask Python’s built-in help system to show us
-the documentation for the function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Help on function offset_mean in module __main__:</span>
-
-<span class="go">offset_mean(data, target_mean_value)</span>
-<span class="go">    Return a new array containing the original data with its mean offset to match the desired value.</span>
-</pre></div>
-</div>
-<p>A string like this is called a <span class="xref myst">docstring</span>.
-We don’t need to use triple quotes when we write one,
-but if we do,
-we can break the string across multiple lines:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a new array containing the original data</span>
-<span class="sd">       with its mean offset to match the desired value.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; offset_mean([1, 2, 3], 0)</span>
-<span class="sd">    array([-1.,  0.,  1.])</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
-
-<span class="n">help</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Help on function offset_mean in module __main__:</span>
-
-<span class="go">offset_mean(data, target_mean_value)</span>
-<span class="go">    Return a new array containing the original data</span>
-<span class="go">       with its mean offset to match the desired value.</span>
-
-<span class="go">    Examples</span>
-<span class="go">    --------</span>
-<span class="go">    &gt;&gt;&gt; offset_mean([1, 2, 3], 0)</span>
-<span class="go">    array([-1.,  0.,  1.])</span>
-</pre></div>
-</div>
-</section>
-<section id="defining-defaults">
-<h2>Defining Defaults<a class="headerlink" href="#defining-defaults" title="Permalink to this heading">#</a></h2>
-<p>We have passed parameters to functions in two ways:
-directly, as in <code class="docutils literal notranslate"><span class="pre">type(data)</span></code>,
-and by name, as in <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt(fname='something.csv',</span> <span class="pre">delimiter=',')</span></code>.
-In fact,
-we can pass the filename to <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> without the <code class="docutils literal notranslate"><span class="pre">fname=</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],</span>
-<span class="go">       [ 0.,  1.,  2., ...,  1.,  0.,  1.],</span>
-<span class="go">       [ 0.,  1.,  1., ...,  2.,  1.,  1.],</span>
-<span class="go">       ...,</span>
-<span class="go">       [ 0.,  1.,  1., ...,  1.,  1.,  1.],</span>
-<span class="go">       [ 0.,  0.,  0., ...,  0.,  2.,  0.],</span>
-<span class="go">       [ 0.,  0.,  1., ...,  1.,  1.,  0.]])</span>
-</pre></div>
-</div>
-<p>but we still need to say <code class="docutils literal notranslate"><span class="pre">delimiter=</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-  File &quot;/Users/username/anaconda3/lib/python3.6/site-packages/numpy/lib/npyio.py&quot;, line 1041, in loa
-dtxt
-    dtype = np.dtype(dtype)
-  File &quot;/Users/username/anaconda3/lib/python3.6/site-packages/numpy/core/_internal.py&quot;, line 199, in
-_commastring
-    newitem = (dtype, eval(repeats))
-  File &quot;&lt;string&gt;&quot;, line 1
-    ,
-    ^
-SyntaxError: unexpected EOF while parsing
-</pre></div>
-</div>
-<p>To understand what’s going on,
-and make our own functions easier to use,
-let’s re-define our <code class="docutils literal notranslate"><span class="pre">offset_mean</span></code> function like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">offset_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_mean_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a new array containing the original data</span>
-<span class="sd">       with its mean offset to match the desired value, (0 by default).</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; offset_mean([1, 2, 3])</span>
-<span class="sd">    array([-1.,  0.,  1.])</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="n">target_mean_value</span>
-</pre></div>
-</div>
-<p>The key change is that the second parameter is now written <code class="docutils literal notranslate"><span class="pre">target_mean_value=0.0</span></code>
-instead of just <code class="docutils literal notranslate"><span class="pre">target_mean_value</span></code>.
-If we call the function with two arguments,
-it works as it did before:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">[[ 3.  3.]</span>
-<span class="go"> [ 3.  3.]]</span>
-</pre></div>
-</div>
-<p>But we can also now call it with just one parameter,
-in which case <code class="docutils literal notranslate"><span class="pre">target_mean_value</span></code> is automatically assigned
-the <span class="xref myst">default value</span> of 0.0:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">more_data</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data before mean offset:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">more_data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;offset data:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">offset_mean</span><span class="p">(</span><span class="n">more_data</span><span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">data before mean offset:</span>
-<span class="go">[[ 5.  5.]</span>
-<span class="go"> [ 5.  5.]]</span>
-<span class="go">offset data:</span>
-<span class="go">[[ 0.  0.]</span>
-<span class="go"> [ 0.  0.]]</span>
-</pre></div>
-</div>
-<p>This is handy:
-if we usually want a function to work one way,
-but occasionally need it to do something else,
-we can allow people to pass a parameter when they need to
-but provide a default to make the normal case easier.
-The example below shows how Python matches values to parameters:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a:&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s1">&#39;b:&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="s1">&#39;c:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;no parameters:&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;one parameter:&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="mi">55</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;two parameters:&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">66</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">no parameters:</span>
-<span class="go">a: 1 b: 2 c: 3</span>
-<span class="go">one parameter:</span>
-<span class="go">a: 55 b: 2 c: 3</span>
-<span class="go">two parameters:</span>
-<span class="go">a: 55 b: 66 c: 3</span>
-</pre></div>
-</div>
-<p>As this example shows,
-parameters are matched up from left to right,
-and any that haven’t been given a value explicitly get their default value.
-We can override this behavior by naming the value as we pass it in:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;only setting the value of c&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="mi">77</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">only setting the value of c</span>
-<span class="go">a: 1 b: 2 c: 77</span>
-</pre></div>
-</div>
-<p>With that in hand,
-let’s look at the help for <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Help on function loadtxt in module numpy.lib.npyio:</span>
-
-<span class="go">loadtxt(fname, dtype=&lt;class &#39;float&#39;&gt;, comments=&#39;#&#39;, delimiter=None, converters=None, skiprows=0, use</span>
-<span class="go">cols=None, unpack=False, ndmin=0, encoding=&#39;bytes&#39;)</span>
-<span class="go">    Load data from a text file.</span>
-
-<span class="go">    Each row in the text file must have the same number of values.</span>
-
-<span class="go">    Parameters</span>
-<span class="go">    ----------</span>
-<span class="go">...</span>
-</pre></div>
-</div>
-<p>There’s a lot of information here,
-but the most important part is the first couple of lines:</p>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">loadtxt(fname, dtype=&lt;class &#39;float&#39;&gt;, comments=&#39;#&#39;, delimiter=None, converters=None, skiprows=0, use</span>
-<span class="go">cols=None, unpack=False, ndmin=0, encoding=&#39;bytes&#39;)</span>
-</pre></div>
-</div>
-<p>This tells us that <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> has one parameter called <code class="docutils literal notranslate"><span class="pre">fname</span></code> that doesn’t have a default value,
-and eight others that do.
-If we call the function like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;inflammation-01.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>then the filename is assigned to <code class="docutils literal notranslate"><span class="pre">fname</span></code> (which is what we want),
-but the delimiter string <code class="docutils literal notranslate"><span class="pre">','</span></code> is assigned to <code class="docutils literal notranslate"><span class="pre">dtype</span></code> rather than <code class="docutils literal notranslate"><span class="pre">delimiter</span></code>,
-because <code class="docutils literal notranslate"><span class="pre">dtype</span></code> is the second parameter in the list. However <code class="docutils literal notranslate"><span class="pre">','</span></code> isn’t a known <code class="docutils literal notranslate"><span class="pre">dtype</span></code> so
-our code produced an error message when we tried to run it.
-When we call <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> we don’t have to provide <code class="docutils literal notranslate"><span class="pre">fname=</span></code> for the filename because it’s the
-first item in the list, but if we want the <code class="docutils literal notranslate"><span class="pre">','</span></code> to be assigned to the variable <code class="docutils literal notranslate"><span class="pre">delimiter</span></code>,
-we <em>do</em> have to provide <code class="docutils literal notranslate"><span class="pre">delimiter=</span></code> for the second parameter since <code class="docutils literal notranslate"><span class="pre">delimiter</span></code> is not
-the second parameter in the list.</p>
 </section>
 <section id="readable-functions">
 <h2>Readable functions<a class="headerlink" href="#readable-functions" title="Permalink to this heading">#</a></h2>
@@ -947,9 +619,8 @@ not only for sharing code with others, but also for the original
 programmer. If you need to revisit code that you wrote months ago and
 haven’t thought about since then, you will appreciate the value of
 readable code!</p>
-</section>
-<section id="challenge-1-combining-strings">
-<h2>Challenge 1: Combining Strings<a class="headerlink" href="#challenge-1-combining-strings" title="Permalink to this heading">#</a></h2>
+<div class="note admonition">
+<p class="admonition-title">Challenge 1: Combining Strings</p>
 <p>“Adding” two strings produces their concatenation:
 <code class="docutils literal notranslate"><span class="pre">'a'</span> <span class="pre">+</span> <span class="pre">'b'</span></code> is <code class="docutils literal notranslate"><span class="pre">'ab'</span></code>.
 Write a function called <code class="docutils literal notranslate"><span class="pre">fence</span></code> that takes two parameters called <code class="docutils literal notranslate"><span class="pre">original</span></code> and <code class="docutils literal notranslate"><span class="pre">wrapper</span></code>
@@ -973,9 +644,9 @@ Solution<div class="sd-summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="challenge-2-return-versus-print">
-<h2>Challenge 2: Return versus print<a class="headerlink" href="#challenge-2-return-versus-print" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge 2: Return versus print</p>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">return</span></code> and <code class="docutils literal notranslate"><span class="pre">print</span></code> are not interchangeable.
 <code class="docutils literal notranslate"><span class="pre">print</span></code> is a Python function that <em>prints</em> data to the screen.
 It enables us, <em>users</em>, see the data.
@@ -1007,9 +678,9 @@ and the last line (<code class="docutils literal notranslate"><span class="pre">
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="challenge-3-selecting-characters-from-strings">
-<h2>Challenge 3: Selecting Characters From Strings<a class="headerlink" href="#challenge-3-selecting-characters-from-strings" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge 3: Selecting Characters From Strings</p>
 <p>If the variable <code class="docutils literal notranslate"><span class="pre">s</span></code> refers to a string,
 then <code class="docutils literal notranslate"><span class="pre">s[0]</span></code> is the string’s first character
 and <code class="docutils literal notranslate"><span class="pre">s[-1]</span></code> is its last.
@@ -1034,9 +705,9 @@ Solution<div class="sd-summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="challenge-4-rescaling-an-array">
-<h2>Challenge 4: Rescaling an Array<a class="headerlink" href="#challenge-4-rescaling-an-array" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge 4: Rescaling an Array</p>
 <p>Write a function <code class="docutils literal notranslate"><span class="pre">rescale</span></code> that takes an array as input
 and returns a corresponding array of values scaled to lie in the range 0.0 to 1.0.
 (Hint: If <code class="docutils literal notranslate"><span class="pre">L</span></code> and <code class="docutils literal notranslate"><span class="pre">H</span></code> are the lowest and highest values in the original array,
@@ -1049,16 +720,16 @@ Solution<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rescale</span><span class="p">(</span><span class="n">input_array</span><span class="p">):</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span>
-    <span class="n">H</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span>
     <span class="n">output_array</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_array</span> <span class="o">-</span> <span class="n">L</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">H</span> <span class="o">-</span> <span class="n">L</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">output_array</span>
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="challenge-5-testing-and-documenting-your-function">
-<h2>Challenge 5: Testing and Documenting Your Function<a class="headerlink" href="#challenge-5-testing-and-documenting-your-function" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge 5: Testing and Documenting Your Function</p>
 <p>Run the commands <code class="docutils literal notranslate"><span class="pre">help(numpy.arange)</span></code> and <code class="docutils literal notranslate"><span class="pre">help(numpy.linspace)</span></code>
 to see how to use these functions to generate regularly-spaced values,
 then use those values to test your <code class="docutils literal notranslate"><span class="pre">rescale</span></code> function.
@@ -1084,9 +755,9 @@ Solution<div class="sd-summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="challenge-6-defining-defaults">
-<h2>Challenge 6: Defining Defaults<a class="headerlink" href="#challenge-6-defining-defaults" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge 6: Defining Defaults</p>
 <p>Rewrite the <code class="docutils literal notranslate"><span class="pre">rescale</span></code> function so that it scales data to lie between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> by default,
 but will allow the caller to specify lower and upper bounds if they want.
 Compare your implementation to your neighbor’s:
@@ -1100,17 +771,17 @@ Solution<div class="sd-summary-down docutils">
 </summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rescale</span><span class="p">(</span><span class="n">input_array</span><span class="p">,</span> <span class="n">low_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;rescales input array values to lie between low_val and high_val&quot;&quot;&quot;</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span>
-    <span class="n">H</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">input_array</span><span class="p">)</span>
     <span class="n">intermed_array</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_array</span> <span class="o">-</span> <span class="n">L</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">H</span> <span class="o">-</span> <span class="n">L</span><span class="p">)</span>
     <span class="n">output_array</span> <span class="o">=</span> <span class="n">intermed_array</span> <span class="o">*</span> <span class="p">(</span><span class="n">high_val</span> <span class="o">-</span> <span class="n">low_val</span><span class="p">)</span> <span class="o">+</span> <span class="n">low_val</span>
     <span class="k">return</span> <span class="n">output_array</span>
 </pre></div>
 </div>
 </div>
-</details></section>
-<section id="challenge-7-variables-inside-and-outside-functions">
-<h2>Challenge 7: Variables Inside and Outside Functions<a class="headerlink" href="#challenge-7-variables-inside-and-outside-functions" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge 7: Variables Inside and Outside Functions</p>
 <p>What does the following piece of code display when run — and why?</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1149,9 +820,9 @@ Beware that a local <code class="docutils literal notranslate"><span class="pre"
 <em>affect</em> a new value to it. If <code class="docutils literal notranslate"><span class="pre">k</span></code> was only <code class="docutils literal notranslate"><span class="pre">read</span></code>, it would simply retrieve the
 global <code class="docutils literal notranslate"><span class="pre">k</span></code> value.</p>
 </div>
-</details></section>
-<section id="challenge-8-mixing-default-and-non-default-parameters">
-<h2>Challenge 8: Mixing Default and Non-Default Parameters<a class="headerlink" href="#challenge-8-mixing-default-and-non-default-parameters" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge 8: Mixing Default and Non-Default Parameters</p>
 <p>Given the following code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">numbers</span><span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">two</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">three</span><span class="p">,</span> <span class="n">four</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">one</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">two</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">three</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">four</span><span class="p">)</span>
@@ -1197,13 +868,14 @@ before any parameters that have default values in the function definition.</p>
 the first parameter <code class="docutils literal notranslate"><span class="pre">a</span></code>, 2 is assigned to the next parameter <code class="docutils literal notranslate"><span class="pre">b</span></code>, and <code class="docutils literal notranslate"><span class="pre">c</span></code> is
 not passed a value, so it uses its default value 6.</p>
 </div>
-</details></section>
-<section id="readable-code">
-<h2>Readable Code<a class="headerlink" href="#readable-code" title="Permalink to this heading">#</a></h2>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Readable Code</p>
 <p>Revise a function you wrote for one of the previous exercises to try to make
 the code more readable. Then, collaborate with one of your neighbors
 to critique each other’s functions and discuss how your function implementations
 could be further improved to make them more readable.</p>
+</div>
 <div class="admonition-keypoints admonition">
 <p class="admonition-title">Keypoints</p>
 <ul class="simple">
@@ -1287,20 +959,8 @@ could be further improved to make them more readable.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#composing-functions">Composing Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-scope">Variable Scope</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tidying-up">Tidying up</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-and-documenting">Testing and Documenting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-defaults">Defining Defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readable-functions">Readable functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-1-combining-strings">Challenge 1: Combining Strings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-2-return-versus-print">Challenge 2: Return versus print</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-3-selecting-characters-from-strings">Challenge 3: Selecting Characters From Strings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-4-rescaling-an-array">Challenge 4: Rescaling an Array</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-5-testing-and-documenting-your-function">Challenge 5: Testing and Documenting Your Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-6-defining-defaults">Challenge 6: Defining Defaults</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-7-variables-inside-and-outside-functions">Challenge 7: Variables Inside and Outside Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge-8-mixing-default-and-non-default-parameters">Challenge 8: Mixing Default and Non-Default Parameters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readable-code">Readable Code</a></li>
 </ul>
   </nav></div>
 

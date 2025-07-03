@@ -792,7 +792,7 @@ Solution<div class="sd-summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># a possible pre-condition:</span>
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;List length must be non-zero&#39;</span>
 <span class="c1"># a possible post-condition:</span>
-<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">input_list</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">average</span> <span class="o">&lt;=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">input_list</span><span class="p">),</span>
+<span class="k">assert</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">input_list</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">average</span> <span class="o">&lt;=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">input_list</span><span class="p">),</span>
 <span class="s1">&#39;Average should be between min and max of input values (inclusive)&#39;</span>
 </pre></div>
 </div>
