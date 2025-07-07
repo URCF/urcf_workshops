@@ -103,7 +103,7 @@ print(patient_id)
 
 ```output
 132.66
-inflam_001
+inflam_pat23
 ```
 
 When we want to make use of a function, referred to as *calling* the function,
@@ -121,7 +121,7 @@ print(patient_id, 'weight in kilograms:', weight_kg)
 ```
 
 ```output
-inflam_001 weight in kilograms: 60.3
+inflam_pat23 weight in kilograms: 60.3
 ```
 
 We can also call a function inside of another function call.
