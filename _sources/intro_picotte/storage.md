@@ -19,6 +19,8 @@ Everyone with a Picotte account has a home directory, located at
 `/home/bn23` (You can also use the shortcut `~` to refer to your home
 directory).
 
+Your home directory is limited to 64GiB of data.
+
 Your home directory is where you are when you log in.
 :::
 
@@ -67,7 +69,7 @@ documentation](https://docs.urcf.drexel.edu/clusters/picotte/scratch/).
 
 ## Transferring data to and from Picotte
 
-### CyberDuck {#cyberduck}
+### CyberDuck
 
 There are many ways to transfer files between your local computer and Picotte. One piece of
 software that works for both Mac and Windows machines is called CyberDuck. You can download

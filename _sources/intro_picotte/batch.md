@@ -112,8 +112,7 @@ blastn -query BRCA1.fasta -db patnt
 
 Instead of typing, you can copy the text from the Web browser and paste it into
 `nano`. Windows users can paste with `Shift`+`Ins` (or by right-clicking the
-mouse). Mac users can paste with `Cmd`+`V`. At the end, your screen should look
-like this:
+mouse). Mac users can paste with `Cmd`+`V`.
 
 To save the script, press `Ctrl`+`o`, and then press `Enter`. `nano` will prompt
 you to choose a name for the new file. Press `Enter` again to accept the default
