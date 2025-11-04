@@ -5,12 +5,12 @@
 Now that we know a few basic commands, we can finally look at the shell's most
 powerful feature: the ease with which it lets us combine existing programs in new ways.
 
-We'll keep working in the `shell-lesson-data/exercise-data/alkanes` directory.
+We'll keep working in the `shell-lesson-data/alkanes` directory.
 `cd` there if you aren't there already:
 
 
 ```bash
-$ cd ~/Downloads/shell-lesson-data/exercise-data/alkanes
+$ cd ~/Downloads/shell-lesson-data/alkanes
 $ ls
 cubane.pdb  ethane.pdb  methane.pdb octane.pdb  pentane.pdb propane.pdb
 ```
@@ -118,7 +118,7 @@ file. But first we'll do an exercise to learn a little about the sort command.
 ```{admonition} What Does sort -n Do?
 :class: tip
 
-The file `shell-lesson-data/exercise-data/numbers.txt` contains the following lines:
+The file `shell-lesson-data/numbers.txt` contains the following lines:
 
 ~~~
 10
@@ -247,7 +247,7 @@ Option 4 is the solution.
 The pipe character `|` is used to connect the output from one command to
 the input of another.
 `>` is used to redirect standard output to a file.
-Try it in the `shell-lesson-data/exercise-data/alkanes` directory!
+Try it in the `shell-lesson-data/alkanes` directory!
 :::
 ```
 

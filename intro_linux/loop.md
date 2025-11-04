@@ -7,14 +7,14 @@ Similar to wildcards and tab completion, using loops also reduces the
 amount of typing required (and hence reduces the number of typing mistakes).
 
 Suppose we have several hundred genome data files named `basilisk.dat`, `minotaur.dat`,
-and `unicorn.dat`. For this example, we'll use the `exercise-data/creatures`
+and `unicorn.dat`. For this example, we'll use the `creatures`
 directory which only has three example files, but the principles can be
 applied to many many more files at once.
 
 Let's change to that directory:
 
 ```
-cd ~/Downloads/shell-lesson-data/exercise-data/creatures
+cd ~/Downloads/shell-lesson-data/creatures
 ```
 
 and check what's there:
@@ -154,10 +154,10 @@ Becuase we forgot to use the `$` to tell the shell to treat `number` as a variab
 ```{admonition} Challenge: more variables in Loops
 :class: tip
 
-This exercise uses the `shell-lesson-data/exercise-data/alkanes` directory again. Start by changing into this directory:
+This exercise uses the `shell-lesson-data/alkanes` directory again. Start by changing into this directory:
 
 ~~~bash
-cd ~/Downloads/shell-lesson-data/exercise-data/alkanes
+cd ~/Downloads/shell-lesson-data/alkanes
 ~~~
 
 `ls *.pdb` gives the following output:
@@ -196,7 +196,7 @@ Why do these two loops give different outputs?
 ```{admonition} Challenge: Limiting Sets of Files
 :class: tip
 
-What is the output of running the following loop in the `shell-lesson-data/exercise-data/alkanes` directory?
+What is the output of running the following loop in the `shell-lesson-data/alkanes` directory?
 
 ~~~bash
 $ for filename in c*
@@ -222,7 +222,7 @@ the letter c, followed by zero or more other characters will be matched.
 ```{admonition} Challenge: Saving to a File in a Loop - Part One
 :class: tip
 
-In the `shell-lesson-data/exercise-data/alkanes` directory, what is the effect
+In the `shell-lesson-data/alkanes` directory, what is the effect
 of this loop?
 
 ~~~bash

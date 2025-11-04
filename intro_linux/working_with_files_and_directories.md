@@ -2,10 +2,10 @@
 
 We now know how to explore files and directories, but how do we create them?
 
-Let's change into the `shell-lesson-data` directory that you downloaded earlier. Specifically, the "writing" directory under "exercise-data":
+Let's change into the `shell-lesson-data` directory that you downloaded earlier. Specifically, the "writing" directory:
 
 ```
-$ cd ~/Downloads/shell-lesson-data/exercise-data/writing/
+$ cd ~/Downloads/shell-lesson-data/writing/
 ```
 
 <!-- TODO add note about how to do so if you didn't -->
@@ -146,12 +146,12 @@ it's share and thrive.
 
 ## Moving and renaming
 
-Let's go "up" one directory, back to `shell-lesson-data/exercise-data/writing`:
+Let's go "up" one directory, back to `shell-lesson-data/writing`:
 
 ```
 $ cd ..
 $ pwd
-/Users/jjp366/Dowloads/shell-lesson-data/exercise-data/writing
+/Users/jjp366/Dowloads/shell-lesson-data/writing
 ```
 
 Now let's say we want to change the name of our `draft.txt` file. For this we
@@ -181,8 +181,8 @@ $ mv thesis/quotes.txt .
 ```
 
 This moves the `quotes.txt` file from
-`shell-lesson-data/exercise-data/writing/thesis` to the current working
-directory, `shell-lesson-data/exercise-data/writing`.
+`shell-lesson-data/writing/thesis` to the current working
+directory, `shell-lesson-data/writing`.
 
 We can confirm that it worked by using `ls` to see that the `thesis` directory is now empty:
 
@@ -334,7 +334,7 @@ select subsets of files to work on using pattern matching.
 Let's move to the `alkanes` directory to try it out:
 
 ```
-$ cd ~/Downloads/shell-lesson-data/exercise-data/alkanes
+$ cd ~/Downloads/shell-lesson-data/alkanes
 $ ls
 cubane.pdb  ethane.pdb  methane.pdb octane.pdb  pentane.pdb propane.pdb
 ```
