@@ -393,7 +393,7 @@ rather than having to remember or retype a long list of commands.</p>
 <h2>Our first shell script<a class="headerlink" href="#our-first-shell-script" title="Permalink to this heading">#</a></h2>
 <p>Let’s start by making sure we’re in the <code class="docutils literal notranslate"><span class="pre">alkanes</span></code> directory, and then creating a new file, <code class="docutils literal notranslate"><span class="pre">middle.sh</span></code>
 which will become our shell script:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/Downloads/shell-lesson-data/exercise-data/alkanes
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/Downloads/shell-lesson-data/alkanes
 nano<span class="w"> </span>middle.sh
 </pre></div>
 </div>
@@ -525,44 +525,6 @@ wc -l &quot;$@&quot; | sort -n
 <span class="go">163 ../creatures/unicorn.dat</span>
 <span class="go">596 total</span>
 </pre></div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: List Unique Species</p>
-<p>Leah has several hundred data files, each of which is formatted like this:</p>
-<div class="highlight-source notranslate"><div class="highlight"><pre><span></span>2013-11-05,deer,5
-2013-11-05,rabbit,22
-2013-11-05,raccoon,7
-2013-11-06,rabbit,19
-2013-11-06,deer,2
-2013-11-06,fox,1
-2013-11-07,rabbit,18
-2013-11-07,bear,1
-</pre></div>
-</div>
-<p>An example of this type of file is given in
-<code class="docutils literal notranslate"><span class="pre">shell-lesson-data/exercise-data/animal-counts/animals.csv</span></code>.</p>
-<p>We can use the command <code class="docutils literal notranslate"><span class="pre">cut</span> <span class="pre">-d</span> <span class="pre">,</span> <span class="pre">-f</span> <span class="pre">2</span> <span class="pre">animals.csv</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">|</span> <span class="pre">uniq</span></code> to produce
-the unique species in <code class="docutils literal notranslate"><span class="pre">animals.csv</span></code>.
-In order to avoid having to type out this series of commands every time,
-a scientist may choose to write a shell script instead.</p>
-<p>Write a shell script called <code class="docutils literal notranslate"><span class="pre">species.sh</span></code> that takes any number of
-filenames as command-line arguments and uses a variation of the above command
-to print a list of the unique species appearing in each of those files separately.</p>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Script to find unique species in csv files where species is the second data field</span>
-<span class="c1"># This script accepts any number of file names as command line arguments</span>
-
-<span class="c1"># Loop over all files</span>
-<span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$@</span>
-<span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Unique species in </span><span class="nv">$file</span><span class="s2">:&quot;</span>
-<span class="w">    </span><span class="c1"># Extract species names</span>
-<span class="w">    </span>cut<span class="w"> </span>-d<span class="w"> </span>,<span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">$file</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
-<span class="k">done</span>
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="executable-script">

@@ -57,15 +57,6 @@ Open Spotlight, the macOS search tool, by clicking the magnifying glass icon in 
 to your computer's Downloads folder. Make sure to leave it in the Downloads folder, as the exact location is important in the workshop.
 - Unzip the file. You should see the following contents in an unzipped folder called "shell-lesson-data":
 
-:::::{tab-set}
-::::{tab-item} Windows
+![Unzipped](../fig/intro_linux/intro/unzipped.png)
 
-![Windows](../fig/intro_linux/intro/win_unzipped.png)
-
-::::
-::::{tab-item} MacOS
-
-![MacOS](../fig/intro_linux/intro/mac_unzipped.png)
-
-::::
-:::::
+```
