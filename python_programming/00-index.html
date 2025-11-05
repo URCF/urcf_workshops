@@ -385,51 +385,25 @@ conditions, functions, and debugging.</p></li>
 lesson</a>.</p>
 <section id="preparation">
 <h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading">#</a></h2>
-<p>We’ll be using a hosted JupyterHub service for this workshop. <strong>Be sure to do
-the “Before the workshop” steps before and confirm they work for you prior to
-the start of the workshop.</strong></p>
-<div class="note admonition">
-<p class="admonition-title">Before the workshop</p>
-<ol class="arabic simple">
-<li><p>Go to <a class="reference external" href="https://drexeljupyter.eastus.cloudapp.azure.com/">https://drexeljupyter.eastus.cloudapp.azure.com/</a></p></li>
-<li><p>Click the “Sign in with Globus” button.</p></li>
-<li><p>Under “Use your existing organizational login” choose “Drexel University” from the list of institutions and click “Continue”.</p></li>
-<li><p>Sign in using Drexel Connect.</p></li>
-<li><p>You’ll now be presented with a “Server Options” page. Choose “Jupyter Datascience” and click “Start”</p></li>
-<li><p>Wait for the loading screen to finish, then you should see the Jupyter notebook interface, which looks like this:</p></li>
-</ol>
-<p><img alt="Jupyter notebook interface" src="../_images/jupyter_notebook.png" /></p>
-<p>You’re now ready for the workshop. There are some additional preparation steps, but we’ll do them together at the beginning of the workshop.</p>
+<p>We’ll be using JupyterLab as our Python environment for this workshop. <strong>Be sure to follow the steps below and make sure they work for you prior to the start of the workshop.</strong></p>
+<div class="warning admonition">
+<p class="admonition-title">Update your browser</p>
+<p>The version of JupyterLab we’re using for the workshop, <a class="reference external" href="https://jupyterlite.readthedocs.io/en/stable/">JupyterLite</a>, requires an modern, self-updating browser. We recommend using the   latest   version of Chrome or Firefox, Safari and Edge may not work.</p>
 </div>
-<div class="note admonition">
-<p class="admonition-title">At the start of the workshop.</p>
 <ol class="arabic simple">
-<li><p>From the Jupyter notebook interface, click the “Terminal” button in the “Other” section to open a new shell.</p></li>
-<li><p>In the shell, copy and paste the following lines to download the data we’ll be using:</p></li>
+<li><p>Go to <a class="reference external" href="https://urcf.github.io/python-workshop/">https://urcf.github.io/python-workshop/</a></p></li>
+<li><p>You should see the JupyterLab interface, which looks like this:</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>
-wget<span class="w"> </span>https://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip
-wget<span class="w"> </span>https://swcarpentry.github.io/python-novice-inflammation/files/code/python-novice-inflammation-code.zip
-unzip<span class="w"> </span>python-novice-inflammation-data.zip
-unzip<span class="w"> </span>python-novice-inflammation-code.zip
-</pre></div>
-</div>
-<p>Your screen should look like this:</p>
-<p><img alt="Getting data using the terminal" src="../_images/download_commands.png" /></p>
+<p><img alt="JupyterLite" src="../_images/jupyterlite.png" /></p>
 <ol class="arabic simple" start="3">
-<li><p>To confirm the download worked, run <code class="docutils literal notranslate"><span class="pre">ls</span></code>. You should see <code class="docutils literal notranslate"><span class="pre">code</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> directories:</p></li>
+<li><p>Double click on the “workshop.ipynb” notebook in the right-hand sidebar to open it. You should now see the notebook interface, which looks like this:</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>jovyan@jupyter-jjp366:~/swc-python$ ls
-code  data  python-novice-inflammation-code.zip  python-novice-inflammation-data.zip
-</pre></div>
-</div>
+<p><img alt="Jupyter notebook" src="../_images/intro_notebook.png" /></p>
 <ol class="arabic simple" start="4">
-<li><p>Click the “+” button next to the tabs at the top of the screen to open the Launcher again.</p></li>
-<li><p>Click on “Python 3 (ipykernel)” in the “Notebook” section. Your screen should look like this:</p></li>
+<li><p>Click into the code cell and press <code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the cell. You should see a plot of a sine wave appear below it. It make take a few seconds to load and display, be patient.</p></li>
 </ol>
-<p><img alt="Getting data using the terminal" src="../_images/python_kernel.png" /></p>
-<p>The textbox you see is called a “cell” You can type Python code and press <code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run it and create a new cell. You’re now ready to start the workshop!</p>
-</div>
+<p><img alt="Sine wave plot" src="../_images/sine_wave_plot.png" /></p>
+<p>If this all worked, you’re now ready for the workshop! If you encounter any issues, please <a class="reference external" href="mailto:urcf-support&#37;&#52;&#48;drexel&#46;edu">get in touch over email</a> and we’ll help you out.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>

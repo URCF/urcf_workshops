@@ -14,55 +14,27 @@ lesson](https://swcarpentry.github.io/python-novice-inflammation/).
 
 ## Preparation
 
-We'll be using a hosted JupyterHub service for this workshop. **Be sure to do
-the "Before the workshop" steps before and confirm they work for you prior to
-the start of the workshop.**
+We'll be using JupyterLab as our Python environment for this workshop. **Be sure to follow the steps below and make sure they work for you prior to the start of the workshop.**
 
-```{admonition} Before the workshop
-:class: note
+```{admonition} Update your browser
+:class: warning
 
-1. Go to https://drexeljupyter.eastus.cloudapp.azure.com/
-2. Click the "Sign in with Globus" button.
-3. Under "Use your existing organizational login" choose "Drexel University" from the list of institutions and click "Continue".
-4. Sign in using Drexel Connect.
-5. You'll now be presented with a "Server Options" page. Choose "Jupyter Datascience" and click "Start"
-6. Wait for the loading screen to finish, then you should see the Jupyter notebook interface, which looks like this:
-
-![Jupyter notebook interface](../fig/python_programming/00-index/jupyter_notebook.png)
-
-You're now ready for the workshop. There are some additional preparation steps, but we'll do them together at the beginning of the workshop.
-```
-
-```{admonition} At the start of the workshop.
-:class: note
-
-1. From the Jupyter notebook interface, click the "Terminal" button in the "Other" section to open a new shell.
-2. In the shell, copy and paste the following lines to download the data we'll be using:
-
-~~~bash
-cd
-wget https://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip
-wget https://swcarpentry.github.io/python-novice-inflammation/files/code/python-novice-inflammation-code.zip
-unzip python-novice-inflammation-data.zip
-unzip python-novice-inflammation-code.zip
-~~~
-
-Your screen should look like this:
-
-![Getting data using the terminal](../fig/python_programming/00-index/download_commands.png)
-
-3. To confirm the download worked, run `ls`. You should see `code` and `data` directories:
-
-~~~
-jovyan@jupyter-jjp366:~/swc-python$ ls
-code  data  python-novice-inflammation-code.zip  python-novice-inflammation-data.zip
-~~~
-
-4. Click the "+" button next to the tabs at the top of the screen to open the Launcher again.
-5. Click on "Python 3 (ipykernel)" in the "Notebook" section. Your screen should look like this:
-
-![Getting data using the terminal](../fig/python_programming/00-index/python_kernel.png)
-
-The textbox you see is called a "cell" You can type Python code and press `Shift`+`Enter` to run it and create a new cell. You're now ready to start the workshop!
+The version of JupyterLab we're using for the workshop, [JupyterLite](https://jupyterlite.readthedocs.io/en/stable/), requires an modern, self-updating browser. We recommend using the   latest   version of Chrome or Firefox, Safari and Edge may not work.
 
 ```
+
+
+1. Go to https://urcf.github.io/python-workshop/
+2. You should see the JupyterLab interface, which looks like this:
+
+![JupyterLite](../fig/python_programming/00-index/jupyterlite.png)
+
+3. Double click on the "workshop.ipynb" notebook in the right-hand sidebar to open it. You should now see the notebook interface, which looks like this:
+
+![Jupyter notebook](../fig/python_programming/00-index/intro_notebook.png)
+
+4. Click into the code cell and press `Shift`+`Enter` to run the cell. You should see a plot of a sine wave appear below it. It make take a few seconds to load and display, be patient.
+
+![Sine wave plot](../fig/python_programming/00-index/sine_wave_plot.png)
+
+If this all worked, you're now ready for the workshop! If you encounter any issues, please [get in touch over email](mailto:urcf-support@drexel.edu) and we'll help you out.
