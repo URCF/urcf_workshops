@@ -2,7 +2,7 @@
 
 We now know how to explore files and directories, but how do we create them?
 
-Let's change into the `shell-lesson-data` directory that you downloaded earlier. Specifically, the "writing" directory:
+Let's change into the `shell-lesson-data` directory that you downloaded earlier:
 
 ```
 $ cd ~/Downloads/shell-lesson-data/
