@@ -158,17 +158,6 @@ $ rm temporary_file.csv
 
 It's just much shorter and more convenient. The pipe connects what's called the "standard output" of the first command to the "standard input" of the second command. Many Unix commands (like `wc`) can take input either from a file (which is what we've been doing so far) or from standard input (which is what we just did with the pipe).
 
-### More complex filtering
-
-Now let's say we want to find out how many female penguins were observed on Biscoe island in 2009. To do this, we can use a pipeline with multiple grep commands. Just like `wc`, `grep` can take it's input from a file or from standard input. So we'll `grep` from the file to filter for only female penguins, and then pipe the output to another `grep` to filter for only penguins observed in 2009, then finally pipe to `wc` to count them:
-
-```
-$ grep female biscoe_island.csv | grep 2009 | wc -l
-      28
-```
-
-
-
 ```{admonition} Challenge: Counting male penguins
 :class: tip
 
@@ -185,6 +174,16 @@ grep -v female biscoe_island.csv | wc -l
 
 :::
 ```
+
+### More complex filtering
+
+Now let's say we want to find out how many female penguins were observed on Biscoe island in 2009. To do this, we can use a pipeline with multiple grep commands. Just like `wc`, `grep` can take it's input from a file or from standard input. So we'll `grep` from the file to filter for only female penguins, and then pipe the output to another `grep` to filter for only penguins observed in 2009, then finally pipe to `wc` to count them:
+
+```
+$ grep female biscoe_island.csv | grep 2009 | wc -l
+      28
+```
+
 
 ```{admonition} Challenge: Doing it all in one command
 :class: tip
