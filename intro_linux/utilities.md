@@ -2,7 +2,7 @@
 
 Now we're are going to take some commands we need to use frequently and save
 them in a file so that we can re-run them later by typing a single command. A
-bunch of commands saved in a file like this is called a **shell script**
+bunch of commands saved in a file like this is called a **shell script**.
 
 Using shell scripts saves time, reduces errors, and makes your work more
 reproducible.

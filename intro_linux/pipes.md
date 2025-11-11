@@ -163,7 +163,7 @@ It's just much shorter and more convenient. The pipe connects what's called the 
 
 Now we want to count the number of *male* penguins on Biscoe island. You might think we can do `grep male biscoe_island.csv`, but this returns **all** the penguins, not just the males! That's because the word "female" contains the letters "male" inside it, so `grep male` matches both "male" and "female". How can we count only the male penguins?
 
-_Hint_: `grep` has a `-v` option (short for "i**v**ert"), which tells it to output all the lines that **don't** match the pattern you give it.
+_Hint_: `grep` has a `-v` option (short for "in**v**ert"), which tells it to output all the lines that **don't** match the pattern you give it.
 
 :::{admonition} Solution
 :class: dropdown
