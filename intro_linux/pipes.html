@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Pipes and redirection &#8212; University Research Computing Facility Workshops</title>
+    <title>Redirection, wildcards, and pipes &#8212; University Research Computing Facility Workshops</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro_linux/pipes';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Loops" href="loop.html" />
+    <link rel="next" title="Shell scripts" href="utilities.html" />
     <link rel="prev" title="Working with files and directories" href="working_with_files_and_directories.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -164,9 +164,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="file-system.html">Navigating files and directories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_files_and_directories.html">Working with files and directories</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pipes and redirection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="loop.html">Loops</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Redirection, wildcards, and pipes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">Shell scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loop.html">Loops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conclusion.html">Workshop Conclusion</a></li>
 </ul>
 </li>
@@ -349,7 +349,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Pipes and redirection</h1>
+    <h1>Redirection, wildcards, and pipes</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -359,11 +359,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#capturing-output-from-commands">Capturing output from commands</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-output">Filtering output</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passing-output-to-another-command">Passing output to another command</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-multiple-commands">Combining multiple commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redirecting-output">Redirecting output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wildcards">Wildcards</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passing-output-to-another-command">Passing output to another command</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-complex-filtering">More complex filtering</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-designed-to-work-together">Tools designed to work together</a></li>
 </ul>
             </nav>
@@ -376,228 +377,170 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="pipes-and-redirection">
-<h1>Pipes and redirection<a class="headerlink" href="#pipes-and-redirection" title="Permalink to this heading">#</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="redirection-wildcards-and-pipes">
+<h1>Redirection, wildcards, and pipes<a class="headerlink" href="#redirection-wildcards-and-pipes" title="Permalink to this heading">#</a></h1>
 <p>Now that we know a few basic commands, we can finally look at the shell’s most
 powerful feature: the ease with which it lets us combine existing programs in new ways.</p>
-<p>We’ll keep working in the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/alkanes</span></code> directory.
+<p>We’ll keep working in our <code class="docutils literal notranslate"><span class="pre">analysis</span></code> directory inside <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code>.
 <code class="docutils literal notranslate"><span class="pre">cd</span></code> there if you aren’t there already:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/Downloads/shell-lesson-data/alkanes
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/Downloads/shell-lesson-data/analysis
 $<span class="w"> </span>ls
-cubane.pdb<span class="w">  </span>ethane.pdb<span class="w">  </span>methane.pdb<span class="w"> </span>octane.pdb<span class="w">  </span>pentane.pdb<span class="w"> </span>propane.pdb
+data.csv
 </pre></div>
 </div>
-<p>Let’s run an example command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc<span class="w"> </span>cubane.pdb
+<section id="redirecting-output">
+<h2>Redirecting output<a class="headerlink" href="#redirecting-output" title="Permalink to this heading">#</a></h2>
+<p>Now we want to analyze <code class="docutils literal notranslate"><span class="pre">data.csv</span></code>, looking at only one island at a time. There are three islands in the dataset: Torgersen, Biscoe, and     Dream. To start, let’s look at only the penguins from Biscoe island.</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">grep</span></code> command to filter the dataset to only include lines that contain a particular word. The syntax for this command is <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">&lt;pattern&gt;</span> <span class="pre">&lt;file&gt;</span></code>. The pattern is the word we want to search for, and the file is the file we want to search in.</p>
+<p>To see only the lines that contain the word “Biscoe”, we can run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>grep<span class="w"> </span>Biscoe<span class="w"> </span>data.csv
 </pre></div>
 </div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">20  156 1158 cubane.pdb</span>
+<p>The output includes only penguins from Biscoe island, because only these lines for these penguins contain the word “Biscoe”.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">48.8</span><span class="p">,</span><span class="mf">16.2</span><span class="p">,</span><span class="mi">222</span><span class="p">,</span><span class="mi">6000</span><span class="p">,</span><span class="n">male</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">47.2</span><span class="p">,</span><span class="mf">13.7</span><span class="p">,</span><span class="mi">214</span><span class="p">,</span><span class="mi">4925</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">46.8</span><span class="p">,</span><span class="mf">14.3</span><span class="p">,</span><span class="mi">215</span><span class="p">,</span><span class="mi">4850</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">50.4</span><span class="p">,</span><span class="mf">15.7</span><span class="p">,</span><span class="mi">222</span><span class="p">,</span><span class="mi">5750</span><span class="p">,</span><span class="n">male</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">45.2</span><span class="p">,</span><span class="mf">14.8</span><span class="p">,</span><span class="mi">212</span><span class="p">,</span><span class="mi">5200</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">49.9</span><span class="p">,</span><span class="mf">16.1</span><span class="p">,</span><span class="mi">213</span><span class="p">,</span><span class="mi">5400</span><span class="p">,</span><span class="n">male</span><span class="p">,</span><span class="mi">2009</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">wc</span></code> is the ‘word count’ command: it counts the number of lines, words, and characters
-in files (returning the values in that order from left to right).</p>
-<p>If we run the command <code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">*.pdb</span></code>, the <code class="docutils literal notranslate"><span class="pre">*</span></code> in <code class="docutils literal notranslate"><span class="pre">*.pdb</span></code> matches zero or more characters,
-so the shell turns <code class="docutils literal notranslate"><span class="pre">*.pdb</span></code> into a list of all <code class="docutils literal notranslate"><span class="pre">.pdb</span></code> files in the current directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc<span class="w"> </span>*.pdb
+<p>There is a lot of output though! Let’s save it to a file to make it easier to work with. We can use the <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> operator to redirect the output of the <code class="docutils literal notranslate"><span class="pre">grep</span></code> command to a file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep Biscoe data.csv &gt; biscoe_island.csv
 </pre></div>
 </div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">  20  156  1158  cubane.pdb</span>
-<span class="go">  12  84   622   ethane.pdb</span>
-<span class="go">   9  57   422   methane.pdb</span>
-<span class="go">  30  246  1828  octane.pdb</span>
-<span class="go">  21  165  1226  pentane.pdb</span>
-<span class="go">  15  111  825   propane.pdb</span>
-<span class="go"> 107  819  6081  total</span>
+<p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> “redirects” the output of a command to a file instead of printing it to the screen. If the file doesn’t exist, it will be created. If it already exists, it will be overwritten (this can overwrite existing data, so be careful!).</p>
+<p>Now we can use less to scroll through just the Biscoe penguins:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ less biscoe_island.csv
 </pre></div>
 </div>
-<p>If we run <code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span></code> instead of just <code class="docutils literal notranslate"><span class="pre">wc</span></code>, the output shows only the number of lines per file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span>*.pdb
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">  20  cubane.pdb</span>
-<span class="go">  12  ethane.pdb</span>
-<span class="go">   9  methane.pdb</span>
-<span class="go">  30  octane.pdb</span>
-<span class="go">  21  pentane.pdb</span>
-<span class="go">  15  propane.pdb</span>
-<span class="go"> 107  total</span>
+<p>Let’s do the same for the other islands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep Torgersen data.csv &gt; torgersen_island.csv
+$ grep Dream data.csv &gt; dream_island.csv
 </pre></div>
 </div>
 </section>
-<section id="capturing-output-from-commands">
-<h2>Capturing output from commands<a class="headerlink" href="#capturing-output-from-commands" title="Permalink to this heading">#</a></h2>
-<p>Which of these files contains the fewest lines?
-It’s an easy question to answer when there are only six files,
-but what if there were 6000?</p>
-<p><strong>Redirection</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc<span class="w"> </span>-l<span class="w"> </span>*.pdb<span class="w"> </span>&gt;<span class="w"> </span>lengths.txt
+<section id="wildcards">
+<h2>Wildcards<a class="headerlink" href="#wildcards" title="Permalink to this heading">#</a></h2>
+<p>Now we want to count the number of penguins in each island. To start, let’s just count the total number of penguins in the dataset. We can use the <code class="docutils literal notranslate"><span class="pre">wc</span></code> command (short for “word count”), with the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option, which says to count the number of lines in a file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -l data.csv
+     334 data.csv
 </pre></div>
 </div>
-<p>The greater than symbol, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, tells the shell to <strong>redirect</strong> the command’s output to a
-file instead of printing it to the screen. This command prints no screen output, because
-everything that <code class="docutils literal notranslate"><span class="pre">wc</span></code> would have printed has gone into the file <code class="docutils literal notranslate"><span class="pre">lengths.txt</span></code> instead.
-If the file doesn’t exist prior to issuing the command, the shell will create the file.
-If the file exists already, it will be silently overwritten, which may lead to data loss.
-Thus, <strong>redirect</strong> commands require caution.</p>
-<p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">lengths.txt</span></code> confirms that the file exists:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>lengths.txt
+<p>This means there are 334 lines in the file, and each line represents a penguin, so there are 333 penguins (because the first line is the column headers).</p>
+<p>Now let’s count the number of penguins on Biscoe island:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -l biscoe_island.csv
+     163 biscoe_island.csv
 </pre></div>
 </div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">lengths.txt</span>
+<p>Now we could type out the commands for the other two islands one at at a time. And that would work because there are only three islands, but what if there were 100? It would be a pain to type out all those commands. Instead, we can use a shell feature called “wildcards” to tell <code class="docutils literal notranslate"><span class="pre">wc</span></code> to count the lines in all our files at once:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -l *.csv
+     163 biscoe_island.csv
+     334 data.csv
+     123 dream_island.csv
+      47 torgersen_island.csv
+     667 total
 </pre></div>
 </div>
-<p>We can now send the content of <code class="docutils literal notranslate"><span class="pre">lengths.txt</span></code> to the screen using <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">lengths.txt</span></code>.
-The <code class="docutils literal notranslate"><span class="pre">cat</span></code> command gets its name from ‘concatenate’ i.e. join together,
-and it prints the contents of files one after another.
-There’s only one file in this case,
-so <code class="docutils literal notranslate"><span class="pre">cat</span></code> just shows us what it contains:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>lengths.txt
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">  20  cubane.pdb</span>
-<span class="go">  12  ethane.pdb</span>
-<span class="go">   9  methane.pdb</span>
-<span class="go">  30  octane.pdb</span>
-<span class="go">  21  pentane.pdb</span>
-<span class="go">  15  propane.pdb</span>
-<span class="go"> 107  total</span>
-</pre></div>
-</div>
-</section>
-<section id="filtering-output">
-<h2>Filtering output<a class="headerlink" href="#filtering-output" title="Permalink to this heading">#</a></h2>
-<p>Next we’ll use the <code class="docutils literal notranslate"><span class="pre">sort</span></code> command to sort the contents of the <code class="docutils literal notranslate"><span class="pre">lengths.txt</span></code>
-file. But first we’ll do an exercise to learn a little about the sort command.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">*</span></code> is called a “wildcard”. It matches zero or more characters of any type, so <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> means “any file that ends with <code class="docutils literal notranslate"><span class="pre">.csv</span></code>”. In this case, that’s all our data files: <code class="docutils literal notranslate"><span class="pre">data.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">biscoe_island.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">dream_island.csv</span></code>, and <code class="docutils literal notranslate"><span class="pre">torgersen_island.csv</span></code>.</p>
+<p>Now we can quickly see that there are <code class="docutils literal notranslate"><span class="pre">123</span></code> penguins on Dream island and <code class="docutils literal notranslate"><span class="pre">47</span></code> on Torgersen island. And this command would work just as well if there were 100 islands, or 1000! Now we’re starting to see the power and flexibility of the shell.</p>
 <div class="tip admonition">
-<p class="admonition-title">What Does sort -n Do?</p>
-<p>The file <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/numbers.txt</span></code> contains the following lines:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span>
-<span class="mi">2</span>
-<span class="mi">19</span>
-<span class="mi">22</span>
-<span class="mi">6</span>
-</pre></div>
-</div>
-<p>If we run <code class="docutils literal notranslate"><span class="pre">sort</span></code> on this file, the output is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span>
-<span class="mi">19</span>
-<span class="mi">2</span>
-<span class="mi">22</span>
-<span class="mi">6</span>
-</pre></div>
-</div>
-<p>If we run <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-n</span></code> on the same file, we get this instead:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span>
-<span class="mi">6</span>
-<span class="mi">10</span>
-<span class="mi">19</span>
-<span class="mi">22</span>
-</pre></div>
-</div>
-<p>What does the <code class="docutils literal notranslate"><span class="pre">-n</span></code> option do?</p>
-<div class="note dropdown admonition">
+<p class="admonition-title">Challenge: Count only the individual islands</p>
+<p>You want to count the number of penguins in each island file, but <em>not</em> include <code class="docutils literal notranslate"><span class="pre">data.csv</span></code> (which also ends in <code class="docutils literal notranslate"><span class="pre">.csv</span></code>). How would you modify the command to only include the individual island files in your count, and exclude <code class="docutils literal notranslate"><span class="pre">data.csv</span></code>?</p>
+<p><em>Hint</em>: In the previous command, the wildcard <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> matched all files ending in <code class="docutils literal notranslate"><span class="pre">.csv</span></code>. Do all your island files have something in common at the end of their filename that <code class="docutils literal notranslate"><span class="pre">data.csv</span></code> doesn’t have?</p>
+<div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">-n</span></code> option specifies a numerical rather than an alphanumerical sort.</p>
-</div>
-</div>
-<p>Running <code class="docutils literal notranslate"><span class="pre">sort</span></code> does <em>not</em> change the file; instead, it sends the sorted result to the screen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sort<span class="w"> </span>-n<span class="w"> </span>lengths.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc<span class="w"> </span>-l<span class="w"> </span>*island.csv
 </pre></div>
 </div>
-<p>We can put the sorted list of lines in another temporary file
-called <code class="docutils literal notranslate"><span class="pre">sorted-lengths.txt</span></code> by putting <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">sorted-lengths.txt</span></code>
-after the command, just as we used <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">lengths.txt</span></code> to put the
-output of <code class="docutils literal notranslate"><span class="pre">wc</span></code> into <code class="docutils literal notranslate"><span class="pre">lengths.txt</span></code>. Once we’ve done that, we can
-run another command called <code class="docutils literal notranslate"><span class="pre">head</span></code> to get the first few lines in
-<code class="docutils literal notranslate"><span class="pre">sorted-lengths.txt</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sort<span class="w"> </span>-n<span class="w"> </span>lengths.txt<span class="w"> </span>&gt;<span class="w"> </span>sorted-lengths.txt
-head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>sorted-lengths.txt
-</pre></div>
 </div>
-<p>Using <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">1</span></code> with <code class="docutils literal notranslate"><span class="pre">head</span></code> tells it that we only want the first line
-of the file; <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">20</span></code> would get the first 20, and so on.
-Since <code class="docutils literal notranslate"><span class="pre">sorted-lengths.txt</span></code> contains the lengths of our files ordered
-from least to greatest, the output of <code class="docutils literal notranslate"><span class="pre">head</span></code> must be the file with
-the fewest lines.</p>
+</div>
 </section>
 <section id="passing-output-to-another-command">
 <h2>Passing output to another command<a class="headerlink" href="#passing-output-to-another-command" title="Permalink to this heading">#</a></h2>
-<p>In our example of finding the file with the fewest lines,
-we are using two intermediate files <code class="docutils literal notranslate"><span class="pre">lengths.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">sorted-lengths.txt</span></code> to store output.
-This is a confusing way to work because
-even once you understand what <code class="docutils literal notranslate"><span class="pre">wc</span></code>, <code class="docutils literal notranslate"><span class="pre">sort</span></code>, and <code class="docutils literal notranslate"><span class="pre">head</span></code> do,
-those intermediate files make it hard to follow what’s going on.
-We can make it easier to understand by running <code class="docutils literal notranslate"><span class="pre">sort</span></code> and <code class="docutils literal notranslate"><span class="pre">head</span></code> together:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sort<span class="w"> </span>-n<span class="w"> </span>lengths.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
+<p>Now we want to count <em>only the female</em> penguins on each island. Let’s start with Biscoe island.</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">grep</span></code> command again to filter the data to only include female penguins by searching for the word “female”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep female biscoe_island.csv
 </pre></div>
 </div>
-<p>The vertical bar, <code class="docutils literal notranslate"><span class="pre">|</span></code>, between the two commands is called a <strong>pipe</strong>.
-It tells the shell that we want to use
-the output of the command on the left
-as the input to the command on the right.</p>
-<p>This has removed the need for the <code class="docutils literal notranslate"><span class="pre">sorted-lengths.txt</span></code> file.</p>
-</section>
-<section id="combining-multiple-commands">
-<h2>Combining multiple commands<a class="headerlink" href="#combining-multiple-commands" title="Permalink to this heading">#</a></h2>
-<p>Nothing prevents us from chaining pipes consecutively.
-We can for example send the output of <code class="docutils literal notranslate"><span class="pre">wc</span></code> directly to <code class="docutils literal notranslate"><span class="pre">sort</span></code>,
-and then send the resulting output to <code class="docutils literal notranslate"><span class="pre">head</span></code>.
-This removes the need for any intermediate files.</p>
-<p>We’ll start by using a pipe to send the output of <code class="docutils literal notranslate"><span class="pre">wc</span></code> to <code class="docutils literal notranslate"><span class="pre">sort</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc<span class="w"> </span>-l<span class="w"> </span>*.pdb<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">44.5</span><span class="p">,</span><span class="mf">14.7</span><span class="p">,</span><span class="mi">214</span><span class="p">,</span><span class="mi">4850</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">46.9</span><span class="p">,</span><span class="mf">14.6</span><span class="p">,</span><span class="mi">222</span><span class="p">,</span><span class="mi">4875</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">48.4</span><span class="p">,</span><span class="mf">14.4</span><span class="p">,</span><span class="mi">203</span><span class="p">,</span><span class="mi">4625</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">48.5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">219</span><span class="p">,</span><span class="mi">4850</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">47.2</span><span class="p">,</span><span class="mf">15.5</span><span class="p">,</span><span class="mi">215</span><span class="p">,</span><span class="mi">4975</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">41.7</span><span class="p">,</span><span class="mf">14.7</span><span class="p">,</span><span class="mi">210</span><span class="p">,</span><span class="mi">4700</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">43.3</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">208</span><span class="p">,</span><span class="mi">4575</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">50.5</span><span class="p">,</span><span class="mf">15.2</span><span class="p">,</span><span class="mi">216</span><span class="p">,</span><span class="mi">5000</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">43.5</span><span class="p">,</span><span class="mf">15.2</span><span class="p">,</span><span class="mi">213</span><span class="p">,</span><span class="mi">4650</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">46.2</span><span class="p">,</span><span class="mf">14.1</span><span class="p">,</span><span class="mi">217</span><span class="p">,</span><span class="mi">4375</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">47.2</span><span class="p">,</span><span class="mf">13.7</span><span class="p">,</span><span class="mi">214</span><span class="p">,</span><span class="mi">4925</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">46.8</span><span class="p">,</span><span class="mf">14.3</span><span class="p">,</span><span class="mi">215</span><span class="p">,</span><span class="mi">4850</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
+<span class="n">Gentoo</span><span class="p">,</span><span class="n">Biscoe</span><span class="p">,</span><span class="mf">45.2</span><span class="p">,</span><span class="mf">14.8</span><span class="p">,</span><span class="mi">212</span><span class="p">,</span><span class="mi">5200</span><span class="p">,</span><span class="n">female</span><span class="p">,</span><span class="mi">2009</span>
 </pre></div>
 </div>
-<p>We can then send that output through another pipe, to <code class="docutils literal notranslate"><span class="pre">head</span></code>, so that the full pipeline becomes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc<span class="w"> </span>-l<span class="w"> </span>*.pdb<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
+<p>This is still a lot of output. We could use the <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> operator again to redirect it to a file, but if we did this every every island it would start to get unwieldy. Imagine we want to start filtering by year, or body weight. We would end up with a lot of extra files to keep track of.</p>
+<p>It would be more convenient if we could somehow pass the output of the <code class="docutils literal notranslate"><span class="pre">grep</span></code> command directly to the <code class="docutils literal notranslate"><span class="pre">wc</span></code> command, rather than saving it to a file first. Fortunately, the shell has just such a feature: <strong>pipes</strong>. Pipes are a way to connect the output of one command as the input to another command. The syntax for a pipe is <code class="docutils literal notranslate"><span class="pre">command1</span> <span class="pre">|</span> <span class="pre">command2</span></code>. This means “run <code class="docutils literal notranslate"><span class="pre">command1</span></code> and use it’s output as the input of command2”. <code class="docutils literal notranslate"><span class="pre">|</span></code> is called the “pipe character”.</p>
+<p>Let’s try it out:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep female biscoe_island.csv | wc -l
+      80
 </pre></div>
 </div>
-<p>This is exactly like a mathematician nesting functions like <em>log(3x)</em>
-and saying ‘the log of three times <em>x</em>’.
-In our case, the algorithm is ‘head of sort of line count of <code class="docutils literal notranslate"><span class="pre">*.pdb</span></code>’.</p>
-<p>The redirection and pipes used in the last few commands are illustrated below:</p>
-<p><img alt="Redirects and Pipes" src="../_images/redirects-and-pipes.svg" /></p>
+<p>So we can see there were 80 female penguins observed on Biscoe island.</p>
+<p>The above command is equivalent to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep female biscoe_island.csv &gt; temporary_file.csv
+$ wc -l temporary_file.csv
+$ rm temporary_file.csv
+      80
+</pre></div>
+</div>
+<p>It’s just much shorter and more convenient. The pipe connects what’s called the “standard output” of the first command to the “standard input” of the second command. Many Unix commands (like <code class="docutils literal notranslate"><span class="pre">wc</span></code>) can take input either from a file (which is what we’ve been doing so far) or from standard input (which is what we just did with the pipe).</p>
+<section id="more-complex-filtering">
+<h3>More complex filtering<a class="headerlink" href="#more-complex-filtering" title="Permalink to this heading">#</a></h3>
+<p>Now let’s say we want to find out how many female penguins were observed on Biscoe island in 2009. To do this, we can use a pipeline with multiple grep commands. Just like <code class="docutils literal notranslate"><span class="pre">wc</span></code>, <code class="docutils literal notranslate"><span class="pre">grep</span></code> can take it’s input from a file or from standard input. So we’ll <code class="docutils literal notranslate"><span class="pre">grep</span></code> from the file to filter for only female penguins, and then pipe the output to another <code class="docutils literal notranslate"><span class="pre">grep</span></code> to filter for only penguins observed in 2009, then finally pipe to <code class="docutils literal notranslate"><span class="pre">wc</span></code> to count them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep female biscoe_island.csv | grep 2009 | wc -l
+      28
+</pre></div>
+</div>
 <div class="tip admonition">
-<p class="admonition-title">Challenge: Piping Commands Together</p>
-<p>In our current directory, we want to find the 3 files which have the
-least number of lines. Which command listed below would work?</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span> <span class="pre">*</span> <span class="pre">&gt;</span> <span class="pre">sort</span> <span class="pre">-n</span> <span class="pre">&gt;</span> <span class="pre">head</span> <span class="pre">-n</span> <span class="pre">3</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span> <span class="pre">*</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">-n</span> <span class="pre">|</span> <span class="pre">head</span> <span class="pre">-n</span> <span class="pre">1-3</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span> <span class="pre">*</span> <span class="pre">|</span> <span class="pre">head</span> <span class="pre">-n</span> <span class="pre">3</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">-n</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span> <span class="pre">*</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">-n</span> <span class="pre">|</span> <span class="pre">head</span> <span class="pre">-n</span> <span class="pre">3</span></code></p></li>
-</ol>
+<p class="admonition-title">Challenge: Counting male penguins</p>
+<p>Now we want to count the number of <em>male</em> penguins on Biscoe island. You might think we can do <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">male</span> <span class="pre">biscoe_island.csv</span></code>, but this returns <strong>all</strong> the penguins, not just the males! That’s because the word “female” contains the letters “male” inside it, so <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">male</span></code> matches both “male” and “female”. How can we count only the male penguins?</p>
+<p><em>Hint</em>: <code class="docutils literal notranslate"><span class="pre">grep</span></code> has a <code class="docutils literal notranslate"><span class="pre">-v</span></code> option (short for “i<strong>v</strong>ert”), which tells it to output all the lines that <strong>don’t</strong> match the pattern you give it.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
-<p>Option 4 is the solution.
-The pipe character <code class="docutils literal notranslate"><span class="pre">|</span></code> is used to connect the output from one command to
-the input of another.
-<code class="docutils literal notranslate"><span class="pre">&gt;</span></code> is used to redirect standard output to a file.
-Try it in the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/alkanes</span></code> directory!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-v<span class="w"> </span>female<span class="w"> </span>biscoe_island.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</pre></div>
 </div>
 </div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Challenge: Doing it all in one command</p>
+<p>In all our pipelines so far, we’ve started from the <code class="docutils literal notranslate"><span class="pre">biscoe_island.csv</span></code> file. What if we wanted to do all the filtering in one command, starting with the original <code class="docutils literal notranslate"><span class="pre">data.csv</span></code>, without saving any intermediate file?</p>
+<p>Can you write a single command, starting from <code class="docutils literal notranslate"><span class="pre">data.csv</span></code>, to count the female penguins on Biscoe island in 2009?</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>female<span class="w"> </span>data.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Biscoe<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">2009</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="tools-designed-to-work-together">
 <h2>Tools designed to work together<a class="headerlink" href="#tools-designed-to-work-together" title="Permalink to this heading">#</a></h2>
-<p>This idea of linking programs together is why Unix has been so successful.
-Instead of creating enormous programs that try to do many different things,
-Unix programmers focus on creating lots of simple tools that each do one job well,
-and that work well with each other.</p>
-<p>This programming model is called ‘pipes and filters’.
-We’ve already seen pipes;
-a <strong>filter</strong> is a program like <code class="docutils literal notranslate"><span class="pre">wc</span></code> or <code class="docutils literal notranslate"><span class="pre">sort</span></code>
-that transforms a stream of input into a stream of output.
-Almost all of the standard Unix tools can work this way.
-Unless told to do otherwise,
-they read from standard input,
-do something with what they’ve read,
+<p>This idea of linking programs together is part of why Unix has been so
+successful. Instead of a few enormous programs that try to do many different
+things, Unix programmers has lots of simple tools that each do one job well, and
+that work well with each other.</p>
+<p>Almost all of the standard Unix tools can work this way. Unless told to do
+otherwise, they read from standard input, do something with what they’ve read,
 and write to standard output.</p>
-<p>The key is that any program that reads lines of text from standard input
-and writes lines of text to standard output
-can be combined with every other program that behaves this way as well.
-You can <em>and should</em> write your programs this way
-so that you and other people can put those programs into pipes to multiply their power.</p>
+<p>The key is that any program that reads lines of text from standard input and
+writes lines of text to standard output can be combined with every other program
+that behaves this way as well. You can and should write your programs this way
+so that you and other people can put those programs into pipes to multiply their
+power.</p>
 </section>
 </section>
 
@@ -639,11 +582,11 @@ so that you and other people can put those programs into pipes to multiply their
       </div>
     </a>
     <a class="right-next"
-       href="loop.html"
+       href="utilities.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Loops</p>
+        <p class="prev-next-title">Shell scripts</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -662,11 +605,12 @@ so that you and other people can put those programs into pipes to multiply their
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#capturing-output-from-commands">Capturing output from commands</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-output">Filtering output</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passing-output-to-another-command">Passing output to another command</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-multiple-commands">Combining multiple commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#redirecting-output">Redirecting output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wildcards">Wildcards</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passing-output-to-another-command">Passing output to another command</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-complex-filtering">More complex filtering</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-designed-to-work-together">Tools designed to work together</a></li>
 </ul>
   </nav></div>

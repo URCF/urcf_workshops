@@ -164,9 +164,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Navigating files and directories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_files_and_directories.html">Working with files and directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipes.html">Pipes and redirection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="loop.html">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipes.html">Redirection, wildcards, and pipes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">Shell scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loop.html">Loops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conclusion.html">Workshop Conclusion</a></li>
 </ul>
 </li>
@@ -528,61 +528,6 @@ drwxr-xr-x  24 jjp366  DREXEL\Domain Users      768 Jun 16 15:46 screenshots
 <p>Some of this output is about properties that we do not cover in this workshop
 (such as file permissions and ownership). It still has some useful output
 though, like the modification time and file size.</p>
-<!-- TODO have a picture showing where those two things are -->
-<div class="hint dropdown admonition">
-<p class="admonition-title">Challenge: exploring more ls options</p>
-<p>You can use two options at the same time. What does the <code class="docutils literal notranslate"><span class="pre">-h</span></code> option when used together with the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option? Like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
-</pre></div>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<p>If you use both the <code class="docutils literal notranslate"><span class="pre">-h</span></code> option and the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option, this makes the file
-size <em>human readable</em>, i.e. displaying something like 5.3K instead of 5369.</p>
-</div>
-</div>
-<div class="hint dropdown admonition">
-<p class="admonition-title">Challenge: listing in reverse chronological order</p>
-<ul class="simple">
-<li><p>By default, ls lists the contents of a directory in alphabetical
-order by name.  The command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span></code> lists the contents of a
-directory in reverse order. The command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-t</span></code> lists items by time of last change
-instead of alphabetically.</p></li>
-<li><p>Which file is displayed last when you combine the <code class="docutils literal notranslate"><span class="pre">-t</span></code> and <code class="docutils literal notranslate"><span class="pre">-r</span></code> options?
-Hint: You may need to use the -l option to see the last changed dates.</p></li>
-</ul>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<p>The most recently changed file is listed last when using <code class="docutils literal notranslate"><span class="pre">-rt</span></code>.
-This can be very useful for finding your most recent edits or
-checking to see if a new output file was written.</p>
-</div>
-</div>
-<div class="hint dropdown admonition">
-<p class="admonition-title">Challenge: ls reading comprehension</p>
-<ul class="simple">
-<li><p>Using the filesystem diagram below.</p></li>
-<li><p>If <code class="docutils literal notranslate"><span class="pre">pwd</span></code> displays <code class="docutils literal notranslate"><span class="pre">/Users/backup</span></code> and  <code class="docutils literal notranslate"><span class="pre">-r</span></code> tells <code class="docutils literal notranslate"><span class="pre">ls</span></code> to display things in
-reverse order, what command(s) will result in the following output:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pnas_sub<span class="w"> </span>pnas_final<span class="w"> </span>original
-</pre></div>
-</div>
-<p><img alt="Change directories" src="../_images/filesystem-challenge.svg" /></p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">pwd</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code></p></li>
-</ol>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<ol class="arabic simple">
-<li><p>No: <code class="docutils literal notranslate"><span class="pre">pwd</span></code> is not the name of a directory.</p></li>
-<li><p>Yes: <code class="docutils literal notranslate"><span class="pre">ls</span></code> without directory argument lists files and directories in the current directory.</p></li>
-<li><p>Yes: uses the absolute path explicitly.</p></li>
-</ol>
-</div>
-</div>
 </section>
 </section>
 <section id="getting-help">

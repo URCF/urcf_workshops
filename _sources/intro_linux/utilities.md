@@ -1,205 +1,149 @@
 # Shell scripts
 
-We are finally ready to see what makes the shell such a powerful programming
-environment. We are going to take the commands we repeat frequently and save
-them in files so that we can re-run all those operations again later by typing
-a single command. For historical reasons, a bunch of commands saved in a file
-is usually called a **shell script**, but make no mistake --- these are
-actually small programs.
+Now we're are going to take some commands we need to use frequently and save
+them in a file so that we can re-run them later by typing a single command. A
+bunch of commands saved in a file like this is called a **shell script**
 
-Not only will writing shell scripts make your work faster, but also you won't
-have to retype the same commands over and over again. It will also make it more
-accurate (fewer chances for typos) and more reproducible. If you come back to
-your work later (or if someone else finds your work and wants to build on it),
-you will be able to reproduce the same results simply by running your script,
-rather than having to remember or retype a long list of commands.
+Using shell scripts saves time, reduces errors, and makes your work more
+reproducible.
+
+## Using a text editor
+
+Before we can create our first shell script, we need to learn how to use a text
+editor to create and edit files. We'll use `nano`, which is a simple text editor
+that works well in the shell.
+
+To create or edit a file with `nano`, we use the command `nano <filename>`. For
+example, to create a file called `example.txt`, we would run:
+
+```bash
+$ nano example.txt
+```
+
+This opens the `nano` editor. You'll see the editor interface with a header bar
+at the top showing the filename. You can type text directly into the editor.
+Let's type `Hello world!`.
+
+To save the file, press `Ctrl+O` (press the `Ctrl` or `Control` key and, while
+holding it down, press the `O` key). You'll be asked to   provide a name for the
+file. Press `Return` to accept the suggested default filename (which is
+`example.txt`, since we passed it as an argument to `nano` when we started it).
+
+To quit the editor and return to the shell, press `Ctrl+X`.
+
+Now let's confirm that the file was created and contains the text we typed:
+
+```bash
+$ cat example.txt
+Hello world!
+```
+
+```{admonition} Common nano shortcuts
+:class: note
+
+- `Ctrl+O`: Save (Write Out) the file
+- `Ctrl+X`: Exit nano
+- `Ctrl+G`: Get Help (shows all available commands)
+- `Ctrl+K`: Cut (delete) the current line
+- `Ctrl+U`: Uncut (paste) the last cut line
+```
 
 ## Our first shell script
 
-Let's start by making sure we're in the `alkanes` directory, and then creating a new file, `middle.sh`
-which will become our shell script:
+Let's start by making sure we're in the `analysis` directory.
 
 ```bash
-cd ~/Downloads/shell-lesson-data/alkanes
-nano middle.sh
-```
-
-Let's edit  edit the file by inserting the following line:
+$ cd ~/Downloads/shell-lesson-data/analysis
 
 ```
-head -n 15 octane.pdb | tail -n 5
+
+Let's say we're all the time running pipelines of commands to count the number
+of penguins observed in a specific year. We could do this by typing the command
+out each time, but that would be tedious if we needed to do it a lot. Instead,
+we can save the command to a file so we can re-run it later by typing a single
+command. Let's create a file called `count_penguins.sh` and edit it with `nano`:
+
+```
+$ nano count_penguins.sh
 ```
 
-This is a variation on the pipe we constructed earlier, which selects lines 11-15 of
-the file `octane.pdb`. Remember, we are *not* running it as a command just yet;
-we are only saving the command in a file.
-
-Then we save the file (`Ctrl-O` in nano) and exit (`Ctrl-X` in nano).
-Check that the directory `alkanes` now contains a file called `middle.sh`.
-
-Once we have saved the file,
-we can ask the shell to execute the commands it contains.
-Our shell is called `bash`, so we run the following command:
+In the `nano` editor, type the following command:
 
 ```bash
-bash middle.sh
+grep 2007 data.csv | wc -l
 ```
 
-Sure enough, our script's output is exactly what we would get if we ran that
-pipeline directly.
+Note that we're *not* actually executing the command yet, we're just saving it to a file, which we can then execute later.
 
-## Command line arguments
-
-What if we want to select lines from an arbitrary file?
-We could edit `middle.sh` each time to change the filename,
-but that would probably take longer than typing the command out again
-in the shell and executing it with a new file name.
-Instead, let's edit `middle.sh` and make it more versatile:
+Save the file (`Ctrl+O` in nano) and exit (`Ctrl+X` in nano). Check that the directory now contains a file called `count_penguins.sh`:
 
 ```
-nano middle.sh
+cat count_penguins.sh
+grep 2007 data.csv | wc -l
 ```
 
-Now, within "nano", replace the text `octane.pdb` with the special variable called `$1`:
-
-```
-head -n 15 "$1" | tail -n 5
-```
-
-Inside a shell script,
-`$1` means 'the first filename (or other argument) on the command line'.
-We can now run our script like this:
+Once we have saved the file, we can ask the shell to execute the commands it contains. Our shell is called `bash`, so we run the following command:
 
 ```bash
-bash middle.sh octane.pdb
+$ bash count_penguins.sh
+     103
 ```
 
-or on a different file like this:
+This output is exactly what we would get if we ran that pipeline directly.
+
+## Script arguments
+
+What if we want to count penguins from a different year? We could edit `count_penguins.sh` each time to change the year, but that would be tedious if we needed to do it a lot. Instead, we can edit `count_penguins.sh` so it takes a year as an argument (much like the built-in commands we've been using take arguments to customize their behavior).
 
 ```bash
-$ bash middle.sh pentane.pdb
+$ nano count_penguins.sh
 ```
 
-Currently, we need to edit `middle.sh` each time we want to adjust the range of
-lines that is returned.
-Let's fix that by configuring our script to instead use three command-line arguments.
-After the first command-line argument (`$1`), each additional argument that we
-provide will be accessible via the special variables `$1`, `$2`, `$3`,
-which refer to the first, second, third command-line arguments, respectively.
-
-Knowing this, we can use additional arguments to define the range of lines to
-be passed to `head` and `tail` respectively:
+Now, within "nano", replace the text `2007` with the special variable called `$1`:
 
 ```bash
-nano middle.sh
+grep "$1" data.csv | wc -l
 ```
 
-```
-head -n "$2" "$1" | tail -n "$3"
-```
-
-We can now run:
+Inside a shell script, `$1` means "the first argument passed on the command line". We can now run our script like this:
 
 ```bash
-bash middle.sh pentane.pdb 15 5
+$ bash count_penguins.sh 2007
 ```
 
-By changing the arguments to our command, we can change our script's
-behaviour:
+When the script executes, the `"$1"` is replaced with the argument, which in this case is `2007`.
+
+We can try a different year like this:
 
 ```bash
-bash middle.sh pentane.pdb 20 5
-```
-
-## Putting comments in the code
-
-We can improve our script by adding some **comments** at the top:
-
-```bash
-nano middle.sh
-```
-
-```source
-# Select lines from the middle of a file.
-# Usage: bash middle.sh filename end_line num_lines
-head -n "$2" "$1" | tail -n "$3"
-```
-
-A comment starts with a `#` character and runs to the end of the line.
-The computer ignores comments, but they're invaluable for helping people (including your
-future self) understand and use scripts. The only caveat is that each time you
-modify the script, you should check that the comment is still accurate.
-An explanation that sends the reader in the wrong direction is worse than none at all.
-
-## Multiple command line arguments
-
-What if we want to process many files in a single pipeline?
-For example, if we want to sort our `.pdb` files by length, we would type:
-
-```bash
-$ wc -l *.pdb | sort -n
-```
-
-because `wc -l` lists the number of lines in the files
-(recall that `wc` stands for 'word count', adding the `-l` option means 'count lines' instead)
-and `sort -n` sorts things numerically.
-We could put this in a file,
-but then it would only ever sort a list of `.pdb` files in the current directory.
-If we want to be able to get a sorted list of other kinds of files,
-we need a way to get all those names into the script.
-We can't use `$1`, `$2`, and so on
-because we don't know how many files there are.
-Instead, we use the special variable `$@`,
-which means,
-'All of the command-line arguments to the shell script'.
-We also should put `$@` inside double-quotes
-to handle the case of arguments containing spaces
-(`"$@"` is special syntax and is equivalent to `"$1"` `"$2"` ...).
-
-Here's an example:
-
-```bash
-nano sorted.sh
-```
-
-```source
-# Sort files by their length.
-# Usage: bash sorted.sh one_or_more_filenames
-wc -l "$@" | sort -n
-```
-
-```bash
-bash sorted.sh *.pdb ../creatures/*.dat
-```
-
-```output
-9 methane.pdb
-12 ethane.pdb
-15 propane.pdb
-20 cubane.pdb
-21 pentane.pdb
-30 octane.pdb
-163 ../creatures/basilisk.dat
-163 ../creatures/minotaur.dat
-163 ../creatures/unicorn.dat
-596 total
+$ bash count_penguins.sh 2009
 ```
 
 ## Executable script
 
-Edit the `middle.sh` file to be as follows:
+So far, we've been running our scripts with `bash count_penguins.sh` to say that `bash` is the program that should execute the script. We can use a convenient shortcut to add this information to the script file itself, so we don't have to type it every time.
+
+Edit the `count_penguins.sh` file to be as follows:
 
 ```source
 #!/bin/bash
-# Select lines from the middle of a file.
-# Usage: bash middle.sh filename end_line num_lines
-head -n "$2" "$1" | tail -n "$3"
+grep "$1" data.csv | wc -l
 ```
 
-To make shell file executable, we need to change the permission on the file
+The first line `#!/bin/bash` is called a "shebang". It tells the system which program to use to execute the script.
+
+To make the shell file executable, we need to change the permission on the file:
 
 ```bash
-chmod 755 middle.sh
-./middle.sh
+$ chmod u+x count_penguins.sh
 ```
 
+`chmod` is a program used to change the permissions of a file. The `u+x` part means "make this file executable by the user who owns it".
+
+Now we can run the script directly:
+
+```bash
+$ ./count_penguins.sh 2007
+```
+
+The `./` tells the shell to look for the script in the current directory. Without it, the shell would look for `count_penguins.sh` in the directories listed in your `PATH` environment variable, and wouldn't find it.

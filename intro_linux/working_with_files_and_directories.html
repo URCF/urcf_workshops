@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro_linux/working_with_files_and_directories';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Pipes and redirection" href="pipes.html" />
+    <link rel="next" title="Redirection, wildcards, and pipes" href="pipes.html" />
     <link rel="prev" title="Navigating files and directories" href="file-system.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -164,9 +164,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="file-system.html">Navigating files and directories</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Working with files and directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipes.html">Pipes and redirection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="loop.html">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipes.html">Redirection, wildcards, and pipes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">Shell scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loop.html">Loops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conclusion.html">Workshop Conclusion</a></li>
 </ul>
 </li>
@@ -359,13 +359,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-contents-of-a-file">Viewing contents of a file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-a-file">Viewing a file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-penguins-data">Understanding the penguins data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-files">Copying files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-directories">Creating directories</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-files">Creating files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-and-renaming">Moving and renaming</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copying">Copying</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-and-renaming-files">Moving and renaming files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing">Removing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wildcards">Wildcards</a></li>
 </ul>
             </nav>
         </div>
@@ -381,63 +380,142 @@ document.write(`
 <h1>Working with files and directories<a class="headerlink" href="#working-with-files-and-directories" title="Permalink to this heading">#</a></h1>
 <p>We now know how to explore files and directories, but how do we create them?</p>
 <p>Let’s change into the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory that you downloaded earlier. Specifically, the “writing” directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Downloads/shell-lesson-data/writing/
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Downloads/shell-lesson-data/
 </pre></div>
 </div>
-<!-- TODO add note about how to do so if you didn't -->
+<div class="note admonition">
+<p class="admonition-title">Downloading the example data</p>
+<p>If you didn’t already download the example data, click <a class="reference external" href="https://github.com/URCF/urcf_workshops/raw/master/data/shell-lesson-data.zip">here</a>, then unzip the resulting zip file, leaving it in your Downloads folder.</p>
+</div>
 <p>Let’s see what it contains:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
-haiku.txt  LittleWomen.txt
+alkanes      creatures    numbers.txt  penguins.csv writing
 </pre></div>
 </div>
-<section id="viewing-contents-of-a-file">
-<h2>Viewing contents of a file<a class="headerlink" href="#viewing-contents-of-a-file" title="Permalink to this heading">#</a></h2>
-<p>We see there are two text files. How can we see what’s in them?</p>
+<p>There are a few files and directories. For now we’re going to work with the <code class="docutils literal notranslate"><span class="pre">penguins.csv</span></code> file.</p>
+<section id="viewing-a-file">
+<h2>Viewing a file<a class="headerlink" href="#viewing-a-file" title="Permalink to this heading">#</a></h2>
+<p>How can we see what’s in <code class="docutils literal notranslate"><span class="pre">penguins.csv</span></code>?</p>
 <p>The simplest way is a command called <code class="docutils literal notranslate"><span class="pre">cat</span></code>. <code class="docutils literal notranslate"><span class="pre">cat</span></code> takes the name of a file as
 it’s argument, and prints the contents of that file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat haiku.txt
-The Tao that is seen
-Is not the true Tao, until
-You bring fresh toner.
-
-With searching comes loss
-and the presence of absence:
-&quot;My Thesis&quot; not found.
-
-Yesterday it worked
-Today it is not working
-Software is like that.
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat penguins.csv
 </pre></div>
 </div>
-<p>Let’s try it with <code class="docutils literal notranslate"><span class="pre">LittleWomen.txt</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat LittleWomen.txt
+<p>This should print something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Chinstrap,Dream,42.5,16.7,187,3350,female,2008
+Chinstrap,Dream,51,18.8,203,4100,male,2008
+Chinstrap,Dream,49.7,18.6,195,3600,male,2008
+Chinstrap,Dream,47.5,16.8,199,3900,female,2008
+Chinstrap,Dream,47.6,18.3,195,3850,female,2008
+Chinstrap,Dream,52,20.7,210,4800,male,2008
+Chinstrap,Dream,46.9,16.6,192,2700,female,2008
+Chinstrap,Dream,53.5,19.9,205,4500,male,2008
+Chinstrap,Dream,49,19.5,210,3950,male,2008
+Chinstrap,Dream,46.2,17.5,187,3650,female,2008
+Chinstrap,Dream,50.9,19.1,196,3550,male,2008
+Chinstrap,Dream,45.5,17,196,3500,female,2008
+Chinstrap,Dream,50.9,17.9,196,3675,female,2009
+Chinstrap,Dream,50.8,18.5,201,4450,male,2009
+Chinstrap,Dream,50.1,17.9,190,3400,female,2009
+Chinstrap,Dream,49,19.6,212,4300,male,2009
+Chinstrap,Dream,51.5,18.7,187,3250,male,2009
+Chinstrap,Dream,49.8,17.3,198,3675,female,2009
+Chinstrap,Dream,48.1,16.4,199,3325,female,2009
+Chinstrap,Dream,51.4,19,201,3950,male,2009
+Chinstrap,Dream,45.7,17.3,193,3600,female,2009
+Chinstrap,Dream,50.7,19.7,203,4050,male,2009
+Chinstrap,Dream,42.5,17.3,187,3350,female,2009
+Chinstrap,Dream,52.2,18.8,197,3450,male,2009
+Chinstrap,Dream,45.2,16.6,191,3250,female,2009
+Chinstrap,Dream,49.3,19.9,203,4050,male,2009
+Chinstrap,Dream,50.2,18.8,202,3800,male,2009
+Chinstrap,Dream,45.6,19.4,194,3525,female,2009
+Chinstrap,Dream,51.9,19.5,206,3950,male,2009
+Chinstrap,Dream,46.8,16.5,189,3650,female,2009
+Chinstrap,Dream,45.7,17,195,3650,female,2009
+Chinstrap,Dream,55.8,19.8,207,4000,male,2009
+Chinstrap,Dream,43.5,18.1,202,3400,female,2009
+Chinstrap,Dream,49.6,18.2,193,3775,male,2009
+Chinstrap,Dream,50.8,19,210,4100,male,2009
+Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+$
 </pre></div>
 </div>
-<p>You’ll see that this prints the entire contents of this long 19th century novel
-to the screen. It’s so much that you can’t even scroll through it all!</p>
-<p>There’s a better way to view long files like this: the <code class="docutils literal notranslate"><span class="pre">less</span></code> command. As the
-name suggests, this displays less of the file at once:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ less LittleWomen.txt
+<p>You can see this file is pretty big! There’s so many lines that they don’t all fit on the screen at once.</p>
+<p>We can see just the first few lines using the <code class="docutils literal notranslate"><span class="pre">head</span></code> command. <code class="docutils literal notranslate"><span class="pre">head</span></code> accepts an optional <code class="docutils literal notranslate"><span class="pre">-n</span></code> argument to specify the number of lines to show. Let’s look at the first 5 lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n 5 penguins.csv
+species,island,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g,sex,year
+Adelie,Torgersen,39.1,18.7,181,3750,male,2007
+Adelie,Torgersen,39.5,17.4,186,3800,female,2007
+Adelie,Torgersen,40.3,18,195,3250,female,2007
+Adelie,Torgersen,36.7,19.3,193,3450,female,2007
 </pre></div>
 </div>
-<p>Now you’re in what’s called a “pager” view of the file. Use <code class="docutils literal notranslate"><span class="pre">↑</span></code> and <code class="docutils literal notranslate"><span class="pre">↓</span></code> to move
+<p>We can see the first line is the column headers, and the rest are the data.</p>
+<p>The most convenient way to view long files like this is to use what’s called a
+“pager”, which lets you scroll through the file one “page” at a time. The most
+common pager is <code class="docutils literal notranslate"><span class="pre">less</span></code>, so named because it let’s you see less of the file at once.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ less penguins.csv
+</pre></div>
+</div>
+<p>Now you’re in the pager view. Use <code class="docutils literal notranslate"><span class="pre">↑</span></code> and <code class="docutils literal notranslate"><span class="pre">↓</span></code> to move
 line-by-line, or try <code class="docutils literal notranslate"><span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">Spacebar</span></code> to skip up and down by a full page. To
 quit and return to the shell prompt, press <code class="docutils literal notranslate"><span class="pre">q</span></code>.</p>
-<!-- TODO something about how you're still in the same world as the GUI: show accessing this stuff using Finder and Text Edit -->
+</section>
+<section id="understanding-the-penguins-data">
+<h2>Understanding the penguins data<a class="headerlink" href="#understanding-the-penguins-data" title="Permalink to this heading">#</a></h2>
+<p>The dataset we’re looking at is called the <a class="reference external" href="https://allisonhorst.github.io/palmerpenguins/">“Palmer Penguins”
+dataset</a>. It contains data on penguins
+penguins sampled from three islands in the Palmer Archipelago, Antarctica between 2007 and 2009.</p>
+<p>This format is called “comma-separated values”, or CSV for short (hence
+the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> extension). Each column is a different variable, and each row is a
+different penguin. CSV is a common format for tabular data, and can be exported
+and imported by many programs, especially spreadsheet software like Excel.</p>
+<div style="display: flex; flex-direction: row; gap: 20px; justify-content: center; align-items: flex-start;">
+<div style="flex: 1; text-align: center;">
+<figure class="align-default" id="penguin-species-fig">
+<img alt="../_images/penguin_species.png" src="../_images/penguin_species.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">The three penguin species in the  dataset.</span><a class="headerlink" href="#penguin-species-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+<div style="flex: 1; text-align: center;">
+<figure class="align-default" id="penguin-bill-fig">
+<img alt="../_images/penguin_bill.png" src="../_images/penguin_bill.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Penguin bill measurements.</span><a class="headerlink" href="#penguin-bill-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="copying-files">
+<h2>Copying files<a class="headerlink" href="#copying-files" title="Permalink to this heading">#</a></h2>
+<p>We’re going to do some analysis on the penguins data. Let’s make a copy of it, in case we mess something up and want to go back to the original later.</p>
+<p>To do this, we use the <code class="docutils literal notranslate"><span class="pre">cp</span></code> command. <code class="docutils literal notranslate"><span class="pre">cp</span></code> takes two arguments: the source file and the destination file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">penguins</span><span class="o">.</span><span class="n">csv</span> <span class="n">penguins2</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cp</span></code> gives no output when it succeeds, but we can use <code class="docutils literal notranslate"><span class="pre">ls</span></code> to confirm that a copy of the file has been created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+alkanes      analysis     creatures    numbers.txt  penguins.csv penguins2.csv writing
+</pre></div>
+</div>
 </section>
 <section id="creating-directories">
 <h2>Creating directories<a class="headerlink" href="#creating-directories" title="Permalink to this heading">#</a></h2>
-<p>Let’s create a new directory called thesis using the command <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">thesis</span></code> (which has no output):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir thesis
+<p>Let’s also make a new directory to store our analysis results.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir analysis
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code> means “make directory”.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
-haiku.txt       LittleWomen.txt thesis
+alkanes      analysis     creatures    numbers.txt  penguins.csv writing
 </pre></div>
 </div>
-<p>Since we just created it, it has nothing in it, which we can confirm using <code class="docutils literal notranslate"><span class="pre">ls</span></code>. So far, we’ve only used <code class="docutils literal notranslate"><span class="pre">ls</span></code> with no arguments, but <code class="docutils literal notranslate"><span class="pre">ls</span></code> can take an argument: the name of a different directory to list. By default, it lists the current working directory, but we can give it any other directory instead. Let’s list the contents of the <code class="docutils literal notranslate"><span class="pre">thesis</span></code> directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls thesis
+<p>Since we just created it, it has nothing in it, which we can confirm using <code class="docutils literal notranslate"><span class="pre">ls</span></code>. So far, we’ve only used <code class="docutils literal notranslate"><span class="pre">ls</span></code> with no arguments, but <code class="docutils literal notranslate"><span class="pre">ls</span></code> can take an argument: the name of a different directory to list. By default, it lists the current working directory, but we can give it any other directory instead. Let’s list the contents of the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls analysis
 $
 </pre></div>
 </div>
@@ -455,7 +533,7 @@ $
 <p>This command creates <em>two</em> separate directories: <code class="docutils literal notranslate"><span class="pre">my</span></code> and <code class="docutils literal notranslate"><span class="pre">directory</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir my directory
 $ ls
-directory       haiku.txt       LittleWomen.txt my              thesis
+alkanes      analysis     creatures    directory    my           numbers.txt  penguins.csv writing
 </pre></div>
 </div>
 <p>You might have expected it to create a single directory called “my directory”. It creates two because in the shell, spaces are used to separate multiple arguments. <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> can create multiple directories at once if you pass it multiple arguments.</p>
@@ -463,164 +541,58 @@ directory       haiku.txt       LittleWomen.txt my              thesis
 </div>
 </div>
 </section>
-<section id="creating-files">
-<h2>Creating files<a class="headerlink" href="#creating-files" title="Permalink to this heading">#</a></h2>
-<p>Let’s change our working directory to thesis using <code class="docutils literal notranslate"><span class="pre">cd</span></code>, then use a text editor called <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create a file called <code class="docutils literal notranslate"><span class="pre">draft.txt</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd thesis
-$ nano draft.txt
+<section id="moving-and-renaming-files">
+<h2>Moving and renaming files<a class="headerlink" href="#moving-and-renaming-files" title="Permalink to this heading">#</a></h2>
+<p>Now let’s move the copy of the penguins data to our new analysis directory. To do this, we use the <code class="docutils literal notranslate"><span class="pre">mv</span></code> command (short for “move”). <code class="docutils literal notranslate"><span class="pre">mv</span></code> is very similar to <code class="docutils literal notranslate"><span class="pre">cp</span></code>, but it moves the file instead of copying it.</p>
+<p>Just like <code class="docutils literal notranslate"><span class="pre">cp</span></code> <code class="docutils literal notranslate"><span class="pre">mv</span></code> takes two arguments: the source file and the destination. When the destination is a directory, <code class="docutils literal notranslate"><span class="pre">mv</span></code> will move the file into that directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv penguins2.csv analysis/
 </pre></div>
 </div>
-<p>Let’s type in a few lines of text.</p>
-<p><img alt="Nano editor" src="../_images/nano-screenshot.png" /></p>
-<p>Once we’re happy with our text, we can press <code class="docutils literal notranslate"><span class="pre">Ctrl+O</span></code> (press the <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> or
-<code class="docutils literal notranslate"><span class="pre">Control</span></code> key and, while holding it down, press the <code class="docutils literal notranslate"><span class="pre">O</span></code> key) to write our data
-to disk. We will be asked to provide a name for the file that will contain our
-text. Press <code class="docutils literal notranslate"><span class="pre">Return</span></code> to accept the suggested default of <code class="docutils literal notranslate"><span class="pre">draft.txt</span></code>.</p>
-<p>Once our file is saved, we can use <code class="docutils literal notranslate"><span class="pre">Ctrl+X</span></code> to quit the editor and return to the
-shell.</p>
-<p>We can use <code class="docutils literal notranslate"><span class="pre">cat</span></code> to confirm that the file has been created with the right contents:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat draft.txt
-It&#39;s not publish or perish anymore,
-it&#39;s share and thrive.
-</pre></div>
-</div>
-</section>
-<section id="moving-and-renaming">
-<h2>Moving and renaming<a class="headerlink" href="#moving-and-renaming" title="Permalink to this heading">#</a></h2>
-<p>Let’s go “up” one directory, back to <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/writing</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ..
-$ pwd
-/Users/jjp366/Dowloads/shell-lesson-data/writing
-</pre></div>
-</div>
-<p>Now let’s say we want to change the name of our <code class="docutils literal notranslate"><span class="pre">draft.txt</span></code> file. For this we
-use the command <code class="docutils literal notranslate"><span class="pre">mv</span></code> (short for “move”):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv thesis/draft.txt thesis/quotes.txt
-</pre></div>
-</div>
-<p>The first argument tells mv what we’re “moving”; the second argument is where we
-want it to go. In this case, we’re moving <code class="docutils literal notranslate"><span class="pre">thesis/draft.txt</span></code> to <code class="docutils literal notranslate"><span class="pre">thesis/quotes.txt</span></code>,
-which is the same as renaming it.</p>
-<p>We can see that it’s been moved/renamed using <code class="docutils literal notranslate"><span class="pre">ls</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls thesis
-quotes.txt
-</pre></div>
-</div>
-<p>We can also use <code class="docutils literal notranslate"><span class="pre">mv</span></code> to move the file into a different directory, without
-changing it’s name. To do this, we pass a directory as the second argument. Here
-we’ll use the <code class="docutils literal notranslate"><span class="pre">.</span></code> shortcut to refer to the current directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv thesis/quotes.txt .
-</pre></div>
-</div>
-<p>This moves the <code class="docutils literal notranslate"><span class="pre">quotes.txt</span></code> file from
-<code class="docutils literal notranslate"><span class="pre">shell-lesson-data/writing/thesis</span></code> to the current working
-directory, <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/writing</span></code>.</p>
-<p>We can confirm that it worked by using <code class="docutils literal notranslate"><span class="pre">ls</span></code> to see that the <code class="docutils literal notranslate"><span class="pre">thesis</span></code> directory is now empty:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls thesis
-</pre></div>
-</div>
-<p>We can also see that <code class="docutils literal notranslate"><span class="pre">quotes.txt</span></code> is now present in our current directory:</p>
+<p>Let’s confirm that the file has been moved. First, we’ll list the contents of the current directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
-haiku.txt       LittleWomen.txt quotes.txt      thesis
+alkanes      analysis     creatures    numbers.txt  penguins.csv writing
 </pre></div>
 </div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Moving files to a new folder</p>
-<p>After running the following commands, Jamie realizes that she
-put the file <code class="docutils literal notranslate"><span class="pre">sucrose.dat</span></code> into the wrong directory. It’s in the <code class="docutils literal notranslate"><span class="pre">analyzed</span></code> directory, but she hasn’t actually analyed it yet, so it should be in <code class="docutils literal notranslate"><span class="pre">raw</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls
-analyzed<span class="w"> </span>raw
-$<span class="w"> </span>ls<span class="w"> </span>analyzed
-fructose.dat<span class="w"> </span>glucose.dat<span class="w"> </span>maltose.dat<span class="w"> </span>sucrose.dat
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>analyzed
-</pre></div>
-</div>
-<p>Fill in the blanks to move this file into the <code class="docutils literal notranslate"><span class="pre">raw</span></code> folder:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mv<span class="w"> </span>sucrose.data<span class="w"> </span>____/_____
-</pre></div>
-</div>
-<p><em>Hint:</em> Think about the shortcut characters we’ve seen.</p>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv sucrose.data ../raw
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="copying">
-<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">cp</span></code> command works like <code class="docutils literal notranslate"><span class="pre">mv</span></code>, except it copies a file instead of moving it.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp quotes.txt thesis/quotations.txt
+<p>We see that <code class="docutils literal notranslate"><span class="pre">penguins2.csv</span></code> is no longer there.</p>
+<p>Now, let’s change into our analysis directory and list its contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd analysis
 $ ls
-haiku.txt       LittleWomen.txt quotes.txt      thesis
-$ ls thesis
-quotations.txt
+penguins2.csv
 </pre></div>
 </div>
-<p>We can also copy a directory and all its contents by using the <code class="docutils literal notranslate"><span class="pre">-r</span></code> option
-(short for “recursive”). For example, we might want to backup a directory before
-making a big change:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp -r thesis thesis_backup
-$ ls thesis thesis_backup
-thesis:
-quotations.txt
-
-thesis_backup:
-quotations.txt
+<p>We see that <code class="docutils literal notranslate"><span class="pre">penguins2.csv</span></code> is now in the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> directory, and is the only file here.</p>
+<p>The name <code class="docutils literal notranslate"><span class="pre">penguins2.csv</span></code> is a bit silly now that we’re in a different directory, so there’s no name conflicts. Let’s change the name of the file to just <code class="docutils literal notranslate"><span class="pre">data.csv</span></code>. We also use the <code class="docutils literal notranslate"><span class="pre">mv</span></code> command for this. If you think of the full path to a file as it’s location, re-naming is just moving it to a different path, so it uses the same command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv penguins2.csv data.csv
+$ ls
+data.csv
 </pre></div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Moving and copying</p>
-<p>What is the output of the last <code class="docutils literal notranslate"><span class="pre">ls</span></code> command in the sequence shown below?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">pwd</span>
-/home/rammy/data
-$<span class="w"> </span>ls
-proteins.dat
-$<span class="w"> </span>mkdir<span class="w"> </span>recombined
-$<span class="w"> </span>mv<span class="w"> </span>proteins.dat<span class="w"> </span>recombined/
-$<span class="w"> </span>cp<span class="w"> </span>recombined/proteins.dat<span class="w"> </span>../proteins-saved.dat
-$<span class="w"> </span>ls
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">proteins-saved.dat</span> <span class="pre">recombined</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">recombined</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">proteins.dat</span> <span class="pre">recombined</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">proteins-saved.dat</span></code></p></li>
-</ol>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<ol class="arabic simple">
-<li><p>No, <code class="docutils literal notranslate"><span class="pre">proteins-saved.dat</span></code> is located at <code class="docutils literal notranslate"><span class="pre">/home/rammy/</span></code></p></li>
-<li><p>Yes</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">proteins.dat</span></code> is located at <code class="docutils literal notranslate"><span class="pre">/home/rammy/data/recombined</span></code></p></li>
-<li><p>No, <code class="docutils literal notranslate"><span class="pre">proteins-saved.dat</span></code> is located at <code class="docutils literal notranslate"><span class="pre">/home/rammy/</span></code></p></li>
-</ol>
-</div>
 </div>
 </section>
 <section id="removing">
 <h2>Removing<a class="headerlink" href="#removing" title="Permalink to this heading">#</a></h2>
-<p>Let’s tidy up by removing the quotes.txt file we created. The Unix command we’ll
-use for this is <code class="docutils literal notranslate"><span class="pre">rm</span></code> (short for “remove”):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm quotes.txt
+<p>Let’s go back to the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory and clean up a bit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ..
+</pre></div>
+</div>
+<p>We’re only going to work with the penguin data today, so we don’t need the other files. We can delete them using the <code class="docutils literal notranslate"><span class="pre">rm</span></code> (short for “remove”) command.</p>
+<p>For example, to delete the <code class="docutils literal notranslate"><span class="pre">numbers.txt</span></code> file, we can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm numbers.txt
 </pre></div>
 </div>
 <p>We can confirm the file is gone using <code class="docutils literal notranslate"><span class="pre">ls</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
-haiku.txt       LittleWomen.txt thesis          thesis_backup
+alkanes      analysis     creatures    penguins.csv writing
 </pre></div>
 </div>
-<p>If we try to remove the <code class="docutils literal notranslate"><span class="pre">thesis</span></code> directory using <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">thesis</span></code>, we get an error message:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm thesis
-rm: cannot remove &#39;thesis&#39;: Is a directory
+<p>If we try to remove the <code class="docutils literal notranslate"><span class="pre">alkanes</span></code> directory using <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">alkanes</span></code>, we get an error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm alkanes
+rm: cannot remove &#39;alkanes&#39;: Is a directory
 </pre></div>
 </div>
 <p>This happens because <code class="docutils literal notranslate"><span class="pre">rm</span></code> by default only works on files, not directories.</p>
 <p><code class="docutils literal notranslate"><span class="pre">rm</span></code> can remove a directory <em>and all its contents</em> if we use the recursive
 option <code class="docutils literal notranslate"><span class="pre">-r</span></code>, and it will do so <em>without any confirmation prompts</em>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm -r thesis
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm -r alkanes
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span></code> should be use with great caution, because it can permanently delete a
@@ -629,70 +601,12 @@ lot of files without asking for confirmation if you make a mistake.</p>
 <p class="admonition-title">Deleting is forever</p>
 <p>Files deleted with <code class="docutils literal notranslate"><span class="pre">rm</span></code> cannot be recovered from a “trash bin” like files deleted using a GUI. Be very careful when deleting files using <code class="docutils literal notranslate"><span class="pre">rm</span></code>.</p>
 </div>
-</section>
-<section id="wildcards">
-<h2>Wildcards<a class="headerlink" href="#wildcards" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">*</span></code> is a <strong>wildcard</strong>, which matches zero or more characters. This lets us
-select subsets of files to work on using pattern matching.</p>
-<p>Let’s move to the <code class="docutils literal notranslate"><span class="pre">alkanes</span></code> directory to try it out:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Downloads/shell-lesson-data/alkanes
-$ ls
-cubane.pdb  ethane.pdb  methane.pdb octane.pdb  pentane.pdb propane.pdb
+<p>We can use <code class="docutils literal notranslate"><span class="pre">ls</span></code> again to confirm that the directory is gone:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+analysis     creatures    penguins.csv writing
 </pre></div>
 </div>
-<p>This directory contains six files describing some simple organic molecules. The
-<code class="docutils literal notranslate"><span class="pre">.pdb</span></code> extension indicates that these files are in Protein Data Bank format, a
-text format that specifies the type and position of each atom in the molecule.</p>
-<p><code class="docutils literal notranslate"><span class="pre">*.pdb</span></code> matches <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code>, and every file that ends with <code class="docutils literal notranslate"><span class="pre">.pdb</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls *.pdb
-cubane.pdb  ethane.pdb  methane.pdb octane.pdb  pentane.pdb propane.pdb
-</pre></div>
-</div>
-<p>This is the same as if we just did <code class="docutils literal notranslate"><span class="pre">ls</span></code>, since every file in this directory ends in <code class="docutils literal notranslate"><span class="pre">.pdb</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">p*.pdb</span></code> only matches <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code> and <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code>, because the ‘p’ at the front:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls p*.pdb
-pentane.pdb propane.pdb
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">?</span></code> is also a wildcard, but it matches exactly one character. So:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">?ethane.pdb</span></code> would match <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">*ethane.pdb</span></code> matches both <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, and <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>.</p></li>
-</ul>
-<p>Wildcards can be used in combination with each other:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">???ane.pdb</span></code> matches three characters followed by <code class="docutils literal notranslate"><span class="pre">ane.pdb</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>.</p></li>
-</ul>
-<p>Try the following commands. Try to guess what the output of each will be before you run it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>*t*ane.pdb
-$<span class="w"> </span>ls<span class="w"> </span>*t?ne.*
-$<span class="w"> </span>ls<span class="w"> </span>*t??ne.pdb
-$<span class="w"> </span>ls<span class="w"> </span>ethane.*
-</pre></div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: wildcards</p>
-<p>When run in the alkanes directory, which <code class="docutils literal notranslate"><span class="pre">ls</span></code> command(s) will produce this output?</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ethane</span><span class="o">.</span><span class="n">pdb</span> <span class="n">methane</span><span class="o">.</span><span class="n">pdb</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*t*ane.pdb</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*t?ne.*</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*t??ne.pdb</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">ethane.*</span></code></p></li>
-</ol>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<p>The solution is <code class="docutils literal notranslate"><span class="pre">3.</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">1.</span></code> shows all files whose names contain zero or more characters (<code class="docutils literal notranslate"><span class="pre">*</span></code>) followed by the letter <code class="docutils literal notranslate"><span class="pre">t</span></code>, then zero or more characters (<code class="docutils literal notranslate"><span class="pre">*</span></code>) followed by <code class="docutils literal notranslate"><span class="pre">ane.pdb</span></code>. This gives <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span> <span class="pre">methane.pdb</span> <span class="pre">octane.pdb</span> <span class="pre">pentane.pdb</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">2.</span></code> shows all files whose names start with zero or more characters (<code class="docutils literal notranslate"><span class="pre">*</span></code>) followed by the letter <code class="docutils literal notranslate"><span class="pre">t</span></code>, then a single character (<code class="docutils literal notranslate"><span class="pre">?</span></code>), then <code class="docutils literal notranslate"><span class="pre">ne.</span></code> followed by zero or more characters (<code class="docutils literal notranslate"><span class="pre">*</span></code>). This will give us <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code> and <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code> but doesn’t match anything which ends in <code class="docutils literal notranslate"><span class="pre">thane.pdb</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">3.</span></code> fixes the problems of <code class="docutils literal notranslate"><span class="pre">2.</span></code> by matching two characters (<code class="docutils literal notranslate"><span class="pre">??</span></code>) between t and ne. This is the solution.</p>
-<p><code class="docutils literal notranslate"><span class="pre">4.</span></code> only shows files starting with <code class="docutils literal notranslate"><span class="pre">ethane.</span></code>, so it will miss <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, because of the <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p>
-</div>
-</div>
-</section>
+<!-- TODO add challenges --></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -737,7 +651,7 @@ $<span class="w"> </span>ls<span class="w"> </span>ethane.*
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Pipes and redirection</p>
+        <p class="prev-next-title">Redirection, wildcards, and pipes</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -756,13 +670,12 @@ $<span class="w"> </span>ls<span class="w"> </span>ethane.*
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-contents-of-a-file">Viewing contents of a file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-a-file">Viewing a file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-penguins-data">Understanding the penguins data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-files">Copying files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-directories">Creating directories</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-files">Creating files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-and-renaming">Moving and renaming</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copying">Copying</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-and-renaming-files">Moving and renaming files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing">Removing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wildcards">Wildcards</a></li>
 </ul>
   </nav></div>
 

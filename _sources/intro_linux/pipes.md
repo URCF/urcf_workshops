@@ -1,275 +1,221 @@
-# Pipes and redirection
-
-## Overview
+# Redirection, wildcards, and pipes
 
 Now that we know a few basic commands, we can finally look at the shell's most
 powerful feature: the ease with which it lets us combine existing programs in new ways.
 
-We'll keep working in the `shell-lesson-data/alkanes` directory.
+We'll keep working in our `analysis` directory inside `shell-lesson-data`.
 `cd` there if you aren't there already:
 
 
 ```bash
-$ cd ~/Downloads/shell-lesson-data/alkanes
+$ cd ~/Downloads/shell-lesson-data/analysis
 $ ls
-cubane.pdb  ethane.pdb  methane.pdb octane.pdb  pentane.pdb propane.pdb
+data.csv
 ```
 
-Let's run an example command:
+## Redirecting output
+
+Now we want to analyze `data.csv`, looking at only one island at a time. There are three islands in the dataset: Torgersen, Biscoe, and     Dream. To start, let's look at only the penguins from Biscoe island.
+
+We can use the `grep` command to filter the dataset to only include lines that contain a particular word. The syntax for this command is `grep <pattern> <file>`. The pattern is the word we want to search for, and the file is the file we want to search in.
+
+To see only the lines that contain the word "Biscoe", we can run the following command:
 
 ```bash
-wc cubane.pdb
+$ grep Biscoe data.csv
 ```
 
-```output
-20  156 1158 cubane.pdb
+The output includes only penguins from Biscoe island, because only these lines for these penguins contain the word "Biscoe".
+
+```
+...
+Gentoo,Biscoe,48.8,16.2,222,6000,male,2009
+Gentoo,Biscoe,47.2,13.7,214,4925,female,2009
+Gentoo,Biscoe,46.8,14.3,215,4850,female,2009
+Gentoo,Biscoe,50.4,15.7,222,5750,male,2009
+Gentoo,Biscoe,45.2,14.8,212,5200,female,2009
+Gentoo,Biscoe,49.9,16.1,213,5400,male,2009
 ```
 
-`wc` is the 'word count' command: it counts the number of lines, words, and characters
-in files (returning the values in that order from left to right).
+There is a lot of output though! Let's save it to a file to make it easier to work with. We can use the `>` operator to redirect the output of the `grep` command to a file:
 
-If we run the command `wc *.pdb`, the `*` in `*.pdb` matches zero or more characters,
-so the shell turns `*.pdb` into a list of all `.pdb` files in the current directory:
-
-```bash
-wc *.pdb
+```
+$ grep Biscoe data.csv > biscoe_island.csv
 ```
 
-```output
-  20  156  1158  cubane.pdb
-  12  84   622   ethane.pdb
-   9  57   422   methane.pdb
-  30  246  1828  octane.pdb
-  21  165  1226  pentane.pdb
-  15  111  825   propane.pdb
- 107  819  6081  total
+`>` "redirects" the output of a command to a file instead of printing it to the screen. If the file doesn't exist, it will be created. If it already exists, it will be overwritten (this can overwrite existing data, so be careful!).
+
+Now we can use less to scroll through just the Biscoe penguins:
+
+```
+$ less biscoe_island.csv
 ```
 
-If we run `wc -l` instead of just `wc`, the output shows only the number of lines per file:
+Let's do the same for the other islands:
 
-```bash
-$ wc -l *.pdb
+```
+$ grep Torgersen data.csv > torgersen_island.csv
+$ grep Dream data.csv > dream_island.csv
 ```
 
-```output
-  20  cubane.pdb
-  12  ethane.pdb
-   9  methane.pdb
-  30  octane.pdb
-  21  pentane.pdb
-  15  propane.pdb
- 107  total
+## Wildcards
+
+Now we want to count the number of penguins in each island. To start, let's just count the total number of penguins in the dataset. We can use the `wc` command (short for "word count"), with the `-l` option, which says to count the number of lines in a file.
+
+```
+$ wc -l data.csv
+     334 data.csv
 ```
 
-## Capturing output from commands
+This means there are 334 lines in the file, and each line represents a penguin, so there are 333 penguins (because the first line is the column headers).
 
-Which of these files contains the fewest lines?
-It's an easy question to answer when there are only six files,
-but what if there were 6000?
+Now let's count the number of penguins on Biscoe island:
 
-**Redirection**
-
-```bash
-wc -l *.pdb > lengths.txt
+```
+$ wc -l biscoe_island.csv
+     163 biscoe_island.csv
 ```
 
-The greater than symbol, `>`, tells the shell to **redirect** the command's output to a
-file instead of printing it to the screen. This command prints no screen output, because
-everything that `wc` would have printed has gone into the file `lengths.txt` instead.
-If the file doesn't exist prior to issuing the command, the shell will create the file.
-If the file exists already, it will be silently overwritten, which may lead to data loss.
-Thus, **redirect** commands require caution.
+Now we could type out the commands for the other two islands one at at a time. And that would work because there are only three islands, but what if there were 100? It would be a pain to type out all those commands. Instead, we can use a shell feature called "wildcards" to tell `wc` to count the lines in all our files at once:
 
-`ls lengths.txt` confirms that the file exists:
-
-```bash
-ls lengths.txt
+```
+$ wc -l *.csv
+     163 biscoe_island.csv
+     334 data.csv
+     123 dream_island.csv
+      47 torgersen_island.csv
+     667 total
 ```
 
-```output
-lengths.txt
-```
+The `*` is called a "wildcard". It matches zero or more characters of any type, so `*.csv` means "any file that ends with `.csv`". In this case, that's all our data files: `data.csv`, `biscoe_island.csv`, `dream_island.csv`, and `torgersen_island.csv`.
 
-We can now send the content of `lengths.txt` to the screen using `cat lengths.txt`.
-The `cat` command gets its name from 'concatenate' i.e. join together,
-and it prints the contents of files one after another.
-There's only one file in this case,
-so `cat` just shows us what it contains:
+Now we can quickly see that there are `123` penguins on Dream island and `47` on Torgersen island. And this command would work just as well if there were 100 islands, or 1000! Now we're starting to see the power and flexibility of the shell.
 
-```bash
-cat lengths.txt
-```
-
-```output
-  20  cubane.pdb
-  12  ethane.pdb
-   9  methane.pdb
-  30  octane.pdb
-  21  pentane.pdb
-  15  propane.pdb
- 107  total
-```
-
-## Filtering output
-
-Next we'll use the `sort` command to sort the contents of the `lengths.txt`
-file. But first we'll do an exercise to learn a little about the sort command.
-
-```{admonition} What Does sort -n Do?
+```{admonition} Challenge: Count only the individual islands
 :class: tip
 
-The file `shell-lesson-data/numbers.txt` contains the following lines:
+You want to count the number of penguins in each island file, but *not* include `data.csv` (which also ends in `.csv`). How would you modify the command to only include the individual island files in your count, and exclude `data.csv`?
 
-~~~
-10
-2
-19
-22
-6
-~~~
-
-If we run `sort` on this file, the output is:
-
-~~~
-10
-19
-2
-22
-6
-~~~
-
-If we run `sort -n` on the same file, we get this instead:
-
-~~~
-2
-6
-10
-19
-22
-~~~
-
-What does the `-n` option do?
-
-~~~{admonition} Solution
-:class: note, dropdown
-
-The `-n` option specifies a numerical rather than an alphanumerical sort.
-~~~
-
-```
-
-Running `sort` does *not* change the file; instead, it sends the sorted result to the screen:
-
-~~~bash
-sort -n lengths.txt
-~~~
-
-We can put the sorted list of lines in another temporary file
-called `sorted-lengths.txt` by putting `> sorted-lengths.txt`
-after the command, just as we used `> lengths.txt` to put the
-output of `wc` into `lengths.txt`. Once we've done that, we can
-run another command called `head` to get the first few lines in
-`sorted-lengths.txt`:
-
-~~~bash
-sort -n lengths.txt > sorted-lengths.txt
-head -n 1 sorted-lengths.txt
-~~~
-
-Using `-n 1` with `head` tells it that we only want the first line
-of the file; `-n 20` would get the first 20, and so on.
-Since `sorted-lengths.txt` contains the lengths of our files ordered
-from least to greatest, the output of `head` must be the file with
-the fewest lines.
-
-## Passing output to another command
-
-In our example of finding the file with the fewest lines,
-we are using two intermediate files `lengths.txt` and `sorted-lengths.txt` to store output.
-This is a confusing way to work because
-even once you understand what `wc`, `sort`, and `head` do,
-those intermediate files make it hard to follow what's going on.
-We can make it easier to understand by running `sort` and `head` together:
-
-```bash
-sort -n lengths.txt | head -n 1
-```
-
-The vertical bar, `|`, between the two commands is called a **pipe**.
-It tells the shell that we want to use
-the output of the command on the left
-as the input to the command on the right.
-
-This has removed the need for the `sorted-lengths.txt` file.
-
-## Combining multiple commands
-
-Nothing prevents us from chaining pipes consecutively.
-We can for example send the output of `wc` directly to `sort`,
-and then send the resulting output to `head`.
-This removes the need for any intermediate files.
-
-We'll start by using a pipe to send the output of `wc` to `sort`:
-
-```bash
-wc -l *.pdb | sort -n
-```
-
-We can then send that output through another pipe, to `head`, so that the full pipeline becomes:
-
-```bash
-wc -l *.pdb | sort -n | head -n 1
-```
-
-This is exactly like a mathematician nesting functions like *log(3x)*
-and saying 'the log of three times *x*'.
-In our case, the algorithm is 'head of sort of line count of `*.pdb`'.
-
-The redirection and pipes used in the last few commands are illustrated below:
-
-![Redirects and Pipes](../fig/redirects-and-pipes.svg)
-
-```{admonition} Challenge: Piping Commands Together
-:class: tip
-
-In our current directory, we want to find the 3 files which have the
-least number of lines. Which command listed below would work?
-
-1. `wc -l * > sort -n > head -n 3`
-2. `wc -l * | sort -n | head -n 1-3`
-3. `wc -l * | head -n 3 | sort -n`
-4. `wc -l * | sort -n | head -n 3`
+_Hint_: In the previous command, the wildcard `*.csv` matched all files ending in `.csv`. Do all your island files have something in common at the end of their filename that `data.csv` doesn't have?
 
 :::{admonition} Solution
 :class: dropdown
 
-Option 4 is the solution.
-The pipe character `|` is used to connect the output from one command to
-the input of another.
-`>` is used to redirect standard output to a file.
-Try it in the `shell-lesson-data/alkanes` directory!
+~~~bash
+wc -l *island.csv
+~~~
+
+:::
+```
+
+## Passing output to another command
+
+Now we want to count *only the female* penguins on each island. Let's start with Biscoe island.
+
+We can use the `grep` command again to filter the data to only include female penguins by searching for the word "female":
+
+```
+$ grep female biscoe_island.csv
+```
+
+```
+...
+Gentoo,Biscoe,44.5,14.7,214,4850,female,2009
+Gentoo,Biscoe,46.9,14.6,222,4875,female,2009
+Gentoo,Biscoe,48.4,14.4,203,4625,female,2009
+Gentoo,Biscoe,48.5,15,219,4850,female,2009
+Gentoo,Biscoe,47.2,15.5,215,4975,female,2009
+Gentoo,Biscoe,41.7,14.7,210,4700,female,2009
+Gentoo,Biscoe,43.3,14,208,4575,female,2009
+Gentoo,Biscoe,50.5,15.2,216,5000,female,2009
+Gentoo,Biscoe,43.5,15.2,213,4650,female,2009
+Gentoo,Biscoe,46.2,14.1,217,4375,female,2009
+Gentoo,Biscoe,47.2,13.7,214,4925,female,2009
+Gentoo,Biscoe,46.8,14.3,215,4850,female,2009
+Gentoo,Biscoe,45.2,14.8,212,5200,female,2009
+```
+
+This is still a lot of output. We could use the `>` operator again to redirect it to a file, but if we did this every every island it would start to get unwieldy. Imagine we want to start filtering by year, or body weight. We would end up with a lot of extra files to keep track of.
+
+It would be more convenient if we could somehow pass the output of the `grep` command directly to the `wc` command, rather than saving it to a file first. Fortunately, the shell has just such a feature: **pipes**. Pipes are a way to connect the output of one command as the input to another command. The syntax for a pipe is `command1 | command2`. This means "run `command1` and use it's output as the input of command2". `|` is called the "pipe character".
+
+Let's try it out:
+
+```
+$ grep female biscoe_island.csv | wc -l
+      80
+```
+
+So we can see there were 80 female penguins observed on Biscoe island.
+
+The above command is equivalent to:
+```
+$ grep female biscoe_island.csv > temporary_file.csv
+$ wc -l temporary_file.csv
+$ rm temporary_file.csv
+      80
+```
+
+It's just much shorter and more convenient. The pipe connects what's called the "standard output" of the first command to the "standard input" of the second command. Many Unix commands (like `wc`) can take input either from a file (which is what we've been doing so far) or from standard input (which is what we just did with the pipe).
+
+### More complex filtering
+
+Now let's say we want to find out how many female penguins were observed on Biscoe island in 2009. To do this, we can use a pipeline with multiple grep commands. Just like `wc`, `grep` can take it's input from a file or from standard input. So we'll `grep` from the file to filter for only female penguins, and then pipe the output to another `grep` to filter for only penguins observed in 2009, then finally pipe to `wc` to count them:
+
+```
+$ grep female biscoe_island.csv | grep 2009 | wc -l
+      28
+```
+
+
+
+```{admonition} Challenge: Counting male penguins
+:class: tip
+
+Now we want to count the number of *male* penguins on Biscoe island. You might think we can do `grep male biscoe_island.csv`, but this returns **all** the penguins, not just the males! That's because the word "female" contains the letters "male" inside it, so `grep male` matches both "male" and "female". How can we count only the male penguins?
+
+_Hint_: `grep` has a `-v` option (short for "i**v**ert"), which tells it to output all the lines that **don't** match the pattern you give it.
+
+:::{admonition} Solution
+:class: dropdown
+
+~~~bash
+grep -v female biscoe_island.csv | wc -l
+~~~
+
+:::
+```
+
+```{admonition} Challenge: Doing it all in one command
+:class: tip
+
+In all our pipelines so far, we've started from the `biscoe_island.csv` file. What if we wanted to do all the filtering in one command, starting with the original `data.csv`, without saving any intermediate file?
+
+Can you write a single command, starting from `data.csv`, to count the female penguins on Biscoe island in 2009?
+
+:::{admonition} Solution
+:class: dropdown
+
+~~~bash
+grep female data.csv | grep Biscoe | grep 2009 | wc -l
+~~~
+
 :::
 ```
 
 ## Tools designed to work together
 
-This idea of linking programs together is why Unix has been so successful.
-Instead of creating enormous programs that try to do many different things,
-Unix programmers focus on creating lots of simple tools that each do one job well,
-and that work well with each other.
+This idea of linking programs together is part of why Unix has been so
+successful. Instead of a few enormous programs that try to do many different
+things, Unix programmers has lots of simple tools that each do one job well, and
+that work well with each other.
 
-This programming model is called 'pipes and filters'.
-We've already seen pipes;
-a **filter** is a program like `wc` or `sort`
-that transforms a stream of input into a stream of output.
-Almost all of the standard Unix tools can work this way.
-Unless told to do otherwise,
-they read from standard input,
-do something with what they've read,
+Almost all of the standard Unix tools can work this way. Unless told to do
+otherwise, they read from standard input, do something with what they've read,
 and write to standard output.
 
-The key is that any program that reads lines of text from standard input
-and writes lines of text to standard output
-can be combined with every other program that behaves this way as well.
-You can *and should* write your programs this way
-so that you and other people can put those programs into pipes to multiply their power.
+The key is that any program that reads lines of text from standard input and
+writes lines of text to standard output can be combined with every other program
+that behaves this way as well. You can and should write your programs this way
+so that you and other people can put those programs into pipes to multiply their
+power.

@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro_linux/loop';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Shell scripts" href="utilities.html" />
-    <link rel="prev" title="Pipes and redirection" href="pipes.html" />
+    <link rel="next" title="Workshop Conclusion" href="conclusion.html" />
+    <link rel="prev" title="Shell scripts" href="utilities.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,9 +164,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="file-system.html">Navigating files and directories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_files_and_directories.html">Working with files and directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipes.html">Pipes and redirection</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipes.html">Redirection, wildcards, and pipes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">Shell scripts</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Loops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conclusion.html">Workshop Conclusion</a></li>
 </ul>
 </li>
@@ -336,7 +336,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -352,6 +354,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-motivating-example">A motivating example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-general-form-of-a-loop">The general form of a loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-loop-to-count-female-penguins">Using a loop to count female penguins</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -368,238 +380,117 @@ or set of commands for each item in a list.
 As such they are key to productivity improvements through automation.
 Similar to wildcards and tab completion, using loops also reduces the
 amount of typing required (and hence reduces the number of typing mistakes).</p>
-<p>Suppose we have several hundred genome data files named <code class="docutils literal notranslate"><span class="pre">basilisk.dat</span></code>, <code class="docutils literal notranslate"><span class="pre">minotaur.dat</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">unicorn.dat</span></code>. For this example, we’ll use the <code class="docutils literal notranslate"><span class="pre">creatures</span></code>
-directory which only has three example files, but the principles can be
-applied to many many more files at once.</p>
-<p>Let’s change to that directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">Downloads</span><span class="o">/</span><span class="n">shell</span><span class="o">-</span><span class="n">lesson</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">creatures</span>
+<section id="a-motivating-example">
+<h2>A motivating example<a class="headerlink" href="#a-motivating-example" title="Permalink to this heading">#</a></h2>
+<p>Let’s say we want to count the number of female penguins on each island. We’re working in the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> directory, and we have separate files for each island: <code class="docutils literal notranslate"><span class="pre">biscoe_island.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">dream_island.csv</span></code>, and <code class="docutils literal notranslate"><span class="pre">torgersen_island.csv</span></code>.</p>
+<p>Let’s make sure we’re in the right directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/Downloads/shell-lesson-data/analysis
+$<span class="w"> </span>ls
+biscoe_island.csv<span class="w">  </span>data.csv<span class="w">  </span>dream_island.csv<span class="w">  </span>torgersen_island.csv
 </pre></div>
 </div>
-<p>and check what’s there:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
-basilisk.dat minotaur.dat unicorn.dat
+<p>You might think we could use a wildcard to search all the island files at once:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>grep<span class="w"> </span>female<span class="w"> </span>*_island.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<span class="w">     </span><span class="m">165</span>
 </pre></div>
 </div>
-<p>The structure of these files is the same: the common name, classification,
-and updated date are presented on the first three lines, with DNA sequences
-on the following lines. These files are pretty long, so let’s look at just the beginning of each one using the <code class="docutils literal notranslate"><span class="pre">head</span></code> command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>*.dat
+<p>But this doesn’t work the way we want! This command searches all the files matching <code class="docutils literal notranslate"><span class="pre">*_island.csv</span></code> and outputs all the matching lines together, then counts the total. It’s the same as if we’d done:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>grep<span class="w"> </span>female<span class="w"> </span>data.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<span class="w">     </span><span class="m">165</span>
 </pre></div>
 </div>
-<p>We would like to print out the classification for each species, which is given
-on the second line of each file. To do this, we can combine the <code class="docutils literal notranslate"><span class="pre">head</span></code> command
-with the <code class="docutils literal notranslate"><span class="pre">tail</span></code> command, which works like head except it shows lines from the
-bottom of it’s input. For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n 2 minotaur.dat
-TCCAGTCCCA
-GCCTTCACGG
+<p>We get the total number of female penguins across all islands, but we don’t know how many are on each individual island.</p>
+<p>To count the female penguins on each island separately, we need to run the command once for each file. We could do this manually:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>grep<span class="w"> </span>female<span class="w"> </span>biscoe_island.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<span class="w">      </span><span class="m">80</span>
+$<span class="w"> </span>grep<span class="w"> </span>female<span class="w"> </span>dream_island.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<span class="w">      </span><span class="m">61</span>
+$<span class="w"> </span>grep<span class="w"> </span>female<span class="w"> </span>torgersen_island.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<span class="w">      </span><span class="m">24</span>
 </pre></div>
 </div>
-<p>We get just the last two lines of the file, which are DNA sequences.</p>
-<p>To get the classification for a file, we need to execute the command <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">-n</span> <span class="pre">2</span></code>
-to get the first two lines, and pipe this to <code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">1</span></code> to get the last line of
-those two (i.e. the second line, which we know is the classification in each
-file).</p>
-<p>For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n 2 minotaur.dat | tail -n 1
-CLASSIFICATION: bos hominus
-</pre></div>
-</div>
-<p>But we want to do this on every file in the directory all at once, not one at at
-time. We’ll use a loop to solve this problem, but first let’s look at the
-general form of a loop, using the pseudo-code below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The word &quot;for&quot; indicates the start of a &quot;For-loop&quot; command</span>
+<p>But this is tedious and error-prone, especially if we had many more files. Instead, we can use a <strong>loop</strong> to automate this process.</p>
+</section>
+<section id="the-general-form-of-a-loop">
+<h2>The general form of a loop<a class="headerlink" href="#the-general-form-of-a-loop" title="Permalink to this heading">#</a></h2>
+<p>Here’s the general form of a loop, using pseudo-code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The word &quot;for&quot; indicates the start of a &quot;for loop&quot;</span>
 <span class="k">for</span><span class="w"> </span>thing<span class="w"> </span><span class="k">in</span><span class="w"> </span>list_of_things
-<span class="c1">#The word &quot;do&quot; indicates the start of job execution list</span>
+<span class="c1">#The word &quot;do&quot; indicates the start of the &quot;loop body&quot;, which is the list of commands to be executed for each item in the list</span>
 <span class="k">do</span>
 <span class="w">    </span><span class="c1"># Indentation within the loop is not required, but aids legibility</span>
-<span class="w">    </span>operation_using/command<span class="w"> </span><span class="nv">$thing</span>
+<span class="w">    </span>command1<span class="w"> </span><span class="nv">$thing</span>
+<span class="w">    </span>command2<span class="w"> </span><span class="nv">$thing</span>
+<span class="w">    </span>...
 <span class="c1"># The word &quot;done&quot; indicates the end of a loop</span>
 <span class="k">done</span>
 </pre></div>
 </div>
-<p>and we can apply this to our example like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.dat
-&gt;<span class="w"> </span><span class="k">do</span>
-&gt;<span class="w">     </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$filename</span>
-&gt;<span class="w">     </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">$filename</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
-&gt;<span class="w"> </span><span class="k">done</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">basilisk.dat</span>
-<span class="go">CLASSIFICATION: basiliscus vulgaris</span>
-<span class="go">minotaur.dat</span>
-<span class="go">CLASSIFICATION: bos hominus</span>
-<span class="go">unicorn.dat</span>
-<span class="go">CLASSIFICATION: equus monoceros</span>
-</pre></div>
-</div>
-<p>When the shell sees the keyword <code class="docutils literal notranslate"><span class="pre">for</span></code>, it knows to repeat a command (or group of commands) once for each item in a list. Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the variable, and the commands inside the loop are executed, before moving on to the next item in the list. Inside the loop, we get the variable’s value by putting <code class="docutils literal notranslate"><span class="pre">$</span></code> in front of it. The <code class="docutils literal notranslate"><span class="pre">$</span></code> tells the shell to treat something as a variable name and substitute its value in its place, rather than treat it as text or a command.</p>
-<p>In this example, the list is three filenames: <code class="docutils literal notranslate"><span class="pre">basilisk.dat</span></code>, <code class="docutils literal notranslate"><span class="pre">minotaur.dat</span></code>, and <code class="docutils literal notranslate"><span class="pre">unicorn.dat</span></code>. Each time the loop iterates, we first use <code class="docutils literal notranslate"><span class="pre">echo</span></code> to print the value that the variable <code class="docutils literal notranslate"><span class="pre">$filename</span></code> currently holds. This is  not necessary for the result, but helpful for us here to have an easier time to follow along. Next, we run the <code class="docutils literal notranslate"><span class="pre">head</span></code> command on the file currently referred to by <code class="docutils literal notranslate"><span class="pre">$filename</span></code>.</p>
-<ul class="simple">
-<li><p>The first time through the loop, <code class="docutils literal notranslate"><span class="pre">$filename</span></code> is <code class="docutils literal notranslate"><span class="pre">basilisk.dat</span></code>. The interpreter runs the command head on <code class="docutils literal notranslate"><span class="pre">basilisk.dat</span></code> and pipes the first two lines to the <code class="docutils literal notranslate"><span class="pre">tail</span></code> command, which then prints the second line of <code class="docutils literal notranslate"><span class="pre">basilisk.dat</span></code>.</p></li>
-<li><p>For the second iteration, <code class="docutils literal notranslate"><span class="pre">$filename</span></code> becomes <code class="docutils literal notranslate"><span class="pre">minotaur.dat</span></code>. This time, the shell runs <code class="docutils literal notranslate"><span class="pre">head</span></code> on <code class="docutils literal notranslate"><span class="pre">minotaur.dat</span></code> and pipes the first two lines to the <code class="docutils literal notranslate"><span class="pre">tail</span></code> command, which then prints the second line of <code class="docutils literal notranslate"><span class="pre">minotaur.dat</span></code>.</p></li>
-<li><p>For the third iteration, <code class="docutils literal notranslate"><span class="pre">$filename</span></code> becomes <code class="docutils literal notranslate"><span class="pre">unicorn.dat</span></code>, so the shell runs the <code class="docutils literal notranslate"><span class="pre">head</span></code> command on that file, and <code class="docutils literal notranslate"><span class="pre">tail</span></code> on the output of that.</p></li>
-</ul>
-<p>Since the list was only three items, the shell exits the loop after this.</p>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Write your own loop</p>
-<p>How would you write a loop that uses the <code class="docutils literal notranslate"><span class="pre">echo</span></code> command to print all 10 numbers from 0 to 9?</p>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>number<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span>
-&gt;<span class="w"> </span><span class="k">do</span>
-&gt;<span class="w">     </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$number</span>
-&gt;<span class="w"> </span><span class="k">done</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Variables in loops</p>
-<p>What is the output of the following code? Why?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>number<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">9</span>
-&gt;<span class="w"> </span><span class="k">do</span>
-&gt;<span class="w">     </span><span class="nb">echo</span><span class="w"> </span>number
-&gt;<span class="w"> </span><span class="k">done</span>
-</pre></div>
-</div>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">number</span>
-<span class="go">number</span>
-<span class="go">number</span>
-<span class="go">number</span>
-<span class="go">number</span>
-<span class="go">number</span>
-<span class="go">number</span>
-<span class="go">number</span>
-<span class="go">number</span>
-<span class="go">number</span>
-</pre></div>
-</div>
-<p>Becuase we forgot to use the <code class="docutils literal notranslate"><span class="pre">$</span></code> to tell the shell to treat <code class="docutils literal notranslate"><span class="pre">number</span></code> as a variable name, the shell will print   the literal text <code class="docutils literal notranslate"><span class="pre">number</span></code> 10 times.</p>
-</div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: more variables in Loops</p>
-<p>This exercise uses the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/alkanes</span></code> directory again. Start by changing into this directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/Downloads/shell-lesson-data/alkanes
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*.pdb</span></code> gives the following output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls *.pdb
-cubane.pdb
-ethane.pdb
-methane.pdb
-octane.pdb
-pentane.pdb
-</pre></div>
-</div>
-<p>What is the output of the following code?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>datafile<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.pdb
-&gt;<span class="w"> </span><span class="k">do</span>
-&gt;<span class="w">     </span>ls<span class="w"> </span>*.pdb
-&gt;<span class="w"> </span><span class="k">done</span>
-</pre></div>
-</div>
-<p>What is the output of the following code?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>datafile<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.pdb
-&gt;<span class="w"> </span><span class="k">do</span>
-&gt;<span class="w">     </span>ls<span class="w"> </span><span class="nv">$datafile</span>
-&gt;<span class="w"> </span><span class="k">done</span>
-</pre></div>
-</div>
-<p>Why do these two loops give different outputs?</p>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Limiting Sets of Files</p>
-<p>What is the output of running the following loop in the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/alkanes</span></code> directory?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>c*
-&gt;<span class="w"> </span><span class="k">do</span>
-&gt;<span class="w">     </span>ls<span class="w"> </span><span class="nv">$filename</span>
-&gt;<span class="w"> </span><span class="k">done</span>
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>No files are listed.</p></li>
-<li><p>All files are listed.</p></li>
-<li><p>Only <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code> and <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code> are listed.</p></li>
-<li><p>Only <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code> is listed.</p></li>
-</ol>
-<div class="dropdown admonition">
-<p class="admonition-title">Solution</p>
-<p><code class="docutils literal notranslate"><span class="pre">4.</span></code> is the correct answer. <code class="docutils literal notranslate"><span class="pre">*</span></code> matches zero or more characters, so any file name starting with
-the letter c, followed by zero or more other characters will be matched.</p>
-</div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Saving to a File in a Loop - Part One</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/alkanes</span></code> directory, what is the effect
-of this loop?</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.pdb
+</section>
+<section id="using-a-loop-to-count-female-penguins">
+<h2>Using a loop to count female penguins<a class="headerlink" href="#using-a-loop-to-count-female-penguins" title="Permalink to this heading">#</a></h2>
+<p>Let’s apply this to our problem of counting female penguins on each island:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>*_island.csv
 <span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$file</span>
-<span class="w">    </span>cat<span class="w"> </span><span class="nv">$file</span><span class="w"> </span>&gt;<span class="w"> </span>test.pdb
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$filename</span>
+<span class="w">    </span>grep<span class="w"> </span>female<span class="w"> </span><span class="nv">$filename</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
 <span class="k">done</span>
 </pre></div>
 </div>
-<ol class="arabic simple">
-<li><p>Prints <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code> and
-<code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code>, and the text from <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> will be saved to a file called <code class="docutils literal notranslate"><span class="pre">test.pdb</span></code>.</p></li>
-<li><p>Prints <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, and <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, and the text from all three files
-would be concatenated and saved to a file called <code class="docutils literal notranslate"><span class="pre">test.pdb</span></code>.</p></li>
-<li><p>Prints <code class="docutils literal notranslate"><span class="pre">cubane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">ethane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">methane.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">octane.pdb</span></code>, and <code class="docutils literal notranslate"><span class="pre">pentane.pdb</span></code>,
-and the text from <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> will be saved to a file called <code class="docutils literal notranslate"><span class="pre">test.pdb</span></code>.</p></li>
-<li><p>None of the above.</p></li>
-</ol>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">biscoe_island.csv</span>
+<span class="go">      80</span>
+<span class="go">dream_island.csv</span>
+<span class="go">      61</span>
+<span class="go">torgersen_island.csv</span>
+<span class="go">      24</span>
+</pre></div>
+</div>
+<p>When the shell sees the keyword <code class="docutils literal notranslate"><span class="pre">for</span></code>, it knows to repeat a command (or group of commands) once for each item in a list. Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the variable, and the commands inside the loop are executed, before moving on to the next item in the list. Inside the loop, we get the variable’s value by putting <code class="docutils literal notranslate"><span class="pre">$</span></code> in front of it. The <code class="docutils literal notranslate"><span class="pre">$</span></code> tells the shell to treat something as a variable name and substitute its value in its place, rather than treat it as text or a command.</p>
+<p>In this example, the list is three filenames: <code class="docutils literal notranslate"><span class="pre">biscoe_island.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">dream_island.csv</span></code>, and <code class="docutils literal notranslate"><span class="pre">torgersen_island.csv</span></code>. Each time the loop iterates, we first use <code class="docutils literal notranslate"><span class="pre">echo</span></code> to print the value that the variable <code class="docutils literal notranslate"><span class="pre">$filename</span></code> currently holds. This is not necessary for the result, but helpful for us here to have an easier time to follow along. Next, we run the <code class="docutils literal notranslate"><span class="pre">grep</span></code> command on the file currently referred to by <code class="docutils literal notranslate"><span class="pre">$filename</span></code>, pipe it to <code class="docutils literal notranslate"><span class="pre">wc</span> <span class="pre">-l</span></code> to count the lines.</p>
+<ul class="simple">
+<li><p>The first time through the loop, <code class="docutils literal notranslate"><span class="pre">$filename</span></code> is <code class="docutils literal notranslate"><span class="pre">biscoe_island.csv</span></code>. The interpreter runs <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">female</span> <span class="pre">biscoe_island.csv</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code>, which counts the female penguins on Biscoe island (80).</p></li>
+<li><p>For the second iteration, <code class="docutils literal notranslate"><span class="pre">$filename</span></code> becomes <code class="docutils literal notranslate"><span class="pre">dream_island.csv</span></code>. This time, the shell runs <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">female</span> <span class="pre">dream_island.csv</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code>, which counts the female penguins on Dream island (61).</p></li>
+<li><p>For the third iteration, <code class="docutils literal notranslate"><span class="pre">$filename</span></code> becomes <code class="docutils literal notranslate"><span class="pre">torgersen_island.csv</span></code>, so the shell runs <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">female</span> <span class="pre">torgersen_island.csv</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code>, which counts the female penguins on Torgersen island (24).</p></li>
+</ul>
+<p>Since the list was only three items, the shell exits the loop after this.</p>
+<div class="tip admonition">
+<p class="admonition-title">Challenge: Counting both female and male penguins</p>
+<p>Write a loop that outputs both the number of female penguins and the number of male penguins on each island.</p>
+<p><em>Hint</em>: You can include as many commands as you like inside a loop (between <code class="docutils literal notranslate"><span class="pre">do</span></code> and <code class="docutils literal notranslate"><span class="pre">done</span></code>).</p>
+<p><em>Hint</em>: Remember from the pipes lesson that <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">male</span></code> will match both “male” and “female” (since “female” contains “male”), so you’ll need to use <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-v</span> <span class="pre">female</span></code> to exclude female penguins and count only the males.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Solution</p>
-<p><code class="docutils literal notranslate"><span class="pre">1.</span></code> is the correct answer. The text from each file in turn gets written to the <code class="docutils literal notranslate"><span class="pre">test.pdb</span></code> file.
-However, the file gets overwritten on each loop iteration, so the final content of
-<code class="docutils literal notranslate"><span class="pre">test.pdb</span></code> is the text from the <code class="docutils literal notranslate"><span class="pre">propane.pdb</span></code> file.</p>
-</div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Challenge: Spaces in Names</p>
-<p>Spaces are used to separate the elements of the list
-that we are going to loop over. If one of those elements
-contains a space character, we need to surround it with
-quotes, and do the same thing to our loop variable.
-Suppose our data files are named:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>red<span class="w"> </span>dragon.dat
-purple<span class="w"> </span>unicorn.dat
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>*island.csv
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$filename</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;- Female penguins:&quot;</span>
+<span class="w">    </span>grep<span class="w"> </span>female<span class="w"> </span><span class="nv">$filename</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;- Male penguins:&quot;</span>
+<span class="w">    </span>grep<span class="w"> </span>-v<span class="w"> </span>female<span class="w"> </span><span class="nv">$filename</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<span class="k">done</span>
 </pre></div>
 </div>
-<p>To loop over these files, we would need to add double quotes like so:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;red dragon.dat&quot;</span><span class="w"> </span><span class="s2">&quot;purple unicorn.dat&quot;</span>
-&gt;<span class="w"> </span><span class="k">do</span>
-&gt;<span class="w">     </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$filename</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span>
-&gt;<span class="w"> </span><span class="k">done</span>
-</pre></div>
-</div>
-<p>It is simpler to avoid using spaces (or other special characters) in filenames.</p>
-<p>The files above don’t exist, so if we run the above code, the <code class="docutils literal notranslate"><span class="pre">head</span></code> command will be unable
-to find them; however, the error message returned will show the name of the files it is
-expecting:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span><span class="p">:</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="s1">&#39;red dragon.dat&#39;</span> <span class="k">for</span> <span class="n">reading</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
-<span class="n">head</span><span class="p">:</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="s1">&#39;purple unicorn.dat&#39;</span> <span class="k">for</span> <span class="n">reading</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
-</pre></div>
-</div>
-<p>Try removing the quotes around <code class="docutils literal notranslate"><span class="pre">$filename</span></code> in the loop above to see the effect of the quote
-marks on spaces. Note that we get a result from the loop command for unicorn.dat
-when we run this code in the <code class="docutils literal notranslate"><span class="pre">creatures</span></code> directory:</p>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">head: cannot open &#39;red&#39; for reading: No such file or directory</span>
-<span class="go">head: cannot open &#39;dragon.dat&#39; for reading: No such file or directory</span>
-<span class="go">head: cannot open &#39;purple&#39; for reading: No such file or directory</span>
-<span class="go">CGGTACCGAA</span>
-<span class="go">AAGGGTCGCG</span>
-<span class="go">CAAGTGTTCC</span>
-<span class="go">...</span>
+<p>This will output something like:</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">biscoe_island.csv</span>
+<span class="go">- Female penguins:</span>
+<span class="go">      80</span>
+<span class="go">- Male penguins:</span>
+<span class="go">      83</span>
+<span class="go">dream_island.csv</span>
+<span class="go">- Female penguins:</span>
+<span class="go">      61</span>
+<span class="go">- Male penguins:</span>
+<span class="go">      62</span>
+<span class="go">torgersen_island.csv</span>
+<span class="go">- Female penguins:</span>
+<span class="go">      24</span>
+<span class="go">- Male penguins:</span>
+<span class="go">      23</span>
 </pre></div>
 </div>
 </div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -631,20 +522,20 @@ when we run this code in the <code class="docutils literal notranslate"><span cl
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pipes.html"
+       href="utilities.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Pipes and redirection</p>
+        <p class="prev-next-title">Shell scripts</p>
       </div>
     </a>
     <a class="right-next"
-       href="utilities.html"
+       href="conclusion.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Shell scripts</p>
+        <p class="prev-next-title">Workshop Conclusion</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -654,6 +545,22 @@ when we run this code in the <code class="docutils literal notranslate"><span cl
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-motivating-example">A motivating example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-general-form-of-a-loop">The general form of a loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-loop-to-count-female-penguins">Using a loop to count female penguins</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

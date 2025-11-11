@@ -6,296 +6,137 @@ As such they are key to productivity improvements through automation.
 Similar to wildcards and tab completion, using loops also reduces the
 amount of typing required (and hence reduces the number of typing mistakes).
 
-Suppose we have several hundred genome data files named `basilisk.dat`, `minotaur.dat`,
-and `unicorn.dat`. For this example, we'll use the `creatures`
-directory which only has three example files, but the principles can be
-applied to many many more files at once.
+## A motivating example
 
-Let's change to that directory:
+Let's say we want to count the number of female penguins on each island. We're working in the `analysis` directory, and we have separate files for each island: `biscoe_island.csv`, `dream_island.csv`, and `torgersen_island.csv`.
 
-```
-cd ~/Downloads/shell-lesson-data/creatures
-```
+Let's make sure we're in the right directory:
 
-and check what's there:
-
-```
+```bash
+$ cd ~/Downloads/shell-lesson-data/analysis
 $ ls
-basilisk.dat minotaur.dat unicorn.dat
+biscoe_island.csv  data.csv  dream_island.csv  torgersen_island.csv
 ```
 
-The structure of these files is the same: the common name, classification,
-and updated date are presented on the first three lines, with DNA sequences
-on the following lines. These files are pretty long, so let's look at just the beginning of each one using the `head` command:
+You might think we could use a wildcard to search all the island files at once:
 
-~~~bash
-head -n 5 *.dat
-~~~
-
-We would like to print out the classification for each species, which is given
-on the second line of each file. To do this, we can combine the `head` command
-with the `tail` command, which works like head except it shows lines from the
-bottom of it's input. For example:
-
-```
-$ tail -n 2 minotaur.dat
-TCCAGTCCCA
-GCCTTCACGG
+```bash
+$ grep female *_island.csv | wc -l
+     165
 ```
 
-We get just the last two lines of the file, which are DNA sequences.
+But this doesn't work the way we want! This command searches all the files matching `*_island.csv` and outputs all the matching lines together, then counts the total. It's the same as if we'd done:
 
-To get the classification for a file, we need to execute the command `head -n 2`
-to get the first two lines, and pipe this to `tail -n 1` to get the last line of
-those two (i.e. the second line, which we know is the classification in each
-file).
-
-For example:
-
-
-```
-$ head -n 2 minotaur.dat | tail -n 1
-CLASSIFICATION: bos hominus
+```bash
+$ grep female data.csv | wc -l
+     165
 ```
 
-But we want to do this on every file in the directory all at once, not one at at
-time. We'll use a loop to solve this problem, but first let's look at the
-general form of a loop, using the pseudo-code below:
+We get the total number of female penguins across all islands, but we don't know how many are on each individual island.
 
-~~~bash
-# The word "for" indicates the start of a "For-loop" command
+To count the female penguins on each island separately, we need to run the command once for each file. We could do this manually:
+
+```bash
+$ grep female biscoe_island.csv | wc -l
+      80
+$ grep female dream_island.csv | wc -l
+      61
+$ grep female torgersen_island.csv | wc -l
+      24
+```
+
+But this is tedious and error-prone, especially if we had many more files. Instead, we can use a **loop** to automate this process.
+
+## The general form of a loop
+
+Here's the general form of a loop, using pseudo-code:
+
+```bash
+# The word "for" indicates the start of a "for loop"
 for thing in list_of_things
-#The word "do" indicates the start of job execution list
+#The word "do" indicates the start of the "loop body", which is the list of commands to be executed for each item in the list
 do
     # Indentation within the loop is not required, but aids legibility
-    operation_using/command $thing
+    command1 $thing
+    command2 $thing
+    ...
 # The word "done" indicates the end of a loop
 done
-~~~
+```
 
-and we can apply this to our example like this:
+## Using a loop to count female penguins
 
-~~~bash
-$ for filename in *.dat
-> do
->     echo $filename
->     head -n 2 $filename | tail -n 1
-> done
-~~~
+Let's apply this to our problem of counting female penguins on each island:
 
-~~~output
-basilisk.dat
-CLASSIFICATION: basiliscus vulgaris
-minotaur.dat
-CLASSIFICATION: bos hominus
-unicorn.dat
-CLASSIFICATION: equus monoceros
-~~~
+```bash
+$ for filename in *_island.csv
+do
+    echo $filename
+    grep female $filename | wc -l
+done
+```
+
+```output
+biscoe_island.csv
+      80
+dream_island.csv
+      61
+torgersen_island.csv
+      24
+```
 
 When the shell sees the keyword `for`, it knows to repeat a command (or group of commands) once for each item in a list. Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the variable, and the commands inside the loop are executed, before moving on to the next item in the list. Inside the loop, we get the variable's value by putting `$` in front of it. The `$` tells the shell to treat something as a variable name and substitute its value in its place, rather than treat it as text or a command.
 
-In this example, the list is three filenames: `basilisk.dat`, `minotaur.dat`, and `unicorn.dat`. Each time the loop iterates, we first use `echo` to print the value that the variable `$filename` currently holds. This is  not necessary for the result, but helpful for us here to have an easier time to follow along. Next, we run the `head` command on the file currently referred to by `$filename`.
+In this example, the list is three filenames: `biscoe_island.csv`, `dream_island.csv`, and `torgersen_island.csv`. Each time the loop iterates, we first use `echo` to print the value that the variable `$filename` currently holds. This is not necessary for the result, but helpful for us here to have an easier time to follow along. Next, we run the `grep` command on the file currently referred to by `$filename`, pipe it to `wc -l` to count the lines.
 
-- The first time through the loop, `$filename` is `basilisk.dat`. The interpreter runs the command head on `basilisk.dat` and pipes the first two lines to the `tail` command, which then prints the second line of `basilisk.dat`.
-- For the second iteration, `$filename` becomes `minotaur.dat`. This time, the shell runs `head` on `minotaur.dat` and pipes the first two lines to the `tail` command, which then prints the second line of `minotaur.dat`.
-- For the third iteration, `$filename` becomes `unicorn.dat`, so the shell runs the `head` command on that file, and `tail` on the output of that.
+- The first time through the loop, `$filename` is `biscoe_island.csv`. The interpreter runs `grep female biscoe_island.csv | wc -l`, which counts the female penguins on Biscoe island (80).
+- For the second iteration, `$filename` becomes `dream_island.csv`. This time, the shell runs `grep female dream_island.csv | wc -l`, which counts the female penguins on Dream island (61).
+- For the third iteration, `$filename` becomes `torgersen_island.csv`, so the shell runs `grep female torgersen_island.csv | wc -l`, which counts the female penguins on Torgersen island (24).
 
 Since the list was only three items, the shell exits the loop after this.
 
-```{admonition} Challenge: Write your own loop
+```{admonition} Challenge: Counting both female and male penguins
 :class: tip
 
-How would you write a loop that uses the `echo` command to print all 10 numbers from 0 to 9?
+Write a loop that outputs both the number of female penguins and the number of male penguins on each island.
+
+_Hint_: You can include as many commands as you like inside a loop (between `do` and `done`).
+
+_Hint_: Remember from the pipes lesson that `grep male` will match both "male" and "female" (since "female" contains "male"), so you'll need to use `grep -v female` to exclude female penguins and count only the males.
 
 :::{admonition} Solution
 :class: dropdown
 
 ~~~bash
-$ for number in 0 1 2 3 4 5 6 7 8 9
-> do
->     echo $number
-> done
-~~~
-
-:::
-```
-
-```{admonition} Challenge: Variables in loops
-:class: tip
-
-What is the output of the following code? Why?
-
-~~~bash
-$ for number in 0 1 2 3 4 5 6 7 8 9
-> do
->     echo number
-> done
-~~~
-
-:::{admonition} Solution
-:class: dropdown
-
-~~~output
-number
-number
-number
-number
-number
-number
-number
-number
-number
-number
-~~~
-
-Becuase we forgot to use the `$` to tell the shell to treat `number` as a variable name, the shell will print   the literal text `number` 10 times.
-```
-
-```{admonition} Challenge: more variables in Loops
-:class: tip
-
-This exercise uses the `shell-lesson-data/alkanes` directory again. Start by changing into this directory:
-
-~~~bash
-cd ~/Downloads/shell-lesson-data/alkanes
-~~~
-
-`ls *.pdb` gives the following output:
-
-~~~
-$ ls *.pdb
-cubane.pdb
-ethane.pdb
-methane.pdb
-octane.pdb
-pentane.pdb
-~~~
-
-What is the output of the following code?
-
-~~~bash
-$ for datafile in *.pdb
-> do
->     ls *.pdb
-> done
-~~~
-
-What is the output of the following code?
-
-~~~bash
-$ for datafile in *.pdb
-> do
->     ls $datafile
-> done
-~~~
-
-Why do these two loops give different outputs?
-
-```
-
-```{admonition} Challenge: Limiting Sets of Files
-:class: tip
-
-What is the output of running the following loop in the `shell-lesson-data/alkanes` directory?
-
-~~~bash
-$ for filename in c*
-> do
->     ls $filename
-> done
-~~~
-
-1. No files are listed.
-2. All files are listed.
-3. Only `cubane.pdb`, `octane.pdb` and `pentane.pdb` are listed.
-4. Only `cubane.pdb` is listed.
-
-:::{admonition} Solution
-:class: dropdown
-
-`4.` is the correct answer. `*` matches zero or more characters, so any file name starting with
-the letter c, followed by zero or more other characters will be matched.
-
-:::
-```
-
-```{admonition} Challenge: Saving to a File in a Loop - Part One
-:class: tip
-
-In the `shell-lesson-data/alkanes` directory, what is the effect
-of this loop?
-
-~~~bash
-for file in *.pdb
+for filename in *island.csv
 do
-    echo $file
-    cat $file > test.pdb
+    echo $filename
+    echo "- Female penguins:"
+    grep female $filename | wc -l
+    echo "- Male penguins:"
+    grep -v female $filename | wc -l
 done
 ~~~
 
-1. Prints `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, `pentane.pdb` and
-  `propane.pdb`, and the text from `propane.pdb` will be saved to a file called `test.pdb`.
-2. Prints `cubane.pdb`, `ethane.pdb`, and `methane.pdb`, and the text from all three files
-  would be concatenated and saved to a file called `test.pdb`.
-3. Prints `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, and `pentane.pdb`,
-  and the text from `propane.pdb` will be saved to a file called `test.pdb`.
-4. None of the above.
+This will output something like:
 
-:::{admonition} Solution
-:class: dropdown
-
-`1.` is the correct answer. The text from each file in turn gets written to the `test.pdb` file.
-   However, the file gets overwritten on each loop iteration, so the final content of
-  `test.pdb` is the text from the `propane.pdb` file.
+~~~output
+biscoe_island.csv
+- Female penguins:
+      80
+- Male penguins:
+      83
+dream_island.csv
+- Female penguins:
+      61
+- Male penguins:
+      62
+torgersen_island.csv
+- Female penguins:
+      24
+- Male penguins:
+      23
+~~~
 
 :::
 ```
-
-```{admonition} Challenge: Spaces in Names
-:class: tip
-
-Spaces are used to separate the elements of the list
-that we are going to loop over. If one of those elements
-contains a space character, we need to surround it with
-quotes, and do the same thing to our loop variable.
-Suppose our data files are named:
-
-~~~bash
-red dragon.dat
-purple unicorn.dat
-~~~
-
-To loop over these files, we would need to add double quotes like so:
-
-~~~bash
-$ for filename in "red dragon.dat" "purple unicorn.dat"
-> do
->     head -n 100 "$filename" | tail -n 20
-> done
-~~~
-
-It is simpler to avoid using spaces (or other special characters) in filenames.
-
-The files above don't exist, so if we run the above code, the `head` command will be unable
-to find them; however, the error message returned will show the name of the files it is
-expecting:
-
-~~~
-head: cannot open 'red dragon.dat' for reading: No such file or directory
-head: cannot open 'purple unicorn.dat' for reading: No such file or directory
-~~~
-
-Try removing the quotes around `$filename` in the loop above to see the effect of the quote
-marks on spaces. Note that we get a result from the loop command for unicorn.dat
-when we run this code in the `creatures` directory:
-
-```output
-head: cannot open 'red' for reading: No such file or directory
-head: cannot open 'dragon.dat' for reading: No such file or directory
-head: cannot open 'purple' for reading: No such file or directory
-CGGTACCGAA
-AAGGGTCGCG
-CAAGTGTTCC
-...
-```
-
