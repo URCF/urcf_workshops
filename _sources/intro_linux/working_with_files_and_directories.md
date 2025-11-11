@@ -1,8 +1,8 @@
 # Working with files and directories
 
-We now know how to explore files and directories, but how do we create them?
+We now know how to explore files and directories, but how do we work with them? Moving, copying, creating, etc.
 
-Let's change into the `shell-lesson-data` directory that you downloaded earlier. Specifically, the "writing" directory:
+Let's change into the `shell-lesson-data` directory that you downloaded earlier, where there's some example data we'll work with:
 
 ```
 $ cd ~/Downloads/shell-lesson-data/
@@ -77,7 +77,7 @@ $
 
 You can see this file is pretty big! There's so many lines that they don't all fit on the screen at once.
 
-We can see just the first few lines using the `head` command. `head` accepts an optional `-n` argument to specify the number of lines to show. Let's look at the first 5 lines:
+We can see just the first few lines using the `head` command. `head` accepts a `-n` option to specify the number of lines to show (if you don't pass `-n`, it defaults to 10 lines). Let's look at the first 5 lines:
 
 ```
 $ head -n 5 penguins.csv
@@ -87,22 +87,6 @@ Adelie,Torgersen,39.5,17.4,186,3800,female,2007
 Adelie,Torgersen,40.3,18,195,3250,female,2007
 Adelie,Torgersen,36.7,19.3,193,3450,female,2007
 ```
-
-We can see the first line is the column headers, and the rest are the data.
-
-The most convenient way to view long files like this is to use what's called a
-"pager", which lets you scroll through the file one "page" at a time. The most
-common pager is `less`, so named because it let's you see less of the file at once.
-
-```
-$ less penguins.csv
-```
-
-Now you're in the pager view. Use `↑` and `↓` to move
-line-by-line, or try `b` and `Spacebar` to skip up and down by a full page. To
-quit and return to the shell prompt, press `q`.
-
-## Understanding the penguins data
 
 The dataset we're looking at is called the ["Palmer Penguins"
 dataset](https://allisonhorst.github.io/palmerpenguins/). It contains data on penguins
@@ -138,11 +122,23 @@ Penguin bill measurements.
 </div>
 </div>
 
+The most convenient way to view long files like this is to use what's called a
+"pager", which lets you scroll through the file one "page" at a time. The most
+common pager is `less`, so named because it let's you see less of the file at once.
+
+```
+$ less penguins.csv
+```
+
+Now you're in the pager view. Use `↑` and `↓` to move
+line-by-line, or try `b` and `Spacebar` to skip up and down by a full page. To
+quit and return to the shell prompt, press `q`.
+
 ## Copying files
 
 We're going to do some analysis on the penguins data. Let's make a copy of it, in case we mess something up and want to go back to the original later.
 
-To do this, we use the `cp` command. `cp` takes two arguments: the source file and the destination file.
+To do this, we use the `cp` command. `cp` takes two arguments: the source file that we want to copy, and the destination filename where we want the copy to end up.
 
 ```
 cp penguins.csv penguins2.csv

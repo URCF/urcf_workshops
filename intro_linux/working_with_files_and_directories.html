@@ -360,7 +360,6 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-a-file">Viewing a file</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-penguins-data">Understanding the penguins data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-files">Copying files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-directories">Creating directories</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-and-renaming-files">Moving and renaming files</a></li>
@@ -378,8 +377,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="working-with-files-and-directories">
 <h1>Working with files and directories<a class="headerlink" href="#working-with-files-and-directories" title="Permalink to this heading">#</a></h1>
-<p>We now know how to explore files and directories, but how do we create them?</p>
-<p>Let’s change into the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory that you downloaded earlier. Specifically, the “writing” directory:</p>
+<p>We now know how to explore files and directories, but how do we work with them? Moving, copying, creating, etc.</p>
+<p>Let’s change into the <code class="docutils literal notranslate"><span class="pre">shell-lesson-data</span></code> directory that you downloaded earlier, where there’s some example data we’ll work with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Downloads/shell-lesson-data/
 </pre></div>
 </div>
@@ -442,7 +441,7 @@ $
 </pre></div>
 </div>
 <p>You can see this file is pretty big! There’s so many lines that they don’t all fit on the screen at once.</p>
-<p>We can see just the first few lines using the <code class="docutils literal notranslate"><span class="pre">head</span></code> command. <code class="docutils literal notranslate"><span class="pre">head</span></code> accepts an optional <code class="docutils literal notranslate"><span class="pre">-n</span></code> argument to specify the number of lines to show. Let’s look at the first 5 lines:</p>
+<p>We can see just the first few lines using the <code class="docutils literal notranslate"><span class="pre">head</span></code> command. <code class="docutils literal notranslate"><span class="pre">head</span></code> accepts a <code class="docutils literal notranslate"><span class="pre">-n</span></code> option to specify the number of lines to show (if you don’t pass <code class="docutils literal notranslate"><span class="pre">-n</span></code>, it defaults to 10 lines). Let’s look at the first 5 lines:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n 5 penguins.csv
 species,island,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -451,19 +450,6 @@ Adelie,Torgersen,40.3,18,195,3250,female,2007
 Adelie,Torgersen,36.7,19.3,193,3450,female,2007
 </pre></div>
 </div>
-<p>We can see the first line is the column headers, and the rest are the data.</p>
-<p>The most convenient way to view long files like this is to use what’s called a
-“pager”, which lets you scroll through the file one “page” at a time. The most
-common pager is <code class="docutils literal notranslate"><span class="pre">less</span></code>, so named because it let’s you see less of the file at once.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ less penguins.csv
-</pre></div>
-</div>
-<p>Now you’re in the pager view. Use <code class="docutils literal notranslate"><span class="pre">↑</span></code> and <code class="docutils literal notranslate"><span class="pre">↓</span></code> to move
-line-by-line, or try <code class="docutils literal notranslate"><span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">Spacebar</span></code> to skip up and down by a full page. To
-quit and return to the shell prompt, press <code class="docutils literal notranslate"><span class="pre">q</span></code>.</p>
-</section>
-<section id="understanding-the-penguins-data">
-<h2>Understanding the penguins data<a class="headerlink" href="#understanding-the-penguins-data" title="Permalink to this heading">#</a></h2>
 <p>The dataset we’re looking at is called the <a class="reference external" href="https://allisonhorst.github.io/palmerpenguins/">“Palmer Penguins”
 dataset</a>. It contains data on penguins
 penguins sampled from three islands in the Palmer Archipelago, Antarctica between 2007 and 2009.</p>
@@ -489,11 +475,20 @@ and imported by many programs, especially spreadsheet software like Excel.</p>
 </figure>
 </div>
 </div>
+<p>The most convenient way to view long files like this is to use what’s called a
+“pager”, which lets you scroll through the file one “page” at a time. The most
+common pager is <code class="docutils literal notranslate"><span class="pre">less</span></code>, so named because it let’s you see less of the file at once.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ less penguins.csv
+</pre></div>
+</div>
+<p>Now you’re in the pager view. Use <code class="docutils literal notranslate"><span class="pre">↑</span></code> and <code class="docutils literal notranslate"><span class="pre">↓</span></code> to move
+line-by-line, or try <code class="docutils literal notranslate"><span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">Spacebar</span></code> to skip up and down by a full page. To
+quit and return to the shell prompt, press <code class="docutils literal notranslate"><span class="pre">q</span></code>.</p>
 </section>
 <section id="copying-files">
 <h2>Copying files<a class="headerlink" href="#copying-files" title="Permalink to this heading">#</a></h2>
 <p>We’re going to do some analysis on the penguins data. Let’s make a copy of it, in case we mess something up and want to go back to the original later.</p>
-<p>To do this, we use the <code class="docutils literal notranslate"><span class="pre">cp</span></code> command. <code class="docutils literal notranslate"><span class="pre">cp</span></code> takes two arguments: the source file and the destination file.</p>
+<p>To do this, we use the <code class="docutils literal notranslate"><span class="pre">cp</span></code> command. <code class="docutils literal notranslate"><span class="pre">cp</span></code> takes two arguments: the source file that we want to copy, and the destination filename where we want the copy to end up.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">penguins</span><span class="o">.</span><span class="n">csv</span> <span class="n">penguins2</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
 </div>
@@ -671,7 +666,6 @@ analysis     creatures    penguins.csv writing
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-a-file">Viewing a file</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-penguins-data">Understanding the penguins data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-files">Copying files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-directories">Creating directories</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-and-renaming-files">Moving and renaming files</a></li>
