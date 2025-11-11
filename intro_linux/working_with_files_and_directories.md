@@ -77,7 +77,7 @@ $
 
 You can see this file is pretty big! There's so many lines that they don't all fit on the screen at once.
 
-We can see just the first few lines using the `head` command. `head` accepts an optional `-n` argument to specify the number of lines to show. Let's look at the first 5 lines:
+We can see just the first few lines using the `head` command. `head` accepts a `-n` option to specify the number of lines to show (if you don't pass `-n`, it defaults to 10 lines). Let's look at the first 5 lines:
 
 ```
 $ head -n 5 penguins.csv
