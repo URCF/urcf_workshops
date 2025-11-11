@@ -13,8 +13,8 @@ parts:
       - file: intro_linux/file-system.md
       - file: intro_linux/working_with_files_and_directories.md
       - file: intro_linux/pipes.md
-      - file: intro_linux/loop.md
       - file: intro_linux/utilities.md
+      - file: intro_linux/loop.md
       - file: intro_linux/conclusion.md
 
     - file: intro_picotte/index.md
