@@ -1,24 +1,29 @@
-# Analyzing Traffic Data
+# Loading and analyzing data
 
-```{admonition} Objectives
-- Explain what a library is and what libraries are used for.
-- Import a Python library and use the functions it contains.
-- Read tabular data from a file into a program.
-- Select individual values from data.
-- Perform operations on arrays of data.
+Now that we've covered some Python basics and worked with a small amount of traffic data in a list, we'll learn how to work with the entire dataset—multiple days worth of traffic data. We're going to use professional-grade tools (NumPy) to analyze the entire dataset and answer bigger questions.
+
+## Data Format
+
+The data is stored in **comma-separated values** (CSV) format:
+
+- Each **row** represents one full day.
+- Each **column** represents an hour of the day (Hour 0 - 23).
+
+The first few rows of our data file look like this:
+
+```
+598,369,312,367,835,2726,5689,6990,5985,5309,4603,4884,5104,5178,5501,5713,6292,6057,4907,3503,3037,2822,1992,1166
+455,336,265,314,779,2571,5563,6676,5966,4832,4395,4411,4648,4602,5125,5502,5979,5663,4259,3069,2378,2030,1400,917
+1335,769,570,413,399,740,1420,2220,3479,4546,4579,4438,4623,4440,4495,4483,4591,4477,4221,3672,3015,2769,2875,1931
 ```
 
-```{admonition} Questions
-- How can I process tabular data files in Python?
-```
+Each number represents the number of vehicles that passed during that hour.
 
-## From One Day to Many
-
-Now that we've covered some Python basics, learned about lists and loops, and worked with a single day of traffic data, we'll learn how to work with the entire dataset—multiple days of traffic data. We're going to use professional-grade tools (NumPy) to analyze the entire dataset and answer bigger questions.
+For example, the first value, `598`, means that 598 vehicles passed from midnight to 1 AM on the first day. The next value, `369`, means that 369 vehicles passed from 1 AM to 2 AM on the first day, etc.
 
 ## Loading data into Python
 
-We have data for multiple days in a file called `traffic_data.txt`. Let's use the NumPy library to load all of it in a single command. We can do that using a **library** called [NumPy](https://numpy.org/doc/stable), which stands for "Numerical Python". Libraries are collections of Python code written by other people that you can install and use.
+To begin processing the traffic data, we need to load it into Python. We can do that using a *library* called [NumPy](https://numpy.org/doc/stable), which stands for “Numerical Python”. Libraries are collections of Python code written by other people that you can install and use.
 
 In general, you should use NumPy when you want to do fancy things with lots of numbers, especially if you have matrices or arrays. To tell Python that we'd like to start using NumPy, we need to **import** it[^installation]:
 
@@ -28,19 +33,20 @@ import numpy
 
 Importing a library is like getting a piece of lab equipment out of a storage locker and setting it up on the bench. Libraries provide additional functionality to Python, much like a new piece of equipment adds functionality to a lab space. Just like in the lab, importing too many libraries can sometimes complicate and slow down your programs - so we only import what we need for each program.
 
-Once we've imported the library, we can ask the library to read our data file for us:
+Once we've imported the library, we can ask the library to read our data file for us. The data is stored in a file called `traffic_data.txt`:
 
 ```python
 numpy.loadtxt('traffic_data.txt', delimiter=',')
 ```
 
 ```output
-array([[ 598.,  369.,  312., ..., 2822., 1992., 1166.],
-       [ 455.,  336.,  265., ..., 2030., 1400.,  917.],
-       [1335.,  769.,  570., ..., 2769., 2875., 1931.],
-       ...,
-       [1166.,  724.,  568., ..., 2579., 2552., 1952.],
-       [1090.,  735.,  537., ..., 2853., 3288., 2239.]])
+array([[ 598.,  369.,  312.,  367.,  835., 2726., 5689., 6990., 5985.,
+        5309., 4603., 4884., 5104., 5178., 5501., 5713., 6292., 6057.,
+        4907., 3503., 3037., 2822., 1992., 1166.],
+       [ 455.,  336.,  265.,  314.,  779., 2571., 5563., 6676., 5966.,
+        4832., 4395., 4411., 4648., 4602., 5125., 5502., 5979., 5663.,
+        4259., 3069., 2378., 2030., 1400.,  917.],
+...
 ```
 
 The expression `numpy.loadtxt(...)` is a **function call** that asks Python to run the **function** `loadtxt` of the `numpy` library. We use the dot notation (`.`) that we learned about with lists—here it tells Python to look inside the `numpy` library and find the `loadtxt` function. When you see `numpy.loadtxt`, you can read it as "the `loadtxt` function that belongs to `numpy`".
@@ -62,12 +68,26 @@ print(traffic_data)
 ```
 
 ```output
-[[ 598.  369.  312. ..., 2822. 1992. 1166.]
- [ 455.  336.  265. ..., 2030. 1400.  917.]
- [1335.  769.  570. ..., 2769. 2875. 1931.]
- ...,
- [1166.  724.  568. ..., 2579. 2552. 1952.]
- [1090.  735.  537. ..., 2853. 3288. 2239.]]
+[[ 598.  369.  312.  367.  835. 2726. 5689. 6990. 5985. 5309. 4603. 4884.
+  5104. 5178. 5501. 5713. 6292. 6057. 4907. 3503. 3037. 2822. 1992. 1166.]
+ [ 455.  336.  265.  314.  779. 2571. 5563. 6676. 5966. 4832. 4395. 4411.
+  4648. 4602. 5125. 5502. 5979. 5663. 4259. 3069. 2378. 2030. 1400.  917.]
+ [1335.  769.  570.  413.  399.  740. 1420. 2220. 3479. 4546. 4579. 4438.
+  4623. 4440. 4495. 4483. 4591. 4477. 4221. 3672. 3015. 2769. 2875. 1931.]
+ [ 500.  324.  257.  354.  769. 2769. 5789. 7055. 6408. 5254. 4547. 4784.
+  5015. 5057. 5430. 5813. 6496. 6429. 5142. 3311. 2777. 2331. 1767. 1093.]
+ [ 654.  374.  301.  397.  794. 2564. 5358. 6441. 5536. 5256. 4619. 5107.
+  5147. 5283. 5704. 5887. 6307. 5953. 4519. 3427. 2921. 2649. 2005. 1177.]
+ [ 511.  346.  253.  349.  807. 2669. 5210. 6083. 5790. 5484. 4407. 4725.
+  4826. 4945. 5065. 5618. 6094. 5844. 4649. 3180. 2963. 2450. 1613. 1021.]
+ [1159.  822.  641.  411.  468.  723. 1415. 2191. 3185. 4076. 4522. 6012.
+  5975. 5307. 4678. 4405. 4403. 4311. 4198. 3475. 3078. 2931. 2941. 2240.]
+ [1564.  795.  447.  443.  330.  453.  755.  953. 1650. 2442. 3230. 3575.
+  4139. 3892. 3989. 4294. 4521. 4280. 3945. 3169. 2772. 2213. 1570. 1065.]
+ [1166.  724.  568.  343.  383.  703. 1229. 2057. 3246. 4390. 4573. 4269.
+  4833. 4442. 4397. 4314. 4413. 4125. 4004. 3404. 2777. 2579. 2552. 1952.]
+ [1090.  735.  537.  371.  397.  696. 1301. 1932. 2952. 3529. 3837. 4338.
+  4762. 4367. 4369. 4536. 4520. 4677. 4025. 3128. 2905. 2853. 3288. 2239.]]
 ```
 
 Now that the data are in memory, we can manipulate them. First, let's ask what **type** of thing `traffic_data` refers to:
@@ -80,7 +100,7 @@ print(type(traffic_data))
 <class 'numpy.ndarray'>
 ```
 
-The output tells us that `traffic_data` currently refers to an N-dimensional array, the functionality for which is provided by the NumPy library. These data correspond to traffic sensor readings. The rows are the individual days, and the columns are their hourly traffic measurements.
+The output tells us that `traffic_data` currently refers to an N-dimensional array, the functionality for which is provided by the NumPy library.
 
 With the following command, we can see the array's **shape**:
 
@@ -92,27 +112,27 @@ print(traffic_data.shape)
 (10, 24)
 ```
 
-The output tells us that the `traffic_data` array variable contains 10 rows and 24 columns. These extras like `shape` are called **attributes** or **members**. This extra information describes `traffic_data` in the same way an adjective describes a noun. `traffic_data.shape` is an attribute of `traffic_data` which describes the dimensions of `traffic_data`. We use the same "dot" notation for the attributes of variables that we use for the functions in libraries because they have the same part-and-whole relationship.
+The output tells us that the `traffic_data` array variable contains 10 rows and 24 columns. These extras like `shape` are called **attributes** or **members**. This extra information describes `traffic_data` in the same way an adjective describes a noun. `traffic_data.shape` is an attribute of `traffic_data` which describes the dimensions of `traffic_data`. We use the same "dot" notation for the attributes of variables that we use for methods because they have the same part-and-whole relationship.
 
-If we want to get a single number from the array, we must provide an **index** in square brackets after the variable name, just as we do in math when referring to an element of a matrix. Our traffic data has two dimensions, so we will need to use two indices to refer to one specific value:
+To get a single number from the array, we have to provide an index, just like we do with lists. Unlike with lists, however, our traffic data now has two dimensions (day and hour), so we will need to use two indices to refer to one specific value:
 
 ```python
-print('first value in data:', traffic_data[0, 0])
+print('first day, first hour:', traffic_data[0, 0])
 ```
 
 ```output
-first value in data: 598.0
+first day, first hour: 598.0
 ```
 
 ```python
-print('traffic at 7 AM on the first day:', traffic_data[0, 7])
+print('traffic at 7 AM on the second day:', traffic_data[1, 7])
 ```
 
 ```output
-traffic at 7 AM on the first day: 6990.0
+traffic at 7 AM on the second day: 6676.0
 ```
 
-The expression `traffic_data[0, 7]` accesses the element at row 0 (first day), column 7 (7 AM). Since we're working with a 2D array, we need two indices: the first for the row (day) and the second for the column (hour). Remember that Python uses zero-based indexing, just like we learned with lists.
+The expression `traffic_data[1, 7]` accesses the element at row 1 (second day), column 7 (7 AM). Since we're working with a 2D array, we need two indices: the first for the row (day) and the second for the column (hour). Remember that Python uses zero-based indexing, just like we learned with lists.
 
 !['traffic_data' is a 3 by 3 numpy array containing row 0: ['A', 'B', 'C'], row 1: ['D', 'E', 'F'], and row 2: ['G', 'H', 'I']. Starting in the upper left hand corner, traffic_data[0, 0] = 'A', traffic_data[0, 1] = 'B', traffic_data[0, 2] = 'C', traffic_data[1, 0] = 'D', traffic_data[1, 1] = 'E', traffic_data[1, 2] = 'F', traffic_data[2, 0] = 'G', traffic_data[2, 1] = 'H', and traffic_data[2, 2] = 'I', in the bottom right hand corner.](../fig/python_programming/02-numpy/python-zero-index.svg)
 
@@ -134,10 +154,8 @@ print(numpy.mean(traffic_data))
 ```
 
 ```output
-3421.45
+3209.195833333333
 ```
-
-`mean` is a **function** that takes an array as an **argument**.
 
 ~~~{admonition} Not All Functions Have Input
 :class: note
@@ -153,7 +171,7 @@ print(time.ctime())
 Sat Mar 26 13:07:33 2016
 ```
 
-For functions that don't take in any arguments, we still need parentheses (`()`) to tell Python to go and do something for us.
+For functions that don't take in any arguments, we still need parentheses (`()`) to tell Python to actually run the function (which is called *calling* or *executing* the function).
 
 ~~~
 
