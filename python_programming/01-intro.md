@@ -1,7 +1,10 @@
 # Python Fundamentals
 
 ```{admonition} Objectives
+- Use Python as a calculator.
 - Assign values to variables.
+- Use variables in expressions.
+- Call built-in functions like `print()`.
 ```
 
 ```{admonition} Questions
@@ -11,31 +14,42 @@
 - Can I change the value associated with a variable after I create it?
 ```
 
-## Variables
+## Using Python as a Calculator
 
-At it's simplest, Python can be used as a calculator.
+At its simplest, Python can be used as a calculator. Throughout this workshop, we're going to be working with traffic data from an automated sensor that measures how many cars passed in a given hour.
+
+Let's say we're interested in looking at morning rush hour traffic, which we take to be the 7am and 8am measurements. On the day in question, there were 500 cars at 7am, and 600 cars at 8am. What's the total? We can use Python to do this addition.
 
 ```python
-3 + 5 * 4
+500 + 600
 ```
 
 ```output
-23
+1100
 ```
 
-This is great but not very interesting.
+or any other arithmetic, for example, subtracting to get the difference:
 
-To do anything useful with data, we need to assign its value to a *variable*.
-In Python, we can assign a value to a variable, using the equals sign `=`.
-For example, we can track the weight of a patient who weighs 60 kilograms by
-assigning the value `60` to a variable `weight_kg`:
+```
+600 - 500
+```
+
+```
+100
+```
+
+This fine, but we can do all this with a calculator app. To start making use of the power of a full-featured programming language like Python, we can assign our data to *variables*.
+
+## Variables
+
+We *assign* a value to a variable using the equals sign `=`. For example, we can track the number of cars at different times:
 
 ```python
-weight_kg = 60
+cars_at_7am = 500
+cars_at_8am = 600
 ```
 
-From now on, whenever we use `weight_kg`, Python will substitute the value we assigned to
-it. You can think of it like this: **a variable is a name for a value**.
+From now on, whenever we use `cars_at_7am`, Python will substitute the value we assigned to it. You can think of it like this: **a variable is a name for a value**.
 
 ```{tip}
 In Python, variable names:
@@ -46,8 +60,8 @@ In Python, variable names:
 
 This means that, for example:
 
-- `weight0` is a valid variable name, whereas `0weight` is not
-- `weight` and `Weight` are different variables
+- `cars_7am` is a valid variable name, whereas `7am_cars` is not
+- `cars` and `Cars` are different variables
 ```
 
 ## Types of data
@@ -58,166 +72,139 @@ Python knows various types of data. Three common ones are:
 - floating point (a.k.a. decimal) numbers, and
 - text. In programming textual data is called "strings".
 
-In the example above, variable `weight_kg` has an integer value of `60`.
-If we want to more precisely track the weight of our patient,
-we can use a floating point value by executing:
+In the example above, variable `cars_at_7am` has a integer value of `500`. If we want to represent a decimal number, we can use a floating point:
 
 ```python
-weight_kg = 60.3
+speed_mph = 54.3
 ```
 
-To create a string, we add single or double quotes around some text. To identify
-and track a patient throughout our study, we can assign each person a unique
-identifier by storing it in a string:
+To create a string, we add single or double quotes around some text. We might want a label for this group of data, for example:
 
 ```python
-patient_id = 'pat23'
+time_of_day = 'morning'
 ```
 
 ## Using Variables in Python
 
-Once we have data stored with variable names, we can make use of it in
-calculations. We may want to store our patient's weight in pounds as well as
-kilograms, we can convert by multiplying:
+Once we have data stored with variable names, we can make use of it in calculations. Now we can do the same calculation of the total rush hour traffic, but using variables:
 
 ```python
-weight_lb = 2.2 * weight_kg
+cars_at_7am + cars_at_8am
 ```
 
-We might decide to add a prefix to our patient identifier:
+```
+1100
+```
+
+This makes it more clear what we're doing.
+
+We can also "add" strings together to create a new string. For example, we might want to make our label more descriptive:
 
 ```python
-patient_id = 'inflam_' + patient_id
+time_of_day + ' rush hour'
+```
+
+```
+'morning rush hour'
+```
+
+We can also store the results of calculations in variables:
+
+```python
+increase_in_cars = cars_at_8am - cars_at_7am
 ```
 
 ## Built-in Python functions
 
-To carry out common tasks with data and variables in Python,
-the language provides us with several built-in functions.
-To display information to the screen, we use the `print` function:
+You might notice that when we assign a value to a variable, the value is not printed to the screen. To display the value of a variable, we can use the `print` function:
 
 ```python
-print(weight_lb)
-print(patient_id)
+print(increase_in_cars)
 ```
 
-```output
-132.66
-inflam_pat23
+```
+100
 ```
 
-When we want to make use of a function, referred to as *calling* the function,
+When we want to use a function, referred to as *calling* the function,
 we type its name, followed by parentheses. The parentheses are important: if you
-leave them off, the function doesn't actually run! Sometimes you will include
-values or variables inside the parentheses for the function to use. In the case
-of `print`, we use the parentheses to tell the function what value we want to
-display. We will learn more about how functions work and how to create our own
-in later episodes.
+leave them off, the function doesn't actually run! Often you will include
+values or variables inside the parentheses for the function to use. These are
+called *arguments*, and including them is called *passing arguments* to a
+function. In the case of `print`, we pass the `increase_in_cars` variable as an
+argument to the `print` function, and `print` displays the value `increase_in_cars`.
 
-We can display multiple things at once using only one `print` call:
+We can display multiple things at once by passing multiple arguments:
 
 ```python
-print(patient_id, 'weight in kilograms:', weight_kg)
+print("Cars at 7 AM:", cars_at_7am)
 ```
 
 ```output
-inflam_pat23 weight in kilograms: 60.3
+Cars at 7 AM: 500
 ```
 
-We can also call a function inside of another function call.
-For example, Python has a built-in function called `type` that tells you a value's data type:
+We can also call a function inside of another function call. For example, Python has a built-in function called `type` that tells you a value's data type:
 
 ```python
-print(type(60.3))
-print(type(patient_id))
+print(type(400))
+print(type("morning"))
 ```
 
 ```output
-<class 'float'>
+<class 'int'>
 <class 'str'>
 ```
 
 Moreover, we can do arithmetic with variables right inside the `print` function:
 
 ```python
-print('weight in pounds:', 2.2 * weight_kg)
+print('Total rush hour traffic:', cars_at_7am + cars_at_8am)
 ```
 
 ```output
-weight in pounds: 132.66
-```
-
-The above command, however, did not change the value of `weight_kg`:
-
-```python
-print(weight_kg)
-```
-
-```output
-60.3
-```
-
-To change the value of the `weight_kg` variable, we have to
-**assign** `weight_kg` a new value using the equals `=` sign:
-
-```python
-weight_kg = 65.0
-print('weight in kilograms is now:', weight_kg)
-```
-
-```output
-weight in kilograms is now: 65.0
+Total rush hour traffic: 1100
 ```
 
 ~~~{admonition} Variables as Sticky Notes
 :class: tip
 
-A variable in Python is analogous to a sticky note with a name written on it:
-assigning a value to a variable is like putting that sticky note on a particular value.
+A variable in Python is analogous to a sticky note with a name written on it: assigning a value to a variable is like putting that sticky note on a particular value.
 
-![Value of 65.0 with weight\_kg label stuck on it](../fig/python_programming/01-intro/python-sticky-note-variables-01.svg)
+<!-- TODO re-create these images with the traffic data rather than weight -->
+<!-- ![Value of 500 with cars_at_7am label stuck on it](../fig/python_programming/01-intro/python-sticky-note-variables-01.svg) -->
 
-Using this analogy, we can investigate how assigning a value to one variable
-does **not** change values of other, seemingly related, variables.  For
-example, let's store the subject's weight in pounds in its own variable:
+Using this analogy, we can investigate how assigning a value to one variable does **not** change values of other, seemingly related, variables. For example, let's store the total rush hour traffic in its own variable:
 
 ```python
-# There are 2.2 pounds per kilogram
-weight_lb = 2.2 * weight_kg
-print('weight in kilograms:', weight_kg, 'and in pounds:', weight_lb)
+total_rush_hour = cars_at_7am + cars_at_8am
+print('Cars at 7 AM:', cars_at_7am, 'Total rush hour:', total_rush_hour)
 ```
 
 ```output
-weight in kilograms: 65.0 and in pounds: 143.0
+Cars at 7 AM: 500 Total rush hour: 1100
 ```
 
-Everything in a line of code following the '#' symbol is a
-comment that is ignored by Python.
-Comments allow programmers to leave explanatory notes for other
-programmers or their future selves.
+Everything in a line of code following the '#' symbol is a comment that is ignored by Python. Comments allow programmers to leave explanatory notes for other programmers or their future selves.
 
-![Value of 65.0 with weight\_kg label stuck on it, and value of 143.0 with weight\_lb label stuck on it](../fig/python_programming/01-intro/python-sticky-note-variables-02.svg)
+<!-- ![Value of 500 with cars_at_7am label stuck on it, and value of 1100 with total_rush_hour label stuck on it](../fig/python_programming/01-intro/python-sticky-note-variables-02.svg) -->
 
-Similar to above, the expression `2.2 * weight_kg` is evaluated to `143.0`,
-and then this value is assigned to the variable `weight_lb` (i.e. the sticky
-note `weight_lb` is placed on `143.0`). At this point, each variable is
-"stuck" to completely distinct and unrelated values.
+Similar to above, the expression `cars_at_7am + cars_at_8am` is evaluated to `1100`, and then this value is assigned to the variable `total_rush_hour` (i.e. the sticky note `total_rush_hour` is placed on `1100`). At this point, each variable is "stuck" to completely distinct and unrelated values.
 
-Let's now change `weight_kg`:
+Let's now change `cars_at_7am`:
 
 ```python
-weight_kg = 100.0
-print('weight in kilograms is now:', weight_kg, 'and weight in pounds is still:', weight_lb)
+cars_at_7am = 600
+print('Cars at 7 AM is now:', cars_at_7am, 'and total rush hour is still:', total_rush_hour)
 ```
 
 ```output
-weight in kilograms is now: 100.0 and weight in pounds is still: 143.0
+Cars at 7 AM is now: 600 and total rush hour is still: 1100
 ```
 
-![Value of 100.0 with label weight\_kg stuck on it, and value of 143.0 with label weight\_lbstuck on it](../fig/python_programming/01-intro/python-sticky-note-variables-03.svg)
+<!-- ![Value of 600 with label cars_at_7am stuck on it, and value of 1100 with label total_rush_hour stuck on it](../fig/python_programming/01-intro/python-sticky-note-variables-03.svg) -->
 
-Since `weight_lb` doesn't "remember" where its value comes from,
-it is not updated when we change `weight_kg`.
+Since `total_rush_hour` doesn't "remember" where its value comes from, it is not updated when we change `cars_at_7am`.
 
 ~~~
 
@@ -300,5 +287,3 @@ print(type(distance))
 - Use `# some kind of explanation` to add comments to programs.
 - Built-in functions are always available to use.
 ```
-
-
