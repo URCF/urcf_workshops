@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Loading and analyzing data
 
 Now that we've covered some Python basics and worked with a small amount of traffic data in a list, we'll learn how to work with the entire dataset—multiple days worth of traffic data. We're going to use professional-grade tools (NumPy) to analyze the entire dataset and answer bigger questions.
@@ -27,26 +38,16 @@ To begin processing the traffic data, we need to load it into Python. We can do 
 
 In general, you should use NumPy when you want to do fancy things with lots of numbers, especially if you have matrices or arrays. To tell Python that we'd like to start using NumPy, we need to **import** it[^installation]:
 
-~~~python
+```{code-cell} python
 import numpy
-~~~
+```
 
 Importing a library is like getting a piece of lab equipment out of a storage locker and setting it up on the bench. Libraries provide additional functionality to Python, much like a new piece of equipment adds functionality to a lab space. Just like in the lab, importing too many libraries can sometimes complicate and slow down your programs - so we only import what we need for each program.
 
-Once we've imported the library, we can ask the library to read our data file for us. The data is stored in a file called `traffic_data.txt`:
+Once we've imported the library, we can ask the library to read our data file for us. The data is stored in a file called `traffic_data.txt`. Note that in this dataset, weekend days appear first, followed by weekday days:
 
-```python
+```{code-cell} python
 numpy.loadtxt('traffic_data.txt', delimiter=',')
-```
-
-```output
-array([[ 598.,  369.,  312.,  367.,  835., 2726., 5689., 6990., 5985.,
-        5309., 4603., 4884., 5104., 5178., 5501., 5713., 6292., 6057.,
-        4907., 3503., 3037., 2822., 1992., 1166.],
-       [ 455.,  336.,  265.,  314.,  779., 2571., 5563., 6676., 5966.,
-        4832., 4395., 4411., 4648., 4602., 5125., 5502., 5979., 5663.,
-        4259., 3069., 2378., 2030., 1400.,  917.],
-...
 ```
 
 The expression `numpy.loadtxt(...)` is a **function call** that asks Python to run the **function** `loadtxt` of the `numpy` library. We use the dot notation (`.`) that we learned about with lists—here it tells Python to look inside the `numpy` library and find the `loadtxt` function. When you see `numpy.loadtxt`, you can read it as "the `loadtxt` function that belongs to `numpy`".
@@ -57,37 +58,14 @@ Since we haven't told it to do anything else with the function's output, the not
 
 Our call to `numpy.loadtxt` read our file but didn't save the data in memory. To do that, we need to assign the array to a variable. In a similar manner to how we assign a single value to a variable, we can also assign an array of values to a variable using the same syntax. Let's re-run `numpy.loadtxt` and save the returned data:
 
-```python
+```{code-cell} python
 traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
 ```
 
 This statement doesn't produce any output because we've assigned the output to the variable `traffic_data`. If we want to check that the data have been loaded, we can print the variable's value:
 
-```python
+```{code-cell} python
 print(traffic_data)
-```
-
-```output
-[[ 598.  369.  312.  367.  835. 2726. 5689. 6990. 5985. 5309. 4603. 4884.
-  5104. 5178. 5501. 5713. 6292. 6057. 4907. 3503. 3037. 2822. 1992. 1166.]
- [ 455.  336.  265.  314.  779. 2571. 5563. 6676. 5966. 4832. 4395. 4411.
-  4648. 4602. 5125. 5502. 5979. 5663. 4259. 3069. 2378. 2030. 1400.  917.]
- [1335.  769.  570.  413.  399.  740. 1420. 2220. 3479. 4546. 4579. 4438.
-  4623. 4440. 4495. 4483. 4591. 4477. 4221. 3672. 3015. 2769. 2875. 1931.]
- [ 500.  324.  257.  354.  769. 2769. 5789. 7055. 6408. 5254. 4547. 4784.
-  5015. 5057. 5430. 5813. 6496. 6429. 5142. 3311. 2777. 2331. 1767. 1093.]
- [ 654.  374.  301.  397.  794. 2564. 5358. 6441. 5536. 5256. 4619. 5107.
-  5147. 5283. 5704. 5887. 6307. 5953. 4519. 3427. 2921. 2649. 2005. 1177.]
- [ 511.  346.  253.  349.  807. 2669. 5210. 6083. 5790. 5484. 4407. 4725.
-  4826. 4945. 5065. 5618. 6094. 5844. 4649. 3180. 2963. 2450. 1613. 1021.]
- [1159.  822.  641.  411.  468.  723. 1415. 2191. 3185. 4076. 4522. 6012.
-  5975. 5307. 4678. 4405. 4403. 4311. 4198. 3475. 3078. 2931. 2941. 2240.]
- [1564.  795.  447.  443.  330.  453.  755.  953. 1650. 2442. 3230. 3575.
-  4139. 3892. 3989. 4294. 4521. 4280. 3945. 3169. 2772. 2213. 1570. 1065.]
- [1166.  724.  568.  343.  383.  703. 1229. 2057. 3246. 4390. 4573. 4269.
-  4833. 4442. 4397. 4314. 4413. 4125. 4004. 3404. 2777. 2579. 2552. 1952.]
- [1090.  735.  537.  371.  397.  696. 1301. 1932. 2952. 3529. 3837. 4338.
-  4762. 4367. 4369. 4536. 4520. 4677. 4025. 3128. 2905. 2853. 3288. 2239.]]
 ```
 
 Now that the data are in memory, we can manipulate them. First, let's ask what **type** of thing `traffic_data` refers to:
