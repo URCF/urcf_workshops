@@ -2,8 +2,8 @@ numpy
 matplotlib
 pandas
 ghp-import
-jupyter-book
+jupyter-book=1.0
 livereload
 
 # temporarily pin:
-pydata-sphinx-theme==0.13.1
+# pydata-sphinx-theme==0.13.1

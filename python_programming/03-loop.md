@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# Repeating Actions with Loops
+# Repeating actions with loops
 
 :::{admonition} Objectives
 - Explain what a `for` loop does.

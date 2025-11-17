@@ -9,23 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# Python Fundamentals
-
-```{admonition} Objectives
-- Use Python as a calculator.
-- Assign values to variables.
-- Use variables in expressions.
-- Call built-in functions like `print()`.
-```
-
-```{admonition} Questions
-- What basic data types can I work with in Python?
-- How can I create a new variable in Python?
-- How do I use a function?
-- Can I change the value associated with a variable after I create it?
-```
-
-## Using Python as a Calculator
+# Python fundamentals
 
 At its simplest, Python can be used as a calculator. Throughout this workshop, we're going to be working with traffic data from an automated sensor that measures how many cars passed in a given hour.
 

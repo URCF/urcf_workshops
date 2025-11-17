@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# Storing Multiple Values in Lists
+# Working with multiple values in lists
 
 :::{admonition} Objectives
 - Explain what a list is.

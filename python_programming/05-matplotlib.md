@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Visualizing Traffic Data
 
 :::{admonition} Objectives
@@ -14,83 +25,66 @@
 
 Now we can compute statistics, but it's often way more helpful and intuitive to visualize data with plots and graphs rather than just looking at numbers. Visualization deserves an entire workshop of its own, but we'll get started here with the basics. To do that, we're going to use a library called [`matplotlib`](https://matplotlib.org/). Like NumPy, `matplotlib` is not built-in to Python, but it's the most popular plotting library, so it's the *de facto* standard.
 
-:::{admonition} Episode Prerequisites
-If you are continuing in the same notebook from the previous episode, you already have a `traffic_data` variable and have imported `numpy`. If you are starting a new notebook at this point, you need the following two lines:
+### Prerequisites
 
-```python
+If you are continuing in the same notebook from the previous lesson, you already have a `traffic_data` variable and have imported `numpy`. If you are starting a new notebook at this point, you need to load the data and import the library:
+
+```{code-cell} python
 import numpy
 traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
 ```
-:::
 
 ## Making Simple Plots with Matplotlib
 
-Numbers are great, but a picture is worth a thousand words. Let's plot the traffic pattern for a single day. We can get the data for Tuesday by accessing the first row of our data (index 0).
 
-First, we will import the `pyplot` module from `matplotlib` and use it to create and display a line graph:
+Numbers are great, but a picture is worth a thousand words. Lets learn how to make simple plots in Python. For this, we use another library called `matplotlib`, specifically a *module* called `pyplot`. A *module* is a sub-part of a library—a collection of functions and variables that are related to a specific topic. `matplotlib` has other modules for more complex plots, but `pyplot` is the simplest and most commonly used.
 
-```python
+We can use the `plot` function to create a line graph of a list of numbers:
+
+
+```{code-cell} python
 import matplotlib.pyplot
-tuesday_data = traffic_data[0]
-matplotlib.pyplot.plot(tuesday_data)
-matplotlib.pyplot.show()
+
+matplotlib.pyplot.plot([1, 4, 9, 16, 25])
 ```
 
-![A line graph showing the traffic pattern for Tuesday (day 0) over 24 hours. The plot shows two clear "humps" for the morning and evening commutes, with low traffic in the early morning hours and late night hours.](../fig/python_programming/03-matplotlib/traffic-single-day.svg)
+The X-axis is the index of the list, and the Y-axis is the value at that index.
 
-The plot will show two clear "humps" for the morning and evening commutes. This is the first major insight where the data's shape has an obvious meaning—we can see the rush hour patterns!
+It's annoying to have to type out the `matplotlib.pyplot` module name every time, so we can import it with a shortcut to make that easier:
 
-Now let's take a look at the average traffic over time across all days:
+```{code-cell} python
+import matplotlib.pyplot as plt
 
-```python
-ave_traffic = numpy.mean(traffic_data, axis=0)
-matplotlib.pyplot.plot(ave_traffic)
-matplotlib.pyplot.show()
+plt.plot([1, 4, 9, 16, 25])
 ```
 
-![A line graph showing the average traffic across all days over a 24-hour period. The plot shows the typical daily pattern with morning and evening rush hours.](../fig/python_programming/03-matplotlib/traffic-average.svg)
+The `as` keyword lets us give the imported module a shorter name. In this case, we've called it `plt`, and everytime we type `plt` from now on, Python will replace it with `matplotlib.pyplot`.
 
-Here, we have put the average traffic per hour across all days in the variable `ave_traffic`, then asked `matplotlib.pyplot` to create and display a line graph of those values. The result shows the typical daily traffic pattern with clear morning and evening peaks.
+You also might notice that Python shows us a textual representation of the plot (`[<matplotlib.lines.Line2D at ...>]`) in addition to displaying it. We can suppress this by adding a semicolon to the end of the line:
 
-But a good data scientist doesn't just consider the average of a dataset, so let's have a look at two other statistics:
-
-```python
-matplotlib.pyplot.plot(numpy.max(traffic_data, axis=0))
-matplotlib.pyplot.show()
+```{code-cell} python
+plt.plot([1, 4, 9, 16, 25]);
 ```
 
-![A line graph showing the maximum traffic across all days over a 24-hour period.](../fig/python_programming/03-matplotlib/traffic-maximum.svg)
+We'll do this in the rest of our plotting commands to avoid cluttering our output.
 
-```python
-matplotlib.pyplot.plot(numpy.min(traffic_data, axis=0))
-matplotlib.pyplot.show()
+## Plotting traffic data
+
+Now let's get to plotting our actual data. We can get just the first row of data (the first day) using indexing, and pass   this to the plot function:
+
+```{code-cell} python
+first_day_data = traffic_data[0]
+plt.plot(first_day_data);
 ```
 
-![A line graph showing the minimum traffic across all days over a 24-hour period.](../fig/python_programming/03-matplotlib/traffic-minimum.svg)
+We could similarly look at the second day:
 
-These plots show us the range of traffic patterns—the maximum and minimum values for each hour across all days. This gives us insight into how much variation there is in the traffic patterns.
-
-If we want, we can even look at all three graphs on the same plot:
-
-```python
-matplotlib.pyplot.plot(numpy.mean(traffic_data, axis=0))
-matplotlib.pyplot.plot(numpy.max(traffic_data, axis=0))
-matplotlib.pyplot.plot(numpy.min(traffic_data, axis=0))
-matplotlib.pyplot.show()
+```{code-cell} python
+second_day_data = traffic_data[1]
+plt.plot(second_day_data);
 ```
 
-![A line graph showing all three statistics (mean, max, min) across all days over a 24-hour period.](../fig/python_programming/03-matplotlib/traffic-all-stats.png)
 
-This combined plot helps us see how the average relates to the extremes at each hour of the day.
-
-```{admonition} Importing libraries with shortcuts
-:class: tip
-
-In this lesson we use the `import matplotlib.pyplot` **syntax** to import the `pyplot` module of `matplotlib`. However, shortcuts such as `import matplotlib.pyplot as plt` are frequently used. Importing `pyplot` this way means that after the initial import, rather than writing `matplotlib.pyplot.plot(...)`, you can now write `plt.plot(...)`. Another common convention is to use the shortcut `import numpy as np` when importing the NumPy library. We then can write `np.loadtxt(...)` instead of `numpy.loadtxt(...)`, for example.
-
-Some people prefer these shortcuts as it is quicker to type and results in shorter lines of code - especially for libraries with long names! You will frequently see Python code online using a `pyplot` function with `plt`, or a NumPy function with `np`, and it's because they've used this shortcut. It makes no difference which approach you choose to take, but you must be consistent as if you use `import matplotlib.pyplot as plt` then `matplotlib.pyplot.plot(...)` will not work, and you must use `plt.plot(...)` instead. Because of this, when working with other people it is important you agree on how libraries are imported.
-
-```
 
 
 ~~~{admonition} Challenge: Make Your Own Plot
