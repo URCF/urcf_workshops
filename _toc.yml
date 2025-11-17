@@ -32,12 +32,12 @@ parts:
     - file: python_programming/00-index.md
       sections:
       - file: python_programming/01-intro.md
-      - file: python_programming/02-numpy.md
-      - file: python_programming/03-matplotlib.md
-      - file: python_programming/04-lists.md
-      - file: python_programming/05-loop.md
-      - file: python_programming/06-files.md
-      - file: python_programming/07-cond.md
+      - file: python_programming/02-lists.md
+      - file: python_programming/03-loop.md
+      - file: python_programming/04-numpy.md
+      - file: python_programming/05-matplotlib.md
+      - file: python_programming/06-cond.md
+      - file: python_programming/07-files.md
       - file: python_programming/08-func.md
       - file: python_programming/09-errors.md
       - file: python_programming/10-defensive.md
