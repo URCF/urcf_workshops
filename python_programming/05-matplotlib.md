@@ -84,45 +84,10 @@ second_day_data = traffic_data[1]
 plt.plot(second_day_data);
 ```
 
+Sketch of rest:
 
-
-
-~~~{admonition} Challenge: Make Your Own Plot
-:class: note
-
-Create a plot showing the standard deviation (`numpy.std`) of the traffic data for each hour across all days.
-
-:::{dropdown} Solution
-```python
-matplotlib.pyplot.plot(numpy.std(traffic_data, axis=0))
-matplotlib.pyplot.show()
-```
-
-This will show you how much variation there is in traffic at each hour of the day.
-:::
-
-~~~
-
-~~~{admonition} Challenge: Plotting Multiple Days
-:class: note
-
-Try plotting the traffic patterns for the first three days on the same plot. You can access each day using `traffic_data[0]`, `traffic_data[1]`, and `traffic_data[2]`.
-
-:::{dropdown} Solution
-```python
-matplotlib.pyplot.plot(traffic_data[0])
-matplotlib.pyplot.plot(traffic_data[1])
-matplotlib.pyplot.plot(traffic_data[2])
-matplotlib.pyplot.show()
-```
-
-This will show you how different days compare to each other.
-:::
-
-~~~
-
-```{admonition} Keypoints
-- Use the `pyplot` module from the `matplotlib` library for creating simple visualizations.
-- Use `matplotlib.pyplot.plot()` to create line graphs.
-- Use `matplotlib.pyplot.show()` to display plots.
-```
+- Add title and axis labels
+- Plot multiple days on a single plot
+- Plot multiple days on separate plots
+- Then, in cond section, distinguish weekdays and weekends
+    - Use this to plot weekdays and weekends in different colors

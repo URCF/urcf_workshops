@@ -217,8 +217,6 @@ for day_data in traffic_data:
 :::
 ~~~
 
-We've seen how to get the data for just one day, but what about the data for a single *hour*? What if we wanted to know the average traffic at 7am?
-
 ~~~{admonition} Challenge: Average Traffic at each hour of the day
 :class: note
 
