@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Python Fundamentals
 
 ```{admonition} Objectives
@@ -20,22 +31,14 @@ At its simplest, Python can be used as a calculator. Throughout this workshop, w
 
 Let's say we're interested in looking at morning rush hour traffic, which we take to be the 7am and 8am measurements. On the day in question, there were 500 cars at 7am, and 600 cars at 8am. What's the total? We can use Python to do this addition.
 
-```python
+```{code-cell} python
 500 + 600
-```
-
-```output
-1100
 ```
 
 or any other arithmetic, for example, subtracting to get the difference:
 
-```
+```{code-cell} python
 600 - 500
-```
-
-```
-100
 ```
 
 This fine, but we can do all this with a calculator app. To start making use of the power of a full-featured programming language like Python, we can assign our data to *variables*.
@@ -44,7 +47,7 @@ This fine, but we can do all this with a calculator app. To start making use of 
 
 We *assign* a value to a variable using the equals sign `=`. For example, we can track the number of cars at different times:
 
-```python
+```{code-cell} python
 cars_at_7am = 500
 cars_at_8am = 600
 ```
@@ -74,13 +77,13 @@ Python knows various types of data. Three common ones are:
 
 In the example above, variable `cars_at_7am` has a integer value of `500`. If we want to represent a decimal number, we can use a floating point:
 
-```python
+```{code-cell} python
 speed_mph = 54.3
 ```
 
 To create a string, we add single or double quotes around some text. We might want a label for this group of data, for example:
 
-```python
+```{code-cell} python
 time_of_day = 'morning'
 ```
 
@@ -88,29 +91,21 @@ time_of_day = 'morning'
 
 Once we have data stored with variable names, we can make use of it in calculations. Now we can do the same calculation of the total rush hour traffic, but using variables:
 
-```python
+```{code-cell} python
 cars_at_7am + cars_at_8am
-```
-
-```
-1100
 ```
 
 This makes it more clear what we're doing.
 
 We can also "add" strings together to create a new string. For example, we might want to make our label more descriptive:
 
-```python
+```{code-cell} python
 time_of_day + ' rush hour'
-```
-
-```
-'morning rush hour'
 ```
 
 We can also store the results of calculations in variables:
 
-```python
+```{code-cell} python
 increase_in_cars = cars_at_8am - cars_at_7am
 ```
 
@@ -118,12 +113,8 @@ increase_in_cars = cars_at_8am - cars_at_7am
 
 You might notice that when we assign a value to a variable, the value is not printed to the screen. To display the value of a variable, we can use the `print` function:
 
-```python
+```{code-cell} python
 print(increase_in_cars)
-```
-
-```
-100
 ```
 
 When we want to use a function, referred to as *calling* the function,
@@ -136,34 +127,21 @@ argument to the `print` function, and `print` displays the value `increase_in_ca
 
 We can display multiple things at once by passing multiple arguments:
 
-```python
+```{code-cell} python
 print("Cars at 7 AM:", cars_at_7am)
-```
-
-```output
-Cars at 7 AM: 500
 ```
 
 We can also call a function inside of another function call. For example, Python has a built-in function called `type` that tells you a value's data type:
 
-```python
+```{code-cell} python
 print(type(400))
 print(type("morning"))
 ```
 
-```output
-<class 'int'>
-<class 'str'>
-```
-
 Moreover, we can do arithmetic with variables right inside the `print` function:
 
-```python
+```{code-cell} python
 print('Total rush hour traffic:', cars_at_7am + cars_at_8am)
-```
-
-```output
-Total rush hour traffic: 1100
 ```
 
 ~~~{admonition} Variables as Sticky Notes
@@ -176,13 +154,9 @@ A variable in Python is analogous to a sticky note with a name written on it: as
 
 Using this analogy, we can investigate how assigning a value to one variable does **not** change values of other, seemingly related, variables. For example, let's store the total rush hour traffic in its own variable:
 
-```python
+```{code-cell} python
 total_rush_hour = cars_at_7am + cars_at_8am
 print('Cars at 7 AM:', cars_at_7am, 'Total rush hour:', total_rush_hour)
-```
-
-```output
-Cars at 7 AM: 500 Total rush hour: 1100
 ```
 
 Everything in a line of code following the '#' symbol is a comment that is ignored by Python. Comments allow programmers to leave explanatory notes for other programmers or their future selves.
@@ -193,13 +167,9 @@ Similar to above, the expression `cars_at_7am + cars_at_8am` is evaluated to `11
 
 Let's now change `cars_at_7am`:
 
-```python
+```{code-cell} python
 cars_at_7am = 600
 print('Cars at 7 AM is now:', cars_at_7am, 'and total rush hour is still:', total_rush_hour)
-```
-
-```output
-Cars at 7 AM is now: 600 and total rush hour is still: 1100
 ```
 
 <!-- ![Value of 600 with label cars_at_7am stuck on it, and value of 1100 with label total_rush_hour stuck on it](../fig/python_programming/01-intro/python-sticky-note-variables-03.svg) -->

@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Repeating Actions with Loops
 
 :::{admonition} Objectives
@@ -23,20 +34,13 @@ morning_traffic = [500, 600, 550, 450, 350]
 
 As we saw in the previous episode, we can access an element of a list using its index. For example, we can get the first number in the list `morning_traffic`, by using `morning_traffic[0]`. So one way to print each number is to use 5 `print` statements:
 
-```python
+```{code-cell} python
+morning_traffic = [500, 600, 550, 450, 350]
 print(morning_traffic[0])
 print(morning_traffic[1])
 print(morning_traffic[2])
 print(morning_traffic[3])
 print(morning_traffic[4])
-```
-
-```output
-500
-600
-550
-450
-350
 ```
 
 This is a bad approach for three reasons:
@@ -49,35 +53,18 @@ This is a bad approach for three reasons:
 
 Here's a better approach: a **for loop**
 
-```python
+```{code-cell} python
 for cars in morning_traffic:
     print(cars)
-```
-
-```output
-500
-600
-550
-450
-350
 ```
 
 This is shorter, and more robust as well. For example, if we change the list by adding a new number at the end, we don't need to change the loop at all:
 
-```python
+```{code-cell} python
 morning_traffic.append(200)
 
 for cars in morning_traffic:
     print(cars)
-```
-
-```output
-500
-600
-550
-450
-350
-200
 ```
 
 The general form of a loop is:
@@ -94,18 +81,10 @@ We can call the **loop variable** anything we like, but there must be a colon at
 
 In the example above, the loop variable was given the name `cars` as a mnemonic; it is short for 'number of cars'. We can   choose any name we want for variables. We might just as easily have chosen the name `number` for the loop variable, as long as we use the same name when we invoke the variable inside the loop:
 
-```python
+```{code-cell} python
 morning_traffic = [500, 600, 550, 450, 350]
 for number in morning_traffic:
     print(number)
-```
-
-```output
-500
-600
-550
-450
-350
 ```
 
 It is a good idea to choose variable names that are meaningful, otherwise it would be more difficult to understand what the loop is doing.
@@ -146,16 +125,13 @@ The operation inside the loop can be whatever we want. So far, we've only printe
 
 For example, what if we want to know how many hours of traffic we have recorded? Each entry in the list corresponds to one hour, so we to do this we can count the number of entries in the list.
 
-```python
+```{code-cell} python
+morning_traffic = [500, 600, 550, 450, 350]
 entries = 0
 
 for cars in morning_traffic:
     entries = entries + 1
 print('Morning traffic hours:', entries)
-```
-
-```output
-Morning traffic hours: 5
 ```
 
 It's worth tracing the execution of this little program step by step:
@@ -170,12 +146,8 @@ It's worth tracing the execution of this little program step by step:
 
 Note that finding the length of an object is such a common operation that Python actually has a built-in function to do it called `len`:
 
-```python
+```{code-cell} python
 print(len(morning_traffic))
-```
-
-```output
-5
 ```
 
 Using `len` is faster and much more convenient than writing our own loop.
@@ -184,20 +156,10 @@ Using `len` is faster and much more convenient than writing our own loop.
 
 We can loop over any collection of several values, not just a list. For example, a string is a collection of it's individual characters. So we can loop over the letters in a string:
 
-```python
+```{code-cell} python
 time_of_day = 'morning'
 for letter in time_of_day:
     print(letter)
-```
-
-```output
-m
-o
-r
-n
-i
-n
-g
 ```
 
 ~~~{admonition} Challenge: Summing a List
@@ -270,7 +232,7 @@ Now write a loop that prints the indices of the list `morning_traffic`. The outp
 4
 ```
 
-*Hint*: You can use len(morning_traffic) to get the length of the list.
+*Hint*: Remember you can use `len(morning_traffic)` to get the length of the list.
 
 :::{dropdown} Solution
 ```python

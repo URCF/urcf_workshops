@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Storing Multiple Values in Lists
 
 :::{admonition} Objectives
@@ -30,13 +41,9 @@ But this would quickly get tedious (imagine trying to work with hourly data for 
 
 We create a list by putting values inside square brackets and separating the values with commas:
 
-```python
+```{code-cell} python
 morning_traffic = [500, 600, 550, 450, 350]
 print(morning_traffic)
-```
-
-```output
-Morning traffic: [500, 600, 550, 450, 350]
 ```
 
 This list contains traffic counts for each hour of the morning, from 7am to 11am.
@@ -49,14 +56,9 @@ These positions are numbered starting at 0, so the first element has an index of
 
 Now we can easily pull out specific information. What was the traffic at 7 AM (the first hour in our list, which is index 0)? What about at 8 AM (the second hour, which is index 1)?
 
-```python
+```{code-cell} python
 print('Traffic at 7 AM (index 0):', morning_traffic[0])
 print('Traffic at 8 AM (index 1):', morning_traffic[1])
-```
-
-```output
-Traffic at 7 AM (index 0): 500
-Traffic at 8 AM (index 1): 600
 ```
 
 It might be surprising that we start counting from 0, rather than 1. Many programming languages start counting indicies from 0 because it represents an offset from the first value in the list (the second value is offset by one index from the first value). This is closer to the way that computers represent data internally. As a result, if we have a list with N elements in Python, its indices go from 0 to N-1. It takes a bit of getting used to, but one way to remember the rule is that the index is how many steps we have to take from the start to get the item we want.
@@ -76,21 +78,13 @@ How would you get the last element of this list using negative indexing? How wou
 :::{dropdown} Solution
 
 To get the last element, use index `-1`:
-```python
+```{code-cell} python
 print(morning_traffic[-1])
 ```
 
-```output
-350
-```
-
 To get the second to last element, use index `-2`:
-```python
+```{code-cell} python
 print(morning_traffic[-2])
-```
-
-```output
-450
 ```
 
 Negative indexing is particularly useful when you don't know the length of a list, or when you want to access elements from the end without having to calculate their position from the start.
@@ -117,24 +111,16 @@ There are many ways to change the contents of lists.
 
 In addition to reading from a list using an index, we can also change the value of an element in the list using an index combined with the `=` assignment operator:
 
-```python
+```{code-cell} python
 morning_traffic[0] = 700
 print("morning_traffic after changing first value:", morning_traffic)
 ```
 
-```output
-morning_traffic after changing first value: [700, 600, 550, 450, 350]
-```
-
 We can also add a new element to the end of a list using the `append` method:
 
-```python
+```{code-cell} python
 morning_traffic.append(200)
 print('morning_traffic after adding a value:', morning_traffic)
-```
-
-```output
-morning_traffic after adding a value: [700, 600, 550, 450, 350, 200]
 ```
 
 Notice the *dot notation* (`.`) between the list name and `append`. We are calling a function called `append`, but it's a special function that belongs to the `morning_traffic` list. This type of function that's part of an object is called a *method*. Methods are accessed using dot notation. When you see `morning_traffic.append`, you can read it as "the `append` method that belongs to `morning_traffic`".
@@ -143,30 +129,21 @@ As an example, think of it like a family name: John Smith is the John that belon
 
 List have lots of other methods that can be used to modify them. For example, the `reverse` method reverses the order of elements in the list:
 
-```python
+```{code-cell} python
 morning_traffic.reverse()
 print('morning_traffic after reversing:', morning_traffic)
-```
-
-```output
-morning_traffic after reversing: [200, 350, 450, 550, 600, 700]
 ```
 
 While modifying in place, it is useful to remember that Python treats lists in a slightly counter-intuitive way.
 
 If we make a list, (attempt to) copy it and then modify this list, we can cause all sorts of trouble. This also applies to modifying the list using the above functions:
 
-```python
+```{code-cell} python
 morning_traffic = [500, 600, 550, 450, 350]
 morning_traffic_copy = morning_traffic
 morning_traffic_copy.append(200)
 print('morning_traffic_copy:', morning_traffic_copy)
 print('morning_traffic:', morning_traffic)
-```
-
-```output
-morning_traffic_copy: [500, 600, 550, 450, 350, 200]
-morning_traffic: [500, 600, 550, 450, 350, 200]
 ```
 
 This is because Python lets us use multiple names to refer to the *same list*. The variable names are like two sticky notes stuck to the same drawer (the list). In the code above, we add `200` to the drawer labeled `morning_traffic_copy`, and then check the contents of the drawer labeled `morning_traffic`. We find `200` there, because they're the same drawer—it just has two labels on it.
