@@ -9,70 +9,41 @@ kernelspec:
   name: python3
 ---
 
-- Then, in cond section, distinguish weekdays and weekends
-    - Use this to plot weekdays and weekends in different colors
-
 # Making Choices
 
-:::{admonition} Objectives
-
-- Write conditional statements including `if`, `elif`, and `else` branches.
-- Correctly evaluate expressions containing `and` and `or`.
-- Combine loops and conditionals to analyze patterns in data.
-
-:::
-
-:::{admonition} Questions
-
-- How can my programs do different things based on data values?
-
-:::
-
-## The Final Discovery: Combining Concepts
-
-In our last lesson, we learned how to visualize traffic data and saw patterns in the plots. How can we use Python to automatically recognize different features we saw, and take a different action for each? In this lesson, we'll learn how to write code that runs only when certain conditions are true, and we'll combine this with loops to make a powerful discovery about our traffic data.
+Previously, we learned how to visualize traffic data, and used plots to distinguish between weekdays and weekends. How can we use Python to automatically recognize different features we saw, and take a different action for each? In this lesson, we'll learn how to write code that runs only when certain conditions are true, and use this to make a clearer plot of our traffic data.
 
 ## Conditionals
 
 We can ask Python to take different actions, depending on a condition, with an `if` statement:
 
-```python
-traffic_count = 5000
-if traffic_count > 3000:
-    print('Heavy traffic')
+```{code-cell} python
+num = 50
+if num > 100:
+    print('greater')
 else:
-    print('Normal traffic')
+    print('lesser')
 print('done')
 ```
 
-```output
-Heavy traffic
-done
-```
-
-The second line of this code uses the keyword `if` to tell Python that we want to make a choice. If the test that follows the `if` statement is true, the body of the `if` (i.e., the set of lines indented underneath it) is executed, and "Heavy traffic" is printed. If the test is false, the body of the `else` is executed instead, and "Normal traffic" is printed. Only one or the other is ever executed before continuing on with program execution to print "done":
+The second line of this code uses the keyword `if` to tell Python that we want to make a choice. If the test that follows the  `if` statement is true, the body of the `if` (i.e., the set of lines indented underneath it) is executed, and "greater" is printed. If the test is false, the body of the `else` is executed instead, and "lesser" is printed. Only one or the other is ever executed before continuing on with program execution to print "done":
 
 ![](../fig/python_programming/python-flowchart-conditional.png)
 
 Conditional statements don't have to include an `else`. If there isn't one, Python simply does nothing if the test is false:
 
-```python
-traffic_count = 2500
+```{code-cell} python
+num = 50
 print('before conditional...')
-if traffic_count > 3000:
-    print(traffic_count, 'is heavy traffic')
+if num > 100:
+    print(num, 'is greater than 100')
 print('...after conditional')
-```
-
-```output
-before conditional...
-...after conditional
 ```
 
 We can also chain several tests together using `elif`, which is short for "else if". The following Python code uses `elif` to categorize traffic levels:
 
-```python
-traffic_count = 2000
+```{code-cell} python
+traffic_count = 3500
 
 if traffic_count > 5000:
     print(traffic_count, 'is very heavy traffic')
@@ -80,10 +51,6 @@ elif traffic_count > 3000:
     print(traffic_count, 'is heavy traffic')
 else:
     print(traffic_count, 'is normal traffic')
-```
-
-```output
-2000 is normal traffic
 ```
 
 Note that to test for equality we use a double equals sign `==` rather than a single equals sign `=` which is used to assign values.
@@ -104,7 +71,7 @@ Along with the `>` and `==` operators we have already used for comparing values 
 We can also combine tests using `and` and `or`. `and` is only true if both parts are true:
 
 ```python
-if 5000 > 3000 and 2000 >= 1500:
+if 50 > 30 and 20 >= 15:
     print('both parts are true')
 else:
     print('at least one part is false')
@@ -117,7 +84,7 @@ both parts are true
 while `or` is true if at least one part is true:
 
 ```python
-if 2000 > 5000 or 2000 >= 1500:
+if 20 > 50 or 20 >= 15:
     print('at least one test is true')
 ```
 
@@ -125,62 +92,37 @@ if 2000 > 5000 or 2000 >= 1500:
 at least one test is true
 ```
 
-## `True` and `False`
+## Using conditionals to make a clearer plot
 
-`True` and `False` are special words in Python called `booleans`, which represent truth values. A statement such as `1000 < 500` returns the value `False`, while `5000 > 3000` returns the value `True`. For example:
+Now let's try to use this to make a clearer plot of our traffic data. We're going to use conditionals to show weekends and weekdays in different colors.
 
-```python
-print(1000 < 500)
-```
+First, we need a way for Python to determine whether a day is a weekday or a weekend using an `if` statement. Let's try looking at the 7am traffic reading for each day:
 
-```output
-False
-```
-
-## Analyzing Multiple Series with Loops
-
-What if we plot all days at once to see the overall pattern? We can use a `for` loop to iterate through each row of the `traffic_data` array and plot it:
-
-```python
+```{code-cell} python
 import numpy
-import matplotlib.pyplot
+import matplotlib.pyplot as plt
 
 traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
 
 for i in range(len(traffic_data)):
-    matplotlib.pyplot.plot(traffic_data[i])
-matplotlib.pyplot.show()
+    print('Day', i + 1, '7am traffic:', traffic_data[i, 7])
 ```
 
-![A plot showing all days of traffic data overlaid on the same graph. The plot is messy but shows a strong pattern with most days having two peaks (morning and evening rush hours).](../fig/python_programming/07-cond/traffic-all-days-messy.png)
+Ah, from this we can see that on weekdays, there's always more than 5000 cars passing from 7 to 8am, and on weekends always less. Let's try using that as our conditional.
 
-This plot is messy, but it shows a strong pattern. We can see that most days have two clear peaks—one in the morning and one in the evening—but some days might look different.
+To make the plot clearer, we can use the `color` parameter in `plt.plot()` to specify what color each line should be. We'll use a loop with an `if` statement to check each day's 7am traffic and plot it in a different color depending on whether it's a weekday or weekend:
 
-## Making Choices with `if` Statements: The Climax
-
-This plot is messy, but it shows a strong pattern. We can use an `if` statement to tell Python to make a choice: if a day looks like a weekday (has a morning commute peak at 7am), plot it in blue; otherwise, plot it in orange.
-
-```python
-import numpy
-import matplotlib.pyplot
-
-traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
-
+```{code-cell} python
 for i in range(len(traffic_data)):
-    if traffic_data[i, 7] > 3000:
+    if traffic_data[i, 7] > 5000:
         # Weekday - has heavy morning traffic at 7am
-        matplotlib.pyplot.plot(traffic_data[i], color='blue', alpha=0.2)
+        plt.plot(traffic_data[i], color='blue')
     else:
         # Weekend - lighter morning traffic
-        matplotlib.pyplot.plot(traffic_data[i], color='orange', alpha=0.3)
-matplotlib.pyplot.show()
+        plt.plot(traffic_data[i], color='orange')
 ```
 
-![A plot showing all days of traffic data, with weekdays plotted in blue and weekends plotted in orange. The plot clearly separates the two-humped weekday pattern from the single-hump weekend pattern.](../fig/python_programming/07-cond/traffic-weekday-weekend.png)
-
-**The Final Payoff:** The final plot clearly separates the two-humped weekday pattern from the single-hump weekend pattern, providing a powerful and satisfying conclusion to the lesson. We can now automatically identify and visualize the difference between weekday and weekend traffic patterns!
-
-In this way, we have asked Python to do something different depending on the condition of our data. Here we plotted different colors for different types of days, but we could also imagine printing messages or performing different calculations for weekdays versus weekends.
+Now the plot is more clear, and we can easily see the difference between weekday and weekend traffic patterns! This even gets us some additional insights—for example, it's easy to see that the weekends have less traffic overall than the weekdays, in addition to the peak time difference.
 
 ~~~{admonition} Challenge: How Many Paths?
 
