@@ -207,13 +207,15 @@ for cars in morning_traffic:
     total = total + cars
 print('Total traffic:', total)
 ```
-:::
 
 Just like there's a built-in `len` function to count the number of elements, Python also has a built-in `sum` function to quickly calculate the sum of a list:
 
 ```python
 print('Total traffic:', sum(morning_traffic))
 ```
+
+:::
+
 
 :::
 
