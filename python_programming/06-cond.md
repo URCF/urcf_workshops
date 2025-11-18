@@ -1,3 +1,17 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+- Then, in cond section, distinguish weekdays and weekends
+    - Use this to plot weekdays and weekends in different colors
+
 # Making Choices
 
 :::{admonition} Objectives
