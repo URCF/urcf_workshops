@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Loading and analyzing data &#8212; University Research Computing Facility Workshops</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python_programming/04-numpy';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Visualizing data" href="05-matplotlib.html" />
+    <link rel="prev" title="Repeating actions with loops" href="03-loop.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="University Research Computing Facility Workshops - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="University Research Computing Facility Workshops - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    University Research Computing Facility Workshops
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory Sequence</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_linux/index.html">Introduction to the Unix shell</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/introduction.html">What is the shell?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/file-system.html">Navigating files and directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/working_with_files_and_directories.html">Working with files and directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/pipes.html">Redirection, wildcards, and pipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/utilities.html">Shell scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/loop.html">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/conclusion.html">Workshop Conclusion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_picotte/index.html">Introduction to research computing on Picotte</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/introduction.html">What is Picotte?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/accessing-picotte.html">Accessing Picotte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/interactive.html">Running compute jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/storage.html">Data storage and transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/environment.html">Environment modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/batch.html">Running a batch job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/jupyter-hub.html">Accessing Picotte using JupyterHub</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="00-index.html">Introduction to Python Programming</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-intro.html">Python fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-lists.html">Working with multiple values in lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-loop.html">Repeating actions with loops</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Loading and analyzing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-matplotlib.html">Visualizing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-cond.html">Making choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-func.html">Creating Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-errors.html">Errors and Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-defensive.html">Defensive Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-cmdline.html">Command-Line Programs</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/04-Matrix.html">Vectors, Matrices, Lists and Data Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/05-Control-Structure.html">Control Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/06-Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/07-Parallel-Computing.html">Parallel Computing in R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python_programming/04-numpy.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Loading and analyzing data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data">The data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-format">The data format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-data-into-python">Loading data into Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-data">Analyzing data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="loading-and-analyzing-data">
+<h1>Loading and analyzing data<a class="headerlink" href="#loading-and-analyzing-data" title="Link to this heading">#</a></h1>
+<p>Now that we’ve covered some Python basics and worked with a small amount of traffic data in a list, we’ll learn how to work  with the entire dataset—multiple days worth of traffic data. We’re going to use professional-grade tools (NumPy) to analyze   the entire dataset and answer bigger questions.</p>
+<section id="the-data">
+<h2>The data<a class="headerlink" href="#the-data" title="Link to this heading">#</a></h2>
+<p>We’re working with a dataset of hourly traffic counts from a sensor on a road. Each datapoint represents the number of vehicles that passed during a given hour (e.g. 7am - 8am, 8am - 9am, etc.)</p>
+<p><img alt="A laser-based traffic sensor system measuring vehicles on a road" src="../_images/traffic_sensor.png" /></p>
+</section>
+<section id="the-data-format">
+<h2>The data format<a class="headerlink" href="#the-data-format" title="Link to this heading">#</a></h2>
+<p>The data is stored in <strong>comma-separated values</strong> (<a class="reference external" href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>) format:</p>
+<ul class="simple">
+<li><p>Each <strong>row</strong> represents one full day.</p></li>
+<li><p>Each <strong>column</strong> represents an hour of the day. So the first column is the traffic from midnight to 1 AM, the second column is the traffic from 1 AM to 2 AM, etc.</p></li>
+</ul>
+<p>The first few rows of our data file look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1564</span><span class="p">,</span><span class="mi">795</span><span class="p">,</span><span class="mi">447</span><span class="p">,</span><span class="mi">443</span><span class="p">,</span><span class="mi">330</span><span class="p">,</span><span class="mi">453</span><span class="p">,</span><span class="mi">755</span><span class="p">,</span><span class="mi">953</span><span class="p">,</span><span class="mi">1650</span><span class="p">,</span><span class="mi">2442</span><span class="p">,</span><span class="mi">3230</span><span class="p">,</span><span class="mi">3575</span><span class="p">,</span><span class="mi">4139</span><span class="p">,</span><span class="mi">3892</span><span class="p">,</span><span class="mi">3989</span><span class="p">,</span><span class="mi">4294</span><span class="p">,</span><span class="mi">4521</span><span class="p">,</span><span class="mi">4280</span><span class="p">,</span><span class="mi">3945</span><span class="p">,</span><span class="mi">3169</span><span class="p">,</span><span class="mi">2772</span><span class="p">,</span><span class="mi">2213</span><span class="p">,</span><span class="mi">1570</span><span class="p">,</span><span class="mi">1065</span>
+<span class="mi">1335</span><span class="p">,</span><span class="mi">769</span><span class="p">,</span><span class="mi">570</span><span class="p">,</span><span class="mi">413</span><span class="p">,</span><span class="mi">399</span><span class="p">,</span><span class="mi">740</span><span class="p">,</span><span class="mi">1420</span><span class="p">,</span><span class="mi">2220</span><span class="p">,</span><span class="mi">3479</span><span class="p">,</span><span class="mi">4546</span><span class="p">,</span><span class="mi">4579</span><span class="p">,</span><span class="mi">4438</span><span class="p">,</span><span class="mi">4623</span><span class="p">,</span><span class="mi">4440</span><span class="p">,</span><span class="mi">4495</span><span class="p">,</span><span class="mi">4483</span><span class="p">,</span><span class="mi">4591</span><span class="p">,</span><span class="mi">4477</span><span class="p">,</span><span class="mi">4221</span><span class="p">,</span><span class="mi">3672</span><span class="p">,</span><span class="mi">3015</span><span class="p">,</span><span class="mi">2769</span><span class="p">,</span><span class="mi">2875</span><span class="p">,</span><span class="mi">1931</span>
+<span class="mi">598</span><span class="p">,</span><span class="mi">369</span><span class="p">,</span><span class="mi">312</span><span class="p">,</span><span class="mi">367</span><span class="p">,</span><span class="mi">835</span><span class="p">,</span><span class="mi">2726</span><span class="p">,</span><span class="mi">5689</span><span class="p">,</span><span class="mi">6990</span><span class="p">,</span><span class="mi">5985</span><span class="p">,</span><span class="mi">5309</span><span class="p">,</span><span class="mi">4603</span><span class="p">,</span><span class="mi">4884</span><span class="p">,</span><span class="mi">5104</span><span class="p">,</span><span class="mi">5178</span><span class="p">,</span><span class="mi">5501</span><span class="p">,</span><span class="mi">5713</span><span class="p">,</span><span class="mi">6292</span><span class="p">,</span><span class="mi">6057</span><span class="p">,</span><span class="mi">4907</span><span class="p">,</span><span class="mi">3503</span><span class="p">,</span><span class="mi">3037</span><span class="p">,</span><span class="mi">2822</span><span class="p">,</span><span class="mi">1992</span><span class="p">,</span><span class="mi">1166</span>
+</pre></div>
+</div>
+<p>The first value, <code class="docutils literal notranslate"><span class="pre">1564</span></code>, means that 1564 vehicles passed from midnight to 1 AM on the first day. The next value, <code class="docutils literal notranslate"><span class="pre">795</span></code>, means that 795 vehicles passed from 1 AM to 2 AM on the first day, etc.</p>
+</section>
+<section id="loading-data-into-python">
+<h2>Loading data into Python<a class="headerlink" href="#loading-data-into-python" title="Link to this heading">#</a></h2>
+<p>To begin processing the traffic data, we need to load it into Python. We can do that using a <em>library</em> called <a class="reference external" href="https://numpy.org/doc/stable">NumPy</a>, which stands for “Numerical Python”. Libraries are collections of Python code written by other people that you can install and use.</p>
+<p>In general, you should use NumPy when you need to work with numeric data, especially organized into matrices or arrays. To tell Python that we’d like to start using NumPy, we need to <strong>import</strong> it<a class="footnote-reference brackets" href="#installation" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Importing a library is like getting a piece of lab equipment out of a storage locker and setting it up on the bench. Libraries provide additional functionality to Python, much like a new piece of equipment adds functionality to a lab space. Just like in the lab, importing too many libraries can sometimes complicate and slow down your programs - so we only import what we need for each program.</p>
+<p>Once we’ve imported the library, we can ask the library to read our data file for us. The data is stored in a file called <code class="docutils literal notranslate"><span class="pre">traffic_data.txt</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;traffic_data.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1564.,  795.,  447.,  443.,  330.,  453.,  755.,  953., 1650.,
+        2442., 3230., 3575., 4139., 3892., 3989., 4294., 4521., 4280.,
+        3945., 3169., 2772., 2213., 1570., 1065.],
+       [1335.,  769.,  570.,  413.,  399.,  740., 1420., 2220., 3479.,
+        4546., 4579., 4438., 4623., 4440., 4495., 4483., 4591., 4477.,
+        4221., 3672., 3015., 2769., 2875., 1931.],
+       [ 598.,  369.,  312.,  367.,  835., 2726., 5689., 6990., 5985.,
+        5309., 4603., 4884., 5104., 5178., 5501., 5713., 6292., 6057.,
+        4907., 3503., 3037., 2822., 1992., 1166.],
+       [ 455.,  336.,  265.,  314.,  779., 2571., 5563., 6676., 5966.,
+        4832., 4395., 4411., 4648., 4602., 5125., 5502., 5979., 5663.,
+        4259., 3069., 2378., 2030., 1400.,  917.],
+       [ 500.,  324.,  257.,  354.,  769., 2769., 5789., 7055., 6408.,
+        5254., 4547., 4784., 5015., 5057., 5430., 5813., 6496., 6429.,
+        5142., 3311., 2777., 2331., 1767., 1093.],
+       [ 654.,  374.,  301.,  397.,  794., 2564., 5358., 6441., 5536.,
+        5256., 4619., 5107., 5147., 5283., 5704., 5887., 6307., 5953.,
+        4519., 3427., 2921., 2649., 2005., 1177.],
+       [ 511.,  346.,  253.,  349.,  807., 2669., 5210., 6083., 5790.,
+        5484., 4407., 4725., 4826., 4945., 5065., 5618., 6094., 5844.,
+        4649., 3180., 2963., 2450., 1613., 1021.],
+       [1159.,  822.,  641.,  411.,  468.,  723., 1415., 2191., 3185.,
+        4076., 4522., 6012., 5975., 5307., 4678., 4405., 4403., 4311.,
+        4198., 3475., 3078., 2931., 2941., 2240.],
+       [1166.,  724.,  568.,  343.,  383.,  703., 1229., 2057., 3246.,
+        4390., 4573., 4269., 4833., 4442., 4397., 4314., 4413., 4125.,
+        4004., 3404., 2777., 2579., 2552., 1952.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The expression <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt(...)</span></code> is a <strong>function call</strong> that asks Python to run the <strong>function</strong> <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> of the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library. We use the dot notation (<code class="docutils literal notranslate"><span class="pre">.</span></code>) that we learned about with lists—here it tells Python to look inside the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library and find the <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> function. When you see <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code>, you can read it as “the <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> function that belongs to <code class="docutils literal notranslate"><span class="pre">numpy</span></code>”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> has two <strong>parameters</strong>: the name of the file we want to read and the delimiter that separates values on a line. These both need to be strings, so we put them in quotes.</p>
+<p>Since we haven’t told it to do anything else with the function’s output, the notebook just displays it. In this case, that output is the data we just loaded. By default, only a few rows and columns are shown (with <code class="docutils literal notranslate"><span class="pre">...</span></code> to omit elements when displaying big arrays). Note that, to save space when displaying NumPy arrays, Python does not show us trailing zeros, so <code class="docutils literal notranslate"><span class="pre">598.0</span></code> becomes <code class="docutils literal notranslate"><span class="pre">598.</span></code>.</p>
+<p>Our call to <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> read our file but didn’t save the data in memory. To do that, we need to assign the array to a variable. In a similar manner to how we assign a single value to a variable, we can also assign an array of values to a variable using the same syntax. Let’s re-run <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> and save the returned data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traffic_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;traffic_data.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This statement doesn’t produce any output because we’ve assigned the output to the variable <code class="docutils literal notranslate"><span class="pre">traffic_data</span></code>. If we want to check that the data have been loaded, we can print the variable’s value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1564.  795.  447.  443.  330.  453.  755.  953. 1650. 2442. 3230. 3575.
+  4139. 3892. 3989. 4294. 4521. 4280. 3945. 3169. 2772. 2213. 1570. 1065.]
+ [1335.  769.  570.  413.  399.  740. 1420. 2220. 3479. 4546. 4579. 4438.
+  4623. 4440. 4495. 4483. 4591. 4477. 4221. 3672. 3015. 2769. 2875. 1931.]
+ [ 598.  369.  312.  367.  835. 2726. 5689. 6990. 5985. 5309. 4603. 4884.
+  5104. 5178. 5501. 5713. 6292. 6057. 4907. 3503. 3037. 2822. 1992. 1166.]
+ [ 455.  336.  265.  314.  779. 2571. 5563. 6676. 5966. 4832. 4395. 4411.
+  4648. 4602. 5125. 5502. 5979. 5663. 4259. 3069. 2378. 2030. 1400.  917.]
+ [ 500.  324.  257.  354.  769. 2769. 5789. 7055. 6408. 5254. 4547. 4784.
+  5015. 5057. 5430. 5813. 6496. 6429. 5142. 3311. 2777. 2331. 1767. 1093.]
+ [ 654.  374.  301.  397.  794. 2564. 5358. 6441. 5536. 5256. 4619. 5107.
+  5147. 5283. 5704. 5887. 6307. 5953. 4519. 3427. 2921. 2649. 2005. 1177.]
+ [ 511.  346.  253.  349.  807. 2669. 5210. 6083. 5790. 5484. 4407. 4725.
+  4826. 4945. 5065. 5618. 6094. 5844. 4649. 3180. 2963. 2450. 1613. 1021.]
+ [1159.  822.  641.  411.  468.  723. 1415. 2191. 3185. 4076. 4522. 6012.
+  5975. 5307. 4678. 4405. 4403. 4311. 4198. 3475. 3078. 2931. 2941. 2240.]
+ [1166.  724.  568.  343.  383.  703. 1229. 2057. 3246. 4390. 4573. 4269.
+  4833. 4442. 4397. 4314. 4413. 4125. 4004. 3404. 2777. 2579. 2552. 1952.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">traffic_data</span></code> variable is a new kind of object that we haven’t seen before. We can see this using the <code class="docutils literal notranslate"><span class="pre">type</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output tells us that <code class="docutils literal notranslate"><span class="pre">traffic_data</span></code> is an <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>, which is short for
+“N-dimensional array”, a data structure for storing and manipulating numerical
+data as a matrix or array.</p>
+<p>In our case, we have a 2-dimensional NumPy array (rows and columns). Each row
+represents a day, and each column represents an hour of the day. NumPy arrays
+can have more than two dimensions (for example, 3-dimensional arrays could represent
+coordinates in a 3D space).</p>
+<p>To access data from the array, we provide an index, just like we did with lists.
+Unlike with lists, however, our traffic data now has two dimensions (day, and
+hour of the day), so we will need to use <em>two</em> indices to refer to a specific
+entry. We seperate the two indices with a comma:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;first day, first hour:&#39;</span><span class="p">,</span> <span class="n">traffic_data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>first day, first hour: 1564.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use a different index to access a different value, for example the traffic at 7 AM on the second day:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;traffic at 7 AM on the second day:&#39;</span><span class="p">,</span> <span class="n">traffic_data</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>traffic at 7 AM on the second day: 2220.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="'traffic_data' is a 3 by 3 numpy array containing row 0: ['A', 'B', 'C'], row 1: ['D', 'E', 'F'], and row 2: ['G', 'H', 'I']. Starting in the upper left hand corner, traffic_data[0, 0] = 'A', traffic_data[0, 1] = 'B', traffic_data[0, 2] = 'C', traffic_data[1, 0] = 'D', traffic_data[1, 1] = 'E', traffic_data[1, 2] = 'F', traffic_data[2, 0] = 'G', traffic_data[2, 1] = 'H', and traffic_data[2, 2] = 'I', in the bottom right hand corner." src="../_images/python-zero-index.svg" /></p>
+<div class="note admonition">
+<p class="admonition-title">In the Corner</p>
+<p>What may also surprise you is that when Python displays an array, it shows the element with index <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0]</span></code> in the upper left corner rather than the lower left. This is consistent with the way mathematicians draw matrices but different from the Cartesian coordinates. The indices are (row, column) instead of (column, row) for the same reason, which can be confusing when plotting data.</p>
+</div>
+</section>
+<section id="analyzing-data">
+<h2>Analyzing data<a class="headerlink" href="#analyzing-data" title="Link to this heading">#</a></h2>
+<p>NumPy has several useful functions that take an array as input to perform operations on its values. Now we have all the data, we can ask bigger questions. What was the average traffic for each hour across all days? Which hour is the busiest on average? What was the single busiest hour ever recorded?</p>
+<p>If we want to find the average traffic for all days and all hours, for example, we can ask NumPy to compute <code class="docutils literal notranslate"><span class="pre">traffic_data</span></code>’s mean value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3253.810185185185)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output looks a little funny, in that it’s wrapped in <code class="docutils literal notranslate"><span class="pre">np.float64(...)</span></code>.
+Internally, NumPy uses it’s own custom representation of floating point numbers,
+to make computation more efficient, which is what Python is telling us here. We can display the number in a more human-readable format by using the <code class="docutils literal notranslate"><span class="pre">print</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3253.810185185185
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Not All Functions Have Input</p>
+<p>Generally, a function uses inputs to produce outputs. However, some functions produce outputs without needing any input. For example, checking the current time doesn’t require any input.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Sat Mar 26 13:07:33 2016</span>
+</pre></div>
+</div>
+<p>For functions that don’t take in any arguments, we still need parentheses (<code class="docutils literal notranslate"><span class="pre">()</span></code>) to tell Python to actually run the function (which is called <em>calling</em> or <em>executing</em> the function).</p>
+</div>
+<p>NumPy also has functions for getting other descriptive statistics about the dataset. For example, we can get the maximum traffic for each day:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7055.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>or the standard deviation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1975.0186464398637
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">How do I know what functions NumPy has?</p>
+<p>How did we know what functions NumPy has and how to use them? If you are working in a Jupyter Notebook, there is an easy way to find out. If you type the name of something followed by a dot, then you can use <strong>tab completion</strong> (e.g. type <code class="docutils literal notranslate"><span class="pre">numpy.</span></code> and then press <kbd>Tab</kbd>) to see a list of all functions and attributes that you can use. After selecting one, you can also add a question mark (e.g. <code class="docutils literal notranslate"><span class="pre">numpy.cumprod?</span></code>), and Jupyter will return an explanation of the method! This is the same as doing <code class="docutils literal notranslate"><span class="pre">help(numpy.cumprod)</span></code>. Similarly, if you are using the “plain vanilla” Python interpreter, you can type <code class="docutils literal notranslate"><span class="pre">numpy.</span></code> and press the <kbd>Tab</kbd> key twice for a listing of what is available. You can then use the <code class="docutils literal notranslate"><span class="pre">help()</span></code> function to see an explanation of the function you’re interested in, for example: <code class="docutils literal notranslate"><span class="pre">help(numpy.cumprod)</span></code>.</p>
+</div>
+<p>When analyzing data, though, we often want to look at subsets of the data, such as the maximum traffic for each day. For example, what if we want to know the peak traffic for just the first day in the dataset?</p>
+<p>We can get the data for the first day by indexing the <code class="docutils literal notranslate"><span class="pre">traffic_data</span></code> array with <code class="docutils literal notranslate"><span class="pre">[0]</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_day_data</span> <span class="o">=</span> <span class="n">traffic_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first_day_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1564.  795.  447.  443.  330.  453.  755.  953. 1650. 2442. 3230. 3575.
+ 4139. 3892. 3989. 4294. 4521. 4280. 3945. 3169. 2772. 2213. 1570. 1065.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can think of a 2-dimensional array as a “list of lists”, where each inner list represents a day. So, <code class="docutils literal notranslate"><span class="pre">traffic_data[0]</span></code> is the first day’s data, and <code class="docutils literal notranslate"><span class="pre">traffic_data[1]</span></code> is the second day’s data, etc.</p>
+<p>Now we can get the maximum traffic for just the first day like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">first_day_data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4521.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or we can get the maximum traffic for just the second day:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4623.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that here we skip assigning the second day’s data to a variable, and just pass the array directly to the <code class="docutils literal notranslate"><span class="pre">numpy.max</span></code> function.</p>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Maximum traffic for each day</p>
+<p>Write a loop that goes through each day in <code class="docutils literal notranslate"><span class="pre">traffic_data</span></code> and prints the maximum traffic for that day.</p>
+<p><em>Hint</em>: Remember that <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">collection:</span></code> loops through each item in a collection. In the case of a 2-dimensional NumPy array, each <code class="docutils literal notranslate"><span class="pre">item</span></code> is a row (the data for a single day).</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">day_data</span> <span class="ow">in</span> <span class="n">traffic_data</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">day_data</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">4521.0</span>
+<span class="go">4623.0</span>
+<span class="go">6990.0</span>
+<span class="go">6676.0</span>
+<span class="go">7055.0</span>
+<span class="go">6441.0</span>
+<span class="go">6094.0</span>
+<span class="go">6012.0</span>
+<span class="go">4833.0</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Average Traffic at each hour of the day</p>
+<p>We’ve seen how to get the data for just one day, but what about the data for a single <em>hour</em>? What if we wanted to know the average traffic at 7am?</p>
+<p>For this, you need to use a Python concept called <strong>slicing</strong>. The simplest form of slicing is to use a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>) to select all elements along a dimension. For example, <code class="docutils literal notranslate"><span class="pre">traffic_data[:,</span> <span class="pre">7]</span></code> gets all rows (days) but only the 7th column (the 7am hour).</p>
+<p>For more information on slicing, see the <a class="reference external" href="https://numpy.org/doc/stable/user/basics.indexing.html#slicing-and-striding">NumPy documentation on slicing</a>.</p>
+<p>Use slicing to write a loop that prints the average traffic at each hour of the day (so the average traffic at midnight across all days, the average traffic at 1am across all days, etc.).</p>
+<p><em>Hint</em>: You can use <code class="docutils literal notranslate"><span class="pre">range(24)</span></code> to loop through all 24 hours.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">hour</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">[:,</span> <span class="n">hour</span><span class="p">]))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">882.4444444444445</span>
+<span class="go">539.8888888888889</span>
+<span class="go">401.55555555555554</span>
+<span class="go">376.77777777777777</span>
+<span class="go">618.2222222222222</span>
+<span class="go">1768.6666666666667</span>
+<span class="go">3603.1111111111113</span>
+<span class="go">4518.444444444444</span>
+<span class="go">4582.777777777777</span>
+<span class="go">4621.0</span>
+<span class="go">4386.111111111111</span>
+<span class="go">4689.444444444444</span>
+<span class="go">4923.333333333333</span>
+<span class="go">4794.0</span>
+<span class="go">4931.555555555556</span>
+<span class="go">5114.333333333333</span>
+<span class="go">5455.111111111111</span>
+<span class="go">5237.666666666667</span>
+<span class="go">4427.111111111111</span>
+<span class="go">3356.6666666666665</span>
+<span class="go">2857.5555555555557</span>
+<span class="go">2530.4444444444443</span>
+<span class="go">2079.4444444444443</span>
+<span class="go">1395.7777777777778</span>
+</pre></div>
+</div>
+<p class="sd-card-text">We can see that traffic is generally low around midnight, and higher during the day, which makes sense.</p>
+</div>
+</details></div>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="installation" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Usually, we would have to first <em>install</em> NumPy before we could import it. Here we’re using an environment that comes with NumPy already installed, so we don’t need to.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python_programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03-loop.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Repeating actions with loops</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05-matplotlib.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Visualizing data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data">The data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-format">The data format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-data-into-python">Loading data into Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-data">Analyzing data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Linh Ngo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

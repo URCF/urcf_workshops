@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Repeating actions with loops &#8212; University Research Computing Facility Workshops</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python_programming/03-loop';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Loading and analyzing data" href="04-numpy.html" />
+    <link rel="prev" title="Working with multiple values in lists" href="02-lists.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="University Research Computing Facility Workshops - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="University Research Computing Facility Workshops - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    University Research Computing Facility Workshops
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory Sequence</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_linux/index.html">Introduction to the Unix shell</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/introduction.html">What is the shell?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/file-system.html">Navigating files and directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/working_with_files_and_directories.html">Working with files and directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/pipes.html">Redirection, wildcards, and pipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/utilities.html">Shell scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/loop.html">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_linux/conclusion.html">Workshop Conclusion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_picotte/index.html">Introduction to research computing on Picotte</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/introduction.html">What is Picotte?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/accessing-picotte.html">Accessing Picotte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/interactive.html">Running compute jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/storage.html">Data storage and transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/environment.html">Environment modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/batch.html">Running a batch job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_picotte/jupyter-hub.html">Accessing Picotte using JupyterHub</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="00-index.html">Introduction to Python Programming</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-intro.html">Python fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-lists.html">Working with multiple values in lists</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Repeating actions with loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-numpy.html">Loading and analyzing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-matplotlib.html">Visualizing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-cond.html">Making choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-func.html">Creating Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-errors.html">Errors and Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-defensive.html">Defensive Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-debugging.html">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-cmdline.html">Command-Line Programs</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/04-Matrix.html">Vectors, Matrices, Lists and Data Frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/05-Control-Structure.html">Control Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/06-Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/07-Parallel-Computing.html">Parallel Computing in R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python_programming/03-loop.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Repeating actions with loops</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Repeating Actions with Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-complicated-operations-in-loops">More complicated operations in loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-other-things">Looping over other things</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="repeating-actions-with-loops">
+<h1>Repeating actions with loops<a class="headerlink" href="#repeating-actions-with-loops" title="Link to this heading">#</a></h1>
+<div class="admonition-objectives admonition">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Explain what a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop does.</p></li>
+<li><p>Correctly write <code class="docutils literal notranslate"><span class="pre">for</span></code> loops to repeat simple calculations.</p></li>
+<li><p>Trace changes to a loop variable as the loop runs.</p></li>
+<li><p>Trace changes to other variables as they are updated by a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
+</ul>
+</div>
+<div class="admonition-questions admonition">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How can I do the same operations on many different values?</p></li>
+</ul>
+</div>
+<section id="id1">
+<h2>Repeating Actions with Loops<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>So far, we’ve learned to access and manipulate individual elements of a list. But what if we want to perform the same operation on many different elements in the list (e.g. print them all out)? Or aggregate them somehow (e.g. calculate the total sum of all traffic)? This is where loops come in.</p>
+<p>Let’s say we have the following list of morning traffic counts, from 7am to 11am:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">morning_traffic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>As we saw in the previous episode, we can access an element of a list using its index. For example, we can get the first number in the list <code class="docutils literal notranslate"><span class="pre">morning_traffic</span></code>, by using <code class="docutils literal notranslate"><span class="pre">morning_traffic[0]</span></code>. So one way to print each number is to use 5 <code class="docutils literal notranslate"><span class="pre">print</span></code> statements:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">morning_traffic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">morning_traffic</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">morning_traffic</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">morning_traffic</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">morning_traffic</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">morning_traffic</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>500
+600
+550
+450
+350
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is a bad approach for three reasons:</p>
+<ol class="arabic simple">
+<li><p><strong>Not scalable</strong>. Imagine you need to print a list that has hundreds of elements. It might be easier to type them in manually, but it’s tedious and error-prone.</p></li>
+<li><p><strong>Difficult to maintain</strong>. If we want to annotate each printed element somehow (e.g. add a unit), we would have to change multiple lines of code. While this might not be a problem for very small lists, it would definitely be a problem for longer ones.</p></li>
+<li><p><strong>Fragile</strong>. If we use it with a list that has more elements than what we initially envisioned, it will only display part of the list’s elements. A shorter list, on the other hand, will cause an error because it will be trying to display elements of the list that do not exist.</p></li>
+</ol>
+<p>Here’s a better approach: a <strong>for loop</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cars</span> <span class="ow">in</span> <span class="n">morning_traffic</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>500
+600
+550
+450
+350
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is shorter, and more robust as well. For example, if we change the list by adding a new number at the end, we don’t need to change the loop at all:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">morning_traffic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cars</span> <span class="ow">in</span> <span class="n">morning_traffic</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>500
+600
+550
+450
+350
+200
+</pre></div>
+</div>
+</div>
+</div>
+<p>The general form of a loop is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
+    <span class="c1"># do something using variable (e.g. print it)</span>
+</pre></div>
+</div>
+<p>The first line of the loop (the one that starts with <code class="docutils literal notranslate"><span class="pre">for</span></code>) must end with a colon. If we forget this, we’ll get an error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cars</span> <span class="ow">in</span> <span class="n">morning_traffic</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">cars</span> <span class="ow">in</span> <span class="n">morning_traffic</span>
+                               <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">expected</span> <span class="s1">&#39;:&#39;</span>
+</pre></div>
+</div>
+<p>The things we want to do inside the loop are called the “loop body”, and must be indented. If we don’t indent, we’ll also get an error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cars</span> <span class="ow">in</span> <span class="n">morning_traffic</span><span class="p">:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span>
+    <span class="o">^</span>
+<span class="ne">IndentationError</span><span class="p">:</span> <span class="n">expected</span> <span class="n">an</span> <span class="n">indented</span> <span class="n">block</span> <span class="n">after</span> <span class="s1">&#39;for&#39;</span> <span class="n">statement</span> <span class="n">on</span> <span class="n">line</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>We can call the <strong>loop variable</strong> anything we like.</p>
+<p>In the example above, the loop variable was given the name <code class="docutils literal notranslate"><span class="pre">cars</span></code>, since the value it holds is the number of cars counted in a given hour. We can choose any name we want for variables. We might just as easily have chosen the name <code class="docutils literal notranslate"><span class="pre">number</span></code> for the loop variable, as long as we use the same name when we invoke the variable inside the loop:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">morning_traffic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">morning_traffic</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>500
+600
+550
+450
+350
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is a good idea to choose variable names that are meaningful, otherwise it would be more difficult to understand what the loop is doing.</p>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Printing with labels</p>
+<p>Given the list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">morning_traffic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Write a loop that prints each number with “traffic: “ before it. The output should be:</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">traffic: 500</span>
+<span class="go">traffic: 600</span>
+<span class="go">traffic: 550</span>
+<span class="go">traffic: 450</span>
+<span class="go">traffic: 350</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cars</span> <span class="ow">in</span> <span class="n">morning_traffic</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;traffic: &#39;</span><span class="p">,</span> <span class="n">cars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+</section>
+<section id="more-complicated-operations-in-loops">
+<h2>More complicated operations in loops<a class="headerlink" href="#more-complicated-operations-in-loops" title="Link to this heading">#</a></h2>
+<p>The operation inside the loop can be whatever we want. So far, we’ve only printed the values in the list, but loops can be used to perform more sophisticated calculations.</p>
+<p>For example, what if we want to know how many hours of traffic we have recorded? Each entry in the list corresponds to one hour, so we to do this we can count the number of entries in the list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">morning_traffic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>
+<span class="n">entries</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">cars</span> <span class="ow">in</span> <span class="n">morning_traffic</span><span class="p">:</span>
+    <span class="n">entries</span> <span class="o">=</span> <span class="n">entries</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Morning traffic hours:&#39;</span><span class="p">,</span> <span class="n">entries</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Morning traffic hours: 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s worth tracing the execution of this little program step by step:</p>
+<ul class="simple">
+<li><p>Since there are 5 items in <code class="docutils literal notranslate"><span class="pre">morning_traffic</span></code>, the loop will be executed 5 times.</p></li>
+<li><p>The first time around, <code class="docutils literal notranslate"><span class="pre">entries</span></code> is zero (the value assigned to it at the start) and <code class="docutils literal notranslate"><span class="pre">cars</span></code> is <code class="docutils literal notranslate"><span class="pre">500</span></code>. The statement <code class="docutils literal notranslate"><span class="pre">entries</span> <span class="pre">=</span> <span class="pre">entries</span> <span class="pre">+</span> <span class="pre">1</span></code> adds 1 to the old value of <code class="docutils literal notranslate"><span class="pre">entries</span></code>, producing 1, and updates <code class="docutils literal notranslate"><span class="pre">entries</span></code> to refer to that new value.</p></li>
+<li><p>The next time around, <code class="docutils literal notranslate"><span class="pre">cars</span></code> is <code class="docutils literal notranslate"><span class="pre">600</span></code> and <code class="docutils literal notranslate"><span class="pre">entries</span></code> is 1, so <code class="docutils literal notranslate"><span class="pre">entries</span></code> is updated to be 2.</p></li>
+<li><p>The next time, entries is 2 and cars is 550, so entries is updated to be 3.</p></li>
+<li><p>This process repeats for each entry in the list, until the loop has gone through all 5 items.</p></li>
+<li><p>After the loop has finished, <code class="docutils literal notranslate"><span class="pre">entries</span></code> is 5, so the program prints “Morning traffic hours: 5”.</p></li>
+</ul>
+<p>Note that finding the length of an object is such a common operation that Python actually has a built-in function to do it called <code class="docutils literal notranslate"><span class="pre">len</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">morning_traffic</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">len</span></code> is faster and much more convenient than writing our own loop.</p>
+</section>
+<section id="looping-over-other-things">
+<h2>Looping over other things<a class="headerlink" href="#looping-over-other-things" title="Link to this heading">#</a></h2>
+<p>We can loop over any collection of several values, not just a list. For example, a string is a collection of it’s individual characters. So we can loop over the letters in a string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_of_day</span> <span class="o">=</span> <span class="s1">&#39;morning&#39;</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">time_of_day</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>m
+o
+r
+n
+i
+n
+g
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Summing a List</p>
+<p>Given the list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">morning_traffic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Write a loop that adds up all the entries in <code class="docutils literal notranslate"><span class="pre">morning_traffic</span></code> to calculate the total traffic, and then prints the result. The output should be:</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">Total traffic: 2450</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">cars</span> <span class="ow">in</span> <span class="n">morning_traffic</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">cars</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total traffic:&#39;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p>Just like there’s a built-in <code class="docutils literal notranslate"><span class="pre">len</span></code> function to count the number of elements, Python also has a built-in <code class="docutils literal notranslate"><span class="pre">sum</span></code> function to quickly calculate the sum of a list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total traffic:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">morning_traffic</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="docutils">
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: From 1 to N</p>
+<p>Python has a built-in function called <code class="docutils literal notranslate"><span class="pre">range</span></code> that generates a sequence of numbers. <code class="docutils literal notranslate"><span class="pre">range</span></code> can accept 1, 2, or 3 parameters.</p>
+<ul class="simple">
+<li><p>If one parameter is given, <code class="docutils literal notranslate"><span class="pre">range</span></code> generates a sequence of that length, starting at zero and incrementing by 1. For example, <code class="docutils literal notranslate"><span class="pre">range(3)</span></code> produces the numbers <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2</span></code>.</p></li>
+<li><p>If two parameters are given, <code class="docutils literal notranslate"><span class="pre">range</span></code> starts at the first and ends just before the second, incrementing by one. For example, <code class="docutils literal notranslate"><span class="pre">range(2,</span> <span class="pre">5)</span></code> produces <code class="docutils literal notranslate"><span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4</span></code>.</p></li>
+</ul>
+<p>Using <code class="docutils literal notranslate"><span class="pre">range</span></code>, write a loop that prints numbers from 4 to 7. The output should be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p>Now write a loop that prints the indices of the list <code class="docutils literal notranslate"><span class="pre">morning_traffic</span></code>. The output should be:</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">0</span>
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p><em>Hint</em>: Remember you can use <code class="docutils literal notranslate"><span class="pre">len(morning_traffic)</span></code> to get the length of the list.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">morning_traffic</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="note admonition">
+<p class="admonition-title">Challenge: Dynamic Labels</p>
+<p>Given the list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">morning_traffic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This list contains traffic counts for 7am, 8am, 9am, 10am, and 11am (in that order). Write a loop that prints each traffic count with a label showing which hour it’s for. The output should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">traffic</span> <span class="n">at</span> <span class="mi">7</span> <span class="n">am</span><span class="p">:</span> <span class="mi">500</span>
+<span class="n">traffic</span> <span class="n">at</span> <span class="mi">8</span> <span class="n">am</span><span class="p">:</span> <span class="mi">600</span>
+<span class="n">traffic</span> <span class="n">at</span> <span class="mi">9</span> <span class="n">am</span><span class="p">:</span> <span class="mi">550</span>
+<span class="n">traffic</span> <span class="n">at</span> <span class="mi">10</span> <span class="n">am</span><span class="p">:</span> <span class="mi">450</span>
+<span class="n">traffic</span> <span class="n">at</span> <span class="mi">11</span> <span class="n">am</span><span class="p">:</span> <span class="mi">350</span>
+</pre></div>
+</div>
+<p><em>Hint</em>: You’ll need to use <code class="docutils literal notranslate"><span class="pre">range(len(morning_traffic))</span></code> to get the index, then use that index to both access the traffic count and calculate which hour it represents (remember: we started at 7am, so index 0 is 7am, index 1 is 8am, etc.).</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">morning_traffic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">morning_traffic</span><span class="p">)):</span>
+    <span class="n">hour</span> <span class="o">=</span> <span class="mi">7</span> <span class="o">+</span> <span class="n">i</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;traffic at&#39;</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="s1">&#39;am:&#39;</span><span class="p">,</span> <span class="n">morning_traffic</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python_programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02-lists.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Working with multiple values in lists</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04-numpy.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Loading and analyzing data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Repeating Actions with Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-complicated-operations-in-loops">More complicated operations in loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-other-things">Looping over other things</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Linh Ngo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">University Research Computing Facility Workshops</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

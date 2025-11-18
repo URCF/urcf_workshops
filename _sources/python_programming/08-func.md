@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Creating Functions
 
 :::{admonition} Objectives
@@ -23,14 +34,14 @@ sees in our data. What if we want to convert some of our data, like taking a
 temperature in Fahrenheit and converting it to Celsius. We could write something
 like this for converting a single number
 
-```python
+```{code-cell} python
 fahrenheit_val = 99
 celsius_val = (fahrenheit_val - 32) * (5/9)
 ```
 
 and for a second number we could just copy the line and rename the variables
 
-```python
+```{code-cell} python
 fahrenheit_val = 99
 celsius_val = (fahrenheit_val - 32) * (5/9)
 
@@ -45,19 +56,15 @@ easier to reuse, a shorthand way of re-executing longer pieces of code. In
 Python we can use 'functions'. Let's start by defining a function
 `fahr_to_celsius` that converts temperatures from Fahrenheit to Celsius:
 
-```python
+```{code-cell} python
 def fahr_to_celsius(temp):
     return (temp - 32) * (5/9)
 ```
 
 Now we can use this function to convert temperatures:
 
-```python
+```{code-cell} python
 print(fahr_to_celsius(32))
-```
-
-```output
-0.0
 ```
 
 ![](../fig/python_programming/python-function.svg)
@@ -79,14 +86,9 @@ Calling our own function is no different from calling any other function (like
 built-in functions, or functions from a library). For example, we can use it in
 a print statement:
 
-```python
+```{code-cell} python
 print('freezing point of water:', fahr_to_celsius(32), 'C')
 print('boiling point of water:', fahr_to_celsius(212), 'C')
-```
-
-```output
-freezing point of water: 0.0 C
-boiling point of water: 100.0 C
 ```
 
 We've successfully called the function that we defined, and we have access to
@@ -97,15 +99,11 @@ the value that we returned.
 Now that we've seen how to turn Fahrenheit into Celsius,
 we can also write the function to turn Celsius into Kelvin:
 
-```python
+```{code-cell} python
 def celsius_to_kelvin(temp_c):
     return temp_c + 273.15
 
 print('freezing point of water in Kelvin:', celsius_to_kelvin(0.))
-```
-
-```output
-freezing point of water in Kelvin: 273.15
 ```
 
 What about converting Fahrenheit to Kelvin?
@@ -114,17 +112,13 @@ but we don't need to.
 Instead,
 we can [compose](../learners/reference.md#compose) the two functions we have already created:
 
-```python
+```{code-cell} python
 def fahr_to_kelvin(temp_f):
     temp_c = fahr_to_celsius(temp_f)
     temp_k = celsius_to_kelvin(temp_c)
     return temp_k
 
 print('boiling point of water in Kelvin:', fahr_to_kelvin(212.0))
-```
-
-```output
-boiling point of water in Kelvin: 373.15
 ```
 
 This is our first taste of how larger programs are built: we define basic
@@ -192,64 +186,44 @@ temperature in Kelvin was: 373.15
 ## Tidying up
 
 Now that we know how to wrap bits of code up in functions,
-we can make our inflammation analysis easier to read and easier to reuse.
-First, let's make a `visualize` function that generates our plots:
+we can make our traffic data analysis easier to read and easier to reuse.
 
-```python
-def visualize(filename):
+First, let's make sure we have our traffic data loaded:
 
-    data = numpy.loadtxt(filename, delimiter=',')
+```{code-cell} python
+import numpy
+import matplotlib.pyplot as plt
 
-    matplotlib.pyplot.plot(numpy.mean(data, axis=0))
-    matplotlib.pyplot.plot(numpy.max(data, axis=0))
-    matplotlib.pyplot.plot(numpy.min(data, axis=0))
-    matplotlib.pyplot.show()
+traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
 ```
 
-and another function called `detect_problems` that checks for those systematics
-we noticed:
+Let's break out the logic we used before for determining if a day is a weekday into its own function:
 
-```python
-def detect_problems(filename):
+```{code-cell} python
+def is_weekday(day_data):
+    return day_data[7] > 5000
+```
 
-    data = numpy.loadtxt(filename, delimiter=',')
+This function takes a single day's data and returns `True` if it's a weekday (has heavy morning traffic at 7am) or `False` if it's a weekend. Now we can use this function in our plotting code:
 
-    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
-        print('Suspicious looking maxima!')
-    elif numpy.sum(numpy.min(data, axis=0)) == 0:
-        print('Minima add up to zero!')
+```{code-cell} python
+for day in traffic_data:
+    if is_weekday(day):
+        plt.plot(day, color='blue')
     else:
-        print('Seems OK!')
+        plt.plot(day, color='orange')
+plt.title('Traffic Patterns: Weekdays vs Weekends')
+plt.xlabel('Time of Day')
+plt.ylabel('Vehicle Count');
 ```
 
-Wait! Didn't we forget to specify what both of these functions should return? Well, we didn't.
-In Python, functions are not required to include a `return` statement and can be used for
-the sole purpose of grouping together pieces of code that conceptually do one thing. In such cases,
-function names usually describe what they do, *e.g.* `visualize`, `detect_problems`.
-
-Notice that rather than jumbling this code together in one giant `for` loop,
-we can now read and reuse both ideas separately.
-We can reproduce the previous analysis with a much simpler `for` loop:
-
-```python
-filenames = sorted(glob.glob('inflammation*.csv'))
-
-for filename in filenames[:3]:
-    print(filename)
-    visualize(filename)
-    detect_problems(filename)
-```
-
-By giving our functions human-readable names,
-we can more easily read and understand what is happening in the `for` loop.
-Even better, if at some later date we want to use either of those pieces of code again,
-we can do so in a single line.
+Notice how much clearer the `if` statement is now! Instead of `if data[i, 7] > 5000:`, we have `if is_weekday(data[i]):`. The function name `is_weekday` makes the intent of the condition immediately clear—we're checking whether this day is a weekday. This makes the code more readable because anyone reading it can understand *what* we're checking for, not just *how* we're checking it.Even better, if we need to check if a day is a weekday elsewhere in our code, we can reuse this function. Then we don't have to write the same code over and over again, or update it in multiple places if we want to change it.
 
 ## Readable functions
 
 Consider these two functions:
 
-```python
+```{code-cell} python
 def s(p):
     a = 0
     for v in p:

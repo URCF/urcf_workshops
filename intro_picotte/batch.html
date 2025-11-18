@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Running a batch job &#8212; University Research Computing Facility Workshops</title>
   
@@ -15,54 +14,51 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/batch';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Accessing Picotte using JupyterHub" href="jupyter-hub.html" />
@@ -76,19 +72,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -110,12 +110,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +138,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -142,12 +154,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="University Research Computing Facility Workshops - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="University Research Computing Facility Workshops - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -159,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory Sequence</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_linux/index.html">Introduction to the Unix shell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_linux/index.html">Introduction to the Unix shell</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro_linux/introduction.html">What is the shell?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro_linux/getting-started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro_linux/file-system.html">Navigating files and directories</a></li>
@@ -169,8 +192,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../intro_linux/loop.html">Loops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro_linux/conclusion.html">Workshop Conclusion</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to research computing on Picotte</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to research computing on Picotte</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Picotte?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing Picotte</a></li>
 <li class="toctree-l2"><a class="reference internal" href="interactive.html">Running compute jobs</a></li>
@@ -179,29 +202,28 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Running a batch job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jupyter-hub.html">Accessing Picotte using JupyterHub</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_programming/00-index.html">Introduction to Python Programming</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/01-intro.html">Python Fundamentals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/02-numpy.html">Analyzing Patient Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/03-matplotlib.html">Visualizing Tabular Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/04-lists.html">Storing Multiple Values in Lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/05-loop.html">Repeating Actions with Loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/06-files.html">Analyzing Data from Multiple Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../python_programming/07-cond.html">Making Choices</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_programming/00-index.html">Introduction to Python Programming</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/01-intro.html">Python fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/02-lists.html">Working with multiple values in lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/03-loop.html">Repeating actions with loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/04-numpy.html">Loading and analyzing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/05-matplotlib.html">Visualizing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_programming/06-cond.html">Making choices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/08-func.html">Creating Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/09-errors.html">Errors and Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/10-defensive.html">Defensive Programming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/11-debugging.html">Debugging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_programming/12-cmdline.html">Command-Line Programs</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">R</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../r_programming/00-index.html">Introduction to R</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../r_programming/01-Introduction.html">Introduction to R</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../r_programming/02-Basic-R.html">Basics of R</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../r_programming/03-Data-Structures.html">Data Structures</a></li>
@@ -212,7 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../r_programming/08-Basic-Plotting.html">Basic plotting with R</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../r_programming/09-Plotting-with-ggplot.html">Ploting with ggplot</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -228,7 +250,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -237,14 +259,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -319,26 +341,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -377,10 +401,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="running-a-batch-job">
-<h1>Running a batch job<a class="headerlink" href="#running-a-batch-job" title="Permalink to this heading">#</a></h1>
+<h1>Running a batch job<a class="headerlink" href="#running-a-batch-job" title="Link to this heading">#</a></h1>
 <p>Interactive jobs are great if you need to do something quick (perhaps visualize
 some data). If you have code that runs for seven hours, an interactive job is
 not a great idea. This is because an interactive job is killed if you close the
@@ -398,7 +422,7 @@ won’t affect a batch job.</p>
 everything we’ve learned, from job submission, to using environment modules to
 load scientific software on Picotte.</p>
 <section id="our-first-batch-job-blast-search">
-<h2>Our first batch job: BLAST search<a class="headerlink" href="#our-first-batch-job-blast-search" title="Permalink to this heading">#</a></h2>
+<h2>Our first batch job: BLAST search<a class="headerlink" href="#our-first-batch-job-blast-search" title="Link to this heading">#</a></h2>
 <p>As an example to test Picotte’s capabilities, we’re going to run a DNA sequence
 search using <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>. BLAST (Basic
 Local Alignment Search Tool) is a tool for searching DNA and RNA sequences
@@ -408,7 +432,7 @@ genome) to find similar sequences to the query, using an algorithmic process
 called “alignment”. The details aren’t important, don’t worry if you don’t
 understand bioinformatics—we’re just using it as an example.</p>
 <section id="download-query-sequence">
-<h3>Download query sequence<a class="headerlink" href="#download-query-sequence" title="Permalink to this heading">#</a></h3>
+<h3>Download query sequence<a class="headerlink" href="#download-query-sequence" title="Link to this heading">#</a></h3>
 <p>We’re going to search using the sequence of the
 <a class="reference external" href="https://en.wikipedia.org/wiki/BRCA1">BRCA1</a> gene as our query. BRCA1 is a
 <em>tumor suppressor gene</em>, mutations in which can cause breast cancer. It’s famous
@@ -416,7 +440,7 @@ as an early example of a specific gene that could be linked to cancer.</p>
 <p>To start, download the gene sequence file by right clicking here:
 <a class="reference external" href="https://github.com/URCF/urcf_workshops/raw/master/data/BRCA1.fasta"><code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code></a>
 and choosing “Download” or “Save file”.</p>
-<p>Then, connect to Picotte with <a class="reference internal" href="storage.html"><span class="doc std std-doc">Cyberduck</span></a> and upload the
+<p>Then, connect to Picotte with <a class="reference internal" href="storage.html"><span class="std std-doc">Cyberduck</span></a> and upload the
 <code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code> file by dragging and dropping it into the Cyberduck window. Make
 sure you’re putting the file in your home directory.</p>
 <p>If you SSH into Picotte, you can confirm the file is there:</p>
@@ -447,7 +471,7 @@ BRCA1.fasta
 <p>To download the <code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code> file directly onto Picotte instead.</p>
 </section>
 <section id="prepare-slurm-script">
-<h3>Prepare SLURM script<a class="headerlink" href="#prepare-slurm-script" title="Permalink to this heading">#</a></h3>
+<h3>Prepare SLURM script<a class="headerlink" href="#prepare-slurm-script" title="Link to this heading">#</a></h3>
 <p>To run a batch job, we need to write a <strong>SLURM script</strong>. This is file containing
 a series of commands we want the job to run, along with configuration arguments,
 like the account and partition, or requests for additional resources.</p>
@@ -459,7 +483,7 @@ like the account and partition, or requests for additional resources.</p>
 <figure class="align-default" id="id2">
 <img alt="../_images/nano_empty.png" src="../_images/nano_empty.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Nano just opened with empty file.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Nano just opened with empty file.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Inside the editor, type this:</p>
@@ -531,7 +555,7 @@ is just like when we specified the partition in our interactive job.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span><span class="o">/</span><span class="mf">2.13.0</span>
 </pre></div>
 </div>
-<p class="sd-card-text">This should look more familiar. Here we’re using <a class="reference internal" href="environment.html"><span class="doc std std-doc">Environment
+<p class="sd-card-text">This should look more familiar. Here we’re using <a class="reference internal" href="environment.html"><span class="std std-doc">Environment
 modules</span></a> to load version 2.13.0 of the BLAST command line
 tools.</p>
 </div>
@@ -552,7 +576,7 @@ a database of nucleotide (DNA or RNA) sequences that have appeared in patents.</
 </div>
 </section>
 <section id="submitting-the-job">
-<h3>Submitting the job<a class="headerlink" href="#submitting-the-job" title="Permalink to this heading">#</a></h3>
+<h3>Submitting the job<a class="headerlink" href="#submitting-the-job" title="Link to this heading">#</a></h3>
 <p>Now, let’s submit our batch job! We do this using another SLURM command,
 <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>. <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> takes a single argument, the name of the job script to
 submit. Let’s try it:</p>
@@ -564,7 +588,7 @@ Submitted batch job 11755768
 You can use the job ID to monitor the job’s progress and check its output.</p>
 </section>
 <section id="monitoring-the-job">
-<h3>Monitoring the job<a class="headerlink" href="#monitoring-the-job" title="Permalink to this heading">#</a></h3>
+<h3>Monitoring the job<a class="headerlink" href="#monitoring-the-job" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">scontrol</span></code> command shows detailed information about a job’s progress. To use
 this command, run <code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span> <span class="pre">&lt;job</span> <span class="pre">id&gt;</span></code>, replacing <code class="docutils literal notranslate"><span class="pre">&lt;job</span> <span class="pre">id&gt;</span></code> with the
 job ID output by sbatch.</p>
@@ -598,7 +622,7 @@ JobId=11755768 JobName=blast_job.sh
 </pre></div>
 </div>
 <p>This is a lot of details! Not all of these are relevant to us, but there are some useful things:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>What we can tell</p></th>
 <th class="head"><p>How we know</p></th>
@@ -619,6 +643,7 @@ JobId=11755768 JobName=blast_job.sh
 </tr>
 </tbody>
 </table>
+</div>
 <hr class="docutils" />
 <p>If you don’t want all these details, you can get a quick overview of the jobs
 you have running using the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command and passing your username as the
@@ -685,7 +710,7 @@ Inc.</a>,
 which decided that naturally occurring DNA sequences are not patentable.</p>
 </section>
 <section id="requesting-more-resources">
-<h3>Requesting more resources<a class="headerlink" href="#requesting-more-resources" title="Permalink to this heading">#</a></h3>
+<h3>Requesting more resources<a class="headerlink" href="#requesting-more-resources" title="Link to this heading">#</a></h3>
 <p>This job was pretty fast, but if we were searching a much bigger database, or
 searching with many sequences, and the job was taking a long time? How could we
 speed it up?</p>
@@ -760,7 +785,7 @@ JobId=11755850 JobName=blast_job.sh
 <p>The job should finish faster than when it ran with only one CPU<a class="footnote-reference brackets" href="#speed" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 </section>
 <section id="other-types-of-resources">
-<h3>Other types of resources<a class="headerlink" href="#other-types-of-resources" title="Permalink to this heading">#</a></h3>
+<h3>Other types of resources<a class="headerlink" href="#other-types-of-resources" title="Link to this heading">#</a></h3>
 <p>In this example, we just requested more CPUs. Your jobs can request much more
 than just that though: additional memory, multiple nodes, time limit, GPUs and
 more can all be requested using arguments to <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p>
@@ -768,7 +793,8 @@ more can all be requested using arguments to <code class="docutils literal notra
 SLURM documentation</a> and
 the <a class="reference external" href="https://slurm.schedmd.com/sbatch.html">official <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> documentation</a>.</p>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="speed" role="note">
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="speed" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>This will be highly variable because a lot of the work of this job is
 loading the nucleotide database from disk, which can be faster or sloweer
@@ -776,6 +802,7 @@ depending on cacheing, how many other people are accessing the database,
 etc. This is a valuable lesson: software performance is very hard to
 predict! Simply adding more cores won’t always make things faster. You need
 to carefully profile your code to ensure you’re optimizing the right thing.</p>
+</aside>
 </aside>
 </section>
 </section>
@@ -806,8 +833,10 @@ to carefully profile your code to ensure you’re optimizing the right thing.</p
 
               
               
-                <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="environment.html"
@@ -836,6 +865,7 @@ to carefully profile your code to ensure you’re optimizing the right thing.</p
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -859,7 +889,7 @@ to carefully profile your code to ensure you’re optimizing the right thing.</p
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -872,6 +902,7 @@ By Linh Ngo
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
@@ -885,7 +916,7 @@ By Linh Ngo
 </div>
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -894,8 +925,8 @@ By Linh Ngo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
