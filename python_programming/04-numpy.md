@@ -13,12 +13,18 @@ kernelspec:
 
 Now that we've covered some Python basics and worked with a small amount of traffic data in a list, we'll learn how to work  with the entire dataset—multiple days worth of traffic data. We're going to use professional-grade tools (NumPy) to analyze   the entire dataset and answer bigger questions.
 
+## The data
+
+We're working with a dataset of hourly traffic counts from a sensor on a road. Each datapoint represents the number of vehicles that passed during a given hour (e.g. 7am - 8am, 8am - 9am, etc.)
+
+![A laser-based traffic sensor system measuring vehicles on a road](../fig/python_programming/02-numpy/traffic_sensor.png)
+
 ## The data format
 
 The data is stored in **comma-separated values** ([CSV](https://en.wikipedia.org/wiki/Comma-separated_values)) format:
 
 - Each **row** represents one full day.
-- Each **column** represents an hour of the day (Hour 0 - 23).
+- Each **column** represents an hour of the day. So the first column is the traffic from midnight to 1 AM, the second column is the traffic from 1 AM to 2 AM, etc.
 
 The first few rows of our data file look like this:
 
@@ -28,9 +34,7 @@ The first few rows of our data file look like this:
 598,369,312,367,835,2726,5689,6990,5985,5309,4603,4884,5104,5178,5501,5713,6292,6057,4907,3503,3037,2822,1992,1166
 ```
 
-Each number represents the number of vehicles that passed during that hour.
-
-For example, the first value, `1564`, means that 1564 vehicles passed from midnight to 1 AM on the first day. The next value, `795`, means that 795 vehicles passed from 1 AM to 2 AM on the first day, etc.
+The first value, `1564`, means that 1564 vehicles passed from midnight to 1 AM on the first day. The next value, `795`, means that 795 vehicles passed from 1 AM to 2 AM on the first day, etc.
 
 ## Loading data into Python
 
@@ -232,7 +236,7 @@ Use slicing to write a loop that prints the average traffic at each hour of the 
 
 :::{dropdown} Solution
 
-```{code-cell} python
+```python
 for hour in range(24):
     print(numpy.mean(traffic_data[:, hour]))
 ```
@@ -264,23 +268,11 @@ for hour in range(24):
 1395.7777777777778
 ```
 
-We can see that traffic is generally low at night, and high during the day, which makes sense
+We can see that traffic is generally low around midnight, and higher during the day, which makes sense.
 
 :::
 
 ~~~
-
-```{admonition} Keypoints
-- Import a library into a program using `import libraryname`.
-- Use the `numpy` library to work with arrays in Python.
-- The expression `array.shape` gives the shape of an array.
-- Use `array[x, y]` to select a single element from a 2D array.
-- Use `array[x]` to select a row (all columns for that row).
-- Use `array[:, y]` to select a column (all rows for that column) using slicing.
-- Array indices start at 0, not 1.
-- Use `# some kind of explanation` to add comments to programs.
-- Use `numpy.mean(array)`, `numpy.max(array)`, and `numpy.min(array)` to calculate simple statistics.
-```
 
 
 [^installation]: Usually, we would have to first *install* NumPy before we could import it. Here we're using an environment that comes with NumPy already installed, so we don't need to.

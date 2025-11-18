@@ -74,12 +74,37 @@ for variable in collection:
     # do something using variable (e.g. print it)
 ```
 
-We can call the **loop variable** anything we like, but there must be a colon at the end of the line starting the loop, and we must indent anything we want to run inside the loop. Unlike many other languages, there is no command to signify the end of the loop body (e.g. `end for`); everything indented after the `for` statement belongs to the loop.
+The first line of the loop (the one that starts with `for`) must end with a colon. If we forget this, we'll get an error:
 
-~~~{admonition} What's in a name?
-:class: tip
+```python
+for cars in morning_traffic
+    print(cars)
+```
 
-In the example above, the loop variable was given the name `cars` as a mnemonic; it is short for 'number of cars'. We can   choose any name we want for variables. We might just as easily have chosen the name `number` for the loop variable, as long as we use the same name when we invoke the variable inside the loop:
+```
+  Cell In[4], line 1
+    for cars in morning_traffic
+                               ^
+SyntaxError: expected ':'
+```
+
+The things we want to do inside the loop are called the "loop body", and must be indented. If we don't indent, we'll also get an error:
+
+```python
+for cars in morning_traffic:
+print(cars)
+```
+
+```
+  Cell In[4], line 2
+    print(cars)
+    ^
+IndentationError: expected an indented block after 'for' statement on line 1
+```
+
+We can call the **loop variable** anything we like.
+
+In the example above, the loop variable was given the name `cars`, since the value it holds is the number of cars counted in a given hour. We can choose any name we want for variables. We might just as easily have chosen the name `number` for the loop variable, as long as we use the same name when we invoke the variable inside the loop:
 
 ```{code-cell} python
 morning_traffic = [500, 600, 550, 450, 350]
@@ -88,8 +113,6 @@ for number in morning_traffic:
 ```
 
 It is a good idea to choose variable names that are meaningful, otherwise it would be more difficult to understand what the loop is doing.
-
-~~~
 
 ~~~{admonition} Challenge: Printing with labels
 :class: note
@@ -274,9 +297,3 @@ for i in range(len(morning_traffic)):
 :::
 
 ~~~
-
-:::{admonition} Keypoints
-- Use `for variable in sequence` to process the elements of a sequence one at a time.
-- The body of a `for` loop must be indented.
-- Use `len(thing)` to determine the length of something that contains other values.
-:::

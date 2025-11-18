@@ -138,12 +138,10 @@ A variable in Python is analogous to a sticky note with a name written on it: as
 
 Using this analogy, we can investigate how assigning a value to one variable does **not** change values of other, seemingly related, variables. For example, let's store the total rush hour traffic in its own variable:
 
-```{code-cell} python
+```python
 total_rush_hour = cars_at_7am + cars_at_8am
 print('Cars at 7 AM:', cars_at_7am, 'Total rush hour:', total_rush_hour)
 ```
-
-Everything in a line of code following the '#' symbol is a comment that is ignored by Python. Comments allow programmers to leave explanatory notes for other programmers or their future selves.
 
 <!-- ![Value of 500 with cars_at_7am label stuck on it, and value of 1100 with total_rush_hour label stuck on it](../fig/python_programming/01-intro/python-sticky-note-variables-02.svg) -->
 
@@ -151,7 +149,7 @@ Similar to above, the expression `cars_at_7am + cars_at_8am` is evaluated to `11
 
 Let's now change `cars_at_7am`:
 
-```{code-cell} python
+```python
 cars_at_7am = 600
 print('Cars at 7 AM is now:', cars_at_7am, 'and total rush hour is still:', total_rush_hour)
 ```
@@ -162,82 +160,85 @@ Since `total_rush_hour` doesn't "remember" where its value comes from, it is not
 
 ~~~
 
-~~~{admonition} Challenge: Check Your Understanding
+~~~{admonition} Challenge: Calculating Traffic Statistics
 :class: note
 
-What values do the variables `mass` and `age` have after each of the following statements?
-Test your answer by executing the lines.
+You have traffic data for three hours: 450 cars at 9am, 550 cars at 10am, and 500 cars at 11am.
 
-```python
-mass = 47.5
-age = 122
-mass = mass * 2.0
-age = age - 20
-```
-
-:::{dropdown} Solution
-`mass` holds a value of 47.5, `age` does not exist
-`mass` still holds a value of 47.5, `age` holds a value of 122
-`mass` now has a value of 95.0, `age`'s value is still 122
-`mass` still has a value of 95.0, `age` now holds 102
-:::
-
-~~~
-
-~~~{admonition} Challenge: Sorting Out References
-:class: note
-
-Python allows you to assign multiple values to multiple variables in one line by separating
-the variables and values with commas. What does the following program print out?
-
-```python
-first, second = 'Grace', 'Hopper'
-third, fourth = second, first
-print(third, fourth)
-```
-
-:::{dropdown} Solution
-
-Hopper Grace
-
-:::
-
-~~~
-
-~~~{admonition} Challenge: Seeing Data Types
-:class: note
-
-What are the data types of the following variables?
-
-```python
-planet = 'Earth'
-apples = 5
-distance = 10.5
-```
+1. Create variables to store these three values.
+2. Calculate and print the total traffic across all three hours.
+3. Calculate and print the average traffic per hour (hint: divide the total by 3).
 
 :::{dropdown} Solution
 
 ```python
-print(type(planet))
-print(type(apples))
-print(type(distance))
-```
+traffic_9am = 450
+traffic_10am = 550
+traffic_11am = 500
 
-```output
-<class 'str'>
-<class 'int'>
-<class 'float'>
+total = traffic_9am + traffic_10am + traffic_11am
+print('Total traffic:', total)
+
+average = total / 3
+print('Average traffic per hour:', average)
 ```
 
 :::
 
 ~~~
 
-```{admonition} Keypoints
-- Basic data types in Python include integers, strings, and floating-point numbers.
-- Use `variable = value` to assign a value to a variable in order to record it in memory.
-- Variables are created on demand whenever a value is assigned to them.
-- Use `print(something)` to display the value of `something`.
-- Use `# some kind of explanation` to add comments to programs.
-- Built-in functions are always available to use.
+~~~{admonition} Challenge: Using Print with Labels
+:class: note
+
+Create variables for the traffic counts at 7am (500) and 8am (600). Then use `print()` to display a message that shows both values with descriptive labels. The output should look like:
+
 ```
+Traffic at 7am: 500
+Traffic at 8am: 600
+```
+
+:::{dropdown} Solution
+
+```python
+traffic_7am = 500
+traffic_8am = 600
+
+print('Traffic at 7am:', traffic_7am)
+print('Traffic at 8am:', traffic_8am)
+```
+
+:::
+
+~~~
+
+~~~{admonition} Challenge: Identifying Data Types
+:class: note
+
+What are the data types of the following variables? Use the `type()` function to check your answers.
+
+```python
+hour = 7
+traffic_count = 500
+location = 'Highway 101'
+average_speed = 55.5
+```
+
+:::{dropdown} Solution
+
+```python
+hour = 7
+traffic_count = 500
+location = 'Highway 101'
+average_speed = 55.5
+
+print(type(hour))
+print(type(traffic_count))
+print(type(location))
+print(type(average_speed))
+```
+
+`hour` and `traffic_count` are integers (`int`), `location` is a string (`str`), and `average_speed` is a floating-point number (`float`).
+
+:::
+
+~~~

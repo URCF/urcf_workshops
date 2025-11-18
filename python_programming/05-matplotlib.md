@@ -9,23 +9,9 @@ kernelspec:
   name: python3
 ---
 
-# Visualizing Traffic Data
-
-:::{admonition} Objectives
-- Plot simple graphs from data.
-- Plot multiple graphs in a single figure.
-:::
-
-:::{admonition} Questions
-- How can I visualize tabular data in Python?
-- How can I group several plots together?
-:::
-
-## Visualizing data
+# Visualizing data
 
 Now we can compute statistics, but it's often way more helpful and intuitive to visualize data with plots and graphs rather than just looking at numbers. Visualization deserves an entire workshop of its own, but we'll get started here with the basics. To do that, we're going to use a library called [`matplotlib`](https://matplotlib.org/). Like NumPy, `matplotlib` is not built-in to Python, but it's the most popular plotting library, so it's the *de facto* standard.
-
-### Prerequisites
 
 If you are continuing in the same notebook from the previous lesson, you already have a `traffic_data` variable and have imported `numpy`. If you are starting a new notebook at this point, you need to load the data and import the library:
 

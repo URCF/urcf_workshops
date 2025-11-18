@@ -42,23 +42,26 @@ But this would quickly get tedious (imagine trying to work with hourly data for 
 We create a list by putting values inside square brackets and separating the values with commas:
 
 ```{code-cell} python
+# The first value in the list is the traffic at 7am, the second value is the traffic at 8am, etc.
 morning_traffic = [500, 600, 550, 450, 350]
 print(morning_traffic)
 ```
 
 This list contains traffic counts for each hour of the morning, from 7am to 11am.
 
-We can access elements of a list using indices—numbered positions of elements in the list.
-
-These positions are numbered starting at 0, so the first element has an index of 0.
+Note the first line that starts with `#`. Lines starting with `#` are called "comments", and ignored by Python when running the code. Comments are used to add explanatory notes for other programmers or your future self.
 
 ## Accessing List Items with Indexing
+
+We can access elements of a list using what's called "indexing". To do so, we put the position of the list we want to access inside square brackets after the variable name.
+
+These positions are numbered starting at 0, so the first element has an index of 0.
 
 Now we can easily pull out specific information. What was the traffic at 7 AM (the first hour in our list, which is index 0)? What about at 8 AM (the second hour, which is index 1)?
 
 ```{code-cell} python
-print('Traffic at 7 AM (index 0):', morning_traffic[0])
-print('Traffic at 8 AM (index 1):', morning_traffic[1])
+print('Traffic at 7 AM:', morning_traffic[0])
+print('Traffic at 8 AM:', morning_traffic[1])
 ```
 
 It might be surprising that we start counting from 0, rather than 1. Many programming languages start counting indicies from 0 because it represents an offset from the first value in the list (the second value is offset by one index from the first value). This is closer to the way that computers represent data internally. As a result, if we have a list with N elements in Python, its indices go from 0 to N-1. It takes a bit of getting used to, but one way to remember the rule is that the index is how many steps we have to take from the start to get the item we want.
@@ -78,12 +81,14 @@ How would you get the last element of this list using negative indexing? How wou
 :::{dropdown} Solution
 
 To get the last element, use index `-1`:
-```{code-cell} python
+
+```python
 print(morning_traffic[-1])
 ```
 
 To get the second to last element, use index `-2`:
-```{code-cell} python
+
+```python
 print(morning_traffic[-2])
 ```
 
@@ -140,13 +145,13 @@ If we make a list, (attempt to) copy it and then modify this list, we can cause 
 
 ```{code-cell} python
 morning_traffic = [500, 600, 550, 450, 350]
-morning_traffic_copy = morning_traffic
-morning_traffic_copy.append(200)
-print('morning_traffic_copy:', morning_traffic_copy)
+morning_traffic2 = morning_traffic
+morning_traffic2.append(200)
+print('morning_traffic2:', morning_traffic2)
 print('morning_traffic:', morning_traffic)
 ```
 
-This is because Python lets us use multiple names to refer to the *same list*. The variable names are like two sticky notes stuck to the same drawer (the list). In the code above, we add `200` to the drawer labeled `morning_traffic_copy`, and then check the contents of the drawer labeled `morning_traffic`. We find `200` there, because they're the same drawer—it just has two labels on it.
+This is because Python lets us use multiple names to refer to the *same list*. The variable names are like two sticky notes stuck to the same drawer (the list). In the code above, we add `200` to the drawer labeled `morning_traffic2`, and then check the contents of the drawer labeled `morning_traffic`. We find `200` there, because they're the same drawer—it just has two labels on it.
 
 ~~~{admonition} Challenge: Overloading
 :class: note
@@ -181,11 +186,3 @@ hourly_counts + hourly_counts
 :::
 
 ~~~
-
-:::{admonition} Keypoints
-- `[value1, value2, value3, ...]` creates a list.
-- Lists can contain any Python object, including lists (i.e., list of lists).
-- Lists are indexed with square brackets (e.g., `list[0]`).
-- Lists are mutable (i.e., their values can be changed in place).
-- Strings are immutable (i.e., the characters in them cannot be changed).
-:::

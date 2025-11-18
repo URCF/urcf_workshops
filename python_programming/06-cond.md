@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# Making Choices
+# Making choices
 
 Previously, we learned how to visualize traffic data, and used plots to distinguish between weekdays and weekends. How can we use Python to automatically recognize different features we saw, and take a different action for each? In this lesson, we'll learn how to write code that runs only when certain conditions are true, and use this to make a clearer plot of our traffic data.
 
@@ -96,16 +96,21 @@ at least one test is true
 
 Now let's try to use this to make a clearer plot of our traffic data. We're going to use conditionals to show weekends and weekdays in different colors.
 
-First, we need a way for Python to determine whether a day is a weekday or a weekend using an `if` statement. Let's try looking at the 7am traffic reading for each day:
+First, let's make sure the data is loaded and the libraries we need are imported:
 
 ```{code-cell} python
 import numpy
 import matplotlib.pyplot as plt
+traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
+```
 
+Now, we need a way for Python to determine whether a day is a weekday or a weekend using an `if` statement. We know that weekdays have much higher traffic around rush hour, so let's try looking at the 7am - 8am traffic reading for each day:
+
+```{code-cell} python
 traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
 
-for i in range(len(traffic_data)):
-    print('Day', i + 1, '7am traffic:', traffic_data[i, 7])
+for day in traffic_data:
+    print(day[7])
 ```
 
 Ah, from this we can see that on weekdays, there's always more than 5000 cars passing from 7 to 8am, and on weekends always less. Let's try using that as our conditional.
@@ -114,11 +119,9 @@ To make the plot clearer, we can use the `color` parameter in `plt.plot()` to sp
 
 ```{code-cell} python
 for i in range(len(traffic_data)):
-    if traffic_data[i, 7] > 5000:
-        # Weekday - has heavy morning traffic at 7am
+    if traffic_data[i, 7] > 5000: # weekday if true
         plt.plot(traffic_data[i], color='blue')
     else:
-        # Weekend - lighter morning traffic
         plt.plot(traffic_data[i], color='orange')
 ```
 
@@ -254,16 +257,3 @@ print('Rush hours (0-23):', rush_hours)
 :::
 
 ~~~
-
-:::{admonition} Keypoints
-
-- Use `if condition` to start a conditional statement, `elif condition` to provide additional tests, and `else` to provide a default.
-- The bodies of the branches of conditional statements must be indented.
-- Use `==` to test for equality.
-- `X and Y` is only true if both `X` and `Y` are true.
-- `X or Y` is true if either `X` or `Y`, or both, are true.
-- Zero, the empty string, and the empty list are considered false; all other numbers, strings, and lists are considered true.
-- `True` and `False` represent truth values.
-- Combining loops with conditionals allows us to analyze patterns and make decisions based on data.
-
-:::
