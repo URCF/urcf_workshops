@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Creating Functions &#8212; University Research Computing Facility Workshops</title>
+    <title>Creating functions &#8212; University Research Computing Facility Workshops</title>
   
   
   
@@ -213,7 +213,7 @@
 <li class="toctree-l2"><a class="reference internal" href="04-numpy.html">Loading and analyzing data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05-matplotlib.html">Visualizing data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06-cond.html">Making choices</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Creating Functions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Creating functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09-errors.html">Errors and Exceptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10-defensive.html">Defensive Programming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11-debugging.html">Debugging</a></li>
@@ -373,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Creating Functions</h1>
+    <h1>Creating functions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -398,203 +398,11 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="creating-functions">
-<h1>Creating Functions<a class="headerlink" href="#creating-functions" title="Link to this heading">#</a></h1>
-<div class="admonition-objectives admonition">
-<p class="admonition-title">Objectives</p>
-<ul class="simple">
-<li><p>Define a function that takes parameters.</p></li>
-<li><p>Return a value from a function.</p></li>
-<li><p>Test and debug a function.</p></li>
-<li><p>Set default values for function parameters.</p></li>
-<li><p>Explain why we should divide programs into small, single-purpose functions.</p></li>
-</ul>
-</div>
-<div class="admonition-questions admonition">
-<p class="admonition-title">Questions</p>
-<ul class="simple">
-<li><p>How can I define new functions?</p></li>
-<li><p>What’s the difference between defining and calling a function?</p></li>
-<li><p>What happens when I call a function?</p></li>
-</ul>
-</div>
+<h1>Creating functions<a class="headerlink" href="#creating-functions" title="Link to this heading">#</a></h1>
 <p>At this point, we’ve seen that code can have Python make decisions about what it
-sees in our data. What if we want to convert some of our data, like taking a
-temperature in Fahrenheit and converting it to Celsius. We could write something
-like this for converting a single number</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fahrenheit_val</span> <span class="o">=</span> <span class="mi">99</span>
-<span class="n">celsius_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">fahrenheit_val</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>and for a second number we could just copy the line and rename the variables</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fahrenheit_val</span> <span class="o">=</span> <span class="mi">99</span>
-<span class="n">celsius_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">fahrenheit_val</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
-
-<span class="n">fahrenheit_val2</span> <span class="o">=</span> <span class="mi">43</span>
-<span class="n">celsius_val2</span> <span class="o">=</span> <span class="p">(</span><span class="n">fahrenheit_val2</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>But we would be in trouble as soon as we had to do this more than a couple
-times. Cutting and pasting it is going to make our code get very long and very
-repetitive, very quickly. We’d like a way to package our code so that it is
-easier to reuse, a shorthand way of re-executing longer pieces of code. In
-Python we can use ‘functions’. Let’s start by defining a function
-<code class="docutils literal notranslate"><span class="pre">fahr_to_celsius</span></code> that converts temperatures from Fahrenheit to Celsius:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fahr_to_celsius</span><span class="p">(</span><span class="n">temp</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">temp</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now we can use this function to convert temperatures:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
-</pre></div>
-</div>
-</div>
-</div>
-<p><img alt="" src="../_images/python-function.svg" /></p>
-<p>The function definition opens with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code> followed by the name of the
-function (<code class="docutils literal notranslate"><span class="pre">fahr_to_celsius</span></code>) and a parenthesized list of parameter names
-(<code class="docutils literal notranslate"><span class="pre">temp</span></code>). The <a class="reference internal" href="#../learners/reference.md#body"><span class="xref myst">body</span></a> of the function—the
-statements that are executed when it runs—is indented below the definition
-line.  The body concludes with a <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword followed by the return value.</p>
-<p>When we call the function,
-the values we pass to it are assigned to those variables
-so that we can use them inside the function.
-Inside the function,
-we use a <a class="reference internal" href="#../learners/reference.md#return-statement"><span class="xref myst">return statement</span></a> to send a result
-back to whoever asked for it.</p>
-<p>Calling our own function is no different from calling any other function (like
-built-in functions, or functions from a library). For example, we can use it in
-a print statement:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;freezing point of water:&#39;</span><span class="p">,</span> <span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boiling point of water:&#39;</span><span class="p">,</span> <span class="n">fahr_to_celsius</span><span class="p">(</span><span class="mi">212</span><span class="p">),</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freezing point of water: 0.0 C
-boiling point of water: 100.0 C
-</pre></div>
-</div>
-</div>
-</div>
-<p>We’ve successfully called the function that we defined, and we have access to
-the value that we returned.</p>
-<section id="composing-functions">
-<h2>Composing Functions<a class="headerlink" href="#composing-functions" title="Link to this heading">#</a></h2>
-<p>Now that we’ve seen how to turn Fahrenheit into Celsius,
-we can also write the function to turn Celsius into Kelvin:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">celsius_to_kelvin</span><span class="p">(</span><span class="n">temp_c</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">temp_c</span> <span class="o">+</span> <span class="mf">273.15</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;freezing point of water in Kelvin:&#39;</span><span class="p">,</span> <span class="n">celsius_to_kelvin</span><span class="p">(</span><span class="mf">0.</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freezing point of water in Kelvin: 273.15
-</pre></div>
-</div>
-</div>
-</div>
-<p>What about converting Fahrenheit to Kelvin?
-We could write out the formula,
-but we don’t need to.
-Instead,
-we can <a class="reference internal" href="#../learners/reference.md#compose"><span class="xref myst">compose</span></a> the two functions we have already created:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fahr_to_kelvin</span><span class="p">(</span><span class="n">temp_f</span><span class="p">):</span>
-    <span class="n">temp_c</span> <span class="o">=</span> <span class="n">fahr_to_celsius</span><span class="p">(</span><span class="n">temp_f</span><span class="p">)</span>
-    <span class="n">temp_k</span> <span class="o">=</span> <span class="n">celsius_to_kelvin</span><span class="p">(</span><span class="n">temp_c</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">temp_k</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boiling point of water in Kelvin:&#39;</span><span class="p">,</span> <span class="n">fahr_to_kelvin</span><span class="p">(</span><span class="mf">212.0</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>boiling point of water in Kelvin: 373.15
-</pre></div>
-</div>
-</div>
-</div>
-<p>This is our first taste of how larger programs are built: we define basic
-operations, then combine them in ever-larger chunks to get the effect we want.
-Real-life functions will usually be larger than the ones shown here—typically
-half a dozen to a few dozen lines.</p>
-<div class="tip admonition">
-<p class="admonition-title">Variable Scope</p>
-<p>In composing our temperature conversion functions, we created variables inside of those functions,
-<code class="docutils literal notranslate"><span class="pre">temp</span></code>, <code class="docutils literal notranslate"><span class="pre">temp_c</span></code>, <code class="docutils literal notranslate"><span class="pre">temp_f</span></code>, and <code class="docutils literal notranslate"><span class="pre">temp_k</span></code>.
-We refer to these variables as <a class="reference internal" href="#../learners/reference.md#local-variable"><span class="xref myst">local variables</span></a>
-because they no longer exist once the function is done executing.
-If we try to access their values outside of the function, we will encounter an error:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Again, temperature in Kelvin was:&#39;</span><span class="p">,</span> <span class="n">temp_k</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-&lt;ipython-input-1-eed2471d229b&gt; in &lt;module&gt;
-----&gt; 1 print(&#39;Again, temperature in Kelvin was:&#39;, temp_k)
-
-NameError: name &#39;temp_k&#39; is not defined
-</pre></div>
-</div>
-<p>If you want to reuse the temperature in Kelvin after you have calculated it with <code class="docutils literal notranslate"><span class="pre">fahr_to_kelvin</span></code>,
-you can store the result of the function call in a variable:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">temp_kelvin</span> <span class="o">=</span> <span class="n">fahr_to_kelvin</span><span class="p">(</span><span class="mf">212.0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;temperature in Kelvin was:&#39;</span><span class="p">,</span> <span class="n">temp_kelvin</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">temperature in Kelvin was: 373.15</span>
-</pre></div>
-</div>
-<p>The variable <code class="docutils literal notranslate"><span class="pre">temp_kelvin</span></code>, being defined outside any function,
-is said to be <a class="reference internal" href="#../learners/reference.md#global-variable"><span class="xref myst">global</span></a>.</p>
-<p>Inside a function, one can read the value of such global variables:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_temperatures</span><span class="p">():</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;temperature in Fahrenheit was:&#39;</span><span class="p">,</span> <span class="n">temp_fahr</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;temperature in Kelvin was:&#39;</span><span class="p">,</span> <span class="n">temp_kelvin</span><span class="p">)</span>
-
-<span class="n">temp_fahr</span> <span class="o">=</span> <span class="mf">212.0</span>
-<span class="n">temp_kelvin</span> <span class="o">=</span> <span class="n">fahr_to_kelvin</span><span class="p">(</span><span class="n">temp_fahr</span><span class="p">)</span>
-
-<span class="n">print_temperatures</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">temperature in Fahrenheit was: 212.0</span>
-<span class="go">temperature in Kelvin was: 373.15</span>
-</pre></div>
-</div>
-</div>
-</section>
-<section id="tidying-up">
-<h2>Tidying up<a class="headerlink" href="#tidying-up" title="Link to this heading">#</a></h2>
-<p>Now that we know how to wrap bits of code up in functions,
-we can make our traffic data analysis easier to read and easier to reuse.</p>
-<p>First, let’s make sure we have our traffic data loaded:</p>
+sees in our data, and we’ve used loops to repeat operations on multiple items.
+But what if we need to build more complex calculations, and use them in multiple places?</p>
+<p>As always, let’s start by making sure our data is load and libraries are imported:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
@@ -605,11 +413,177 @@ we can make our traffic data analysis easier to read and easier to reuse.</p>
 </div>
 </div>
 </div>
+<p>For example, let’s say we want to calculate what percentage of daily traffic
+occurs during rush hour (7am to 9am). This calculation needs two pieces: the
+rush hour traffic total and the total daily traffic. We might write it like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">day</span> <span class="o">=</span> <span class="n">traffic_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">rush_hour_total</span> <span class="o">=</span> <span class="n">day</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">daily_total</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">day</span><span class="p">)</span>
+<span class="n">percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">rush_hour_total</span> <span class="o">/</span> <span class="n">daily_total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Day 1 rush hour was&#39;</span><span class="p">,</span> <span class="n">percentage</span><span class="p">,</span> <span class="s1">&#39;percent of all traffic&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Day 1 rush hour was 8.931416634210247 percent of all traffic
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is fine, but it’s a bit hard to read and understand quickly. And imagine if we needed to do this calculation in multiple places throughout our codebase. If we later decide to change how rush hour is calculated, we’d have to update it in multiple places. This is annoying at best, and at worst might lead to bugs if we forget to update somewhere.</p>
+<p>We can solve all these problems by wrapping this calculation in a function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rush_hour_percentage</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
+    <span class="n">rush_hour_total</span> <span class="o">=</span> <span class="n">day</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+    <span class="n">daily_total</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">rush_hour_total</span> <span class="o">/</span> <span class="n">daily_total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now our code gets much simpler:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Day 1 rush hour was&#39;</span><span class="p">,</span> <span class="n">rush_hour_percentage</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;percent of daily traffic&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Day 1 rush hour was 8.931416634210247 percent of daily traffic
+</pre></div>
+</div>
+</div>
+</div>
+<p>A function <em>definition</em> opens with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code> followed by the name of the
+function (<code class="docutils literal notranslate"><span class="pre">rush_hour_percentage</span></code>) and a parenthesized list of parameter names
+(<code class="docutils literal notranslate"><span class="pre">day_data</span></code>). The body of the function—the
+statements that are executed when it runs—is indented below the definition
+line.  The body concludes with a <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword followed by the return value.</p>
+<p>When we call the function, the values we pass to it are assigned to those
+variables so that we can use them inside the function. Inside the function, we
+use a return statement to send a result back to whoever asked for it.</p>
+<p>Calling our own function is no different from calling any other function (like
+built-in functions, or functions from a library). We can use it in conditionals,
+calculations, print statements, or anywhere else we need the value. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">rush_hour_percentage</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Day 1 had low rush hour traffic&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Day 1 had low rush hour traffic
+</pre></div>
+</div>
+</div>
+</div>
+<p>Functions let us:</p>
+<ul class="simple">
+<li><p><strong>Build complex calculations</strong> from simpler, reusable pieces</p></li>
+<li><p><strong>Update calculations easily</strong> by changing the function definition in one place</p></li>
+<li><p><strong>Make code more readable</strong> by giving chunks of code meaningful names</p></li>
+</ul>
+<section id="composing-functions">
+<h2>Composing Functions<a class="headerlink" href="#composing-functions" title="Link to this heading">#</a></h2>
+<p>Now suppose we want to write another function that calculates the total rush hour
+traffic across all days in our dataset.</p>
+<p>Currently, the rush hour calculation (<code class="docutils literal notranslate"><span class="pre">day_data[7]</span> <span class="pre">+</span> <span class="pre">day_data[8]</span> <span class="pre">+</span> <span class="pre">day_data[9]</span></code>)
+is embedded inside <code class="docutils literal notranslate"><span class="pre">rush_hour_percentage</span></code>. If we want to use it in a new function,
+we’d have to write it again, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">total_rush_hour_traffic</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">traffic_data</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">day</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>But now if we need to change the definition of “rush hour”, say to include 6am as well, we’d have to update it in multiple places. Instead, we can split the definition of “rush hour” into its own function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rush_hour_traffic</span><span class="p">(</span><span class="n">day_data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">day_data</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">day_data</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="n">day_data</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now we can re-use this function in multiple places:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">total_rush_hour_traffic</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">traffic_data</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">rush_hour_traffic</span><span class="p">(</span><span class="n">day</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rush_hour_percentage</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">rush_hour_traffic</span><span class="p">(</span><span class="n">day</span><span class="p">)</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">day</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now if we decide that rush hour should include 6am as well, we only need to update the <code class="docutils literal notranslate"><span class="pre">rush_hour_traffic</span></code> function definition in one place:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rush_hour_traffic</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">day</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>All the functions that use <code class="docutils literal notranslate"><span class="pre">rush_hour_traffic()</span></code>—both <code class="docutils literal notranslate"><span class="pre">total_rush_hour_across_days</span></code> and <code class="docutils literal notranslate"><span class="pre">rush_hour_percentage</span></code>—will automatically use the new definition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total rush hour traffic across all days, including 6am:&#39;</span><span class="p">,</span> <span class="n">total_rush_hour_traffic</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rush hour percentage on first day, including 6am:&#39;</span><span class="p">,</span> <span class="n">rush_hour_percentage</span><span class="p">(</span><span class="n">traffic_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total rush hour traffic across all days, including 6am: 155928.0
+Rush hour percentage on first day, including 6am: 10.26803101653507
+</pre></div>
+</div>
+</div>
+</div>
+<p>We don’t have to hunt through our code to find every place we wrote the old calculation.</p>
+<div class="tip admonition">
+<p class="admonition-title">Variable Scope</p>
+<p>We often create variables inside of functions. For example, the <code class="docutils literal notranslate"><span class="pre">daily_total</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">rush_hour_percentage</span></code> function.</p>
+<p>We refer to these variables as <em>local variables</em>
+because they no longer exist once the function is done executing.
+If we try to access their values outside of the function, we will encounter an error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">daily_total</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-error notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+&lt;ipython-input-1-eed2471d229b&gt; in &lt;module&gt;
+----&gt; 1 print(daily_total)
+
+NameError: name &#39;daily_total&#39; is not defined
+</pre></div>
+</div>
+<p>If we want to access a value outside of a function, we need to return it from the function.</p>
+<p>Variables defined outside of any function are called <em>global variables</em>, and are accessible from anywhere in a program.</p>
+</div>
+</section>
+<section id="tidying-up">
+<h2>Tidying up<a class="headerlink" href="#tidying-up" title="Link to this heading">#</a></h2>
+<p>Now that we know how to wrap bits of code up in functions,
+we can make our traffic visualization easier to understand.</p>
 <p>Let’s break out the logic we used before for determining if a day is a weekday into its own function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_weekday</span><span class="p">(</span><span class="n">day_data</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">day_data</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_weekday</span><span class="p">(</span><span class="n">day</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">day</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5000</span>
 </pre></div>
 </div>
 </div>
@@ -632,7 +606,7 @@ we can make our traffic data analysis easier to read and easier to reuse.</p>
 <img alt="../_images/56cd9c8eddc2ad1e53542848503dcef12fbc308dedcfc9001252e1e9da44a8a9.png" src="../_images/56cd9c8eddc2ad1e53542848503dcef12fbc308dedcfc9001252e1e9da44a8a9.png" />
 </div>
 </div>
-<p>Notice how much clearer the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is now! Instead of <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">data[i,</span> <span class="pre">7]</span> <span class="pre">&gt;</span> <span class="pre">5000:</span></code>, we have <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">is_weekday(data[i]):</span></code>. The function name <code class="docutils literal notranslate"><span class="pre">is_weekday</span></code> makes the intent of the condition immediately clear—we’re checking whether this day is a weekday. This makes the code more readable because anyone reading it can understand <em>what</em> we’re checking for, not just <em>how</em> we’re checking it.Even better, if we need to check if a day is a weekday elsewhere in our code, we can reuse this function. Then we don’t have to write the same code over and over again, or update it in multiple places if we want to change it.</p>
+<p>Notice how much clearer the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is now. Instead of <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">data[i,</span> <span class="pre">7]</span> <span class="pre">&gt;</span> <span class="pre">5000:</span></code>, we have <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">is_weekday(data[i]):</span></code>. The function name <code class="docutils literal notranslate"><span class="pre">is_weekday</span></code> makes the intent of the condition immediately clear—we’re checking whether this day is a weekday. This makes the code more readable because anyone reading it can understand <em>what</em> we’re checking for, not just <em>how</em> we’re checking it. Even better, if we need to check if a day is a weekday elsewhere in our code, we can reuse this function. Then we don’t have to write the same code over and over again, or update it in multiple places if we want to change it.</p>
 </section>
 <section id="readable-functions">
 <h2>Readable functions<a class="headerlink" href="#readable-functions" title="Link to this heading">#</a></h2>

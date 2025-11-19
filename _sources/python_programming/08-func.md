@@ -9,186 +9,13 @@ kernelspec:
   name: python3
 ---
 
-# Creating Functions
-
-:::{admonition} Objectives
-
-- Define a function that takes parameters.
-- Return a value from a function.
-- Test and debug a function.
-- Set default values for function parameters.
-- Explain why we should divide programs into small, single-purpose functions.
-
-:::
-
-:::{admonition} Questions
-
-- How can I define new functions?
-- What's the difference between defining and calling a function?
-- What happens when I call a function?
-
-:::
+# Creating functions
 
 At this point, we've seen that code can have Python make decisions about what it
-sees in our data. What if we want to convert some of our data, like taking a
-temperature in Fahrenheit and converting it to Celsius. We could write something
-like this for converting a single number
+sees in our data, and we've used loops to repeat operations on multiple items.
+But what if we need to build more complex calculations, and use them in multiple places?
 
-```{code-cell} python
-fahrenheit_val = 99
-celsius_val = (fahrenheit_val - 32) * (5/9)
-```
-
-and for a second number we could just copy the line and rename the variables
-
-```{code-cell} python
-fahrenheit_val = 99
-celsius_val = (fahrenheit_val - 32) * (5/9)
-
-fahrenheit_val2 = 43
-celsius_val2 = (fahrenheit_val2 - 32) * (5/9)
-```
-
-But we would be in trouble as soon as we had to do this more than a couple
-times. Cutting and pasting it is going to make our code get very long and very
-repetitive, very quickly. We'd like a way to package our code so that it is
-easier to reuse, a shorthand way of re-executing longer pieces of code. In
-Python we can use 'functions'. Let's start by defining a function
-`fahr_to_celsius` that converts temperatures from Fahrenheit to Celsius:
-
-```{code-cell} python
-def fahr_to_celsius(temp):
-    return (temp - 32) * (5/9)
-```
-
-Now we can use this function to convert temperatures:
-
-```{code-cell} python
-print(fahr_to_celsius(32))
-```
-
-![](../fig/python_programming/python-function.svg)
-
-The function definition opens with the keyword `def` followed by the name of the
-function (`fahr_to_celsius`) and a parenthesized list of parameter names
-(`temp`). The [body](../learners/reference.md#body) of the function---the
-statements that are executed when it runs---is indented below the definition
-line.  The body concludes with a `return` keyword followed by the return value.
-
-When we call the function,
-the values we pass to it are assigned to those variables
-so that we can use them inside the function.
-Inside the function,
-we use a [return statement](../learners/reference.md#return-statement) to send a result
-back to whoever asked for it.
-
-Calling our own function is no different from calling any other function (like
-built-in functions, or functions from a library). For example, we can use it in
-a print statement:
-
-```{code-cell} python
-print('freezing point of water:', fahr_to_celsius(32), 'C')
-print('boiling point of water:', fahr_to_celsius(212), 'C')
-```
-
-We've successfully called the function that we defined, and we have access to
-the value that we returned.
-
-## Composing Functions
-
-Now that we've seen how to turn Fahrenheit into Celsius,
-we can also write the function to turn Celsius into Kelvin:
-
-```{code-cell} python
-def celsius_to_kelvin(temp_c):
-    return temp_c + 273.15
-
-print('freezing point of water in Kelvin:', celsius_to_kelvin(0.))
-```
-
-What about converting Fahrenheit to Kelvin?
-We could write out the formula,
-but we don't need to.
-Instead,
-we can [compose](../learners/reference.md#compose) the two functions we have already created:
-
-```{code-cell} python
-def fahr_to_kelvin(temp_f):
-    temp_c = fahr_to_celsius(temp_f)
-    temp_k = celsius_to_kelvin(temp_c)
-    return temp_k
-
-print('boiling point of water in Kelvin:', fahr_to_kelvin(212.0))
-```
-
-This is our first taste of how larger programs are built: we define basic
-operations, then combine them in ever-larger chunks to get the effect we want.
-Real-life functions will usually be larger than the ones shown here---typically
-half a dozen to a few dozen lines.
-
-~~~{admonition} Variable Scope
-:class: tip
-
-In composing our temperature conversion functions, we created variables inside of those functions,
-`temp`, `temp_c`, `temp_f`, and `temp_k`.
-We refer to these variables as [local variables](../learners/reference.md#local-variable)
-because they no longer exist once the function is done executing.
-If we try to access their values outside of the function, we will encounter an error:
-
-```python
-print('Again, temperature in Kelvin was:', temp_k)
-```
-
-```error
----------------------------------------------------------------------------
-NameError                                 Traceback (most recent call last)
-<ipython-input-1-eed2471d229b> in <module>
-----> 1 print('Again, temperature in Kelvin was:', temp_k)
-
-NameError: name 'temp_k' is not defined
-```
-
-If you want to reuse the temperature in Kelvin after you have calculated it with `fahr_to_kelvin`,
-you can store the result of the function call in a variable:
-
-```python
-temp_kelvin = fahr_to_kelvin(212.0)
-print('temperature in Kelvin was:', temp_kelvin)
-```
-
-```output
-temperature in Kelvin was: 373.15
-```
-
-The variable `temp_kelvin`, being defined outside any function,
-is said to be [global](../learners/reference.md#global-variable).
-
-Inside a function, one can read the value of such global variables:
-
-```python
-def print_temperatures():
-  print('temperature in Fahrenheit was:', temp_fahr)
-  print('temperature in Kelvin was:', temp_kelvin)
-
-temp_fahr = 212.0
-temp_kelvin = fahr_to_kelvin(temp_fahr)
-
-print_temperatures()
-```
-
-```output
-temperature in Fahrenheit was: 212.0
-temperature in Kelvin was: 373.15
-```
-
-~~~
-
-## Tidying up
-
-Now that we know how to wrap bits of code up in functions,
-we can make our traffic data analysis easier to read and easier to reuse.
-
-First, let's make sure we have our traffic data loaded:
+As always, let's start by making sure our data is load and libraries are imported:
 
 ```{code-cell} python
 import numpy
@@ -197,11 +24,151 @@ import matplotlib.pyplot as plt
 traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
 ```
 
+For example, let's say we want to calculate what percentage of daily traffic
+occurs during rush hour (7am to 9am). This calculation needs two pieces: the
+rush hour traffic total and the total daily traffic. We might write it like this:
+
+```{code-cell} python
+day = traffic_data[0]
+rush_hour_total = day[7] + day[8] + day[9]
+daily_total = numpy.sum(day)
+percentage = (rush_hour_total / daily_total) * 100
+print('Day 1 rush hour was', percentage, 'percent of all traffic')
+```
+
+This is fine, but it's a bit hard to read and understand quickly. And imagine if we needed to do this calculation in multiple places throughout our codebase. If we later decide to change how rush hour is calculated, we'd have to update it in multiple places. This is annoying at best, and at worst might lead to bugs if we forget to update somewhere.
+
+We can solve all these problems by wrapping this calculation in a function:
+
+```{code-cell} python
+def rush_hour_percentage(day):
+    rush_hour_total = day[7] + day[8] + day[9]
+    daily_total = numpy.sum(day)
+    return (rush_hour_total / daily_total) * 100
+```
+
+Now our code gets much simpler:
+
+```{code-cell} python
+print('Day 1 rush hour was', rush_hour_percentage(traffic_data[0]), 'percent of daily traffic')
+```
+
+A function *definition* opens with the keyword `def` followed by the name of the
+function (`rush_hour_percentage`) and a parenthesized list of parameter names
+(`day_data`). The body of the function---the
+statements that are executed when it runs---is indented below the definition
+line.  The body concludes with a `return` keyword followed by the return value.
+
+When we call the function, the values we pass to it are assigned to those
+variables so that we can use them inside the function. Inside the function, we
+use a return statement to send a result back to whoever asked for it.
+
+Calling our own function is no different from calling any other function (like
+built-in functions, or functions from a library). We can use it in conditionals,
+calculations, print statements, or anywhere else we need the value. For example:
+
+```{code-cell} python
+if rush_hour_percentage(traffic_data[0]) < 10:
+    print('Day 1 had low rush hour traffic')
+```
+
+Functions let us:
+
+- **Build complex calculations** from simpler, reusable pieces
+- **Update calculations easily** by changing the function definition in one place
+- **Make code more readable** by giving chunks of code meaningful names
+
+## Composing Functions
+
+Now suppose we want to write another function that calculates the total rush hour
+traffic across all days in our dataset.
+
+Currently, the rush hour calculation (`day_data[7] + day_data[8] + day_data[9]`)
+is embedded inside `rush_hour_percentage`. If we want to use it in a new function,
+we'd have to write it again, like this:
+
+```{code-cell} python
+def total_rush_hour_traffic(traffic_data):
+    total = 0
+    for day in traffic_data:
+        total += day[7] + day[8] + day[9]
+    return total
+```
+
+But now if we need to change the definition of "rush hour", say to include 6am as well, we'd have to update it in multiple places. Instead, we can split the definition of "rush hour" into its own function:
+
+```{code-cell} python
+def rush_hour_traffic(day_data):
+    return day_data[7] + day_data[8] + day_data[9]
+```
+
+And now we can re-use this function in multiple places:
+
+```{code-cell} python
+def total_rush_hour_traffic(traffic_data):
+    total = 0
+    for day in traffic_data:
+        total += rush_hour_traffic(day)
+    return total
+
+def rush_hour_percentage(day):
+    return (rush_hour_traffic(day) / numpy.sum(day)) * 100
+```
+
+Now if we decide that rush hour should include 6am as well, we only need to update the `rush_hour_traffic` function definition in one place:
+
+```{code-cell} python
+def rush_hour_traffic(day):
+    return day[6] + day[7] + day[8] + day[9]
+```
+
+All the functions that use `rush_hour_traffic()`—both `total_rush_hour_across_days` and `rush_hour_percentage`—will automatically use the new definition:
+
+```{code-cell} python
+print('Total rush hour traffic across all days, including 6am:', total_rush_hour_traffic(traffic_data))
+print('Rush hour percentage on first day, including 6am:', rush_hour_percentage(traffic_data[0]))
+```
+
+We don't have to hunt through our code to find every place we wrote the old calculation.
+
+~~~{admonition} Variable Scope
+:class: tip
+
+We often create variables inside of functions. For example, the `daily_total` variable in the `rush_hour_percentage` function.
+
+We refer to these variables as *local variables*
+because they no longer exist once the function is done executing.
+If we try to access their values outside of the function, we will encounter an error:
+
+```python
+print(daily_total)
+```
+
+```error
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-1-eed2471d229b> in <module>
+----> 1 print(daily_total)
+
+NameError: name 'daily_total' is not defined
+```
+
+If we want to access a value outside of a function, we need to return it from the function.
+
+Variables defined outside of any function are called *global variables*, and are accessible from anywhere in a program.
+
+~~~
+
+## Tidying up
+
+Now that we know how to wrap bits of code up in functions,
+we can make our traffic visualization easier to understand.
+
 Let's break out the logic we used before for determining if a day is a weekday into its own function:
 
 ```{code-cell} python
-def is_weekday(day_data):
-    return day_data[7] > 5000
+def is_weekday(day):
+    return day[7] > 5000
 ```
 
 This function takes a single day's data and returns `True` if it's a weekday (has heavy morning traffic at 7am) or `False` if it's a weekend. Now we can use this function in our plotting code:
@@ -217,7 +184,7 @@ plt.xlabel('Time of Day')
 plt.ylabel('Vehicle Count');
 ```
 
-Notice how much clearer the `if` statement is now! Instead of `if data[i, 7] > 5000:`, we have `if is_weekday(data[i]):`. The function name `is_weekday` makes the intent of the condition immediately clear—we're checking whether this day is a weekday. This makes the code more readable because anyone reading it can understand *what* we're checking for, not just *how* we're checking it.Even better, if we need to check if a day is a weekday elsewhere in our code, we can reuse this function. Then we don't have to write the same code over and over again, or update it in multiple places if we want to change it.
+Notice how much clearer the `if` statement is now. Instead of `if data[i, 7] > 5000:`, we have `if is_weekday(data[i]):`. The function name `is_weekday` makes the intent of the condition immediately clear—we're checking whether this day is a weekday. This makes the code more readable because anyone reading it can understand *what* we're checking for, not just *how* we're checking it. Even better, if we need to check if a day is a weekday elsewhere in our code, we can reuse this function. Then we don't have to write the same code over and over again, or update it in multiple places if we want to change it.
 
 ## Readable functions
 

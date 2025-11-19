@@ -53,8 +53,6 @@ else:
     print(traffic_count, 'is normal traffic')
 ```
 
-Note that to test for equality we use a double equals sign `==` rather than a single equals sign `=` which is used to assign values.
-
 :::{admonition} Comparing in Python
 
 Along with the `>` and `==` operators we have already used for comparing values in our conditionals, there are a few more options to know about:
@@ -66,30 +64,54 @@ Along with the `>` and `==` operators we have already used for comparing values 
 - `>=`: greater than or equal to
 - `<=`: less than or equal to
 
+Note that to test for equality we use a double equals sign `==` rather than a single equals sign `=` which is used to assign values.
+
 :::
 
 We can also combine tests using `and` and `or`. `and` is only true if both parts are true:
 
-```python
+```{code-cell} python
 if 50 > 30 and 20 >= 15:
     print('both parts are true')
 else:
     print('at least one part is false')
 ```
-
-```output
-both parts are true
-```
-
 while `or` is true if at least one part is true:
 
-```python
+```{code-cell} python
 if 20 > 50 or 20 >= 15:
     print('at least one test is true')
 ```
 
-```output
-at least one test is true
+
+Under the hood, all of these comparison tests actually return a boolean value (`True` or `False`). We can see this by executing them outside of the `if` statement:
+
+```{code-cell} python
+print(50 > 30)
+print(15 >= 20)
+```
+
+Conditionals (`if`, `elif`, `else`) work by testing whether their condition evaluates to `True` or `False`.
+
+We can just use these boolean values directly in our conditionals:
+
+```{code-cell} python
+if True:
+    print('This will print')
+```
+
+```{code-cell} python
+if False:
+    print('This will not print')
+```
+
+This doesn't seem very useful at first, but it can come in handy (e.g. for testing and debugging).
+
+We can also use the `not` operator to invert a boolean value (turn `True` into `False` and vice versa):
+
+```{code-cell} python
+if not 10 > 20:
+    print('10 is not greater than 20')
 ```
 
 ## Using conditionals to make a clearer plot
@@ -113,7 +135,7 @@ for day in traffic_data:
     print(day[7])
 ```
 
-Ah, from this we can see that on weekdays, there's always more than 5000 cars passing from 7 to 8am, and on weekends always less. Let's try using that as our conditional.
+Ah, from this we can see that  (the middle five days), there's always more than 5000 cars passing from 7 to 8am, and on weekends (the first and last two days) always less. Let's try using that as our conditional.
 
 To make the plot clearer, we can use the `color` parameter in `plt.plot()` to specify what color each line should be. We'll use a loop with an `if` statement to check each day's 7am traffic and plot it in a different color depending on whether it's a weekday or weekend:
 
@@ -169,91 +191,84 @@ This contrasts with the case of multiple `if` statements, where every action can
 
 ```python
 if '':
-    print('empty string is true')
-if 'traffic':
-    print('traffic is true')
+    print('empty string is True')
+if 'hello':
+    print('strings are True')
 if []:
-    print('empty list is true')
+    print('empty list is True')
 if [100, 200, 300]:
-    print('non-empty list is true')
+    print('non-empty list is True')
 if 0:
-    print('zero is true')
+    print('zero is True')
 if 1:
-    print('one is true')
+    print('one is True')
 ```
 
 :::{dropdown} Solution
-The rule is that any non-zero number is true, any empty collection (like an empty string or list) is false, and any non-empty collection is true.
-:::
+The rule is that non-zero numbers and collections (lists, strings, etc.) with at least one element are considered `True`, but zero and empty collections are considered `False`.
 
-~~~
+This property of being considered `True` in a conditional is colloquially called *truthiness*.
 
-~~~{admonition} Challenge: That's Not Not What I Meant
-
-Sometimes it is useful to check whether some condition is not true. The Boolean operator `not` can do this explicitly. After reading and running the code below, write some `if` statements that use `not` to test the rule that you formulated in the previous challenge.
-
-:::{dropdown} Solution
-```python
-if not '':
-    print('empty string is not true')
-if not 'traffic':
-    print('traffic is not true')
-if not not True:
-    print('not not True is true')
-```
 :::
 
 ~~~
 
 ~~~{admonition} Challenge: Counting Heavy Traffic Hours
 
-1. Write a loop that counts the number of hours in a day where traffic exceeds 5000 vehicles.
-2. Test it on a few different days from the traffic dataset.
-3. Once you are done, compare your solution to your neighbor's. Did you make the same decisions about how to handle the threshold?
+Write a loop that counts the number of hours in a day where traffic exceeds 5000 vehicles and test it on a few different days from the traffic dataset.
 
-*Hint*: You can check if a value is greater than a threshold using `>`. For example:
+*Hint*: Your code should look something like this:
 
 ```python
-if traffic_count > 5000:
-    print('Heavy traffic')
+day = traffic_data[0] # change the index to test a different day
+heavy_count = 0
+
+for hour in day:
+    # Implement the condition to check if the traffic is heavy
 ```
 
 :::{dropdown} Solution
 ```python
-import numpy
-traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
-
-# Count heavy traffic hours for the first day
-day_0 = traffic_data[0]
+day = traffic_data[0] # change the index to test a different day
 heavy_count = 0
-for count in day_0:
-    if count > 5000:
-        heavy_count += 1
 
+for hour in day:
+    if hour > 5000:
+        heavy_count += 1
 print('Number of hours with heavy traffic:', heavy_count)
 ```
 :::
 
-~~~
+It's easy enough to manually change the index to test a different day because we only have a few days in the dataset. But what if we had thousands of days? What we want is for the code to automatically test all the days in the dataset for us.
 
-~~~{admonition} Challenge: Identifying Rush Hours
+Extend your code to do this by using a loop to run it on each day in the dataset. Which day or days had the most heavy   traffic hours?
 
-Write code that identifies and prints the hours (0-23) when traffic exceeds 5000 vehicles for a given day. Use a loop to check each hour and an `if` statement to determine if it's a rush hour.
+*Hint*: You will need to use two nested loops. The outer loop should iterate over the days in the dataset, and the inner loop should iterate over the hours in each day.
 
 :::{dropdown} Solution
 ```python
-import numpy
-traffic_data = numpy.loadtxt('traffic_data.txt', delimiter=',')
-
-# Find rush hours for the first day
-day_0 = traffic_data[0]
-rush_hours = []
-for hour in range(len(day_0)):
-    if day_0[hour] > 5000:
-        rush_hours.append(hour)
-
-print('Rush hours (0-23):', rush_hours)
+for day in traffic_data:
+    heavy_count = 0
+    for hour in day:
+        if hour > 5000:
+            heavy_count += 1
+    print('Number of hours with heavy traffic:', heavy_count)
 ```
+
+```output
+Number of hours with heavy traffic: 0
+Number of hours with heavy traffic: 0
+Number of hours with heavy traffic: 10
+Number of hours with heavy traffic: 7
+Number of hours with heavy traffic: 11
+Number of hours with heavy traffic: 11
+Number of hours with heavy traffic: 8
+Number of hours with heavy traffic: 3
+Number of hours with heavy traffic: 0
+```
+
+We can see that the fifth and sixth days (Weds and Thurs) had the most heavy traffic hours, with 11 hours  each.
+
 :::
 
 ~~~
