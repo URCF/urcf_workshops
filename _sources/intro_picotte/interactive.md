@@ -186,4 +186,6 @@ interfere with anyone else.
     workshop, the `--account=workshopprj` argument, as `workshopprj` is
     temporary and only works during the workshop. Replace `workshopprj` with the
     name of your research group's project for job submission, which should be in
-    the email you got confirming your Picotte account's creation.
+    the email you got confirming your Picotte account's creation. Typically this
+    is your PI's last name or name of your lab, followed by `freeprj`. E.g. if your
+    PI is Sara Zhang, you should typically use `zhangfreeprj`.
