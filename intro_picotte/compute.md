@@ -1,7 +1,7 @@
 # Running compute jobs
 
-Now that we've SSHed in, we're connected to Picotte—but Picotte, like we saw in
-the Introduction, is composed of many computers. SSHing into
+Now we're connected to Picotte—but Picotte, like we saw in
+the Introduction, is composed of many computers. Connecting to
 `picottelogin.urcf.drexel.edu` just connects us to one of them, the so-called
 "login node" ("node" just means one of the computers that make up the cluster).
 But Picotte has nearly 100 nodes in it—how do we access the others?
@@ -31,20 +31,9 @@ The scheduler used by Picotte is called
 commands](https://slurm.schedmd.com/quickstart.html#commands), we'll learn a few
 of the most important today.
 
-SLURM commands generally start with the letter `s`. Let's run our first SLURM
-command, `sinfo`:
+SLURM commands generally start with the letter `s`.
 
-~~~bash
-sinfo
-~~~
-
-`sinfo` prints output that shows that status of all the nodes in the cluster.
-It's pretty dense, with a lot of information. Don't worry about all of it for
-now. We're just looking to see that there are nodes in the `idle` or `mixed`
-state in the `def-sm` partition. If there aren't, that means the cluster is
-busy, and we might have to wait a while to run our job.
-
-Let's run our first job, using the following command[^srun]:
+Let's run our first job, using the `srun` command[^srun] as follows:
 
 ```
 srun --partition=def-sm --account=workshopprj Rscript -e 'summary(mtcars)'

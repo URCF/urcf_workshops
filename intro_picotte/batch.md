@@ -3,16 +3,16 @@
 `srun`, which we used to submit our first job, is great if you need to do
 something quick and see the output immediately. If you have code that runs for
 seven hours, using `srun` is not a great idea. This is because jobs submitted
-with `srun` are killed if you close the SSH connection. So, for example, if you
-start an `srun` job, but then your laptop falls asleep, the SSH connection will
-disconnect and your job will be killed.
+with `srun` are killed if you lose your connection. So, for example, if you
+start an `srun` job, but then your laptop falls asleep or you close VSCode, your
+connection will drop and your job will be killed.
 
 If you have some truly serious, multi-hour (or multi-day) computation (and
 that's what Picotte is really good for), a better idea is to run it in the
 background using a **batch job**. Submitting a batch job is conceptually similar
 to using `srun`, but the job will run on its assigned compute node in the
 background until it's over. If it needs to take two days, it takes two days. You
-can quit the SSH client or close your laptop, it won't affect a batch job.
+can close VSCode or shut down your laptop — it won't affect a batch job.
 
 Let's walk through an example of running a batch job. This will put together
 everything we've learned, from job submission, to using environment modules to
@@ -37,11 +37,11 @@ To start, download the gene sequence file by right clicking here:
 [`BRCA1.fasta`](https://github.com/URCF/urcf_workshops/raw/master/data/BRCA1.fasta)
 and choosing "Download" or "Save file".
 
-Then, connect to Picotte with [Cyberduck](./storage.md) and upload the
-`BRCA1.fasta` file by dragging and dropping it into the Cyberduck window. Make
-sure you're putting the file in your home directory.
+Then, upload it to Picotte by dragging and dropping `BRCA1.fasta` from your
+computer into the VSCode Explorer sidebar. Make sure you're putting the file in
+your home directory.
 
-If you SSH into Picotte, you can confirm the file is there:
+You can confirm the file is there in the terminal:
 
 ```
 $ ls BRCA1.fasta
@@ -66,7 +66,7 @@ ATCAAGAATTGTTACAAATCACCCCTCAAGGAACCAGGGATGAAATCAGTTTGGATTCTGCAAAAAAGGCTGCTTGTGAA
 ...
 ```
 
-If you can't get the transfer to work with Cyberduck, you can instead use the following command:
+If you can't get the drag-and-drop transfer to work, you can instead use the following command in the VSCode terminal:
 
 ```
 wget https://github.com/URCF/urcf_workshops/raw/master/data/BRCA1.fasta
@@ -80,20 +80,12 @@ To run a batch job, we need to write a **SLURM script**. This is file containing
 a series of commands we want the job to run, along with configuration arguments,
 like the account and partition, or requests for additional resources.
 
-Making sure you're in your home directory on Picotte (you can get there with `cd
-~`), type:
+Make sure your home directory is open in the VSCode Explorer sidebar. If it
+isn't, click **File → Open Folder** and enter `/home/YOUR_PICOTTE_USERNAME`.
 
-~~~bash
-nano blast_job.sh
-~~~
-
-This will open the `nano` text editor with an empty file:
-
-:::{figure} ../fig/intro_Picotte/nano_empty.png
-Nano just opened with empty file.
-:::
-
-Inside the editor, type this:
+To create the script, right-click in the Explorer sidebar and choose **"New
+File..."**. Name it `blast_job.sh`. The file will open in the editor. Type (or
+paste) the following:
 
 ~~~
 #!/bin/bash
@@ -106,18 +98,9 @@ module load ncbi-blast/2.13.0
 blastn -query BRCA1.fasta -db patnt
 ~~~
 
-Instead of typing, you can copy the text from the Web browser and paste it into
-`nano`. Windows users can paste with `Shift`+`Ins` (or by right-clicking the
-mouse). Mac users can paste with `Cmd`+`V`.
+Save the file with `Ctrl+S` (Windows/Linux) or `Cmd+S` (macOS).
 
-To save the script, press `Ctrl`+`o`, and then press `Enter`. `nano` will prompt
-you to choose a name for the new file. Press `Enter` again to accept the default
-name or `blast_job.sh`. To exit `nano`, press `Ctrl`+`x`. To make sure the text
-is saved properly, print it on screen using the `cat` command:
-
-~~~bash
-cat blast_job.sh
-~~~
+![Editing blast_job.sh in VSCode](../fig/intro_picotte/batch/vscode_edit_slurm_script.png)
 
 What do these lines mean? Let's look at them one by one:
 
@@ -317,11 +300,9 @@ searching with many sequences, and the job was taking a long time? How could we
  speed it up?
 
 A lot of research software can use multiple CPU cores to improve performance,
-and BLAST is no exception. Let's try it by editing our job script with `nano`:
-
-```
-nano blast_job.sh
-```
+and BLAST is no exception. Let's try it — click on `blast_job.sh` in the
+Explorer sidebar to open it in the editor (or switch to its tab if it's already
+open).
 
 Add the following line next to the other `#SBATCH` lines:
 
@@ -356,8 +337,7 @@ module load ncbi-blast/2.13.0
 blastn -query BRCA1.fasta -db patnt -num_threads 2
 ```
 
-Like before, save the file using `Ctrl`+`o`, press `Enter` when prompted for the
-filename, and quit `nano` using `Ctrl`+`x`.
+Save the file with `Ctrl+S` (Windows/Linux) or `Cmd+S` (macOS).
 
 ----
 

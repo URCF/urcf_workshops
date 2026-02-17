@@ -21,7 +21,7 @@ directory).
 
 Your home directory is limited to 64GiB of data.
 
-Your home directory is where you are when you log in.
+Your home directory is where your terminal starts when you open a new one.
 :::
 
 :::{admonition} Research group directory
@@ -66,76 +66,40 @@ job's execution. This is a more advanced topic than we'll cover in this
 workshop, but you can read more in [our
 documentation](https://docs.urcf.drexel.edu/clusters/picotte/scratch/).
 
-
 ## Transferring data to and from Picotte
 
-### CyberDuck
+You can transfer files to and from Picotte using VSCode's Explorer sidebar on
+the left side of the window.
 
-There are many ways to transfer files between your local computer and Picotte. One piece of
-software that works for both Mac and Windows machines is called CyberDuck. You can download
-it [here](https://cyberduck.io/download/).
+First, you need to open your home directory. choose **File → Open Folder** from
+the menu, then type `/home/YOUR_PICOTTE_USERNAME` (this might already be filled
+in by default) and click **OK**.
 
-After installation, click on "Open Connection". A new window will pop up:
+You may be prompted to "trust the authors of the files in this folder". Choose
+"Trust Folder & Continue" and then "Yes, I trust the authors" or similar
+options.
 
-:::{figure} ../fig/intro_picotte/cyberduck_1.png
-Cyberduck connection settings to Picotte
-:::
+The Explorer sidebar on the left will now show the contents of your Picotte home
+directory.
 
-To configure the connection for Picotte:
-- In the drop-down menu on top, select "SFTP" instead of the default "FTP";
-- In the "Server" input, specify `picottelogin.urcf.drexel.edu`;
-- Make sure that "Port" is set to 22;
-- Specify your Picotte username and password.
-- Make sure "Save Password" or "Add to keychain" is checked.
+### Uploading files (local → Picotte)
 
-Then, click on "Connect". If it complains about an "unknown fingerprint", click "Allow":
+To upload files from your computer to Picotte, simply **drag and drop** them
+from your file manager (Finder, Windows Explorer, etc.) into the VSCode Explorer
+sidebar. The files will be uploaded to whichever folder you currently have open
+in VSCode.
 
-:::{figure} ../fig/intro_Picotte/cyberduck_2.png
-Cyberduck connection settings to Picotte
-:::
+### Downloading files (Picotte → local)
 
-At this point, another new window will pop up, which contains the contents of
-your Picotte home directory (if this is your first time using Picotte, it will
-be empty). You can go to any other directory on Picotte by changing the path
-(e.g. your research group directory). You can upload files by clicking the
-"Upload" button, and download files by right-clicking them and selecting
-"Download" (these might be under the "Actions" menu). You can also drag-and-drop
-files to and from Picotte using this window.
+To download files from Picotte to your computer, **right-click** on a file in
+the Explorer sidebar and select **"Download..."**. You'll be prompted to choose
+where to save it on your local machine.
 
-:::{figure} ../fig/intro_Picotte/cyberduck_2fa.png
-Home directory contents
-:::
+### Browsing other directories
 
-## Command line (scp)
-
-Another option for advanced Mac and Linux users is the `scp` command. Open a new
-terminal, but **don't connect to Picotte**. The `scp` command works like this:
-
-~~~bash
-scp <path_to_source> username@picottelogin.urcf.drexel.edu:<path_to_destination>
-~~~
-
-For example, here is the `scp` command to copy a file from the current directory on my local machine
-to my home directory on Picotte (`lbn28` is my Picotte username):
-
-~~~bash
-scp myfile.txt username@picottelogin.urcf.drexel.edu:/home/lbn28/
-~~~
-
-... and to do the same in reverse, i.e., copy from Picotte to my local machine:
-
-~~~bash
-scp lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/myfile.txt .
-~~~
-
-The `.` represents the working directory on the local machine.
-
-To copy entire folders, include the `-r` switch:
-
-~~~bash
-scp -r myfolder lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/
-~~~
-
+By default, VSCode shows the folder you opened when you connected. To browse a
+different location (e.g. your research group directory), click **File → Open
+Folder** and type the path, such as `/ifs/groups/einsteinGrp`.
 
 [^payment]: See [our
     documentation](https://docs.urcf.drexel.edu/clusters/picotte/usage-rates/#costs)
