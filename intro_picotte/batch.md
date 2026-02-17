@@ -1,19 +1,18 @@
 # Running a batch job
 
-Interactive jobs are great if you need to do something quick (perhaps visualize
-some data). If you have code that runs for seven hours, an interactive job is
-not a great idea. This is because an interactive job is killed if you close the
-SSH connection. So, for example, if you start an interactive job, but then your
-laptop falls asleep, the SSH connection will disconnect and your job will be
-killed.
+`srun`, which we used to submit our first job, is great if you need to do
+something quick and see the output immediately. If you have code that runs for
+seven hours, using `srun` is not a great idea. This is because jobs submitted
+with `srun` are killed if you close the SSH connection. So, for example, if you
+start an `srun` job, but then your laptop falls asleep, the SSH connection will
+disconnect and your job will be killed.
 
 If you have some truly serious, multi-hour (or multi-day) computation (and
 that's what Picotte is really good for), a better idea is to run it in the
 background using a **batch job**. Submitting a batch job is conceptually similar
-to an interactive job (just a different command), but the job will run on its
-assigned compute node in the background until it's over. If it needs to take two
-days, it takes two days. You can quit the SSH client or close your laptop, it
-won't affect a batch job.
+to using `srun`, but the job will run on its assigned compute node in the
+background until it's over. If it needs to take two days, it takes two days. You
+can quit the SSH client or close your laptop, it won't affect a batch job.
 
 Let's walk through an example of running a batch job. This will put together
 everything we've learned, from job submission, to using environment modules to
@@ -21,14 +20,11 @@ load scientific software on Picotte.
 
 ## Our first batch job: BLAST search
 
-As an example to test Picotte's capabilities, we're going to run a DNA sequence
-search using [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi). BLAST (Basic
-Local Alignment Search Tool) is a tool for searching DNA and RNA sequences
-databases—you give it a sequence you're interested in (called a "query
-sequence") and it searches databases of known sequences (for example, the human
-genome) to find similar sequences to the query, using an algorithmic process
-called "alignment". The details aren't important, don't worry if you don't
-understand bioinformatics—we're just using it as an example.
+We'll run a BLAST search as our example—you already loaded BLAST and ran
+`blastn -version` in the [Environment modules](./environment.md) section. This
+time we'll run a real search as a batch job: we'll take a DNA sequence (a
+"query"), search it against a database of known sequences, and write the
+results to a file.
 
 ### Download query sequence
 
@@ -148,7 +144,7 @@ typed it on the command line. This lets you save your arguments in your script,
 so you don't have to type them out every time you run the job.
 
 Here we say we want to submit this job using the `workshopprj` project. This is
-just like when we submitted our interactive job.
+just like when we submitted using `srun` previously.
 :::
 
 :::{card} 3.
@@ -157,7 +153,7 @@ just like when we submitted our interactive job.
 ```
 
 Similar to the above line. Here we specify the `def-sm` partition. Again, this
-is just like when we specified the partition in our interactive job.
+is just like when we specified the partition using `srun`.
 :::
 
 :::{card} 4.
@@ -165,9 +161,8 @@ is just like when we specified the partition in our interactive job.
 module load ncbi-blast/2.13.0
 ```
 
-This should look more familiar. Here we're using [Environment
-modules](./environment.md) to load version 2.13.0 of the BLAST command line
-tools.
+Same as in the [Environment modules](./environment.md) section: we load the
+BLAST tools so that the `blastn` command is available when the job runs.
 :::
 
 :::{card} 5.
