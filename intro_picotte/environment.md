@@ -3,25 +3,25 @@
  We mentioned earlier that Picotte has a lot of research software pre-installed.
  How do you use it? The answer is a system called **environment modules**.
 
- Imagine we want to use, [Julia](https://julialang.org/), a programming language
- for scientific computing, which is installed on Picotte.
+ Imagine we want to use [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) (Basic
+ Local Alignment Search Tool), which is installed on Picotte. BLAST is a tool
+ for searching DNA and RNA sequence databases—you give it a query sequence and
+ it finds similar sequences in databases (for example, the human genome) using
+ a process called alignment. We'll use it again when we run a batch job later.
 
- Normally, on a system where Julia is installed, you just type:
+ Normally, on a system where BLAST is installed, you could run a command like
+ `blastn -version` to check that it's available. However, if we try that on
+ Picotte we get:
 
  ```
-julia
+[jjp366@picotte001 ~]$ blastn -version
+-bash: blastn: command not found
  ```
 
- at the prompt to start it. However, if we try that on Picotte we get:
-
- ```
-[jjp366@picotte001 ~]$ julia
--bash: julia: command not found
- ```
-
- This is because Julia, like most software on Picotte, is not installed globally
-and available by default, but has to first be loaded using an environment
- module. To work with environment modules, use the `module` command.
+ This is because BLAST, like most software on Picotte, is not installed
+ globally and available by default, but has to first be loaded using an
+ environment module. To work with environment modules, use the `module`
+ command.
 
  To see all the modules available for loading, run:
 
@@ -34,15 +34,14 @@ there's a lot of software installed on Picotte. This is a little overwhelming,
 so to narrow our search, we can run:
 
 ```
-module avail julia
+module avail ncbi-blast
 ```
 
 This gives us more manageable output:
 
 ```
---------------------------------------------- /ifs/opt/modulefiles ---------------------------------------------
-   julia/1.5.2    julia/1.6.0    julia/1.6.7    julia/1.7.3    julia/1.8.3    julia/1.8.5    julia/1.10.0 (D)
-   julia/1.5.3    julia/1.6.5    julia/1.7.1    julia/1.8.2    julia/1.8.4    julia/1.9.1
+---------------------------------------------------------------------------------------------------------------------------- /ifs/opt/modulefiles ----------------------------------------------------------------------------------------------------------------------------
+   ncbi-blast/2.11.0    ncbi-blast/2.13.0 (D)
 
   Where:
    D:  Default Module
@@ -54,33 +53,24 @@ Use "module spider" to find all possible modules and extensions.
 Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
 ```
 
-To load a module, we specify it's full name, including the version number. Let's
-say we want to use Julia version 1.10.0. The command for this is:
+To load a module, we specify its full name, including the version number. Let's
+say we want to use BLAST version 2.13.0. The command for this is:
 
 ```
-module load julia/1.10.0
+module load ncbi-blast/2.13.0
 ```
 
-This command gives no output, but Julia has now been "loaded" into our shell
-environment and is ready for use. Now if we try the `julia` command:
+This command gives no output, but BLAST has now been "loaded" into our shell
+environment and is ready for use. Now if we try `blastn -version`:
 
 ```
-[jjp366@picotte001 ~]$ julia
-               _
-   _       _ _(_)_     |  Documentation: https://docs.julialang.org
-  (_)     | (_) (_)    |
-   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
-  | | | | | | |/ _` |  |
-  | | |_| | | | (_| |  |  Version 1.10.0 (2023-12-25)
- _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
-|__/                   |
-
-julia>
+[jjp366@picotte001 ~]$ blastn -version
+blastn: 2.13.0+
+Package: ncbi-blast 2.13.0
 ```
 
-We get the result we expect, being dropped into an interactive shell.
-
-We can return to the shell by typing `exit()` and pressing `Enter`:
+It works! BLAST is loaded and ready to use, and we see that the version matches
+what we requested in our `module load` command.
 
 ## Why do we use modulefiles?
 
@@ -88,10 +78,10 @@ Why is it like this? Why not just have all software installed on Picotte
 immediately available?
 
 There's a hint above, in the form of the version numbers. Imagine you're working
-on a project that uses Julia version 1.10, but another research group's code
-Julia version 1.04.
+on a project that uses BLAST 2.13, but another research group's project requires
+BLAST 2.11, because version 2.13 removed support for a data format they use.
 
-If there was a single, globally Julia installation, it would have to be one
+If there was a single, global BLAST installation, it would have to be one
 version or the other, so one of you would be out of luck.
 
 Environment modules solve this problem, and a number of similar
