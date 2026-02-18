@@ -196,7 +196,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to research computing on Picotte</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Picotte?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactive.html">Running compute jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compute.html">Running compute jobs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage.html">Data storage and transfer</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Environment modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch.html">Running a batch job</a></li>
@@ -399,20 +399,22 @@ document.write(`
 <h1>Environment modules<a class="headerlink" href="#environment-modules" title="Link to this heading">#</a></h1>
 <p>We mentioned earlier that Picotte has a lot of research software pre-installed.
 How do you use it? The answer is a system called <strong>environment modules</strong>.</p>
-<p>Imagine we want to use, <a class="reference external" href="https://julialang.org/">Julia</a>, a programming language
-for scientific computing, which is installed on Picotte.</p>
-<p>Normally, on a system where Julia is installed, you just type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span>
+<p>Imagine we want to use <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> (Basic
+Local Alignment Search Tool), which is installed on Picotte. BLAST is a tool
+for searching DNA and RNA sequence databases—you give it a query sequence and
+it finds similar sequences in databases (for example, the human genome) using
+a process called alignment. We’ll use it again when we run a batch job later.</p>
+<p>Normally, on a system where BLAST is installed, you could run a command like
+<code class="docutils literal notranslate"><span class="pre">blastn</span> <span class="pre">-version</span></code> to check that it’s available. However, if we try that on
+Picotte we get:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ blastn -version
+-bash: blastn: command not found
 </pre></div>
 </div>
-<p>at the prompt to start it. However, if we try that on Picotte we get:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ julia
--bash: julia: command not found
-</pre></div>
-</div>
-<p>This is because Julia, like most software on Picotte, is not installed globally
-and available by default, but has to first be loaded using an environment
-module. To work with environment modules, use the <code class="docutils literal notranslate"><span class="pre">module</span></code> command.</p>
+<p>This is because BLAST, like most software on Picotte, is not installed
+globally and available by default, but has to first be loaded using an
+environment module. To work with environment modules, use the <code class="docutils literal notranslate"><span class="pre">module</span></code>
+command.</p>
 <p>To see all the modules available for loading, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
 </pre></div>
@@ -420,13 +422,12 @@ module. To work with environment modules, use the <code class="docutils literal 
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">SPACE</span></code> key to scroll through this output. As you can see,
 there’s a lot of software installed on Picotte. This is a little overwhelming,
 so to narrow our search, we can run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span> <span class="n">julia</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span> <span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span>
 </pre></div>
 </div>
 <p>This gives us more manageable output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------</span> <span class="o">/</span><span class="n">ifs</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">modulefiles</span> <span class="o">---------------------------------------------</span>
-   <span class="n">julia</span><span class="o">/</span><span class="mf">1.5.2</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.6.0</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.6.7</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.7.3</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.8.3</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.8.5</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.10.0</span> <span class="p">(</span><span class="n">D</span><span class="p">)</span>
-   <span class="n">julia</span><span class="o">/</span><span class="mf">1.5.3</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.6.5</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.7.1</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.8.2</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.8.4</span>    <span class="n">julia</span><span class="o">/</span><span class="mf">1.9.1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">----------------------------------------------------------------------------------------------------------------------------</span> <span class="o">/</span><span class="n">ifs</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">modulefiles</span> <span class="o">----------------------------------------------------------------------------------------------------------------------------</span>
+   <span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span><span class="o">/</span><span class="mf">2.11.0</span>    <span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span><span class="o">/</span><span class="mf">2.13.0</span> <span class="p">(</span><span class="n">D</span><span class="p">)</span>
 
   <span class="n">Where</span><span class="p">:</span>
    <span class="n">D</span><span class="p">:</span>  <span class="n">Default</span> <span class="n">Module</span>
@@ -438,36 +439,28 @@ so to narrow our search, we can run:</p>
 <span class="n">Use</span> <span class="s2">&quot;module keyword key1 key2 ...&quot;</span> <span class="n">to</span> <span class="n">search</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">possible</span> <span class="n">modules</span> <span class="n">matching</span> <span class="nb">any</span> <span class="n">of</span> <span class="n">the</span> <span class="s2">&quot;keys&quot;</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>To load a module, we specify it’s full name, including the version number. Let’s
-say we want to use Julia version 1.10.0. The command for this is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">julia</span><span class="o">/</span><span class="mf">1.10.0</span>
+<p>To load a module, we specify its full name, including the version number. Let’s
+say we want to use BLAST version 2.13.0. The command for this is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span><span class="o">/</span><span class="mf">2.13.0</span>
 </pre></div>
 </div>
-<p>This command gives no output, but Julia has now been “loaded” into our shell
-environment and is ready for use. Now if we try the <code class="docutils literal notranslate"><span class="pre">julia</span></code> command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ julia
-               _
-   _       _ _(_)_     |  Documentation: https://docs.julialang.org
-  (_)     | (_) (_)    |
-   _ _   _| |_  __ _   |  Type &quot;?&quot; for help, &quot;]?&quot; for Pkg help.
-  | | | | | | |/ _` |  |
-  | | |_| | | | (_| |  |  Version 1.10.0 (2023-12-25)
- _/ |\__&#39;_|_|_|\__&#39;_|  |  Official https://julialang.org/ release
-|__/                   |
-
-julia&gt;
+<p>This command gives no output, but BLAST has now been “loaded” into our shell
+environment and is ready for use. Now if we try <code class="docutils literal notranslate"><span class="pre">blastn</span> <span class="pre">-version</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ blastn -version
+blastn: 2.13.0+
+Package: ncbi-blast 2.13.0
 </pre></div>
 </div>
-<p>We get the result we expect, being dropped into an interactive shell.</p>
-<p>We can return to the shell by typing <code class="docutils literal notranslate"><span class="pre">exit()</span></code> and pressing <code class="docutils literal notranslate"><span class="pre">Enter</span></code>:</p>
+<p>It works! BLAST is loaded and ready to use, and we see that the version matches
+what we requested in our <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> command.</p>
 <section id="why-do-we-use-modulefiles">
 <h2>Why do we use modulefiles?<a class="headerlink" href="#why-do-we-use-modulefiles" title="Link to this heading">#</a></h2>
 <p>Why is it like this? Why not just have all software installed on Picotte
 immediately available?</p>
 <p>There’s a hint above, in the form of the version numbers. Imagine you’re working
-on a project that uses Julia version 1.10, but another research group’s code
-Julia version 1.04.</p>
-<p>If there was a single, globally Julia installation, it would have to be one
+on a project that uses BLAST 2.13, but another research group’s project requires
+BLAST 2.11, because version 2.13 removed support for a data format they use.</p>
+<p>If there was a single, global BLAST installation, it would have to be one
 version or the other, so one of you would be out of luck.</p>
 <p>Environment modules solve this problem, and a number of similar
 problems<a class="footnote-reference brackets" href="#problems" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> by isolating software packages from each other, and letting

@@ -12,40 +12,43 @@ how to submit jobs to the scheduler.
 
 ```{admonition} Understand shell basics
 
-This workshops assumes you know the basics of how to use a Unix shell. If you don't you can learn these in our [Introduction to the Unix shell](https://urcf.github.io/urcf_workshops/intro_linux/index.html) workshop.
+This workshops assumes you know the basics of how to use a Unix shell. You can learn these in our [Introduction to the Unix shell](https://urcf.github.io/urcf_workshops/intro_linux/index.html) workshop.
 
 ```
 
-```{admonition} Get a Unix shell
+```{admonition} Install VSCode and the "Remote - SSH" extension
 
-You'll also need a Unix shell installed on your computer in order to login and use Picotte. Follow the instructions for your operating system below.
+We'll use [Visual Studio Code](https://code.visualstudio.com/) (VSCode) as our interface to Picotte. VSCode lets us edit files, transfer data, and run commands, all from a single application.
+
+**1. Install VSCode**
+
+Download and install VSCode from [code.visualstudio.com/download](https://code.visualstudio.com/download). Choose the installer for your operating system (Windows, macOS, or Linux) and follow the default installation steps.
+
+**2. Install the Remote - SSH extension**
+
+Open VSCode. Open the Extensions sidebar by pressing `Ctrl+Shift+X` (Windows/Linux) or `Cmd+Shift+X` (macOS). Search for **Remote - SSH** and click **Install** on the extension by Microsoft.
+
+
+![Installing Remote - SSH extension](../fig/intro_picotte/intro/vscode_remote_ssh_extension.png)
+
+**3. Ensure OpenSSH Client is installed**
+
+VSCode's Remote - SSH extension requires an SSH client to be installed on your operating system. Typically, this is already installed, and there's nothing you need to do. However, if you run into connection problems, try the steps for your operating system below.
 
 :::::{tab-set}
 ::::{tab-item} Windows
-Prior to workshop, Windows users should download and install
-[Git for Windows](https://gitforwindows.org/). Git for Windows comes with an app called "Git Bash", which is a Unix shell. If you already have Git for Windows installed, please update it, as only more recent versions come with Git Bash.
 
-You can launch the "Git Bash" app from the Windows Main Menu:
-
-![Git Bash](../fig/intro_linux/intro/gitbash.png)
-
-You can also launch Git Bash via Windows Terminal. Windows Terminal is a powerful
-terminal program intended to replace the older Command Prompt and PowerShell
-launchers. The terminal is available by default with Windows 11. For earlier versions,
-it can be downloaded and installed via the Windows App Store. More detailed instructions
-can be found at https://learn.microsoft.com/en-us/windows/terminal/install.
-
-![Windows Terminal](../fig/intro_linux/intro/windows_terminal.png)
+Open **Settings → Apps → Optional features** and look for **OpenSSH Client** in the list. If it's not there, click **Add a feature**, search for "OpenSSH Client", and install it.
 
 ::::
 ::::{tab-item} macOS
 
-For macOS users, the "Terminal" app provides a Unix shell, and is built-in to the operating system, so you don't need to install anything.
+macOS includes a built-in SSH client, no additional setup is needed.
 
-Open Spotlight, the macOS search tool, by clicking the magnifying glass icon in the top right corner of your screen. Start typing
-"terminal" into the search box. The Terminal app will appear, and you can click on it or press `Enter` to launch it.
+::::
+::::{tab-item} Linux
 
-![Mac Terminal](../fig/intro_linux/intro/mac_terminal.png)
+Most Linux distributions include an SSH client by default. If not, install it with your package manager (e.g. `sudo apt install openssh-client` on Ubuntu/Debian).
 
 ::::
 :::::

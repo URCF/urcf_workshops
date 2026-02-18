@@ -57,7 +57,7 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/interactive';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro_picotte/compute';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -289,7 +289,7 @@
       
       
       
-      <li><a href="../_sources/intro_picotte/interactive.md" target="_blank"
+      <li><a href="../_sources/intro_picotte/compute.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -404,8 +404,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="running-compute-jobs">
 <h1>Running compute jobs<a class="headerlink" href="#running-compute-jobs" title="Link to this heading">#</a></h1>
-<p>Now that we’ve SSHed in, we’re connected to Picotte—but Picotte, like we saw in
-the Introduction, is composed of many computers. SSHing into
+<p>Now we’re connected to Picotte—but Picotte, like we saw in
+the Introduction, is composed of many computers. Connecting to
 <code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code> just connects us to one of them, the so-called
 “login node” (“node” just means one of the computers that make up the cluster).
 But Picotte has nearly 100 nodes in it—how do we access the others?</p>
@@ -430,52 +430,75 @@ balancing competing requests from different users and research groups<a class="f
 <a class="reference external" href="https://slurm.schedmd.com/overview.html">SLURM</a>. SLURM has <a class="reference external" href="https://slurm.schedmd.com/quickstart.html#commands">many
 commands</a>, we’ll learn a few
 of the most important today.</p>
-<p>SLURM commands generally start with the letter <code class="docutils literal notranslate"><span class="pre">s</span></code>. Let’s run our first SLURM
-command, <code class="docutils literal notranslate"><span class="pre">sinfo</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sinfo
+<p>SLURM commands generally start with the letter <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p>
+<p>Let’s run our first job, using the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command<a class="footnote-reference brackets" href="#srun" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">--</span><span class="n">partition</span><span class="o">=</span><span class="n">def</span><span class="o">-</span><span class="n">sm</span> <span class="o">--</span><span class="n">account</span><span class="o">=</span><span class="n">workshopprj</span> <span class="n">Rscript</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;summary(mtcars)&#39;</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">sinfo</span></code> prints output that shows that status of all the nodes in the cluster.
-It’s pretty dense, with a lot of information. Don’t worry about all of it for
-now. We’re just looking to see that there are nodes in the <code class="docutils literal notranslate"><span class="pre">idle</span></code> or <code class="docutils literal notranslate"><span class="pre">mixed</span></code>
-state in the <code class="docutils literal notranslate"><span class="pre">def-sm</span></code> partition. If there aren’t, that means the cluster is
-busy, and we might have to wait a while to run our job.</p>
-<p>Let’s run our first job, using the following command<a class="footnote-reference brackets" href="#srun" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">--</span><span class="n">partition</span><span class="o">=</span><span class="n">def</span><span class="o">-</span><span class="n">sm</span> <span class="o">--</span><span class="n">account</span><span class="o">=</span><span class="n">workshopprj</span> <span class="o">--</span><span class="n">pty</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
-</pre></div>
-</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Rscript</span></code> command runs a program using the <a class="reference external" href="https://www.r-project.org/">R
+language</a> for statistical computing. In this case,
+we’re computing summary statistics on the built-in <a class="reference external" href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html"><code class="docutils literal notranslate"><span class="pre">mtcars</span></code> dataset</a><a class="footnote-reference brackets" href="#mtcars" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
 <p>You should see something like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ srun --partition=def-sm --account=workshopprj --pty /bin/bash
-srun: job 11702109 queued and waiting for resources
-srun: job 11702109 has been allocated resources
-[jjp366@node038 ~]$
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picotte001 ~]$ srun --partition=def-sm --account=workshopprj Rscript -e &#39;summary(mtcars)&#39;
+Microsoft R Open 4.0.2
+The enhanced R distribution from Microsoft
+Microsoft packages Copyright (C) 2020 Microsoft Corporation
+
+Using the Intel MKL for parallel mathematical computing (using 1 cores).
+
+Default CRAN mirror snapshot taken on 2020-07-16.
+See: https://mran.microsoft.com/.
+
+      mpg             cyl             disp             hp
+ Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0
+ 1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5
+ Median :19.20   Median :6.000   Median :196.3   Median :123.0
+ Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7
+ 3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0
+ Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0
+      drat             wt             qsec             vs
+ Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000
+ 1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000
+ Median :3.695   Median :3.325   Median :17.71   Median :0.0000
+ Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375
+ 3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000
+ Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000
+       am              gear            carb
+ Min.   :0.0000   Min.   :3.000   Min.   :1.000
+ 1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000
+ Median :0.0000   Median :4.000   Median :2.000
+ Mean   :0.4062   Mean   :3.688   Mean   :2.812
+ 3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000
+ Max.   :1.0000   Max.   :5.000   Max.   :8.000
+[jjp366@picotte001 ~]$
 </pre></div>
 </div>
-<p>Importantly, you will see the prompt change. Previously, the prompt was
-<code class="docutils literal notranslate"><span class="pre">&lt;your</span> <span class="pre">username&gt;&#64;picotte001</span></code>, because you were on the login node. Now, you
-are on a compute node—in this case, <code class="docutils literal notranslate"><span class="pre">node038</span></code> (you might be on a different
-compute node).</p>
-<p>Now we’re finally where the real work happens! From here, you can run any other
-commands your research requires—a Python script you wrote, open-source
-bioinformatics tools, commercial structural analysis software—the sky’s the
-limit. We have <a class="reference external" href="https://docs.urcf.drexel.edu/software/installed/">a lot of research software pre-installed on
+<p>The output includes statistics (e.g. mean, median) for each of the variables on
+car performance: miles per gallon, horsepower, etc. The details of the
+computation and output don’t really matter here, we’re just using it as a simple
+example of running a job on the cluster.</p>
+<p>Let’s trace what happened: the job was queued, SLURM allocated resources on a
+compute node, the R script ran there, the output was printed back to your
+terminal, and then you were returned to the login node. The key takeaway is
+that SLURM handled scheduling the work onto a compute node transparently—you
+didn’t have to know or care which node it ran on.</p>
+<p>The cluster just did real work for us—it ran an R script on a compute node and
+returned the results. The command we ran here was simple, but the same approach
+works for anything your research requires: a Python script you wrote,
+open-source bioinformatics tools, commercial structural analysis software—the
+sky’s the limit. We have <a class="reference external" href="https://docs.urcf.drexel.edu/software/installed/">a lot of research software pre-installed on
 Picotte</a> for you to use.</p>
-<p>However, an interactive job like this might not be the best way to get work
-done. More on that later, for now let’s break down exactly what each of the
-arguments in the command above means and why we need them:</p>
+<p>Let’s break down exactly what each of the arguments in the command above means
+and why we need them:</p>
 <p><code class="docutils literal notranslate"><span class="pre">srun</span></code></p>
 <ul class="simple">
 <li><p>The base command: this launches a single job on a compute node.</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Rscript</span> <span class="pre">-e</span> <span class="pre">'summary(mtcars)'</span></code></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">srun</span></code> takes one argument: the command to run. <code class="docutils literal notranslate"><span class="pre">bin/bash</span></code> is the command to
-start a new <code class="docutils literal notranslate"><span class="pre">bash</span></code> shell.</p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">--pty</span></code></p>
-<ul class="simple">
-<li><p>This option is short for “pseudo-terminal”, this lets you run commands interactively rather
-than in a non-interactive batch mode (which we’ll learn more about later).</p></li>
+<li><p>the main argument to <code class="docutils literal notranslate"><span class="pre">srun</span></code> is the command to run. Here, we’re running
+<code class="docutils literal notranslate"><span class="pre">Rscript</span> <span class="pre">-e</span> <span class="pre">'summary(mtcars)'</span></code>, which executes an R expression that summarizes
+the built-in <code class="docutils literal notranslate"><span class="pre">mtcars</span></code> dataset.</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">--partition=def-sm</span></code> and <code class="docutils literal notranslate"><span class="pre">--account=workshopprj</span></code></p>
 <ul class="simple">
@@ -531,15 +554,6 @@ removed.</p></li>
 partition, which is for standard free-tier jobs. You can read more about all the
 available partitions
 <a class="reference external" href="https://docs.urcf.drexel.edu/clusters/picotte/usage-rates/">here</a>.</p>
-<hr class="docutils" />
-<p>Let’s now exit the compute node and return to the login node:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
-</pre></div>
-</div>
-<p>This will bring you back to the login node. See how your prompt has changed back
-to <code class="docutils literal notranslate"><span class="pre">picotte001</span></code>. It is important to note that you have to be on a login node to
-request a compute node. One you are on the compute node, if you want to go to
-another compute node, you have to exit first.</p>
 <div class="warning admonition">
 <p class="admonition-title">Picotte is a shared resource</p>
 <p>Please be considerate of others when submitting jobs. Remember that Picotte is a shared resource.
@@ -571,6 +585,11 @@ name of your research group’s project for job submission, which should be in
 the email you got confirming your Picotte account’s creation. Typically this
 is your PI’s last name or name of your lab, followed by <code class="docutils literal notranslate"><span class="pre">freeprj</span></code>. E.g. if your
 PI is Sara Zhang, you should typically use <code class="docutils literal notranslate"><span class="pre">zhangfreeprj</span></code>.</p>
+</aside>
+<aside class="footnote brackets" id="mtcars" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>The mtcars dataset includes design and performance data for 32 cars,
+originally published in <em>Motor Trend</em> magazine in 1974.</p>
 </aside>
 </aside>
 </section>

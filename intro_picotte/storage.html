@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Environment modules" href="environment.html" />
-    <link rel="prev" title="Running compute jobs" href="interactive.html" />
+    <link rel="prev" title="Running compute jobs" href="compute.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -196,7 +196,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to research computing on Picotte</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Picotte?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactive.html">Running compute jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compute.html">Running compute jobs</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Data storage and transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environment.html">Environment modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="batch.html">Running a batch job</a></li>
@@ -388,10 +388,11 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transferring-data-to-and-from-picotte">Transferring data to and from Picotte</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cyberduck">CyberDuck</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uploading-files-local-picotte">Uploading files (local → Picotte)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-files-picotte-local">Downloading files (Picotte → local)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#browsing-other-directories">Browsing other directories</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-scp">Command line (scp)</a></li>
 </ul>
             </nav>
         </div>
@@ -421,7 +422,7 @@ you to keep your personal data, scripts, etc.</p>
 <code class="docutils literal notranslate"><span class="pre">/home/bn23</span></code> (You can also use the shortcut <code class="docutils literal notranslate"><span class="pre">~</span></code> to refer to your home
 directory).</p>
 <p>Your home directory is limited to 64GiB of data.</p>
-<p>Your home directory is where you are when you log in.</p>
+<p>Your home directory is where your terminal starts when you open a new one.</p>
 </div>
 <div class="admonition-research-group-directory admonition">
 <p class="admonition-title">Research group directory</p>
@@ -461,69 +462,34 @@ documentation</a>.</p>
 </section>
 <section id="transferring-data-to-and-from-picotte">
 <h2>Transferring data to and from Picotte<a class="headerlink" href="#transferring-data-to-and-from-picotte" title="Link to this heading">#</a></h2>
-<section id="cyberduck">
-<h3>CyberDuck<a class="headerlink" href="#cyberduck" title="Link to this heading">#</a></h3>
-<p>There are many ways to transfer files between your local computer and Picotte. One piece of
-software that works for both Mac and Windows machines is called CyberDuck. You can download
-it <a class="reference external" href="https://cyberduck.io/download/">here</a>.</p>
-<p>After installation, click on “Open Connection”. A new window will pop up:</p>
-<figure class="align-default" id="id3">
-<img alt="../_images/cyberduck_1.png" src="../_images/cyberduck_1.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Cyberduck connection settings to Picotte</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>To configure the connection for Picotte:</p>
-<ul class="simple">
-<li><p>In the drop-down menu on top, select “SFTP” instead of the default “FTP”;</p></li>
-<li><p>In the “Server” input, specify <code class="docutils literal notranslate"><span class="pre">picottelogin.urcf.drexel.edu</span></code>;</p></li>
-<li><p>Make sure that “Port” is set to 22;</p></li>
-<li><p>Specify your Picotte username and password.</p></li>
-<li><p>Make sure “Save Password” or “Add to keychain” is checked.</p></li>
-</ul>
-<p>Then, click on “Connect”. If it complains about an “unknown fingerprint”, click “Allow”:</p>
-<figure class="align-default" id="id4">
-<img alt="../_images/cyberduck_2.png" src="../_images/cyberduck_2.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Cyberduck connection settings to Picotte</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>At this point, another new window will pop up, which contains the contents of
-your Picotte home directory (if this is your first time using Picotte, it will
-be empty). You can go to any other directory on Picotte by changing the path
-(e.g. your research group directory). You can upload files by clicking the
-“Upload” button, and download files by right-clicking them and selecting
-“Download” (these might be under the “Actions” menu). You can also drag-and-drop
-files to and from Picotte using this window.</p>
-<figure class="align-default" id="id5">
-<img alt="../_images/cyberduck_2fa.png" src="../_images/cyberduck_2fa.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Home directory contents</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
+<p>You can transfer files to and from Picotte using VSCode’s Explorer sidebar on
+the left side of the window.</p>
+<p>First, you need to open your home directory. choose <strong>File → Open Folder</strong> from
+the menu, then type <code class="docutils literal notranslate"><span class="pre">/home/YOUR_PICOTTE_USERNAME</span></code> (this might already be filled
+in by default) and click <strong>OK</strong>.</p>
+<p>You may be prompted to “trust the authors of the files in this folder”. Choose
+“Trust Folder &amp; Continue” and then “Yes, I trust the authors” or similar
+options.</p>
+<p>The Explorer sidebar on the left will now show the contents of your Picotte home
+directory.</p>
+<section id="uploading-files-local-picotte">
+<h3>Uploading files (local → Picotte)<a class="headerlink" href="#uploading-files-local-picotte" title="Link to this heading">#</a></h3>
+<p>To upload files from your computer to Picotte, simply <strong>drag and drop</strong> them
+from your file manager (Finder, Windows Explorer, etc.) into the VSCode Explorer
+sidebar. The files will be uploaded to whichever folder you currently have open
+in VSCode.</p>
 </section>
+<section id="downloading-files-picotte-local">
+<h3>Downloading files (Picotte → local)<a class="headerlink" href="#downloading-files-picotte-local" title="Link to this heading">#</a></h3>
+<p>To download files from Picotte to your computer, <strong>right-click</strong> on a file in
+the Explorer sidebar and select <strong>“Download…”</strong>. You’ll be prompted to choose
+where to save it on your local machine.</p>
 </section>
-<section id="command-line-scp">
-<h2>Command line (scp)<a class="headerlink" href="#command-line-scp" title="Link to this heading">#</a></h2>
-<p>Another option for advanced Mac and Linux users is the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command. Open a new
-terminal, but <strong>don’t connect to Picotte</strong>. The <code class="docutils literal notranslate"><span class="pre">scp</span></code> command works like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>&lt;path_to_source&gt;<span class="w"> </span>username@picottelogin.urcf.drexel.edu:&lt;path_to_destination&gt;
-</pre></div>
-</div>
-<p>For example, here is the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command to copy a file from the current directory on my local machine
-to my home directory on Picotte (<code class="docutils literal notranslate"><span class="pre">lbn28</span></code> is my Picotte username):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>myfile.txt<span class="w"> </span>username@picottelogin.urcf.drexel.edu:/home/lbn28/
-</pre></div>
-</div>
-<p>… and to do the same in reverse, i.e., copy from Picotte to my local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/myfile.txt<span class="w"> </span>.
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">.</span></code> represents the working directory on the local machine.</p>
-<p>To copy entire folders, include the <code class="docutils literal notranslate"><span class="pre">-r</span></code> switch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>-r<span class="w"> </span>myfolder<span class="w"> </span>lbn28@picottelogin.urcf.drexel.edu:/home/lbn28/
-</pre></div>
-</div>
+<section id="browsing-other-directories">
+<h3>Browsing other directories<a class="headerlink" href="#browsing-other-directories" title="Link to this heading">#</a></h3>
+<p>By default, VSCode shows the folder you opened when you connected. To browse a
+different location (e.g. your research group directory), click <strong>File → Open
+Folder</strong> and type the path, such as <code class="docutils literal notranslate"><span class="pre">/ifs/groups/einsteinGrp</span></code>.</p>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="payment" role="doc-footnote">
@@ -540,6 +506,7 @@ use a system from Dell called <em>Isilon</em>, so you might also hear or read th
 word “Isilon” used to refer to the shared storage on Picotte.</p>
 </aside>
 </aside>
+</section>
 </section>
 </section>
 
@@ -574,7 +541,7 @@ word “Isilon” used to refer to the shared storage on Picotte.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="interactive.html"
+       href="compute.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -612,10 +579,11 @@ word “Isilon” used to refer to the shared storage on Picotte.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transferring-data-to-and-from-picotte">Transferring data to and from Picotte</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cyberduck">CyberDuck</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uploading-files-local-picotte">Uploading files (local → Picotte)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-files-picotte-local">Downloading files (Picotte → local)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#browsing-other-directories">Browsing other directories</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-scp">Command line (scp)</a></li>
 </ul>
   </nav></div>
 

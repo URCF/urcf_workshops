@@ -196,7 +196,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction to research computing on Picotte</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="introduction.html">What is Picotte?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accessing-picotte.html">Accessing Picotte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactive.html">Running compute jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compute.html">Running compute jobs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage.html">Data storage and transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environment.html">Environment modules</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Running a batch job</a></li>
@@ -405,32 +405,28 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="running-a-batch-job">
 <h1>Running a batch job<a class="headerlink" href="#running-a-batch-job" title="Link to this heading">#</a></h1>
-<p>Interactive jobs are great if you need to do something quick (perhaps visualize
-some data). If you have code that runs for seven hours, an interactive job is
-not a great idea. This is because an interactive job is killed if you close the
-SSH connection. So, for example, if you start an interactive job, but then your
-laptop falls asleep, the SSH connection will disconnect and your job will be
-killed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">srun</span></code>, which we used to submit our first job, is great if you need to do
+something quick and see the output immediately. If you have code that runs for
+seven hours, using <code class="docutils literal notranslate"><span class="pre">srun</span></code> is not a great idea. This is because jobs submitted
+with <code class="docutils literal notranslate"><span class="pre">srun</span></code> are killed if you lose your connection. So, for example, if you
+start an <code class="docutils literal notranslate"><span class="pre">srun</span></code> job, but then your laptop falls asleep or you close VSCode, your
+connection will drop and your job will be killed.</p>
 <p>If you have some truly serious, multi-hour (or multi-day) computation (and
 that’s what Picotte is really good for), a better idea is to run it in the
 background using a <strong>batch job</strong>. Submitting a batch job is conceptually similar
-to an interactive job (just a different command), but the job will run on its
-assigned compute node in the background until it’s over. If it needs to take two
-days, it takes two days. You can quit the SSH client or close your laptop, it
-won’t affect a batch job.</p>
+to using <code class="docutils literal notranslate"><span class="pre">srun</span></code>, but the job will run on its assigned compute node in the
+background until it’s over. If it needs to take two days, it takes two days. You
+can close VSCode or shut down your laptop — it won’t affect a batch job.</p>
 <p>Let’s walk through an example of running a batch job. This will put together
 everything we’ve learned, from job submission, to using environment modules to
 load scientific software on Picotte.</p>
 <section id="our-first-batch-job-blast-search">
 <h2>Our first batch job: BLAST search<a class="headerlink" href="#our-first-batch-job-blast-search" title="Link to this heading">#</a></h2>
-<p>As an example to test Picotte’s capabilities, we’re going to run a DNA sequence
-search using <a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>. BLAST (Basic
-Local Alignment Search Tool) is a tool for searching DNA and RNA sequences
-databases—you give it a sequence you’re interested in (called a “query
-sequence”) and it searches databases of known sequences (for example, the human
-genome) to find similar sequences to the query, using an algorithmic process
-called “alignment”. The details aren’t important, don’t worry if you don’t
-understand bioinformatics—we’re just using it as an example.</p>
+<p>We’ll run a BLAST search as our example—you already loaded BLAST and ran
+<code class="docutils literal notranslate"><span class="pre">blastn</span> <span class="pre">-version</span></code> in the <a class="reference internal" href="environment.html"><span class="std std-doc">Environment modules</span></a> section. This
+time we’ll run a real search as a batch job: we’ll take a DNA sequence (a
+“query”), search it against a database of known sequences, and write the
+results to a file.</p>
 <section id="download-query-sequence">
 <h3>Download query sequence<a class="headerlink" href="#download-query-sequence" title="Link to this heading">#</a></h3>
 <p>We’re going to search using the sequence of the
@@ -440,10 +436,10 @@ as an early example of a specific gene that could be linked to cancer.</p>
 <p>To start, download the gene sequence file by right clicking here:
 <a class="reference external" href="https://github.com/URCF/urcf_workshops/raw/master/data/BRCA1.fasta"><code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code></a>
 and choosing “Download” or “Save file”.</p>
-<p>Then, connect to Picotte with <a class="reference internal" href="storage.html"><span class="std std-doc">Cyberduck</span></a> and upload the
-<code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code> file by dragging and dropping it into the Cyberduck window. Make
-sure you’re putting the file in your home directory.</p>
-<p>If you SSH into Picotte, you can confirm the file is there:</p>
+<p>Then, upload it to Picotte by dragging and dropping <code class="docutils literal notranslate"><span class="pre">BRCA1.fasta</span></code> from your
+computer into the VSCode Explorer sidebar. Make sure you’re putting the file in
+your home directory.</p>
+<p>You can confirm the file is there in the terminal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls BRCA1.fasta
 BRCA1.fasta
 </pre></div>
@@ -464,7 +460,7 @@ BRCA1.fasta
 <span class="o">...</span>
 </pre></div>
 </div>
-<p>If you can’t get the transfer to work with Cyberduck, you can instead use the following command:</p>
+<p>If you can’t get the drag-and-drop transfer to work, you can instead use the following command in the VSCode terminal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">URCF</span><span class="o">/</span><span class="n">urcf_workshops</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span>
 </pre></div>
 </div>
@@ -475,18 +471,10 @@ BRCA1.fasta
 <p>To run a batch job, we need to write a <strong>SLURM script</strong>. This is file containing
 a series of commands we want the job to run, along with configuration arguments,
 like the account and partition, or requests for additional resources.</p>
-<p>Making sure you’re in your home directory on Picotte (you can get there with <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~</span></code>), type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>blast_job.sh
-</pre></div>
-</div>
-<p>This will open the <code class="docutils literal notranslate"><span class="pre">nano</span></code> text editor with an empty file:</p>
-<figure class="align-default" id="id2">
-<img alt="../_images/nano_empty.png" src="../_images/nano_empty.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Nano just opened with empty file.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Inside the editor, type this:</p>
+<p>To create a new file in VSCode, press <kbd>Ctrl</kbd>+<kbd>N</kbd>
+(Windows/Linux) or <kbd>Cmd</kbd>+<kbd>N</kbd> (macOS), or choose <strong>File → New
+File</strong> from the menu.</p>
+<p>Type (or copy and paste) the following into the new file that opens:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1">#SBATCH --account=workshopprj</span>
@@ -497,16 +485,13 @@ like the account and partition, or requests for additional resources.</p>
 <span class="n">blastn</span> <span class="o">-</span><span class="n">query</span> <span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">db</span> <span class="n">patnt</span>
 </pre></div>
 </div>
-<p>Instead of typing, you can copy the text from the Web browser and paste it into
-<code class="docutils literal notranslate"><span class="pre">nano</span></code>. Windows users can paste with <code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">Ins</span></code> (or by right-clicking the
-mouse). Mac users can paste with <code class="docutils literal notranslate"><span class="pre">Cmd</span></code>+<code class="docutils literal notranslate"><span class="pre">V</span></code>.</p>
-<p>To save the script, press <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">o</span></code>, and then press <code class="docutils literal notranslate"><span class="pre">Enter</span></code>. <code class="docutils literal notranslate"><span class="pre">nano</span></code> will prompt
-you to choose a name for the new file. Press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> again to accept the default
-name or <code class="docutils literal notranslate"><span class="pre">blast_job.sh</span></code>. To exit <code class="docutils literal notranslate"><span class="pre">nano</span></code>, press <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">x</span></code>. To make sure the text
-is saved properly, print it on screen using the <code class="docutils literal notranslate"><span class="pre">cat</span></code> command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>blast_job.sh
-</pre></div>
-</div>
+<p>Press <kbd>Ctrl</kbd>+<kbd>S</kbd> (Windows/Linux) or <kbd>Cmd</kbd>+<kbd>S</kbd> (macOS) to save the file. When prompted for the path to save to, make sure the file is in your home directory and name it <code class="docutils literal notranslate"><span class="pre">blast_job.sh</span></code> (so the path should be <code class="docutils literal notranslate"><span class="pre">/home/YOUR_PICOTTE_USERNAME/blast_job.sh</span></code>).</p>
+<figure class="align-default" id="editing-blast-job">
+<img alt="Editing the SLURM script in VSCode" src="../_images/vscode_edit_slurm_script.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Editing <code class="docutils literal notranslate"><span class="pre">blast_job.sh</span></code> in VSCode.</span><a class="headerlink" href="#editing-blast-job" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p>What do these lines mean? Let’s look at them one by one:</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
@@ -534,7 +519,7 @@ that starts with <code class="docutils literal notranslate"><span class="pre">#S
 typed it on the command line. This lets you save your arguments in your script,
 so you don’t have to type them out every time you run the job.</p>
 <p class="sd-card-text">Here we say we want to submit this job using the <code class="docutils literal notranslate"><span class="pre">workshopprj</span></code> project. This is
-just like when we submitted our interactive job.</p>
+just like when we submitted using <code class="docutils literal notranslate"><span class="pre">srun</span></code> previously.</p>
 </div>
 </div>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
@@ -545,7 +530,7 @@ just like when we submitted our interactive job.</p>
 </pre></div>
 </div>
 <p class="sd-card-text">Similar to the above line. Here we specify the <code class="docutils literal notranslate"><span class="pre">def-sm</span></code> partition. Again, this
-is just like when we specified the partition in our interactive job.</p>
+is just like when we specified the partition using <code class="docutils literal notranslate"><span class="pre">srun</span></code>.</p>
 </div>
 </div>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
@@ -555,9 +540,8 @@ is just like when we specified the partition in our interactive job.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span><span class="o">/</span><span class="mf">2.13.0</span>
 </pre></div>
 </div>
-<p class="sd-card-text">This should look more familiar. Here we’re using <a class="reference internal" href="environment.html"><span class="std std-doc">Environment
-modules</span></a> to load version 2.13.0 of the BLAST command line
-tools.</p>
+<p class="sd-card-text">Same as in the <a class="reference internal" href="environment.html"><span class="std std-doc">Environment modules</span></a> section: we load the
+BLAST tools so that the <code class="docutils literal notranslate"><span class="pre">blastn</span></code> command is available when the job runs.</p>
 </div>
 </div>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
@@ -715,10 +699,9 @@ which decided that naturally occurring DNA sequences are not patentable.</p>
 searching with many sequences, and the job was taking a long time? How could we
 speed it up?</p>
 <p>A lot of research software can use multiple CPU cores to improve performance,
-and BLAST is no exception. Let’s try it by editing our job script with <code class="docutils literal notranslate"><span class="pre">nano</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="n">blast_job</span><span class="o">.</span><span class="n">sh</span>
-</pre></div>
-</div>
+and BLAST is no exception. Let’s try it — click on <code class="docutils literal notranslate"><span class="pre">blast_job.sh</span></code> in the
+Explorer sidebar to open it in the editor (or switch to its tab if it’s already
+open).</p>
 <p>Add the following line next to the other <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> lines:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --cpus-per-task=2</span>
 </pre></div>
@@ -743,8 +726,7 @@ explicitly tell BLAST that we want it to use multiple cores.</p>
 <span class="n">blastn</span> <span class="o">-</span><span class="n">query</span> <span class="n">BRCA1</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">db</span> <span class="n">patnt</span> <span class="o">-</span><span class="n">num_threads</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>Like before, save the file using <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">o</span></code>, press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> when prompted for the
-filename, and quit <code class="docutils literal notranslate"><span class="pre">nano</span></code> using <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p>Save the file with <code class="docutils literal notranslate"><span class="pre">Ctrl+S</span></code> (Windows/Linux) or <code class="docutils literal notranslate"><span class="pre">Cmd+S</span></code> (macOS).</p>
 <hr class="docutils" />
 <p>We can now run the job again with <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[jjp366@picottemgmt ~]$ sbatch blast_job.sh

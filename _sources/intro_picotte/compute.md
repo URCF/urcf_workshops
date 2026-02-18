@@ -1,7 +1,7 @@
 # Running compute jobs
 
-Now that we've SSHed in, we're connected to Picotte—but Picotte, like we saw in
-the Introduction, is composed of many computers. SSHing into
+Now we're connected to Picotte—but Picotte, like we saw in
+the Introduction, is composed of many computers. Connecting to
 `picottelogin.urcf.drexel.edu` just connects us to one of them, the so-called
 "login node" ("node" just means one of the computers that make up the cluster).
 But Picotte has nearly 100 nodes in it—how do we access the others?
@@ -31,62 +31,85 @@ The scheduler used by Picotte is called
 commands](https://slurm.schedmd.com/quickstart.html#commands), we'll learn a few
 of the most important today.
 
-SLURM commands generally start with the letter `s`. Let's run our first SLURM
-command, `sinfo`:
+SLURM commands generally start with the letter `s`.
 
-~~~bash
-sinfo
-~~~
-
-`sinfo` prints output that shows that status of all the nodes in the cluster.
-It's pretty dense, with a lot of information. Don't worry about all of it for
-now. We're just looking to see that there are nodes in the `idle` or `mixed`
-state in the `def-sm` partition. If there aren't, that means the cluster is
-busy, and we might have to wait a while to run our job.
-
-Let's run our first job, using the following command[^srun]:
+Let's run our first job, using the `srun` command[^srun] as follows:
 
 ```
-srun --partition=def-sm --account=workshopprj --pty /bin/bash
+srun --partition=def-sm --account=workshopprj Rscript -e 'summary(mtcars)'
 ```
+
+The `Rscript` command runs a program using the [R
+language](https://www.r-project.org/) for statistical computing. In this case,
+we're computing summary statistics on the built-in [`mtcars` dataset](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html)[^mtcars].
 
 You should see something like this:
 
 ```
-[jjp366@picotte001 ~]$ srun --partition=def-sm --account=workshopprj --pty /bin/bash
-srun: job 11702109 queued and waiting for resources
-srun: job 11702109 has been allocated resources
-[jjp366@node038 ~]$
+[jjp366@picotte001 ~]$ srun --partition=def-sm --account=workshopprj Rscript -e 'summary(mtcars)'
+Microsoft R Open 4.0.2
+The enhanced R distribution from Microsoft
+Microsoft packages Copyright (C) 2020 Microsoft Corporation
+
+Using the Intel MKL for parallel mathematical computing (using 1 cores).
+
+Default CRAN mirror snapshot taken on 2020-07-16.
+See: https://mran.microsoft.com/.
+
+      mpg             cyl             disp             hp
+ Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0
+ 1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5
+ Median :19.20   Median :6.000   Median :196.3   Median :123.0
+ Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7
+ 3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0
+ Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0
+      drat             wt             qsec             vs
+ Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000
+ 1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000
+ Median :3.695   Median :3.325   Median :17.71   Median :0.0000
+ Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375
+ 3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000
+ Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000
+       am              gear            carb
+ Min.   :0.0000   Min.   :3.000   Min.   :1.000
+ 1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000
+ Median :0.0000   Median :4.000   Median :2.000
+ Mean   :0.4062   Mean   :3.688   Mean   :2.812
+ 3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000
+ Max.   :1.0000   Max.   :5.000   Max.   :8.000
+[jjp366@picotte001 ~]$
 ```
 
-Importantly, you will see the prompt change. Previously, the prompt was
-`<your username>@picotte001`, because you were on the login node. Now, you
-are on a compute node—in this case, `node038` (you might be on a different
-compute node).
+The output includes statistics (e.g. mean, median) for each of the variables on
+car performance: miles per gallon, horsepower, etc. The details of the
+computation and output don't really matter here, we're just using it as a simple
+example of running a job on the cluster.
 
-Now we're finally where the real work happens! From here, you can run any other
-commands your research requires—a Python script you wrote, open-source
-bioinformatics tools, commercial structural analysis software—the sky's the
-limit. We have [a lot of research software pre-installed on
+Let's trace what happened: the job was queued, SLURM allocated resources on a
+compute node, the R script ran there, the output was printed back to your
+terminal, and then you were returned to the login node. The key takeaway is
+that SLURM handled scheduling the work onto a compute node transparently—you
+didn't have to know or care which node it ran on.
+
+The cluster just did real work for us—it ran an R script on a compute node and
+returned the results. The command we ran here was simple, but the same approach
+works for anything your research requires: a Python script you wrote,
+open-source bioinformatics tools, commercial structural analysis software—the
+sky's the limit. We have [a lot of research software pre-installed on
 Picotte](https://docs.urcf.drexel.edu/software/installed/) for you to use.
 
-However, an interactive job like this might not be the best way to get work
-done. More on that later, for now let's break down exactly what each of the
-arguments in the command above means and why we need them:
+Let's break down exactly what each of the arguments in the command above means
+and why we need them:
 
 `srun`
 
 - The base command: this launches a single job on a compute node.
 
-`/bin/bash`
+`Rscript -e 'summary(mtcars)'`
 
-- `srun` takes one argument: the command to run. `bin/bash` is the command to
-   start a new `bash` shell.
-
-`--pty`
-
-- This option is short for "pseudo-terminal", this lets you run commands interactively rather
-  than in a non-interactive batch mode (which we'll learn more about later).
+- the main argument to `srun` is the command to run. Here, we're running
+  `Rscript -e 'summary(mtcars)'`, which executes an R expression that summarizes
+  the built-in `mtcars` dataset.
 
 `--partition=def-sm` and `--account=workshopprj`
 
@@ -150,19 +173,6 @@ partition, which is for standard free-tier jobs. You can read more about all the
 available partitions
 [here](https://docs.urcf.drexel.edu/clusters/picotte/usage-rates/).
 
-----
-
-Let's now exit the compute node and return to the login node:
-
-~~~ bash
-exit
-~~~
-
-This will bring you back to the login node. See how your prompt has changed back
-to `picotte001`. It is important to note that you have to be on a login node to
-request a compute node. One you are on the compute node, if you want to go to
-another compute node, you have to exit first.
-
 :::{admonition} Picotte is a shared resource
 :class: warning
 Please be considerate of others when submitting jobs. Remember that Picotte is a shared resource.
@@ -189,3 +199,5 @@ interfere with anyone else.
     the email you got confirming your Picotte account's creation. Typically this
     is your PI's last name or name of your lab, followed by `freeprj`. E.g. if your
     PI is Sara Zhang, you should typically use `zhangfreeprj`.
+[^mtcars]: The mtcars dataset includes design and performance data for 32 cars,
+    originally published in *Motor Trend* magazine in 1974.
