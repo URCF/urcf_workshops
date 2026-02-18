@@ -80,12 +80,11 @@ To run a batch job, we need to write a **SLURM script**. This is file containing
 a series of commands we want the job to run, along with configuration arguments,
 like the account and partition, or requests for additional resources.
 
-Make sure your home directory is open in the VSCode Explorer sidebar. If it
-isn't, click **File → Open Folder** and enter `/home/YOUR_PICOTTE_USERNAME`.
+To create a new file in VSCode, press <kbd>Ctrl</kbd>+<kbd>N</kbd>
+(Windows/Linux) or <kbd>Cmd</kbd>+<kbd>N</kbd> (macOS), or choose **File → New
+File** from the menu.
 
-To create the script, right-click in the Explorer sidebar and choose **"New
-File..."**. Name it `blast_job.sh`. The file will open in the editor. Type (or
-paste) the following:
+Type (or copy and paste) the following into the new file that opens:
 
 ~~~
 #!/bin/bash
@@ -98,9 +97,15 @@ module load ncbi-blast/2.13.0
 blastn -query BRCA1.fasta -db patnt
 ~~~
 
-Save the file with `Ctrl+S` (Windows/Linux) or `Cmd+S` (macOS).
+Press <kbd>Ctrl</kbd>+<kbd>S</kbd> (Windows/Linux) or <kbd>Cmd</kbd>+<kbd>S</kbd> (macOS) to save the file. When prompted for the path to save to, make sure the file is in your home directory and name it `blast_job.sh` (so the path should be `/home/YOUR_PICOTTE_USERNAME/blast_job.sh`).
 
-![Editing blast_job.sh in VSCode](../fig/intro_picotte/batch/vscode_edit_slurm_script.png)
+:::{figure} ../fig/intro_picotte/batch/vscode_edit_slurm_script.png
+:name: editing-blast-job
+:alt: Editing the SLURM script in VSCode
+
+Editing `blast_job.sh` in VSCode.
+:::
+
 
 What do these lines mean? Let's look at them one by one:
 
